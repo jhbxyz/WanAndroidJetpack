@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.jhb.wanandroidjetpack.login.viewmodel.LoginVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/title_view_model"
+            app:title="@{vm.mTitleVM}" />
+
+
+        <EditText
+            android:id="@+id/et0"
+            android:text="@={vm.mUserName}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_20"
+            android:hint="请输入账号"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <EditText
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@={vm.mPassword}"
+            android:hint="请输入密码"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et0" />
+
+        <Button
+            android:padding="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:text="Login"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorGray3"
+            android:onClick="@{()-> vm.onLogin()}"
+            android:textSize="@dimen/sp_40"
+            android:textAllCaps="false"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

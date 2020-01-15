@@ -1,4 +1,4 @@
-package com.jhb.wanandroidjetpack
+package com.jhb.wanandroidjetpack.base
 
 import android.app.Application
 
