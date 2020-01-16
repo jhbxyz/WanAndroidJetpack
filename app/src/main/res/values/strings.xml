@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WanAndroidJetpack</string>
+
+    <string name="network_error" translatable="false">network_error</string>
+    <string name="network_error_unknown_code" translatable="false">network error unknown code</string>
+    <string name="socket_time_out" translatable="false">socket_timeout</string>
+    <string name="parse_data_error" translatable="false">parse data error</string>
+    <string name="server_http_error" translatable="false">server http error</string>
+    <string name="server_http_error_other" translatable="false">other server error</string>
+    <string name="unknown_net_error" translatable="false">unknown net error</string>
+    <string name="unknown_error" translatable="false">unknown error</string>
+
+
 </resources>

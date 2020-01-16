@@ -23,13 +23,14 @@ object WanService {
         .readTimeout(READ_TIME, TimeUnit.SECONDS)
         .writeTimeout(WRITE_TIME, TimeUnit.SECONDS)
         .connectTimeout(CONNECT_TIME, TimeUnit.SECONDS)
+        .addInterceptor(CookieInterceptor())
         .build()
 
     private var mService: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .addConverterFactory(GsonConverterFactory.create())
-//        .client(mClient)
+        .client(mClient)
         .build()
 
 
