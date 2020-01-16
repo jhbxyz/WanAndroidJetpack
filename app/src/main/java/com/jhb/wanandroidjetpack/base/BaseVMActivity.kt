@@ -34,4 +34,8 @@ open class BaseVMActivity<V : BaseViewModel, L : ViewDataBinding> : BaseActivity
             finish()
         })
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }

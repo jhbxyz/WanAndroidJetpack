@@ -1,6 +1,7 @@
 package com.jhb.wanandroidjetpack.net
 
 import com.jhb.wanandroidjetpack.bean.BaseBean
+import com.jhb.wanandroidjetpack.util.logE
 import com.jhb.wanandroidjetpack.util.showToast
 import io.reactivex.subscribers.ResourceSubscriber
 
@@ -12,6 +13,7 @@ abstract class WanObserver<T : BaseBean> : ResourceSubscriber<T>() {
 
     override fun onError(e: Throwable?) {
 
+        "onError  ${e?.message}".logE()
 
     }
 

@@ -24,7 +24,6 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
 
     fun finish() {
-        javaClass.simpleName.cNamelogE("finish")
         mFinishSingle.postValue(true)
     }
 

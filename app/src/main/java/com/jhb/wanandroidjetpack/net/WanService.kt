@@ -17,17 +17,19 @@ object WanService {
 
     private const val READ_TIME = 60L
     private const val WRITE_TIME = 60L
+    private const val CONNECT_TIME = 30L
 
     private var mClient = OkHttpClient.Builder()
         .readTimeout(READ_TIME, TimeUnit.SECONDS)
         .writeTimeout(WRITE_TIME, TimeUnit.SECONDS)
+        .connectTimeout(CONNECT_TIME, TimeUnit.SECONDS)
         .build()
 
     private var mService: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .addConverterFactory(GsonConverterFactory.create())
-        .client(mClient)
+//        .client(mClient)
         .build()
 
 

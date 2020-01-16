@@ -11,6 +11,7 @@ import com.jhb.wanandroidjetpack.net.WanService
 import com.jhb.wanandroidjetpack.util.logE
 import com.jhb.wanandroidjetpack.util.showToast
 import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * Created by jhb on 2020-01-14.
@@ -20,23 +21,27 @@ class LoginVM : BaseViewModel() {
     var mUserName = ObservableField<String>()
     var mPassword = ObservableField<String>()
 
-    var mTitleVM = TitleVM(leftAction = {
-        finish()
-    }, title = "登录")
+    var mTitleVM = TitleVM(
+            leftDrawable = null,
+            leftAction = {
+                finish()
+            }, title = "登录"
+    )
 
     @SuppressLint("CheckResult")
     fun onLogin() {
-        if (mUserName.get()?.isEmpty() != true) {
+        if (mUserName.get()?.isEmpty() != false) {
             "请输入账号".showToast()
             return
         }
 
-        if (mPassword.get()?.isEmpty() != true) {
+        if (mPassword.get()?.isEmpty() != false) {
             "请输入密码".showToast()
             return
         }
         WanService.api.userLogin(mUserName.get()!!, mPassword.get()!!)
             .toFlowable(BackpressureStrategy.DROP)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : WanObserver<BaseBean>() {
                 override fun onSuccess(t: BaseBean) {
                     startActivity(MainActivity::class.java)

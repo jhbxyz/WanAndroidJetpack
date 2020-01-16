@@ -28,9 +28,10 @@ class SplashVM : BaseViewModel() {
 
     }
 
-    private fun page(clazz: Class<*>, time: Long = 2000) {
+    private fun page(clazz: Class<*>, time: Long = 1000) {
         WanExecutors.MainThreadExecutor(time).execute {
             startActivity(clazz)
+            finish()
         }
     }
 
