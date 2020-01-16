@@ -1,9 +1,9 @@
 package com.jhb.wanandroidjetpack.main.viewmodel
 
-import androidx.databinding.ObservableField
 import com.jhb.wanandroidjetpack.base.BaseViewModel
 import com.jhb.wanandroidjetpack.login.LoginActivity
 import com.jhb.wanandroidjetpack.main.MainActivity
+import com.jhb.wanandroidjetpack.util.SpUtil
 import com.jhb.wanandroidjetpack.util.WanExecutors
 
 /**
@@ -11,14 +11,8 @@ import com.jhb.wanandroidjetpack.util.WanExecutors
  */
 class SplashVM : BaseViewModel() {
 
-    var mIsLogin = ObservableField<Boolean>(false)
-
-    fun getLoginState() {
-        mIsLogin.set(false)
-    }
-
     fun goWhichPage() {
-        if (mIsLogin.get() == true) {
+        if (SpUtil.isCookieExist()) {
             page(MainActivity::class.java)
 
         } else {

@@ -2,6 +2,7 @@ package com.jhb.wanandroidjetpack.net
 
 import android.content.Context
 import com.jhb.wanandroidjetpack.base.WanApp
+import com.jhb.wanandroidjetpack.util.SpUtil
 import com.jhb.wanandroidjetpack.util.logE
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -11,17 +12,11 @@ import okhttp3.Response
  */
 class CookieInterceptor : Interceptor {
 
-    companion object {
-        private const val KEY_COOKIE = "cookie"
-    }
-
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val finalResponse: Response
 
-        val sp = WanApp.instance.getSharedPreferences("cookie_config", Context.MODE_PRIVATE)
-
-        val stringSet = sp.getStringSet(KEY_COOKIE, null)
+        val stringSet = SpUtil.getCookies()
 
         if (stringSet.isNullOrEmpty()) {
             val originResponse = chain.proceed(chain.request())
@@ -33,7 +28,7 @@ class CookieInterceptor : Interceptor {
                     cookies.add(it)
                 }
 
-                sp.edit().putStringSet(KEY_COOKIE, cookies).apply()
+                SpUtil.saveCookies(cookies)
             }
 
             finalResponse = originResponse
