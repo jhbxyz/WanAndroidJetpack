@@ -9,4 +9,6 @@
     <color name="colorGray9">#999999</color>
     <color name="colorWhite">#ffffff</color>
 
+    <color name="colorMainRed">#F44336</color>
+
 </resources>
