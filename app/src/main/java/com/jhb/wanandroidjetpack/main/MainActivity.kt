@@ -9,6 +9,7 @@ import com.jhb.wanandroidjetpack.base.TestType
 import com.jhb.wanandroidjetpack.category.ui.CategoryFragment
 import com.jhb.wanandroidjetpack.databinding.ActivityMainBinding
 import com.jhb.wanandroidjetpack.main.viewmodel.MainVM
+import com.jhb.wanandroidjetpack.test.TestFragment
 
 class MainActivity : BaseVMActivity<MainVM, ActivityMainBinding>() {
 
@@ -28,7 +29,7 @@ class MainActivity : BaseVMActivity<MainVM, ActivityMainBinding>() {
 
     private fun initFragment() {
 
-        supportFragmentManager.beginTransaction().add(R.id.fl_container, CategoryFragment()).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().add(R.id.fl_container, TestFragment()).commitAllowingStateLoss()
 
     }
 

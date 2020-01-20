@@ -6,11 +6,12 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.jhb.wanandroidjetpack.base.BaseItemViewModel
 
 /**
  * Created by jhb on 2020-01-19.
  */
-class BaseRecyclerViewAdapter<T>(@LayoutRes private val layoutId: Int, private val mData: List<T>) : RecyclerView.Adapter<BaseViewHolder>() {
+class BaseRecyclerViewAdapter(@LayoutRes private val layoutId: Int, private val mData: List<BaseItemViewModel>) : RecyclerView.Adapter<BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), layoutId, parent, false)
@@ -22,6 +23,7 @@ class BaseRecyclerViewAdapter<T>(@LayoutRes private val layoutId: Int, private v
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val binding = DataBindingUtil.getBinding<ViewDataBinding>(holder.itemView)
+        binding?.setVariable(mData[position].getVariableId(), mData[position])
         binding?.executePendingBindings()
     }
 

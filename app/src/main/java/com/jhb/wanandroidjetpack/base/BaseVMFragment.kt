@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 /**
  * Created by jhb on 2020-01-19.
  */
-abstract class BaseVMFragment<V : ViewModel, L : ViewDataBinding>(@LayoutRes private val layoutId: Int) : BaseFragment() {
+abstract class BaseVMFragment<V : BaseViewModel, L : ViewDataBinding>(@LayoutRes private val layoutId: Int) : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +34,23 @@ abstract class BaseVMFragment<V : ViewModel, L : ViewDataBinding>(@LayoutRes pri
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private var mVM: ViewModel? = null
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (mVM == null) throw IllegalAccessException("you must init ViewModel in onViewCreated lifecycle")
+        mVM?.onModelBind()
+    }
+
+    private var mVM: BaseViewModel? = null
     fun initViewModel(clazz: Class<V>): V {
         val vm = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(clazz)
         mVM = vm
         return vm
+    }
+
+
+    fun init(){
+
+
     }
 
 

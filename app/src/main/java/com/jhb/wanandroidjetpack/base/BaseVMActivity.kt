@@ -33,6 +33,7 @@ open class BaseVMActivity<V : BaseViewModel, L : ViewDataBinding> : BaseActivity
         mVM?.mFinishSingle?.observe(this, Observer {
             finish()
         })
+        mVM?.onModelBind()
     }
 
     override fun onDestroy() {

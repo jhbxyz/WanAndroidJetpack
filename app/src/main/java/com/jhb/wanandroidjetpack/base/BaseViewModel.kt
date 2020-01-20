@@ -3,8 +3,6 @@ package com.jhb.wanandroidjetpack.base
 import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.jhb.wanandroidjetpack.util.cNamelogE
-import com.jhb.wanandroidjetpack.util.logE
 
 /**
  * Created by jhb on 2020-01-14.
@@ -13,6 +11,10 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
     var mFinishSingle = MutableLiveData<Boolean>()
 
+
+    open fun onModelBind() {
+
+    }
 
     fun startActivity(clazz: Class<*>) {
 

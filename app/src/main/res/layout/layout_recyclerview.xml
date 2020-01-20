@@ -3,15 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="rv"
             type="com.jhb.wanandroidjetpack.rv.RecyclerViewVM" />
 
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:enabled="@{rv.mRefreshEnable}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refreshing="@{rv.mIsRefreshing}">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:setAdapter="@{rv.mAdapterObservable}"
+            app:setLayoutManager="@{rv.mLayoutManager}">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 </layout>
