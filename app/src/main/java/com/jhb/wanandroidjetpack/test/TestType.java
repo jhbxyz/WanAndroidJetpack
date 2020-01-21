@@ -1,4 +1,4 @@
-package com.jhb.wanandroidjetpack.base;
+package com.jhb.wanandroidjetpack.test;
 
 /**
  * Created by jhb on 2020-01-19.

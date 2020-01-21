@@ -14,12 +14,16 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:enabled="@{rv.mRefreshEnable}"
         android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_height="match_parent"
+        onRefreshListener="@{rv.mOnRefresh}"
         app:refreshing="@{rv.mIsRefreshing}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            setLoadMoreListener="@{rv.mOnLoadMoreListener}"
             app:setAdapter="@{rv.mAdapterObservable}"
             app:setLayoutManager="@{rv.mLayoutManager}">
 

@@ -1,7 +1,5 @@
 package com.jhb.wanandroidjetpack.test;
 
-import com.jhb.wanandroidjetpack.base.TestType;
-
 /**
  * Created by jhb on 2020-01-19.
  */

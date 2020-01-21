@@ -1,9 +1,7 @@
 package com.jhb.wanandroidjetpack.category.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.BaseSimpleVMFragment
 import com.jhb.wanandroidjetpack.category.viewmodel.CategoryFraVM
@@ -13,5 +11,9 @@ import com.jhb.wanandroidjetpack.category.viewmodel.CategoryFraVM
  */
 class CategoryFragment : BaseSimpleVMFragment<CategoryFraVM>(R.layout.fragment_category, CategoryFraVM()) {
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
 }

@@ -1,16 +1,11 @@
 package com.jhb.wanandroidjetpack.main
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.BaseSimpleVMActivity
-import com.jhb.wanandroidjetpack.base.BaseVMActivity
-import com.jhb.wanandroidjetpack.base.TestType
 import com.jhb.wanandroidjetpack.category.ui.CategoryFragment
-import com.jhb.wanandroidjetpack.databinding.ActivityMainBinding
 import com.jhb.wanandroidjetpack.main.viewmodel.MainVM
-import com.jhb.wanandroidjetpack.test.TestFragment
 
 class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM()) {
 

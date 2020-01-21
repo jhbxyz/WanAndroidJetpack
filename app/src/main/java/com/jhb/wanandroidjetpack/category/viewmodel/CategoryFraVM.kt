@@ -1,5 +1,7 @@
 package com.jhb.wanandroidjetpack.category.viewmodel
 
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jhb.wanandroidjetpack.BR
@@ -25,18 +27,50 @@ class CategoryFraVM : BaseLayoutViewModel() {
 
     var rvVm = RecyclerViewVM().apply {
         mAdapterObservable.set(mAdapter)
+        mRefreshEnable = true
+
+        mOnRefresh = {
+            mIsRefreshing.set(true)
+            onRefresh()
+        }
+
+        mOnLoadMoreListener = {
+            onLoadMore()
+        }
+    }
+
+
+    private fun onRefresh() {
+
+        mDataList.clear()
+        for (i in 0..10) {
+            mDataList.add(ItemRVCategoryVM("刷新的 ontent- sss_$i"))
+        }
+
+        rvVm.mIsRefreshing.set(false)
+        mAdapter.notifyDataSetChanged()
+
+    }
+
+    private fun onLoadMore() {
+
+        for (i in 0..10) {
+            mDataList.add(ItemRVCategoryVM("加载更多  ontent- sss_$i"))
+        }
+
+        mAdapter.notifyDataSetChanged()
+
     }
 
 
     private fun initRv() {
-        for (i in 0..100) {
+        for (i in 0..39) {
             mDataList.add(ItemRVCategoryVM("content- sss_$i"))
         }
 
         mAdapter.notifyDataSetChanged()
     }
 
-    //
     override fun onModelBind() {
         super.onModelBind()
         initRv()

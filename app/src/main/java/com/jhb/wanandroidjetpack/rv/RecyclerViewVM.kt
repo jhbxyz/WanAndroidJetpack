@@ -19,4 +19,7 @@ class RecyclerViewVM : BaseViewModel() {
 
     var mOnRefresh = {}
 
+    var mOnLoadMoreListener = {}
+
+
 }

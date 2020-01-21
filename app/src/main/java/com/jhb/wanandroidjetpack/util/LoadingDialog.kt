@@ -14,10 +14,10 @@ object LoadingDialog {
 
     fun show() {
         pd.setMessage("正在加载......")
-//
-//        WanExecutors.mMainThread.execute {
-//            pd.show()
-//        }
+
+        WanExecutors.mMainThread.execute {
+            pd.show()
+        }
     }
 
     fun dismiss() {
