@@ -16,15 +16,71 @@
         android:layout_height="match_parent"
         tools:context=".main.MainActivity">
 
-        <FrameLayout
-            android:id="@+id/fl_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_page2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/ll_nav"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/ll_nav"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_50"
+            android:background="#FFFEFEFE"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dp_4"
+            android:paddingBottom="@dimen/dp_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_page2">
+
+
+            <RadioButton
+                android:id="@+id/rb0"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/nav_bottom_selector_0"
+                android:drawablePadding="@dimen/dp_2"
+                android:text="录入"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="@dimen/sp_10" />
+
+            <RadioButton
+                android:id="@+id/rb1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:drawablePadding="@dimen/dp_2"
+                android:drawableTop="@drawable/nav_bottom_selector_1"
+                android:text="票夹"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="@dimen/sp_10" />
+
+            <RadioButton
+                android:id="@+id/rb2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:drawablePadding="@dimen/dp_2"
+                android:drawableTop="@drawable/nav_bottom_selector_2"
+                android:text="升级"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="@dimen/sp_10" />
+
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
