@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.OnRebindCallback
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.jhb.wanandroidjetpack.BR
+import com.jhb.wanandroidjetpack.util.logE
 
 /**
  * Created by jhb on 2020-01-19.
@@ -18,14 +20,10 @@ abstract class BaseSimpleVMFragment<T>(@LayoutRes private val layoutId: Int, pri
 
     var mRealVM = vm as T
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     final override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutId, container, false)
-        binding?.setVariable(vm.getVariableId(), vm)
-        binding?.executePendingBindings()
+        binding.setVariable(vm.getVariableId(), vm)
+        binding.executePendingBindings()
         return binding.root
     }
 
@@ -33,6 +31,5 @@ abstract class BaseSimpleVMFragment<T>(@LayoutRes private val layoutId: Int, pri
         super.onViewCreated(view, savedInstanceState)
         vm.onModelBind()
     }
-
 
 }

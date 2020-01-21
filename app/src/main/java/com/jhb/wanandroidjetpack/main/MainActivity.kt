@@ -26,7 +26,7 @@ class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM
 
     private fun initFragment() {
 
-        supportFragmentManager.beginTransaction().add(R.id.fl_container, TestFragment()).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().add(R.id.fl_container, CategoryFragment()).commitAllowingStateLoss()
 
     }
 

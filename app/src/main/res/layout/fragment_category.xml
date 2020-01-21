@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="vm"
+            name="layout"
             type="com.jhb.wanandroidjetpack.category.viewmodel.CategoryFraVM" />
     </data>
 
@@ -15,8 +15,9 @@
         android:layout_height="match_parent">
 
 
-        <include layout="@layout/layout_recyclerview"
-            app:rv="@{vm.rvVm}"/>
+        <include
+            layout="@layout/layout_recyclerview"
+            app:rv="@{layout.rvVm}" />
 
     </LinearLayout>
 </layout>
