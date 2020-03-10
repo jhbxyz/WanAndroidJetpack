@@ -27,6 +27,20 @@ class MainVM : BaseLayoutViewModel() {
 
     }
 
+    fun onHomeClick() {
+
+    }
+
+    fun onCategoryClick() {
+
+    }
+
+    fun onCollectClick() {
+
+
+    }
+
+
     override fun getVariableId(): Int = BR.layout
 
 }

@@ -3,6 +3,7 @@ package com.jhb.wanandroidjetpack.base
 import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.jhb.wanandroidjetpack.bridge.ShareViewModel
 
 /**
  * Created by jhb on 2020-01-14.
@@ -11,6 +12,11 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
     var mFinishSingle = MutableLiveData<Boolean>()
 
+    lateinit var mShareViewModel: ShareViewModel
+
+    open fun onCreate() {
+//        mShareViewModel  = WanApp.instance.getAppViewModelProvider()
+    }
 
     open fun onModelBind() {
 

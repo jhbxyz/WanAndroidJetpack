@@ -14,12 +14,15 @@ import com.jhb.wanandroidjetpack.util.logE
 open class BaseSimpleVMActivity<V>(@LayoutRes private val layoutId: Int, private val vm: BaseLayoutViewModel) : BaseActivity() {
 
     var mRealVM = vm as V
+    lateinit var mBinding: ViewDataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutId)
-        binding.setVariable(vm.getVariableId(), vm)
-        binding.executePendingBindings()
+        vm.onCreate()
+
+        mBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutId)
+        mBinding.setVariable(vm.getVariableId(), vm)
+        mBinding.executePendingBindings()
     }
 
     override fun onStart() {

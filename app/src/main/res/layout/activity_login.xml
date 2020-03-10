@@ -21,27 +21,48 @@
             app:title="@{vm.mTitleVM}" />
 
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et0"
-            android:text="@={vm.mUserName}"
+            android:hint="登录账号"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:layout_marginTop="@dimen/dp_20"
-            android:hint="请输入账号"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title">
 
-        <EditText
-            android:layout_marginTop="@dimen/dp_20"
-            android:text="@={vm.mPassword}"
-            android:hint="请输入密码"
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:text="@={vm.mUserName}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_20"
+                android:hint="请输入账号"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:inputType="textPassword"
+            android:layout_height="wrap_content"
+            android:hint="密码"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et0" />
+            app:layout_constraintTop_toBottomOf="@+id/et0">
+
+            <EditText
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@={vm.mPassword}"
+                android:hint="请输入密码"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:inputType="textPassword" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:padding="@dimen/dp_10"

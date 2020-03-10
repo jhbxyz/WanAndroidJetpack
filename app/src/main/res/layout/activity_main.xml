@@ -50,7 +50,7 @@
                 android:checked="true"
                 android:drawableTop="@drawable/nav_bottom_selector_0"
                 android:drawablePadding="@dimen/dp_2"
-                android:text="录入"
+                android:text="首页"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
 
@@ -63,7 +63,7 @@
                 android:button="@null"
                 android:drawablePadding="@dimen/dp_2"
                 android:drawableTop="@drawable/nav_bottom_selector_1"
-                android:text="票夹"
+                android:text="分类"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
 
@@ -76,7 +76,7 @@
                 android:button="@null"
                 android:drawablePadding="@dimen/dp_2"
                 android:drawableTop="@drawable/nav_bottom_selector_2"
-                android:text="升级"
+                android:text="收藏"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
 

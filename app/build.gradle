@@ -77,10 +77,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-
-
-
-
+    // 弹性的 TabLayout
+    compile 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+    //Optional: see how to use the utility.
+//    compile 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
 
 
 
