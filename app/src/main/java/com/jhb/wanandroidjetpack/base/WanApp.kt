@@ -15,6 +15,9 @@ class WanApp : Application(), ViewModelStoreOwner {
         lateinit var instance: WanApp
     }
 
+    //TODO tip：可借助 Application 来管理一个应用级 的 SharedViewModel，
+    // 实现全应用范围内的 生命周期安全 且 事件源可追溯的 视图控制器 事件通知。
+
     private lateinit var mAppViewModelStore: ViewModelStore
     private lateinit var mFactory: ViewModelProvider.AndroidViewModelFactory
 

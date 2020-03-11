@@ -11,7 +11,7 @@ import com.jhb.wanandroidjetpack.util.ActivityUtil
  */
 open class BaseActivity : AppCompatActivity() {
 
-    private lateinit var mShareViewModel: ShareViewModel
+    lateinit var mShareViewModel: ShareViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityUtil.addActivity(this)

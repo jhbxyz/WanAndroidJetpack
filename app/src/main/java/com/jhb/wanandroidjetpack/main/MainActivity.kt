@@ -3,9 +3,11 @@ package com.jhb.wanandroidjetpack.main
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.BaseSimpleVMActivity
+import com.jhb.wanandroidjetpack.databinding.ActivityMainBinding
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.jhb.wanandroidjetpack.main.viewmodel.MainVM
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,10 +20,13 @@ class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mRealVM.lgCollectList()
+        mRealVM
 
         initFragment()
 
+        mShareViewModel.homeNavClick.observe(this, Observer<Int> {
+            setPageState(it)
+        })
     }
 
     private fun initFragment() {
@@ -29,6 +34,7 @@ class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM
         mFragments.add(Fragment1())
         mFragments.add(Fragment2())
         mFragments.add(Fragment3())
+
 
         view_page2.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)
 

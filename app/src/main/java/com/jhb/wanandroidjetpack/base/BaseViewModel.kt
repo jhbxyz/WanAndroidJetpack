@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jhb.wanandroidjetpack.bridge.ShareViewModel
+import com.jhb.wanandroidjetpack.util.ActivityUtil
 
 /**
  * Created by jhb on 2020-01-14.
@@ -14,8 +15,12 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
     lateinit var mShareViewModel: ShareViewModel
 
+    fun initShareViewModel(shareViewModel: ShareViewModel) {
+        mShareViewModel = shareViewModel
+    }
+
     open fun onCreate() {
-//        mShareViewModel  = WanApp.instance.getAppViewModelProvider()
+
     }
 
     open fun onModelBind() {

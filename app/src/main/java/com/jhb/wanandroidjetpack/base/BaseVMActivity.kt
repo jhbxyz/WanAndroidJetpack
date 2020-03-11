@@ -30,6 +30,8 @@ open class BaseVMActivity<V : BaseViewModel, L : ViewDataBinding> : BaseActivity
 
     override fun onStart() {
         super.onStart()
+        mVM?.onCreate()
+
         mVM?.mFinishSingle?.observe(this, Observer {
             finish()
         })

@@ -6,6 +6,7 @@ import com.jhb.wanandroidjetpack.base.BaseViewModel
 import com.jhb.wanandroidjetpack.bean.BaseBean
 import com.jhb.wanandroidjetpack.net.WanObserver
 import com.jhb.wanandroidjetpack.net.WanService
+import com.jhb.wanandroidjetpack.util.logE
 import com.jhb.wanandroidjetpack.util.subIoObsMain
 import java.util.concurrent.TimeUnit
 
@@ -28,19 +29,20 @@ class MainVM : BaseLayoutViewModel() {
     }
 
     fun onHomeClick() {
-
+        mShareViewModel.homeNavClick.value = 0
     }
 
     fun onCategoryClick() {
+        mShareViewModel.homeNavClick.value = 1
 
     }
 
     fun onCollectClick() {
-
+        mShareViewModel.homeNavClick.value = 2
 
     }
 
 
-    override fun getVariableId(): Int = BR.layout
+    override fun getVariableId(): Int = BR.vm
 
 }

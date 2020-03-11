@@ -11,14 +11,15 @@ import com.jhb.wanandroidjetpack.util.logE
 /**
  * Created by jhb on 2020-01-15.
  */
-open class BaseSimpleVMActivity<V>(@LayoutRes private val layoutId: Int, private val vm: BaseLayoutViewModel) : BaseActivity() {
+open class BaseSimpleVMActivity<VM>(@LayoutRes private val layoutId: Int, private val vm: BaseLayoutViewModel) : BaseActivity() {
 
-    var mRealVM = vm as V
+    var mRealVM = vm as VM
     lateinit var mBinding: ViewDataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm.onCreate()
+
+        vm.initShareViewModel(mShareViewModel)
 
         mBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutId)
         mBinding.setVariable(vm.getVariableId(), vm)
