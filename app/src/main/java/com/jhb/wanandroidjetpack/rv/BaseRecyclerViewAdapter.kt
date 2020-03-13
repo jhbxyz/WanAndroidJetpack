@@ -11,7 +11,7 @@ import com.jhb.wanandroidjetpack.base.BaseItemViewModel
 /**
  * Created by jhb on 2020-01-19.
  */
-class BaseRecyclerViewAdapter(@LayoutRes private val layoutId: Int, private val mData: List<BaseItemViewModel>) : RecyclerView.Adapter<BaseViewHolder>() {
+open class BaseRecyclerViewAdapter(@LayoutRes private val layoutId: Int, private val mData: List<BaseItemViewModel>) : RecyclerView.Adapter<BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), layoutId, parent, false)
@@ -25,7 +25,19 @@ class BaseRecyclerViewAdapter(@LayoutRes private val layoutId: Int, private val 
         val binding = DataBindingUtil.getBinding<ViewDataBinding>(holder.itemView)
         binding?.setVariable(mData[position].getVariableId(), mData[position])
         binding?.executePendingBindings()
+
+        holder.itemView.setOnClickListener {
+            mListener?.onItemClick(binding!!, position)
+        }
     }
 
+    private var mListener: OnItemClickListener? = null
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.mListener = listener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(binding: ViewDataBinding, position: Int)
+    }
 
 }

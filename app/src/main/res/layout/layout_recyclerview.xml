@@ -17,7 +17,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_height="match_parent"
-        onRefreshListener="@{rv.mOnRefresh}"
+        app:onRefreshListener="@{rv.mOnRefresh}"
         app:refreshing="@{rv.mIsRefreshing}">
 
         <androidx.recyclerview.widget.RecyclerView

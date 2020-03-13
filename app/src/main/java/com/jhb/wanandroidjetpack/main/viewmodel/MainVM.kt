@@ -43,6 +43,5 @@ class MainVM : BaseLayoutViewModel() {
     }
 
 
-    override fun getVariableId(): Int = BR.vm
 
 }

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">@color/colorMainRed</color>
     <color name="colorAccent">@color/colorMainRed</color>
 
+    <color name="colorGray2">#22222222</color>
     <color name="colorGray3">#333333</color>
     <color name="colorGray6">#666666</color>
     <color name="colorGray9">#999999</color>

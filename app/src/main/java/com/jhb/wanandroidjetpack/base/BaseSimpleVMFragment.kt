@@ -15,12 +15,14 @@ import com.jhb.wanandroidjetpack.util.logE
 /**
  * Created by jhb on 2020-01-19.
  */
-abstract class BaseSimpleVMFragment<T>(@LayoutRes private val layoutId: Int, private val vm: BaseLayoutViewModel) : BaseFragment() {
+abstract class BaseSimpleVMFragment<VM>(@LayoutRes private val layoutId: Int, private val vm: BaseLayoutViewModel) : BaseFragment() {
 
 
-    var mRealVM = vm as T
+    var mRealVM = vm as VM
 
     final override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        vm.initShareViewModel(mShareViewModel)
+
         val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutId, container, false)
         binding.setVariable(vm.getVariableId(), vm)
         binding.executePendingBindings()
@@ -29,7 +31,14 @@ abstract class BaseSimpleVMFragment<T>(@LayoutRes private val layoutId: Int, pri
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         vm.onModelBind()
+        vm.onEvent()
     }
+
+    open fun initView() {
+
+    }
+
 
 }

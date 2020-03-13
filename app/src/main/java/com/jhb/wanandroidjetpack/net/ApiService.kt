@@ -1,13 +1,11 @@
 package com.jhb.wanandroidjetpack.net
 
 import com.jhb.wanandroidjetpack.bean.BaseBean
+import com.jhb.wanandroidjetpack.bean.WendaListBean
 import com.jhb.wanandroidjetpack.login.model.UserLoginBean
 import io.reactivex.Observable
 import retrofit2.adapter.rxjava2.Result
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created by jhb on 2020-01-13.
@@ -30,6 +28,10 @@ interface ApiService {
 
     @GET("lg/collect/list/0/json")
     fun lgCollectList(): Observable<BaseBean>
+
+
+    @GET("wenda/list/{page}/json ")
+    fun wendaList(@Path("page") page: Int): Observable<WendaListBean>
 
 
 }

@@ -9,7 +9,7 @@ import com.jhb.wanandroidjetpack.base.WanApp
 /**
  * Created by jhb on 2020-01-19.
  */
-class RecyclerViewVM : BaseViewModel() {
+open class RecyclerViewVM : BaseViewModel() {
 
     var mRefreshEnable = false
     var mIsRefreshing = ObservableField(false)

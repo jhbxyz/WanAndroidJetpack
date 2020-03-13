@@ -12,5 +12,4 @@ class ItemRVCategoryVM(var content: String) : BaseItemViewModel() {
 //    var mContent = ObservableField<String>()
 
 
-    override fun getVariableId(): Int = BR.item
 }

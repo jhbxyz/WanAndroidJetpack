@@ -25,12 +25,14 @@ open class BaseVMActivity<V : BaseViewModel, L : ViewDataBinding> : BaseActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mVM?.onCreate()
+
+        mVM?.onEvent()
 
     }
 
     override fun onStart() {
         super.onStart()
-        mVM?.onCreate()
 
         mVM?.mFinishSingle?.observe(this, Observer {
             finish()

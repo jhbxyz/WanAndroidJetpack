@@ -7,9 +7,9 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.BaseSimpleVMActivity
-import com.jhb.wanandroidjetpack.databinding.ActivityMainBinding
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.jhb.wanandroidjetpack.main.viewmodel.MainVM
+import com.jhb.wanandroidjetpack.question.ui.DailyQuestionFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM()) {
@@ -32,6 +32,7 @@ class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM
     private fun initFragment() {
 
         mFragments.add(Fragment1())
+        mFragments.add(DailyQuestionFragment())
         mFragments.add(Fragment2())
         mFragments.add(Fragment3())
 
@@ -62,6 +63,9 @@ class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM
             }
             2 -> {
                 ll_nav.check(R.id.rb2)
+            }
+            3 -> {
+                ll_nav.check(R.id.rb3)
             }
         }
     }

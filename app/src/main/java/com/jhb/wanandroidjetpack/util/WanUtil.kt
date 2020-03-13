@@ -1,5 +1,7 @@
 package com.jhb.wanandroidjetpack.util
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -41,15 +43,8 @@ fun <T> Observable<T>.subIoObsMain(observer: Observer<T>) {
         .subscribe(observer)
 }
 
-fun Int.delay() {
-    Observable
-        .timer(this.toLong(), TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(object : SimpleObserver<Long>() {
-            override fun onComplete() {
-                super.onComplete()
-            }
-        })
+fun Int.delay(runnable: Runnable) {
+   Handler(Looper.getMainLooper()).postDelayed(runnable,this.toLong())
 }
 
 

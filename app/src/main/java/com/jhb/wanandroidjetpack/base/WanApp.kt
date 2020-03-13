@@ -31,20 +31,22 @@ class WanApp : Application(), ViewModelStoreOwner {
         return mAppViewModelStore
     }
 
-    fun getAppViewModelProvider(activity: Activity): ViewModelProvider {
+    fun getAppViewModelProvider(activity: Activity?): ViewModelProvider {
         return ViewModelProvider(this, getAppFactory(activity))
     }
 
-    fun getAppFactory(activity: Activity): ViewModelProvider.AndroidViewModelFactory {
+    fun getAppFactory(activity: Activity?): ViewModelProvider.AndroidViewModelFactory {
         val application = checkApplication(activity)
         mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         return mFactory
     }
 
-    private fun checkApplication(activity: Activity): Application {
+    private fun checkApplication(activity: Activity?): Application {
+        if (activity == null) {
+            throw IllegalStateException("Your activity/fragment is not yet attached to "
+                    + "Application. You can't request ViewModel before onCreate call.")
+        }
         return activity.application
-                ?: throw IllegalStateException("Your activity/fragment is not yet attached to "
-                        + "Application. You can't request ViewModel before onCreate call.")
     }
 
 

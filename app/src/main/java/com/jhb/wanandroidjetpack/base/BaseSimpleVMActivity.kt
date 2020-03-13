@@ -18,12 +18,15 @@ open class BaseSimpleVMActivity<VM>(@LayoutRes private val layoutId: Int, privat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        vm.onCreate()
         vm.initShareViewModel(mShareViewModel)
 
         mBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutId)
         mBinding.setVariable(vm.getVariableId(), vm)
         mBinding.executePendingBindings()
+
+        vm.onModelBind()
+        vm.onEvent()
     }
 
     override fun onStart() {
@@ -31,7 +34,6 @@ open class BaseSimpleVMActivity<VM>(@LayoutRes private val layoutId: Int, privat
         vm.mFinishSingle.observe(this, Observer {
             finish()
         })
-        vm.onModelBind()
     }
 
     override fun onDestroy() {

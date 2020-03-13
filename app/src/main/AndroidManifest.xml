@@ -32,6 +32,9 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".base.WanWebActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+
     </application>
 
 </manifest>

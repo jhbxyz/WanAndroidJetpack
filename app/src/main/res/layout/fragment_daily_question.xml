@@ -6,23 +6,21 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.category.viewmodel.CategoryFraVM" />
+            type="com.jhb.wanandroidjetpack.question.viewmodel.DailyQuestionVM" />
+
     </data>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:background="@color/colorGray2"
         android:layout_height="match_parent">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp" />
-
+        <include
+            layout="@layout/layout_recyclerview"
+            app:rv="@{layout.rvVm}" />
 
     </LinearLayout>
+
 </layout>

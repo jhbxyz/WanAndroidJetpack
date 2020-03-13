@@ -27,6 +27,10 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
     }
 
+    open fun onEvent() {
+
+    }
+
     fun startActivity(clazz: Class<*>) {
 
         val intent = Intent(WanApp.instance, clazz)
@@ -38,6 +42,11 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
     fun finish() {
         mFinishSingle.postValue(true)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+
     }
 
 }

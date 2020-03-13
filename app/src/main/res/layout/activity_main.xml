@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="vm"
+            name="layout"
             type="com.jhb.wanandroidjetpack.main.viewmodel.MainVM" />
 
     </data>
@@ -47,12 +47,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:button="@null"
-                android:onClick="@{()->vm.onHomeClick()}"
+                android:onClick="@{()->layout.onHomeClick()}"
                 android:drawableTop="@drawable/nav_bottom_selector_0"
                 android:drawablePadding="@dimen/dp_2"
                 android:text="首页"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
+
 
             <RadioButton
                 android:id="@+id/rb1"
@@ -60,7 +61,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:onClick="@{()->vm.onCategoryClick()}"
+                android:onClick="@{()->layout.onCategoryClick()}"
                 android:button="@null"
                 android:drawablePadding="@dimen/dp_2"
                 android:drawableTop="@drawable/nav_bottom_selector_1"
@@ -75,13 +76,27 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:button="@null"
-                android:onClick="@{()->vm.onCollectClick()}"
+                android:onClick="@{()->layout.onCollectClick()}"
                 android:drawablePadding="@dimen/dp_2"
                 android:drawableTop="@drawable/nav_bottom_selector_2"
                 android:text="收藏"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
 
+
+            <RadioButton
+                android:id="@+id/rb3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:onClick="@{()->layout.onHomeClick()}"
+                android:drawableTop="@drawable/nav_bottom_selector_0"
+                android:drawablePadding="@dimen/dp_2"
+                android:text="首页"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="@dimen/sp_10" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
