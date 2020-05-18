@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
  */
 class ShareViewModel : ViewModel() {
 
+    val loadingDialogState = UnPeekLiveData<Boolean>() //请求网络,开启loading
+
     val homeNavClick = UnPeekLiveData<Int>()
 
 }

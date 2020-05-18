@@ -32,7 +32,7 @@ abstract class WanObserver<T : BaseBean> : DisposableObserver<T>() {
 
     override fun onStart() {
         super.onStart()
-        LoadingDialog.show()
+
     }
 
     override fun onNext(t: T) {
@@ -69,8 +69,6 @@ abstract class WanObserver<T : BaseBean> : DisposableObserver<T>() {
             errorString = R.string.unknown_error.getResString() + " e = " + e?.message
         }
 
-        LoadingDialog.dismiss()
-
         "请求出错  errorString = $errorString".showToast()
     }
 
@@ -88,7 +86,6 @@ abstract class WanObserver<T : BaseBean> : DisposableObserver<T>() {
 
 
     fun onFinish() {
-        LoadingDialog.dismiss()
 
     }
 

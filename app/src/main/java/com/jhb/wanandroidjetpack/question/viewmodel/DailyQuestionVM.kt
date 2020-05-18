@@ -5,12 +5,10 @@ import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.BaseLayoutViewModel
 import com.jhb.wanandroidjetpack.base.WanWebActivity
 import com.jhb.wanandroidjetpack.bean.WendaListBean
-import com.jhb.wanandroidjetpack.databinding.ItemRvDailyQuestionBinding
 import com.jhb.wanandroidjetpack.net.WanObserver
 import com.jhb.wanandroidjetpack.net.WanService
 import com.jhb.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.jhb.wanandroidjetpack.rv.RecyclerViewVM
-import com.jhb.wanandroidjetpack.util.logE
 import com.jhb.wanandroidjetpack.util.subIoObsMain
 
 /**
@@ -64,8 +62,10 @@ class DailyQuestionVM : BaseLayoutViewModel() {
 
     private var mCurrPage = 1
     private fun wendaList() {
+        showLoading()
         WanService.api.wendaList(mCurrPage).subIoObsMain(object : WanObserver<WendaListBean>() {
             override fun onSuccess(t: WendaListBean) {
+                hideLoading()
                 t.data.datas.forEach {
                     mData.add(ItemDailyQuestionVM(it))
                 }

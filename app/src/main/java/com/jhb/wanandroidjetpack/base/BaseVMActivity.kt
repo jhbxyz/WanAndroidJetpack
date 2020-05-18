@@ -1,5 +1,6 @@
 package com.jhb.wanandroidjetpack.base
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil

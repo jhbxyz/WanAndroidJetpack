@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jhb.wanandroidjetpack.bridge.ShareViewModel
-import com.jhb.wanandroidjetpack.util.ActivityUtil
 
 /**
  * Created by jhb on 2020-01-14.
@@ -29,6 +28,14 @@ open class BaseViewModel : AndroidViewModel(WanApp.instance) {
 
     open fun onEvent() {
 
+    }
+
+    open fun showLoading() {
+        mShareViewModel.loadingDialogState.value = true
+    }
+
+    open fun hideLoading() {
+        mShareViewModel.loadingDialogState.value = false
     }
 
     fun startActivity(clazz: Class<*>) {

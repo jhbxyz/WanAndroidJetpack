@@ -19,10 +19,16 @@
 
         <TextView
             android:id="@+id/tvContent"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            android:gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:textColor="@color/colorMainRed"
+            android:textColor="@color/colorGray3"
+            android:textSize="@dimen/sp_15"
             android:text="@{item.mBean.title}"
-            android:layout_height="80dp" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </layout>
