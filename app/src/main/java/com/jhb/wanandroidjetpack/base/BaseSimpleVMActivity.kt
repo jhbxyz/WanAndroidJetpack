@@ -26,9 +26,6 @@ open class BaseSimpleVMActivity<VM>(@LayoutRes private val layoutId: Int, privat
         val loadingDialog = LoadingDialog(this)
 
 
-        ViewModelProviders.of(this).get(BaseViewModel::class.java)
-
-
         vm.onCreate()
         vm.initShareViewModel(mShareViewModel)
 

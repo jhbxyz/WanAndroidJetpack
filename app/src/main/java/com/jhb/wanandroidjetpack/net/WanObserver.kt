@@ -70,6 +70,7 @@ abstract class WanObserver<T : BaseBean> : DisposableObserver<T>() {
         }
 
         "请求出错  errorString = $errorString".showToast()
+        onFinish()
     }
 
 
@@ -80,12 +81,12 @@ abstract class WanObserver<T : BaseBean> : DisposableObserver<T>() {
     abstract fun onSuccess(t: T)
 
 
-    fun onFailed(t: T) {
+    open fun onFailed(t: T) {
         t.errorMsg.showToast()
     }
 
 
-    fun onFinish() {
+    open fun onFinish() {
 
     }
 

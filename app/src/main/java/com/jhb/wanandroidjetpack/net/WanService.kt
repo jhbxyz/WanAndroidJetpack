@@ -1,5 +1,7 @@
 package com.jhb.wanandroidjetpack.net
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -33,6 +35,14 @@ object WanService {
         .client(mClient)
         .build()
 
+    @Deprecated("改用库 https://github.com/LianjiaTech/gson-plugin")
+    private fun getGson(): Gson {
+        return GsonBuilder()
+            .registerTypeHierarchyAdapter(List::class.java, ArraySecurityAdapter())
+            .registerTypeHierarchyAdapter(Int::class.java, IntDefaultAdapter())
+            .registerTypeHierarchyAdapter(Any::class.java, ObjectSecurityAdapter())
+            .create()
+    }
 
     var api = mService.create(ApiService::class.java)
 

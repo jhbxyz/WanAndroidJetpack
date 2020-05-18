@@ -65,11 +65,15 @@ class DailyQuestionVM : BaseLayoutViewModel() {
         showLoading()
         WanService.api.wendaList(mCurrPage).subIoObsMain(object : WanObserver<WendaListBean>() {
             override fun onSuccess(t: WendaListBean) {
-                hideLoading()
                 t.data.datas.forEach {
                     mData.add(ItemDailyQuestionVM(it))
                 }
                 mAdapter.notifyDataSetChanged()
+            }
+
+            override fun onFinish() {
+                super.onFinish()
+                hideLoading()
             }
         })
     }
