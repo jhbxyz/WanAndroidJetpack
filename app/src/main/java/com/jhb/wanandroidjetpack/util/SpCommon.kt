@@ -75,7 +75,7 @@ class SpCommon(spName: String = "") {
 
     @JvmOverloads
     fun getStringSet(key: String, defValue: Set<String>? = null): MutableSet<String>? {
-        return mSp.getStringSet(key, null)
+        return mSp.getStringSet(key, defValue)
     }
 
     fun clear() {

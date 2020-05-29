@@ -9,7 +9,12 @@ import com.jhb.wanandroidjetpack.net.WanObserver
 import com.jhb.wanandroidjetpack.net.WanService
 import com.jhb.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.jhb.wanandroidjetpack.rv.RecyclerViewVM
+import com.jhb.wanandroidjetpack.util.logEWhitT
 import com.jhb.wanandroidjetpack.util.subIoObsMain
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Created by jhb on 2020-03-12.
@@ -75,6 +80,36 @@ class DailyQuestionVM : BaseLayoutViewModel() {
                 super.onFinish()
                 hideLoading()
             }
+        })
+
+        val wendaList2 = WanService.api.wendaList2(mCurrPage)
+
+        wendaList2.enqueue(object : Callback<WendaListBean> {
+            override fun onFailure(call: Call<WendaListBean>, t: Throwable) {
+
+
+            }
+
+            override fun onResponse(call: Call<WendaListBean>, response: Response<WendaListBean>) {
+                response.body()?.toString()?.logEWhitT("wendaList2")
+            }
+
+        })
+
+        val wendaList3 = WanService.api.wendaList3(mCurrPage)
+
+        wendaList3.enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                response.body()?.string()?.logEWhitT("wendaList3")
+
+
+            }
+
         })
     }
 

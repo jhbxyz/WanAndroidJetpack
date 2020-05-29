@@ -24,8 +24,8 @@ fun String.logE() {
     Log.e(CommonValue.TAG, this)
 }
 
-fun String.cNamelogE(msg: String) {
-    Log.e("$this   $msg", this)
+fun String.logEWhitT(tagMsg: String) {
+    Log.e(tagMsg, this)
 }
 
 fun String.showToast() {
@@ -44,7 +44,7 @@ fun <T> Observable<T>.subIoObsMain(observer: Observer<T>) {
 }
 
 fun Int.delay(runnable: Runnable) {
-   Handler(Looper.getMainLooper()).postDelayed(runnable,this.toLong())
+    Handler(Looper.getMainLooper()).postDelayed(runnable, this.toLong())
 }
 
 

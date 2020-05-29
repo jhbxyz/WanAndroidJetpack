@@ -10,6 +10,7 @@ import com.jhb.wanandroidjetpack.base.BaseSimpleVMActivity
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.jhb.wanandroidjetpack.main.viewmodel.MainVM
 import com.jhb.wanandroidjetpack.question.ui.DailyQuestionFragment
+import com.jhb.wanandroidjetpack.test.okhttp_demo.SyncHttpRequest
 import com.jhb.wanandroidjetpack.util.logE
 import com.ke.gson.sdk.ReaderTools
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,6 +41,8 @@ class MainActivity : BaseSimpleVMActivity<MainVM>(R.layout.activity_main, MainVM
         ReaderTools.setListener { s, s2 ->
             "s = $s =====  s2 = $s2".logE()
         }
+
+        SyncHttpRequest.syncRequest()
     }
 
     private fun initFragment() {

@@ -4,6 +4,9 @@ import com.jhb.wanandroidjetpack.bean.BaseBean
 import com.jhb.wanandroidjetpack.bean.WendaListBean
 import com.jhb.wanandroidjetpack.login.model.UserLoginBean
 import io.reactivex.Observable
+import okhttp3.Call
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.adapter.rxjava2.Result
 import retrofit2.http.*
 
@@ -32,6 +35,13 @@ interface ApiService {
 
     @GET("wenda/list/{page}/json ")
     fun wendaList(@Path("page") page: Int): Observable<WendaListBean>
+
+
+    @GET("wenda/list/{page}/json ")
+    fun wendaList2(@Path("page") page: Int): retrofit2.Call<WendaListBean>
+
+    @GET("wenda/list/{page}/json ")
+    fun wendaList3(@Path("page") page: Int): retrofit2.Call<ResponseBody>
 
 
 }
