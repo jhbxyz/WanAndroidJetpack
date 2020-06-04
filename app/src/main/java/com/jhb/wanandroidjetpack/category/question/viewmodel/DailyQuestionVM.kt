@@ -1,4 +1,4 @@
-package com.jhb.wanandroidjetpack.question.viewmodel
+package com.jhb.wanandroidjetpack.category.question.viewmodel
 
 import android.app.Application
 import androidx.databinding.ViewDataBinding
@@ -11,7 +11,6 @@ import com.jhb.wanandroidjetpack.net.WanService
 import com.jhb.wanandroidjetpack.net.WanSubscriber
 import com.jhb.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.jhb.wanandroidjetpack.rv.RecyclerViewVM
-import com.jhb.wanandroidjetpack.util.WanExecutors
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
@@ -61,7 +60,6 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
     private fun wendaList() {
 
         WenDaListManger.getDataBean {
-
             if (it != null) {
                 bindData(it)
                 return@getDataBean

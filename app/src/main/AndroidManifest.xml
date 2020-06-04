@@ -35,7 +35,9 @@
 
         <activity android:name=".login.LoginActivity" />
 
-        <activity android:name=".question.ui.DailyQuestionActivity" />
+        <activity android:name=".category.interview_related.ui.InterviewRelatedActivity" />
+        <activity android:name=".category.question.ui.DailyQuestionActivity" />
+        <activity android:name=".category.question.ui.DailyQuestionDetailActivity" />
 
         <activity
             android:name=".base.WanWebActivity"

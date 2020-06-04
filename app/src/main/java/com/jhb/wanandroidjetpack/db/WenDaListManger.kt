@@ -1,7 +1,12 @@
 package com.jhb.wanandroidjetpack.db
 
+import android.annotation.SuppressLint
 import com.jhb.wanandroidjetpack.bean.WendaListBean
 import com.jhb.wanandroidjetpack.util.WanExecutors
+import com.jhb.wanandroidjetpack.util.logE
+import io.reactivex.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * @author jhb
@@ -22,12 +27,24 @@ object WenDaListManger {
     }
 
 
+    @SuppressLint("CheckResult")
     fun getDataBean(action: (WendaListBean.DataBean?) -> Unit) {
-        WanExecutors.mDiskIO.execute {
+        Observable.create<WendaListBean.DataBean?> { emitter ->
             val dataBean = mDao.getDataBean()
-            action.invoke(dataBean)
-
+            if (dataBean == null) {
+                emitter.onError(Throwable("dataBean == null"))
+            } else {
+                emitter.onNext(dataBean)
+            }
         }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                action.invoke(it)
+            }, {
+                action.invoke(null)
+
+            })
     }
 
 }

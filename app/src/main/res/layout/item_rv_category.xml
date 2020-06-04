@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.jhb.wanandroidjetpack.category.viewmodel.ItemRVCategoryVM" />
+            type="com.jhb.wanandroidjetpack.category.self.viewmodel.ItemRVCategoryVM" />
     </data>
 
     <LinearLayout

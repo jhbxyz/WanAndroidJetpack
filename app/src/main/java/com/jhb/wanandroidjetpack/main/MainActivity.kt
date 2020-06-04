@@ -6,10 +6,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.callback.GlobalSingle
-import com.jhb.wanandroidjetpack.category.ui.CategoryFragment
+import com.jhb.wanandroidjetpack.category.self.ui.CategoryFragment
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.jhb.wanandroidjetpack.main.viewmodel.MainViewModel
-import com.jhb.wanandroidjetpack.question.ui.DailyQuestionActivity
 import com.jhb.wanandroidjetpack.util.logE
 import com.ke.gson.sdk.ReaderTools
 import kotlinx.android.synthetic.main.activity_main.*

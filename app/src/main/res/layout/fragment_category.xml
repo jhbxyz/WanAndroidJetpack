@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.category.viewmodel.CategoryFraVM" />
+            type="com.jhb.wanandroidjetpack.category.self.viewmodel.CategoryFraVM" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -47,7 +46,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_marginBottom="@dimen/dp_10"
-                android:text="面试"
+                android:text="面试相关"
+                android:onClick="@{()-> layout.interviewRelated()}"
                 android:background="@color/colorWhite"
                 android:textColor="@color/colorGray3"
                 android:gravity="center_vertical"

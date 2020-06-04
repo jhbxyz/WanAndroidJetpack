@@ -1,8 +1,8 @@
-package com.jhb.wanandroidjetpack.question.ui
+package com.jhb.wanandroidjetpack.category.question.ui
 
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.ui.BaseViewModelActivity
-import com.jhb.wanandroidjetpack.question.viewmodel.DailyQuestionDetailVM
+import com.jhb.wanandroidjetpack.category.question.viewmodel.DailyQuestionDetailVM
 
 /**
  * Created by jhb on 2020-03-13.

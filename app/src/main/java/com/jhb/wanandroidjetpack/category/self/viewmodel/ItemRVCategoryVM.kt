@@ -1,8 +1,6 @@
-package com.jhb.wanandroidjetpack.category.viewmodel
+package com.jhb.wanandroidjetpack.category.self.viewmodel
 
 import android.app.Application
-import androidx.databinding.ObservableField
-import com.jhb.wanandroidjetpack.BR
 import com.jhb.wanandroidjetpack.base.BaseItemViewModel
 
 /**

@@ -1,4 +1,4 @@
-package com.jhb.wanandroidjetpack.question.viewmodel
+package com.jhb.wanandroidjetpack.category.question.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableField
