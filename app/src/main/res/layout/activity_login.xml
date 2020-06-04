@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.jhb.wanandroidjetpack.login.viewmodel.LoginVM" />
+            name="layout"
+            type="com.jhb.wanandroidjetpack.login.viewmodel.LoginViewModel" />
 
     </data>
 
@@ -18,7 +18,7 @@
         <include
             android:id="@+id/title"
             layout="@layout/title_view_model"
-            app:title="@{vm.mTitleVM}" />
+            app:title="@{layout.mTitleVM}" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -32,11 +32,10 @@
 
 
             <com.google.android.material.textfield.TextInputEditText
-                android:text="@={vm.mUserName}"
+                android:text="@={layout.mUserName}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
                 android:layout_marginTop="@dimen/dp_20"
-                android:hint="请输入账号"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -54,8 +53,7 @@
 
             <EditText
                 android:layout_marginTop="@dimen/dp_20"
-                android:text="@={vm.mPassword}"
-                android:hint="请输入密码"
+                android:text="@={layout.mPassword}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
                 android:inputType="textPassword" />
@@ -70,7 +68,7 @@
             android:text="Login"
             android:background="@color/colorAccent"
             android:textColor="@color/colorGray3"
-            android:onClick="@{()-> vm.onLogin()}"
+            android:onClick="@{()-> layout.onLogin()}"
             android:textSize="@dimen/sp_40"
             android:textAllCaps="false"
             android:layout_height="wrap_content"

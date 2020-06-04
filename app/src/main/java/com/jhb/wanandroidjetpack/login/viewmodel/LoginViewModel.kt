@@ -15,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 /**
  * Created by jhb on 2020-01-14.
  */
-class LoginVM(app: Application) : BaseLayoutViewModel(app) {
+class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     var mUserName = ObservableField<String>()
     var mPassword = ObservableField<String>()
@@ -25,17 +25,18 @@ class LoginVM(app: Application) : BaseLayoutViewModel(app) {
             leftDrawable = null,
             leftAction = {
                 finish()
-            }, title = "登录"
+            },
+            title = "登录"
     )
 
     @SuppressLint("CheckResult")
     fun onLogin() {
-        if (mUserName.get()?.isEmpty() != false) {
+        if (mUserName.get().isNullOrEmpty()) {
             "请输入账号".showToast()
             return
         }
 
-        if (mPassword.get()?.isEmpty() != false) {
+        if (mPassword.get().isNullOrEmpty()) {
             "请输入密码".showToast()
             return
         }

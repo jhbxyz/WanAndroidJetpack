@@ -86,24 +86,24 @@ open class BaseViewModel(app: Application) : AndroidViewModel(app) {
     fun showLoadingDialog(content: String = "正在加载...") {
         val loading = DialogState.LOADING
         loading.state = content
-        GlobalSingle.dialogState.value = loading
+        GlobalSingle.dialogState.postValue(loading)
     }
 
     fun showSuccessDialog(content: String = "加载成功") {
         val success = DialogState.SUCCESS
         success.state = content
-        GlobalSingle.dialogState.value = success
+        GlobalSingle.dialogState.postValue(success)
 
     }
 
     fun showErrorDialog(content: String = "加载失败") {
         val error = DialogState.ERROR
         error.state = content
-        GlobalSingle.dialogState.value = error
+        GlobalSingle.dialogState.postValue(error)
     }
 
     fun dismissDialog() {
-        GlobalSingle.dialogState.value = DialogState.DISMISS
+        GlobalSingle.dialogState.postValue(DialogState.DISMISS)
     }
 
     fun dismissDialogDelay(time: Int = 150) {

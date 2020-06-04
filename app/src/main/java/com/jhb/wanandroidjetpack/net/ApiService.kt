@@ -4,11 +4,6 @@ import com.jhb.wanandroidjetpack.bean.BaseBean
 import com.jhb.wanandroidjetpack.bean.WendaListBean
 import com.jhb.wanandroidjetpack.login.model.UserLoginBean
 import io.reactivex.Flowable
-import io.reactivex.Observable
-import okhttp3.Call
-import okhttp3.ResponseBody
-import retrofit2.Response
-import retrofit2.adapter.rxjava2.Result
 import retrofit2.http.*
 
 /**

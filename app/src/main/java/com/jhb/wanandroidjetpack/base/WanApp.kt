@@ -5,6 +5,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.facebook.stetho.Stetho
 import com.tencent.smtt.sdk.QbSdk
 
 /**
@@ -26,9 +27,13 @@ class WanApp : Application(), ViewModelStoreOwner {
         super.onCreate()
         instance = this
         mAppViewModelStore = ViewModelStore()
+        initSDKs()
 
+    }
+
+    private fun initSDKs() {
+        Stetho.initializeWithDefaults(this);
         QbSdk.initX5Environment(this, null)
-
     }
 
     override fun getViewModelStore(): ViewModelStore {
