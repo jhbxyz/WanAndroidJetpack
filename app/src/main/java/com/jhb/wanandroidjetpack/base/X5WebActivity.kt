@@ -5,23 +5,22 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.WindowManager
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.ui.BaseActivity
 import com.jhb.wanandroidjetpack.util.logE
+import com.tencent.smtt.sdk.WebChromeClient
+import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_webview.*
+import kotlinx.android.synthetic.main.activity_webview_x5.*
 import java.util.concurrent.TimeUnit
 
 /**
  * Created by jhb on 2019-08-06.
  */
-class WanWebActivity : BaseActivity() {
+class X5WebActivity : BaseActivity() {
 
     var url = ""
     var title = ""
@@ -32,7 +31,7 @@ class WanWebActivity : BaseActivity() {
         private const val WEB_TITLE = "web_title"
 
         fun startActivity(url: String?, title: String? = null) {
-            val intent = Intent(WanApp.instance, WanWebActivity::class.java)
+            val intent = Intent(WanApp.instance, X5WebActivity::class.java)
             intent.putExtra(WEB_URL, url)
             intent.putExtra(WEB_TITLE, title)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -43,7 +42,7 @@ class WanWebActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_webview)
+        setContentView(R.layout.activity_webview_x5)
 
         initView()
 
@@ -89,22 +88,16 @@ class WanWebActivity : BaseActivity() {
         settings.allowFileAccess = true
         settings.setAppCacheEnabled(true)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
-        webView.webViewClient = object : WebViewClient() {
-
-        }
-        webView.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(view: WebView?, newProgress: Int) {
-            }
-        }
+        webView.webViewClient = object : WebViewClient() {}
+        webView.webChromeClient = object : WebChromeClient() {}
 
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        onBackClick()
+//        onBackClick()
     }
 
     @SuppressLint("CheckResult")

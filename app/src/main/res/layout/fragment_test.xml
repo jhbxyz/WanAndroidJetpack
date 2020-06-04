@@ -3,9 +3,6 @@
 
     <data>
 
-        <variable
-            name="layout"
-            type="com.jhb.wanandroidjetpack.test.TestFraVM" />
 
 
     </data>
@@ -18,7 +15,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:textColor="@color/colorMainRed"
-            android:text="@{layout.mContent}"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

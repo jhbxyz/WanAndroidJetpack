@@ -1,5 +1,6 @@
 package com.jhb.wanandroidjetpack.net
 
+import com.ding.library.CaptureInfoInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
@@ -14,37 +15,36 @@ import java.util.concurrent.TimeUnit
  */
 object WanService {
 
+    private const val READ_TIMEOUT = 60L
+    private const val WRITE_TIMEOUT = 60L
+    private const val CONNECT_TIMEOUT = 30L
 
     private const val BASE_URL = "https://www.wanandroid.com/"
 
-    private const val READ_TIME = 60L
-    private const val WRITE_TIME = 60L
-    private const val CONNECT_TIME = 30L
+    private var mRetrofit: Retrofit? = null
 
-    private var mClient = OkHttpClient.Builder()
-        .readTimeout(READ_TIME, TimeUnit.SECONDS)
-        .writeTimeout(WRITE_TIME, TimeUnit.SECONDS)
-        .connectTimeout(CONNECT_TIME, TimeUnit.SECONDS)
-        .addInterceptor(CookieInterceptor())
-        .build()
-
-    private var mService: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(mClient)
-        .build()
-
-    @Deprecated("改用库 https://github.com/LianjiaTech/gson-plugin")
-    private fun getGson(): Gson {
-        return GsonBuilder()
-            .registerTypeHierarchyAdapter(List::class.java, ArraySecurityAdapter())
-            .registerTypeHierarchyAdapter(Int::class.java, IntDefaultAdapter())
-            .registerTypeHierarchyAdapter(Any::class.java, ObjectSecurityAdapter())
-            .create()
+    private fun getClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .retryOnConnectionFailure(true)
+            .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+            .addInterceptor(CookieInterceptor())
+            .build()
     }
 
-    var api = mService.create(ApiService::class.java)
+    private fun getRetrofit(): Retrofit {
+        return mRetrofit ?: Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .validateEagerly(true)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .client(getClient())
+            .build()
+            .also { mRetrofit = it }
 
+    }
+
+    var api = getRetrofit().create(ApiService::class.java)
 
 }

@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ProgressBar
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <data>
 
-</RelativeLayout>
+        <variable
+            name="layout"
+            type="com.jhb.wanandroidjetpack.view.LoadingDialogVM" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layerType="hardware"
+        android:layout_height="match_parent"
+        android:background="@color/dialogBackground">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="16dp"
+            app:cardCornerRadius="@dimen/dp_10">
+
+            <LinearLayout
+                android:id="@+id/rl_center_area"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:background="@color/colorWhite"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_icon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:visibility="@{layout.isProgress? View.GONE : View.VISIBLE}"
+                        android:src="@{layout.icon}"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@{layout.progress}"
+                        android:padding="5dp"
+                        android:visibility="@{layout.isProgress? View.VISIBLE : View.GONE}"
+                        tools:ignore="ContentDescription" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="@{layout.tip}"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorGray3"
+                    android:visibility="@{TextUtils.isEmpty(layout.tip)? View.GONE : View.VISIBLE}" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+</layout>

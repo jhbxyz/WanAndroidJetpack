@@ -1,31 +1,27 @@
 package com.jhb.wanandroidjetpack.login.viewmodel
 
 import android.annotation.SuppressLint
+import android.app.Application
 import androidx.databinding.ObservableField
-import com.jhb.wanandroidjetpack.viewmodel.TitleVM
-import com.jhb.wanandroidjetpack.base.BaseViewModel
-import com.jhb.wanandroidjetpack.bean.BaseBean
+import com.jhb.wanandroidjetpack.base.BaseLayoutViewModel
 import com.jhb.wanandroidjetpack.login.model.UserLoginBean
 import com.jhb.wanandroidjetpack.main.MainActivity
-import com.jhb.wanandroidjetpack.net.WanObserver
 import com.jhb.wanandroidjetpack.net.WanService
-import com.jhb.wanandroidjetpack.util.logE
+import com.jhb.wanandroidjetpack.net.WanSubscriber
 import com.jhb.wanandroidjetpack.util.showToast
-import com.jhb.wanandroidjetpack.util.subIoObsMain
-import io.reactivex.BackpressureStrategy
+import com.jhb.wanandroidjetpack.viewmodel.TitleVM
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import retrofit2.adapter.rxjava2.Result
 
 /**
  * Created by jhb on 2020-01-14.
  */
-class LoginVM : BaseViewModel() {
+class LoginVM(app: Application) : BaseLayoutViewModel(app) {
 
     var mUserName = ObservableField<String>()
     var mPassword = ObservableField<String>()
 
     var mTitleVM = TitleVM(
+            app,
             leftDrawable = null,
             leftAction = {
                 finish()
@@ -43,46 +39,14 @@ class LoginVM : BaseViewModel() {
             "请输入密码".showToast()
             return
         }
-        WanService.api.userLogin(mUserName.get()!!, mPassword.get()!!)
-            .subIoObsMain(object : WanObserver<UserLoginBean>() {
+        WanService.api.userLogin(mUserName.get(), mPassword.get())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : WanSubscriber<UserLoginBean>() {
                 override fun onSuccess(t: UserLoginBean) {
                     startActivity(MainActivity::class.java)
                     finish()
                 }
-            })
-
-//        WanService.api.userLoginResult(mUserName.get()!!, mPassword.get()!!)
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                    {
-//                        val response = it.response()
-//                        val headers = response?.headers()
-//
-//                        val cookie = headers?.get("Set-Cookie")
-//                        "cookie = $cookie".logE()
-//
-//                        val map = hashMapOf<String, String>()
-//                        cookie?.split(";")?.forEach {
-//                            it.split("=").forEach {
-//                                map.put(it[0].toString(), it[1].toString())
-//                            }
-//                        }
-//
-//                        map.entries.forEach {
-//                            val key = it.key
-//                            val value = it.value
-//                            "map  for  key = $key   value  = $value".logE()
-//                        }
-//
-//                    },
-//                    {
-//
-//
-//                    },
-//                    {
-//
-//                    }
-//            )
+            }).addToDisposable()
 
     }
 }

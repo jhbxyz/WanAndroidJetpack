@@ -9,20 +9,66 @@
             type="com.jhb.wanandroidjetpack.category.viewmodel.CategoryFraVM" />
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableLayout
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/colorGrayBg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50" />
+            android:layout_height="match_parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="每日一问"
+                android:onClick="@{()-> layout.onDailyQuestion()}"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_20"
+                android:textStyle="bold"
+                android:textColor="@color/colorGray3"
+                android:textSize="@dimen/sp_18"
+                android:layout_height="@dimen/dp_80" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="收藏"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_20"
+                android:textColor="@color/colorGray3"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_height="@dimen/dp_80" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="面试"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorGray3"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_20"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_height="@dimen/dp_80" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="自己总结面试"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorGray3"
+                android:paddingStart="@dimen/dp_20"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_height="@dimen/dp_80" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

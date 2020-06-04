@@ -1,6 +1,8 @@
-package com.jhb.wanandroidjetpack.main.viewmodel
+package com.jhb.wanandroidjetpack.splash
 
-import com.jhb.wanandroidjetpack.base.BaseViewModel
+import android.app.Application
+import com.jhb.wanandroidjetpack.base.BaseLayoutViewModel
+import com.jhb.wanandroidjetpack.base.viewmodel.BaseViewModel
 import com.jhb.wanandroidjetpack.login.LoginActivity
 import com.jhb.wanandroidjetpack.main.MainActivity
 import com.jhb.wanandroidjetpack.util.SpUtil
@@ -9,7 +11,12 @@ import com.jhb.wanandroidjetpack.util.WanExecutors
 /**
  * Created by jhb on 2020-01-14.
  */
-class SplashVM : BaseViewModel() {
+class SplashViewModel(app: Application) : BaseLayoutViewModel(app) {
+
+    override fun onModelBind() {
+        super.onModelBind()
+        goWhichPage()
+    }
 
     fun goWhichPage() {
         if (SpUtil.isCookieExist()) {

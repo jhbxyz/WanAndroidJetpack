@@ -7,7 +7,7 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.main.viewmodel.MainVM" />
+            type="com.jhb.wanandroidjetpack.main.viewmodel.MainViewModel" />
 
     </data>
 

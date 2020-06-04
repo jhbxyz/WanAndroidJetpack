@@ -5,6 +5,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.tencent.smtt.sdk.QbSdk
 
 /**
  * Created by jhb on 2020-01-14.
@@ -25,6 +26,9 @@ class WanApp : Application(), ViewModelStoreOwner {
         super.onCreate()
         instance = this
         mAppViewModelStore = ViewModelStore()
+
+        QbSdk.initX5Environment(this, null)
+
     }
 
     override fun getViewModelStore(): ViewModelStore {
