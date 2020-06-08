@@ -16,7 +16,7 @@ data class WendaListBean(
             @PrimaryKey(autoGenerate = true)
             var curPage: Int?,
             var datas: ArrayList<DatasBean>?,
-            var mLastRequestTime: Long = System.currentTimeMillis(),
+            var mLastRequestTime: Long,//上次请求的时间
             var offset: Int?,
             var over: Boolean?,
             var pageCount: Int?,

@@ -47,7 +47,6 @@
 
         <activity
             android:name=".base.X5WebActivity"
-            android:launchMode="singleTask"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
     </application>

@@ -11,6 +11,7 @@ import com.jhb.wanandroidjetpack.net.WanService
 import com.jhb.wanandroidjetpack.net.WanSubscriber
 import com.jhb.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.jhb.wanandroidjetpack.rv.RecyclerViewVM
+import com.jhb.wanandroidjetpack.util.logE
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
@@ -51,6 +52,7 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(binding: ViewDataBinding, position: Int) {
                 X5WebActivity.startActivity(mData[position].mBean.get()?.link)
+                "文章 = ${mData[position].mBean.get()?.title}   id = ${mData[position].mBean.get()?.id}".logE()
             }
         })
     }
@@ -77,6 +79,7 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
                 override fun onSuccess(t: WendaListBean) {
 
                     t.data?.apply {
+                        mLastRequestTime = System.currentTimeMillis()
                         WenDaListManger.insertDataBean(this)
                         bindData(this)
                     }
@@ -86,12 +89,27 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
             .addToDisposable()
     }
 
-    private fun bindData(t: WendaListBean.DataBean) {
-        t.datas?.forEach {
-            mData.add(ItemDailyQuestionVM(getApplication()).apply {
-                mBean.set(it)
-            })
+    /**
+     *  todo tips:过滤掉 赞 < 3的 文章
+     */
+    private val filterIds = arrayListOf<Int>().apply {
+        add(13701)
+        add(13347)
+        add(12773)
+        add(9286)
+        add(8857)
+        add(8205)
+        add(8435)
+    }
 
+    private fun bindData(t: WendaListBean.DataBean) {
+
+        t.datas?.forEach {
+            if (!filterIds.contains(it.id) && it.zan ?: 4 > 3) {
+                mData.add(ItemDailyQuestionVM(getApplication()).apply {
+                    mBean.set(it)
+                })
+            }
         }
 
         mAdapter.notifyDataSetChanged()

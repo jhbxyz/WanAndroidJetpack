@@ -3,6 +3,7 @@ package com.jhb.wanandroidjetpack.base
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -44,10 +45,6 @@ class X5WebActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_webview_x5)
-        "$TAG   onCreate".logE()
-
-
-
         initView()
 
         initEvent()
@@ -71,7 +68,8 @@ class X5WebActivity : BaseActivity() {
 
         url = intent.getStringExtra(WEB_URL) ?: ""
 
-        "WanWebActivity url = $url".logE()
+        setWebView()
+        webView.loadUrl(url)
 
     }
 
@@ -80,12 +78,6 @@ class X5WebActivity : BaseActivity() {
 
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        setWebView()
-        webView.loadUrl(url)
-    }
 
     private fun setWebView() {
         WebView.setWebContentsDebuggingEnabled(true)
@@ -99,15 +91,35 @@ class X5WebActivity : BaseActivity() {
         settings.setAppCacheEnabled(true)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
         }
-        webView.webViewClient = object : WebViewClient() {}
-        webView.webChromeClient = object : WebChromeClient() {}
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(p0: WebView?, p1: String?) {
+                super.onPageFinished(p0, p1)
+
+            }
+
+            override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
+                super.onPageStarted(p0, p1, p2)
+                mDialog.showLoading("正在加载")
+
+            }
+        }
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(p0: WebView?, p1: Int) {
+                super.onProgressChanged(p0, p1)
+                if (p1 >= 100) {
+                    mDialog.dialogDiss()
+                }
+            }
+
+
+        }
 
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-//        onBackClick()
+        onBackClick()
     }
 
     @SuppressLint("CheckResult")
@@ -129,7 +141,6 @@ class X5WebActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        "$TAG   onDestroy".logE()
 
         (webView.parent as ViewGroup).removeView(webView)
         webView.stopLoading()
