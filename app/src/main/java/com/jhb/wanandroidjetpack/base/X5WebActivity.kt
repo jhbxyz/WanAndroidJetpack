@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.ViewGroup
 import android.view.WindowManager
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.base.ui.BaseActivity
@@ -24,7 +25,7 @@ class X5WebActivity : BaseActivity() {
 
     var url = ""
     var title = ""
-    private val TAG = this.javaClass.simpleName
+    private val TAG = "X5WebActivity"
 
     companion object {
         private const val WEB_URL = "web_url"
@@ -43,6 +44,9 @@ class X5WebActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_webview_x5)
+        "$TAG   onCreate".logE()
+
+
 
         initView()
 
@@ -51,7 +55,13 @@ class X5WebActivity : BaseActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        TAG + "   onConfigurationChanged".logE()
+        "$TAG   onConfigurationChanged".logE()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        "$TAG   onNewIntent".logE()
+
     }
 
     private fun initView() {
@@ -119,15 +129,17 @@ class X5WebActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-//        (webView.parent as ViewGroup).removeView(webView)
-//        webView.stopLoading()
-//        webView.loadUrl(null)
-//        webView.clearHistory()
-//        webView.removeAllViews()
-//        webView.pauseTimers()
-//        webView.clearCache(true)
-//        webView.settings.javaScriptEnabled = false
-//        webView.tag = null
-//        webView.destroy()
+        "$TAG   onDestroy".logE()
+
+        (webView.parent as ViewGroup).removeView(webView)
+        webView.stopLoading()
+        webView.loadUrl(null)
+        webView.clearHistory()
+        webView.removeAllViews()
+        webView.pauseTimers()
+        webView.clearCache(true)
+        webView.settings.javaScriptEnabled = false
+        webView.tag = null
+        webView.destroy()
     }
 }

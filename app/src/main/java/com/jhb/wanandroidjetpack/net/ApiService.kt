@@ -6,6 +6,8 @@ import com.jhb.wanandroidjetpack.bean.TreeJsonBean
 import com.jhb.wanandroidjetpack.bean.WendaListBean
 import com.jhb.wanandroidjetpack.login.model.UserLoginBean
 import io.reactivex.Flowable
+import okhttp3.Response
+import retrofit2.adapter.rxjava2.Result
 import retrofit2.http.*
 
 /**
@@ -18,7 +20,7 @@ interface ApiService {
     fun userLogin(
             @Field("username") username: String?,
             @Field("password") password: String?
-    ): Flowable<UserLoginBean>
+    ): Flowable<Result<UserLoginBean>>
 
 
     @GET("lg/collect/list/0/json")

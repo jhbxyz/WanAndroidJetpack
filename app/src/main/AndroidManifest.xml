@@ -31,6 +31,7 @@
 
         <activity
             android:name=".main.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTask" />
 
         <activity android:name=".login.LoginActivity" />
@@ -46,6 +47,7 @@
 
         <activity
             android:name=".base.X5WebActivity"
+            android:launchMode="singleTask"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
     </application>

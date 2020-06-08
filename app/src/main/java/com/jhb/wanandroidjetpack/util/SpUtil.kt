@@ -23,7 +23,13 @@ object SpUtil {
         spCookie.put(KEY_COOKIE, cookies)
     }
 
-    fun getCookies() = spCookie.getStringSet(KEY_COOKIE)
+    private var mCacheCookies = mutableSetOf<String>()
+    fun getCookies(): MutableSet<String> {
+        if (mCacheCookies.isEmpty()) {
+            mCacheCookies = spCookie.getStringSet(KEY_COOKIE) ?: mutableSetOf()
+        }
+        return mCacheCookies
+    }
 
 
     fun isCookieExist(): Boolean {

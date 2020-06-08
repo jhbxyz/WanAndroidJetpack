@@ -57,10 +57,11 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
 
 
     private var mCurrPage = 1
+    private val oneDay = 1000 * 60 * 60 * 24
     private fun wendaList() {
 
         WenDaListManger.getDataBean {
-            if (it != null) {
+            if (it != null && (System.currentTimeMillis() - it.mLastRequestTime) < 3 * oneDay) {
                 bindData(it)
                 return@getDataBean
             }

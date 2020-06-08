@@ -1,8 +1,5 @@
 package com.jhb.wanandroidjetpack.net
 
-import com.ding.library.CaptureInfoInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

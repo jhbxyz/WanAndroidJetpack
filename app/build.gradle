@@ -85,10 +85,14 @@ dependencies {
     // 弹性的 TabLayout
     implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
     implementation 'com.blankj:utilcodex:1.28.3'
+
+
     //应用请求抓包
-    debugImplementation 'com.github.DingProg.NetworkCaptureSelf:library:v1.0.1'
+//    debugImplementation 'com.github.DingProg.NetworkCaptureSelf:library:v1.0.1'
     //doraemonkit
     //    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.1.5'
+
+    
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

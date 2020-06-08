@@ -1,5 +1,6 @@
 package com.jhb.wanandroidjetpack.bean
 
+import android.os.SystemClock
 import androidx.room.*
 import com.jhb.wanandroidjetpack.db.WendaListBeanArrType
 import java.io.Serializable
@@ -15,6 +16,7 @@ data class WendaListBean(
             @PrimaryKey(autoGenerate = true)
             var curPage: Int?,
             var datas: ArrayList<DatasBean>?,
+            var mLastRequestTime: Long = System.currentTimeMillis(),
             var offset: Int?,
             var over: Boolean?,
             var pageCount: Int?,

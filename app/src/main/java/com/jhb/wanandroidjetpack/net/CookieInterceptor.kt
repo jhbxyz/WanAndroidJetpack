@@ -19,19 +19,20 @@ class CookieInterceptor : Interceptor {
         val stringSet = SpUtil.getCookies()
 
         if (stringSet.isNullOrEmpty()) {
-            val originResponse = chain.proceed(chain.request())
+//            val originResponse = chain.proceed(chain.request())
+//
+//            if (!originResponse.headers("Set-Cookie").isNullOrEmpty()) {
+//
+//                val cookies = hashSetOf<String>()
+//                originResponse.headers("Set-Cookie").forEach {
+//                    cookies.add(it)
+//                }
+//
+//            }
+//
+//            finalResponse = originResponse
 
-            if (!originResponse.headers("Set-Cookie").isNullOrEmpty()) {
-
-                val cookies = hashSetOf<String>()
-                originResponse.headers("Set-Cookie").forEach {
-                    cookies.add(it)
-                }
-
-                SpUtil.saveCookies(cookies)
-            }
-
-            finalResponse = originResponse
+            finalResponse = chain.proceed(chain.request())
 
         } else {
             val builder = chain.request().newBuilder()

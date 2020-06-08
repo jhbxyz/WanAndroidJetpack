@@ -11,15 +11,12 @@ object ActivityUtil {
     var mActivities = arrayListOf<Activity>()
 
     fun addActivity(activity: Activity) {
-        "ActivityUtil   addActivity = ${activity.javaClass.simpleName}".logE()
-
         if (!mActivities.contains(activity)) {
             mActivities.add(activity)
         }
     }
 
     fun removeActivity(activity: Activity) {
-        "ActivityUtil   removeActivity = ${activity.javaClass.simpleName}".logE()
         if (mActivities.contains(activity)) {
             mActivities.remove(activity)
         }
