@@ -65,7 +65,7 @@
                 android:button="@null"
                 android:drawablePadding="@dimen/dp_2"
                 android:drawableTop="@drawable/nav_bottom_selector_1"
-                android:text="分类"
+                android:text="问答"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
 
@@ -92,9 +92,23 @@
                 android:gravity="center"
                 android:button="@null"
                 android:onClick="@{()->layout.onHomeClick()}"
-                android:drawableTop="@drawable/nav_bottom_selector_0"
+                android:drawableTop="@drawable/nav_bottom_selector_3"
                 android:drawablePadding="@dimen/dp_2"
-                android:text="首页"
+                android:text="发现"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="@dimen/sp_10" />
+
+            <RadioButton
+                android:id="@+id/rb4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:onClick="@{()->layout.onHomeClick()}"
+                android:drawableTop="@drawable/nav_bottom_selector_4"
+                android:drawablePadding="@dimen/dp_2"
+                android:text="我的"
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
         </RadioGroup>

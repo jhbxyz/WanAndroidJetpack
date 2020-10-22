@@ -3,8 +3,8 @@ package com.jhb.wanandroidjetpack.main
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
+import com.aboback.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.R
-import com.jhb.wanandroidjetpack.base.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.callback.GlobalSingle
 import com.jhb.wanandroidjetpack.category.self.ui.CategoryFragment
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
@@ -43,9 +43,11 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
 
     private fun initFragment() {
 
-        mFragments.add(CategoryFragment())
+//        mFragments.add(CategoryFragment())
+        mFragments.add(Fragment1())
         mFragments.add(Fragment1())
         mFragments.add(Fragment2())
+        mFragments.add(Fragment3())
         mFragments.add(Fragment3())
 
 
@@ -78,6 +80,9 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
             }
             3 -> {
                 ll_nav.check(R.id.rb3)
+            }
+            4 -> {
+                ll_nav.check(R.id.rb4)
             }
         }
     }

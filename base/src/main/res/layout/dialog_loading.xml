@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    style="@android:style/Widget.Material.ProgressBar.Large"-->
+
+    <ProgressBar
+        android:layout_width="@dimen/dp_50"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:layout_height="@dimen/dp_50" />
+
+
+</LinearLayout>

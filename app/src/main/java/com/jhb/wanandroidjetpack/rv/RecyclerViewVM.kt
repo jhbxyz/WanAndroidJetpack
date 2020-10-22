@@ -16,7 +16,7 @@ open class RecyclerViewVM(app: Application) {
     var mIsRefreshing = ObservableField(false)
 
     var mAdapterObservable: ObservableField<RecyclerView.Adapter<BaseViewHolder>> = ObservableField()
-    var mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(WanApp.instance)
+    var mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(app)
 
     var mOnRefresh = {}
 

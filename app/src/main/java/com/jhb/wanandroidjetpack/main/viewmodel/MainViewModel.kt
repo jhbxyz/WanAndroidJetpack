@@ -1,7 +1,7 @@
 package com.jhb.wanandroidjetpack.main.viewmodel
 
 import android.app.Application
-import com.jhb.wanandroidjetpack.base.BaseLayoutViewModel
+import com.aboback.viewmodel.BaseLayoutViewModel
 import com.jhb.wanandroidjetpack.callback.GlobalSingle
 
 /**

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.jhb.wanandroidjetpack.R
-import com.jhb.wanandroidjetpack.databinding.DialogLoadingBinding
+import com.jhb.wanandroidjetpack.databinding.DialogLoadingPreBinding
 import com.jhb.wanandroidjetpack.util.delay
 
 /**
@@ -20,7 +20,7 @@ class LoadingDialog(private val activity: AppCompatActivity) : Dialog(activity, 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.inflate<DialogLoadingBinding>(LayoutInflater.from(context), R.layout.dialog_loading, null, false)
+        val binding = DataBindingUtil.inflate<DialogLoadingPreBinding>(LayoutInflater.from(context), R.layout.dialog_loading_pre, null, false)
 
         mVM = ViewModelProvider(activity)[LoadingDialogVM::class.java]
 
