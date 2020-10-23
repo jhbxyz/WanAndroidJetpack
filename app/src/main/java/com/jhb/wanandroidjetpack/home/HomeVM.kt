@@ -1,7 +1,7 @@
 package com.jhb.wanandroidjetpack.home
 
 import android.app.Application
-import com.jhb.wanandroidjetpack.base.BaseLayoutViewModel
+import com.aboback.viewmodel.BaseLayoutViewModel
 
 /**
  * Created by jhb on 2020-03-11.

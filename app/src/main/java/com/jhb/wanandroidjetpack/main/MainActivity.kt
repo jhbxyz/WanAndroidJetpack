@@ -6,7 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.aboback.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.callback.GlobalSingle
-import com.jhb.wanandroidjetpack.category.self.ui.CategoryFragment
+import com.jhb.wanandroidjetpack.home.HomeFragment
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.jhb.wanandroidjetpack.main.viewmodel.MainViewModel
 import com.jhb.wanandroidjetpack.util.logE
@@ -44,7 +44,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
     private fun initFragment() {
 
 //        mFragments.add(CategoryFragment())
-        mFragments.add(Fragment1())
+        mFragments.add(HomeFragment())
         mFragments.add(Fragment1())
         mFragments.add(Fragment2())
         mFragments.add(Fragment3())

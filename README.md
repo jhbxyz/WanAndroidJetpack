@@ -1,4 +1,4 @@
-# WanAndroid-Jetpack
+# WanAndroidJetpack
 
 * MVVM
 * Kotlin

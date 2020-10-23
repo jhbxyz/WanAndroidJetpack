@@ -1,7 +1,7 @@
 package com.jhb.wanandroidjetpack.home
 
+import com.aboback.ui.BaseViewModelFragment
 import com.jhb.wanandroidjetpack.R
-import com.jhb.wanandroidjetpack.base.ui.BaseViewModelFragment
 
 /**
  * Created by jhb on 2020-03-11.

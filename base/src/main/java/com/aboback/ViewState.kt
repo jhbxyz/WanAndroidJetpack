@@ -6,7 +6,7 @@ package com.aboback
  */
 interface ViewState {
 
-    fun beforeViewInit()
+    fun beforeSetView()
 
     fun onViewInit()
 
