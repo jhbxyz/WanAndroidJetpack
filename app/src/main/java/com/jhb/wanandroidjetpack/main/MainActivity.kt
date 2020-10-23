@@ -3,7 +3,7 @@ package com.jhb.wanandroidjetpack.main
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
-import com.aboback.ui.BaseViewModelActivity
+import com.aboback.base.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.callback.GlobalSingle
 import com.jhb.wanandroidjetpack.home.HomeFragment

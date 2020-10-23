@@ -1,6 +1,6 @@
 package com.jhb.wanandroidjetpack.home
 
-import com.aboback.ui.BaseViewModelFragment
+import com.aboback.base.ui.BaseViewModelFragment
 import com.jhb.wanandroidjetpack.R
 
 /**

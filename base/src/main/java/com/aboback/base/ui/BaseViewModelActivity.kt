@@ -1,12 +1,12 @@
-package com.aboback.ui
+package com.aboback.base.ui
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import com.aboback.ViewState
-import com.aboback.viewmodel.BaseLayoutViewModel
+import com.aboback.base.ViewState
+import com.aboback.base.viewmodel.BaseLayoutViewModel
 
 /**
  * @author jhb

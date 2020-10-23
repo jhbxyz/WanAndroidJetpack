@@ -1,6 +1,6 @@
 package com.jhb.wanandroidjetpack.splash
 
-import com.aboback.ui.BaseViewModelActivity
+import com.aboback.base.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.R
 import com.jhb.wanandroidjetpack.main.MainActivity
 import com.jhb.wanandroidjetpack.util.delay

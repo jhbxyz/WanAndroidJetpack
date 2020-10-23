@@ -1,4 +1,4 @@
-package com.aboback.ui
+package com.aboback.base.ui
 
 import android.content.Context
 import android.os.Bundle

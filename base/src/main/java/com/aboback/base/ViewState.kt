@@ -1,4 +1,4 @@
-package com.aboback
+package com.aboback.base
 
 /**
  * @author jhb

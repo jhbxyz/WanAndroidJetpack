@@ -1,36 +1,44 @@
-package com.aboback.viewmodel
+package com.aboback.base.ui
 
-import android.app.Application
 import android.content.Intent
+import android.os.Bundle
 import android.os.Parcelable
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.appcompat.app.AppCompatActivity
+import com.aboback.base.LoadingDialog
+import com.aboback.base.isNull
 import java.io.Serializable
 
 /**
  * @author jhb
- * @date 2020/10/21
+ * @date 2020/10/15
  */
-open class BaseViewModel(app: Application) : AndroidViewModel(app) {
+open class BaseActivity : AppCompatActivity() {
 
+    private var mDialog: LoadingDialog? = null;
 
-    open fun onModelBind() {
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
+    private fun initDialog(): LoadingDialog {
+        if (mDialog.isNull()) {
+            mDialog = LoadingDialog(this)
+        }
+        return mDialog!!
+    }
 
+    fun showDialog() {
+        initDialog()
+        mDialog?.show()
+    }
 
-    /**
-     *  TODO tips: TaskId 是一样的，在同一个栈中 因为亲和性的原因
-     *      原则是：设置此状态，首先会查找是否存在和被启动的Activity具有相同的亲和性的任务栈
-     *      （即taskAffinity，注意同一个应用程序中的activity的亲和性一样），
-     *      如果有，则直接把这个栈整体移动到前台，并保持栈中的状态不变，即栈中的activity顺序不变，
-     *      如果没有，则新建一个栈来存放被启动的activity
-     */
+    fun hideDialog() {
+        initDialog()
+        mDialog?.dismiss()
+    }
+
     fun startActivity(clazz: Class<*>, vararg data: Pair<String, Any?>) {
-        val application = getApplication<Application>()
-
-        val intent = Intent(application, clazz)
+        val intent = Intent(this, clazz)
 
         data.forEach {
             when (it.second) {
@@ -70,9 +78,8 @@ open class BaseViewModel(app: Application) : AndroidViewModel(app) {
             }
         }
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        application.startActivity(intent)
-
+        startActivity(intent)
     }
+
 
 }

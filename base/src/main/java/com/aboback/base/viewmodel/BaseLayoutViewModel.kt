@@ -1,8 +1,8 @@
-package com.aboback.viewmodel
+package com.aboback.base.viewmodel
 
 import android.app.Application
-import com.aboback.BR
-import com.aboback.VariableId
+import com.aboback.base.BR
+import com.aboback.base.VariableId
 
 /**
  * @author jhb
