@@ -9,9 +9,10 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.aboback.base.BaseApp
+import com.aboback.base.log
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.ui.BaseActivity
-import com.aboback.wanandroidjetpack.util.logE
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -32,11 +33,11 @@ class WanWebActivity : BaseActivity() {
         private const val WEB_TITLE = "web_title"
 
         fun startActivity(url: String?, title: String? = null) {
-            val intent = Intent(WanApp.instance, WanWebActivity::class.java)
+            val intent = Intent(BaseApp.instance, WanWebActivity::class.java)
             intent.putExtra(WEB_URL, url)
             intent.putExtra(WEB_TITLE, title)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            WanApp.instance.startActivity(intent)
+            BaseApp.instance.startActivity(intent)
         }
     }
 
@@ -52,7 +53,7 @@ class WanWebActivity : BaseActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        TAG + "   onConfigurationChanged".logE()
+        TAG + "   onConfigurationChanged".log()
     }
 
     private fun initView() {
@@ -62,7 +63,7 @@ class WanWebActivity : BaseActivity() {
 
         url = intent.getStringExtra(WEB_URL) ?: ""
 
-        "WanWebActivity url = $url".logE()
+        "WanWebActivity url = $url".log()
 
     }
 

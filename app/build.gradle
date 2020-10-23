@@ -50,6 +50,8 @@ android {
 
 dependencies {
     implementation project(":base")
+    implementation project(":network")
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -67,22 +69,11 @@ dependencies {
     // For Kotlin use kapt instead of annotationProcessor
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:$room_version"
-    // 查看数据库  chrome://inspect/#devices
-    implementation 'com.facebook.stetho:stetho:1.5.0'
 
     // android.support
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'org.conscrypt:conscrypt-android:2.2.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     // 弹性的 TabLayout
     implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
     implementation 'com.blankj:utilcodex:1.28.3'
@@ -102,9 +93,10 @@ dependencies {
     //doraemonkit
     //    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.1.5'
 
+    implementation files('libs/tbs_sdk_thirdapp_v4.3.0.3_43903_sharewithdownloadwithfile_withoutGame_obfs_20200402_121309.jar')
+
     
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation files('libs/tbs_sdk_thirdapp_v4.3.0.3_43903_sharewithdownloadwithfile_withoutGame_obfs_20200402_121309.jar')
 }

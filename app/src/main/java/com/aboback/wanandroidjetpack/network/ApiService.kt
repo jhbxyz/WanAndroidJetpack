@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.wanandroidjetpack.network
 
 import com.aboback.wanandroidjetpack.bean.ArticleListBean
 import com.aboback.wanandroidjetpack.bean.BaseBean
@@ -28,16 +28,11 @@ interface ApiService {
     @GET("tree/json")
     fun treeJson(): Flowable<TreeJsonBean>
 
-    @GET("https://www.wanandroid.com/article/list/{page}/json")
-    fun articleList(
-            @Path("page") page: Int,
-            @Query("cid") cid: Int = 73//73为面试的cid
-    ): Flowable<ArticleListBean>
 
     @GET("/article/list/{page}/json")
-    suspend fun articleListKt(
+    suspend fun articleList(
             @Path("page") page: Int,
-            @Query("cid") cid: Int = 73//73为面试的cid
+            @Query("cid") cid: Int? = null//73为面试的cid
     ): ArticleListBean
 
     @GET("wenda/list/{page}/json ")

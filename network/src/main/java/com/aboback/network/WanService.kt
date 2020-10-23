@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.network
 
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
@@ -42,6 +42,6 @@ object WanService {
 
     }
 
-    var api = getRetrofit().create(ApiService::class.java)
+    fun <T> create(clazz: Class<T>) = getRetrofit().create(clazz)
 
 }

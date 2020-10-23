@@ -6,8 +6,8 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.BaseLayoutViewModel
 import com.aboback.wanandroidjetpack.base.X5WebActivity
 import com.aboback.wanandroidjetpack.bean.ArticleListBean
-import com.aboback.wanandroidjetpack.net.WanService
-import com.aboback.wanandroidjetpack.net.WanSubscriber
+import com.aboback.network.WanService
+import com.aboback.network.WanSubscriber
 import com.aboback.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -46,20 +46,7 @@ class InterviewRelatedVM(app: Application) : BaseLayoutViewModel(app) {
     }
 
     private fun articleList() {
-        WanService.api.articleList(mCurrPage)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : WanSubscriber<ArticleListBean>() {
-                override fun onSuccess(t: ArticleListBean) {
-                    t.data?.datas?.forEach {
-                        mData.add(ItemInterviewRelatedVM(getApplication()).apply {
-                            mBean.set(it)
-                        })
-                    }
-                    mAdapter.notifyDataSetChanged()
 
-                }
-            })
-            .addToDisposable()
     }
 
 

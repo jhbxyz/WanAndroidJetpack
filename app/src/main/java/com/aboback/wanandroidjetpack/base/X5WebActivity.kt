@@ -7,9 +7,10 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.WindowManager
+import com.aboback.base.BaseApp
+import com.aboback.base.log
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.ui.BaseActivity
-import com.aboback.wanandroidjetpack.util.logE
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
@@ -33,11 +34,11 @@ class X5WebActivity : BaseActivity() {
         private const val WEB_TITLE = "web_title"
 
         fun startActivity(url: String?, title: String? = null) {
-            val intent = Intent(WanApp.instance, X5WebActivity::class.java)
+            val intent = Intent(BaseApp.instance, X5WebActivity::class.java)
             intent.putExtra(WEB_URL, url)
             intent.putExtra(WEB_TITLE, title)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            WanApp.instance.startActivity(intent)
+            BaseApp.instance.startActivity(intent)
         }
     }
 
@@ -52,12 +53,12 @@ class X5WebActivity : BaseActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        "$TAG   onConfigurationChanged".logE()
+        "$TAG   onConfigurationChanged".log()
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        "$TAG   onNewIntent".logE()
+        "$TAG   onNewIntent".log()
 
     }
 

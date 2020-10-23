@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.text.TextUtils
+import com.aboback.base.BaseApp
 import com.aboback.wanandroidjetpack.base.WanApp
 
 /**
@@ -16,9 +17,9 @@ class SpCommon(spName: String = "") {
 
     init {
         mSp = if (TextUtils.isEmpty(mSpName)) {
-            WanApp.instance.getSharedPreferences(SP_USER_INFO, Context.MODE_PRIVATE)
+            BaseApp.instance.getSharedPreferences(SP_USER_INFO, Context.MODE_PRIVATE)
         } else {
-            WanApp.instance.getSharedPreferences(mSpName, Context.MODE_PRIVATE)
+            BaseApp.instance.getSharedPreferences(mSpName, Context.MODE_PRIVATE)
         }
     }
 

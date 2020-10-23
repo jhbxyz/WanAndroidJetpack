@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.network
 
 import okhttp3.Cookie
 import okhttp3.CookieJar

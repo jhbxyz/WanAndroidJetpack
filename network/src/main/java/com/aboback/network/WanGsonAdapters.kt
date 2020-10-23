@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.network
 
 import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext

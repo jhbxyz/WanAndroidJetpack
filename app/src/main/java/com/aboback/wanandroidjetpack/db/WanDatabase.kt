@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.db
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.aboback.base.BaseApp
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bean.WendaListBean
 
@@ -26,7 +27,7 @@ abstract class WanDatabase : RoomDatabase() {
 
         }
 
-        private fun buildDatabase(): WanDatabase = Room.databaseBuilder(WanApp.instance, WanDatabase::class.java, "WanDatabase.db")
+        private fun buildDatabase(): WanDatabase = Room.databaseBuilder(BaseApp.instance, WanDatabase::class.java, "WanDatabase.db")
 //            .allowMainThreadQueries()
             .build()
 

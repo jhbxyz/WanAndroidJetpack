@@ -2,16 +2,16 @@ package com.aboback.wanandroidjetpack.category.question.viewmodel
 
 import android.app.Application
 import androidx.databinding.ViewDataBinding
+import com.aboback.base.log
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.BaseLayoutViewModel
 import com.aboback.wanandroidjetpack.base.X5WebActivity
 import com.aboback.wanandroidjetpack.bean.WendaListBean
 import com.aboback.wanandroidjetpack.db.WenDaListManger
-import com.aboback.wanandroidjetpack.net.WanService
-import com.aboback.wanandroidjetpack.net.WanSubscriber
+import com.aboback.network.WanService
+import com.aboback.network.WanSubscriber
 import com.aboback.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.logE
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
@@ -52,7 +52,7 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
         mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(binding: ViewDataBinding, position: Int) {
                 X5WebActivity.startActivity(mData[position].mBean.get()?.link)
-                "文章 = ${mData[position].mBean.get()?.title}   id = ${mData[position].mBean.get()?.id}".logE()
+                "文章 = ${mData[position].mBean.get()?.title}   id = ${mData[position].mBean.get()?.id}".log()
             }
         })
     }
@@ -73,20 +73,6 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
     }
 
     private fun requestNet() {
-        WanService.api.wendaList(mCurrPage)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : WanSubscriber<WendaListBean>(this@DailyQuestionVM) {
-                override fun onSuccess(t: WendaListBean) {
-
-                    t.data?.apply {
-                        mLastRequestTime = System.currentTimeMillis()
-                        WenDaListManger.insertDataBean(this)
-                        bindData(this)
-                    }
-
-                }
-            })
-            .addToDisposable()
     }
 
     /**

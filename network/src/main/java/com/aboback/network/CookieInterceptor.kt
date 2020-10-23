@@ -1,6 +1,5 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.network
 
-import com.aboback.wanandroidjetpack.util.SpUtil
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -13,7 +12,8 @@ class CookieInterceptor : Interceptor {
 
         val finalResponse: Response
 
-        val stringSet = SpUtil.getCookies()
+//        val stringSet = SpUtil.getCookies()
+        val stringSet = mutableSetOf<String>()
 
         if (stringSet.isNullOrEmpty()) {
 //            val originResponse = chain.proceed(chain.request())

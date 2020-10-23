@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.aboback.base.delay
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.databinding.DialogLoadingPreBinding
-import com.aboback.wanandroidjetpack.util.delay
 
 /**
  * Created by jhb on 2020/3/26.

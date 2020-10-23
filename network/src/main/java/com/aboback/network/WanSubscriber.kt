@@ -1,11 +1,9 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.network
 
+import com.aboback.base.getResString
+import com.aboback.base.logWithTag
+import com.aboback.wanandroidjetpack.network.NetConstant
 import com.google.gson.JsonParseException
-import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.base.viewmodel.BaseViewModel
-import com.aboback.wanandroidjetpack.bean.BaseBean
-import com.aboback.wanandroidjetpack.util.getResString
-import com.aboback.wanandroidjetpack.util.logEWhitT
 import io.reactivex.subscribers.ResourceSubscriber
 import org.json.JSONException
 import retrofit2.HttpException
@@ -16,7 +14,7 @@ import java.text.ParseException
 /**
  * Created by jhb on 2020/3/24.
  */
-abstract class WanSubscriber<T : BaseBean>(private val vm: BaseViewModel? = null) : ResourceSubscriber<T>() {
+abstract class WanSubscriber<T : BaseBean> : ResourceSubscriber<T>() {
 
     companion object {
         const val TAG = "WanSubscriber"
@@ -34,8 +32,6 @@ abstract class WanSubscriber<T : BaseBean>(private val vm: BaseViewModel? = null
 
     override fun onStart() {
         super.onStart()
-        "onStart  ${Thread.currentThread().name} ".logEWhitT(TAG)
-        vm?.showLoadingDialog()
     }
 
     override fun onNext(t: T) {
@@ -49,7 +45,6 @@ abstract class WanSubscriber<T : BaseBean>(private val vm: BaseViewModel? = null
 
     override fun onError(e: Throwable?) {
         e?.printStackTrace()
-        e?.message?.logEWhitT("$TAG ==> onError ")
 
         val errorMsg: String
         when (e) {
@@ -77,7 +72,7 @@ abstract class WanSubscriber<T : BaseBean>(private val vm: BaseViewModel? = null
             }
         }
 
-        errorMsg.logEWhitT("$TAG ==> errorString ")
+        errorMsg.logWithTag("$TAG ==> errorString ")
 
         onError(errorMsg)
     }
@@ -92,7 +87,6 @@ abstract class WanSubscriber<T : BaseBean>(private val vm: BaseViewModel? = null
     abstract fun onSuccess(t: T)
 
     open fun onFail(t: T) {
-        vm?.showErrorDialog(t.errorMsg)
 
 
     }
@@ -100,13 +94,9 @@ abstract class WanSubscriber<T : BaseBean>(private val vm: BaseViewModel? = null
     open fun onError(errorMsg: String) {
         onFinish(false)
 
-        vm?.showErrorDialog("网络错误")
-        vm?.dismissDialogDelay(1000)
-
     }
 
     open fun onFinish(isSuccess: Boolean) {
-        vm?.dismissDialog()
 
     }
 

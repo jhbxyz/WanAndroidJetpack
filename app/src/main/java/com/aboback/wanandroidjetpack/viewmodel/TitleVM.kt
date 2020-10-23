@@ -3,9 +3,9 @@ package com.aboback.wanandroidjetpack.viewmodel
 import android.app.Application
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import com.aboback.base.getDrawable
+import com.aboback.base.getResColor
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.util.getDrawable
-import com.aboback.wanandroidjetpack.util.getResColor
 
 /**
  * Created by jhb on 2020-01-15.

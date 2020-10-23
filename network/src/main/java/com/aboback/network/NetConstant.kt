@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.net
+package com.aboback.wanandroidjetpack.network
 
 /**
  * Created by jhb on 2020-01-13.

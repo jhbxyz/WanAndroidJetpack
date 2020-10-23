@@ -1,20 +1,21 @@
 package com.aboback.wanandroidjetpack.home
 
-import com.aboback.base.BaseRepository
-import com.aboback.wanandroidjetpack.net.WanService
+import com.aboback.wanandroidjetpack.base.NetRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 /**
  * @author jhb
  * @date 2020/10/23
  */
-class HomeRepository : BaseRepository {
+class HomeRepository : NetRepository() {
 
 
-    suspend fun articleListKt(page: Int) = withContext(Dispatchers.IO) {
-        WanService.api.articleListKt(page)
-    }
-
+    suspend fun articleList(page: Int) = withContext(Dispatchers.IO) {
+        async {
+            api.articleList(page)
+        }
+    }.await()
 
 }
