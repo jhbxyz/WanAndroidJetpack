@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.jhb.wanandroidjetpack.collect.viewmodel.CollectFraVM" />
+            type="com.aboback.wanandroidjetpack.collect.viewmodel.CollectFraVM" />
     </data>
 
     <LinearLayout

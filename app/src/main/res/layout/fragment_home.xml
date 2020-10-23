@@ -5,7 +5,7 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.home.HomeVM" />
+            type="com.aboback.wanandroidjetpack.home.HomeVM" />
 
     </data>
 

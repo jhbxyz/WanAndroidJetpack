@@ -6,7 +6,7 @@
 
         <variable
             name="rv"
-            type="com.jhb.wanandroidjetpack.rv.RecyclerViewVM" />
+            type="com.aboback.wanandroidjetpack.rv.RecyclerViewVM" />
 
     </data>
 

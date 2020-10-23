@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.login.viewmodel.LoginViewModel" />
+            type="com.aboback.wanandroidjetpack.login.viewmodel.LoginViewModel" />
 
     </data>
 

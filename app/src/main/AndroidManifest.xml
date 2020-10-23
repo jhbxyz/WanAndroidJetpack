@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jhb.wanandroidjetpack">
+    package="com.aboback.wanandroidjetpack">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,7 +11,7 @@
 
 
     <application
-        android:name=".base.WanApp"
+        android:name="com.aboback.wanandroidjetpack.base.WanApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name="com.aboback.wanandroidjetpack.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,23 +30,23 @@
         </activity>
 
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.aboback.wanandroidjetpack.main.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTask" />
 
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name="com.aboback.wanandroidjetpack.login.LoginActivity" />
 
-        <activity android:name=".category.interview_related.ui.InterviewRelatedActivity" />
-        <activity android:name=".category.question.ui.DailyQuestionActivity" />
-        <activity android:name=".category.question.ui.DailyQuestionDetailActivity" />
+        <activity android:name="com.aboback.wanandroidjetpack.category.interview_related.ui.InterviewRelatedActivity" />
+        <activity android:name="com.aboback.wanandroidjetpack.category.question.ui.DailyQuestionActivity" />
+        <activity android:name="com.aboback.wanandroidjetpack.category.question.ui.DailyQuestionDetailActivity" />
 
         <activity
-            android:name=".base.WanWebActivity"
+            android:name="com.aboback.wanandroidjetpack.base.WanWebActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
 
         <activity
-            android:name=".base.X5WebActivity"
+            android:name="com.aboback.wanandroidjetpack.base.X5WebActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
     </application>

@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.jhb.wanandroidjetpack.category.question.viewmodel.ItemDailyQuestionVM" />
+            type="com.aboback.wanandroidjetpack.category.question.viewmodel.ItemDailyQuestionVM" />
 
 
     </data>

@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.jhb.wanandroidjetpack.splash.SplashViewModel" />
+            type="com.aboback.wanandroidjetpack.splash.SplashViewModel" />
 
     </data>
 

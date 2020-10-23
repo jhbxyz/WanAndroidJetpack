@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.category.interview_related.viewmodel.InterviewRelatedVM" />
+            type="com.aboback.wanandroidjetpack.category.interview_related.viewmodel.InterviewRelatedVM" />
 
     </data>
 

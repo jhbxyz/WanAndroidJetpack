@@ -7,7 +7,7 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.view.LoadingDialogVM" />
+            type="com.aboback.wanandroidjetpack.view.LoadingDialogVM" />
 
         <import type="android.view.View" />
 

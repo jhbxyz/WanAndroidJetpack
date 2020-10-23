@@ -5,7 +5,7 @@
 
         <variable
             name="layout"
-            type="com.jhb.wanandroidjetpack.category.question.viewmodel.DailyQuestionDetailVM" />
+            type="com.aboback.wanandroidjetpack.category.question.viewmodel.DailyQuestionDetailVM" />
 
     </data>
 
