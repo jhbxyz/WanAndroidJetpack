@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 /**
  * Created by jhb on 2020-02-11.
  */
-class Fragment3: Fragment() {
+class Fragment(val page: Int) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val textView = TextView(context)
-        textView.text = javaClass.simpleName
+        textView.text = javaClass.simpleName + "$page"
         return textView
     }
 }

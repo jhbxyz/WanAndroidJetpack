@@ -6,6 +6,10 @@
     <color name="colorPrimaryLight">#E6EFFD</color>
     <color name="colorAccent">#FF3489FF</color>
 
+    <color name="colorBackground">#FFF7F8FC</color>
+    <color name="colorDivide">#80515460</color>
+
+
 
     <color name="colorGrayBg">#22222222</color>
     <color name="colorGray3">#333333</color>
@@ -17,13 +21,11 @@
     <color name="colorMainRed">#F44336</color>
 
 
-    <color name="colorBackground">#FFF7F8FC</color>
     <color name="colorBlueLight">#FF3489FF</color>
 
 
     <color name="colorGray95">#959595</color>
 
-    <color name="colorGrayDivide">#FFF7F8FC</color>
     <color name="colorContentText">#959595</color>
     <color name="dialogBackground">#80000000</color>
 

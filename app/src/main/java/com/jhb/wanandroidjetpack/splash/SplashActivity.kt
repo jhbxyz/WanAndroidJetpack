@@ -13,7 +13,7 @@ class SplashActivity : BaseViewModelActivity<SplashViewModel>(R.layout.activity_
     override fun onViewInit() {
         super.onViewInit()
 
-        100.delay {
+        300.delay {
             startActivity(MainActivity::class.java)
             finish()
         }

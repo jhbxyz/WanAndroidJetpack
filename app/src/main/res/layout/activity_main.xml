@@ -17,19 +17,28 @@
         tools:context=".main.MainActivity">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_page2"
+            android:id="@+id/viewPager2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/ll_nav"
+            app:layout_constraintBottom_toTopOf="@+id/llNav"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:layout_width="0dp"
+            android:background="@color/colorDivide"
+            android:layout_height="@dimen/dp_0_5"
+            app:layout_constraintBottom_toTopOf="@+id/llNav"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
+
         <RadioGroup
-            android:id="@+id/ll_nav"
+            android:id="@+id/llNav"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_50"
-            android:background="#FFFEFEFE"
+            android:background="@color/colorBackground"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="@dimen/dp_4"
@@ -37,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_page2">
+            app:layout_constraintTop_toBottomOf="@+id/viewPager2">
 
 
             <RadioButton
@@ -91,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:button="@null"
-                android:onClick="@{()->layout.onHomeClick()}"
+                android:onClick="@{()->layout.onFindClick()}"
                 android:drawableTop="@drawable/nav_bottom_selector_3"
                 android:drawablePadding="@dimen/dp_2"
                 android:text="发现"
@@ -105,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:button="@null"
-                android:onClick="@{()->layout.onHomeClick()}"
+                android:onClick="@{()->layout.onMeClick()}"
                 android:drawableTop="@drawable/nav_bottom_selector_4"
                 android:drawablePadding="@dimen/dp_2"
                 android:text="我的"

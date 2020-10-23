@@ -5,8 +5,6 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseViewModelActivity
 import com.jhb.wanandroidjetpack.R
-import com.jhb.wanandroidjetpack.callback.GlobalSingle
-import com.jhb.wanandroidjetpack.home.HomeFragment
 import com.jhb.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.jhb.wanandroidjetpack.main.viewmodel.MainViewModel
 import com.jhb.wanandroidjetpack.util.logE
@@ -23,9 +21,14 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
         initFragment()
 
 
+    }
+
+    override fun onEvent() {
+        super.onEvent()
+
         handleErrorGson()
 
-        GlobalSingle.homeNavClick.observe(this, Observer<Int> {
+        mRealVM.mHomeNavClick.observe(this, Observer<Int> {
             setPageState(it)
         })
 
@@ -44,16 +47,16 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
     private fun initFragment() {
 
 //        mFragments.add(CategoryFragment())
-        mFragments.add(HomeFragment())
-        mFragments.add(Fragment1())
-        mFragments.add(Fragment2())
-        mFragments.add(Fragment3())
-        mFragments.add(Fragment3())
+        mFragments.add(com.jhb.wanandroidjetpack.main.Fragment(1))
+        mFragments.add(com.jhb.wanandroidjetpack.main.Fragment(2))
+        mFragments.add(com.jhb.wanandroidjetpack.main.Fragment(3))
+        mFragments.add(com.jhb.wanandroidjetpack.main.Fragment(4))
+        mFragments.add(com.jhb.wanandroidjetpack.main.Fragment(5))
 
 
-        view_page2.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)
+        viewPager2.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)
 
-        view_page2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setButtonState(position)
@@ -63,26 +66,26 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
 
 
     fun setPageState(position: Int) {
-        view_page2.currentItem = position
+        viewPager2.setCurrentItem(position, false)
     }
 
     fun setButtonState(position: Int) {
         when (position) {
             0 -> {
-                ll_nav.check(R.id.rb0)
+                llNav.check(R.id.rb0)
             }
             1 -> {
-                ll_nav.check(R.id.rb1)
+                llNav.check(R.id.rb1)
 
             }
             2 -> {
-                ll_nav.check(R.id.rb2)
+                llNav.check(R.id.rb2)
             }
             3 -> {
-                ll_nav.check(R.id.rb3)
+                llNav.check(R.id.rb3)
             }
             4 -> {
-                ll_nav.check(R.id.rb4)
+                llNav.check(R.id.rb4)
             }
         }
     }

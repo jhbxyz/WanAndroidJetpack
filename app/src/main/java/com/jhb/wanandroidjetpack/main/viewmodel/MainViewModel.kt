@@ -2,26 +2,37 @@ package com.jhb.wanandroidjetpack.main.viewmodel
 
 import android.app.Application
 import com.aboback.base.viewmodel.BaseLayoutViewModel
-import com.jhb.wanandroidjetpack.callback.GlobalSingle
+import com.jhb.wanandroidjetpack.bridge.UnPeekLiveData
 
 /**
  * Created by jhb on 2020-01-15.
  */
 class MainViewModel(app: Application) : BaseLayoutViewModel(app) {
 
+    val mHomeNavClick = UnPeekLiveData<Int>()
 
     fun onHomeClick() {
-        GlobalSingle.homeNavClick.value = 0
+        mHomeNavClick.value = 0
     }
 
     fun onCategoryClick() {
-        GlobalSingle.homeNavClick.value = 1
+        mHomeNavClick.value = 1
 
     }
 
     fun onCollectClick() {
-        GlobalSingle.homeNavClick.value = 2
+        mHomeNavClick.value = 2
 
+    }
+
+
+    fun onFindClick() {
+        mHomeNavClick.value = 3
+
+    }
+
+    fun onMeClick() {
+        mHomeNavClick.value = 4
     }
 
 
