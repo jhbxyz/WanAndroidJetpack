@@ -13,11 +13,11 @@ import java.io.Serializable
  */
 open class BaseViewModel(app: Application) : AndroidViewModel(app) {
 
+    var mTag = javaClass.simpleName
 
     open fun onModelBind() {
 
     }
-
 
 
     /**

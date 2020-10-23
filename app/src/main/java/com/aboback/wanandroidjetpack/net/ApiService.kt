@@ -34,6 +34,12 @@ interface ApiService {
             @Query("cid") cid: Int = 73//73为面试的cid
     ): Flowable<ArticleListBean>
 
+    @GET("/article/list/{page}/json")
+    suspend fun articleListKt(
+            @Path("page") page: Int,
+            @Query("cid") cid: Int = 73//73为面试的cid
+    ): ArticleListBean
+
     @GET("wenda/list/{page}/json ")
     fun wendaList(@Path("page") page: Int): Flowable<WendaListBean>
 

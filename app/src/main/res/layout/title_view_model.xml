@@ -14,18 +14,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="@dimen/dp_50">
+        android:background="@{title.background}"
+        android:layout_height="@dimen/dp_50"
+        tools:background="@color/colorPrimary">
 
-        <ImageView
-            android:layout_width="@dimen/dp_50"
-            android:src="@{title.leftDrawable}"
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@{title.leftText}"
             android:layout_height="0dp"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            android:textSize="@dimen/sp_16"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:drawableStart="@{title.leftDrawable}"
             android:onClick="@{()->title.leftAction.invoke()}"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:drawableStart="@drawable/abc_vector_test"
+            tools:text="" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,6 +55,7 @@
             android:text="@{title.rightText}"
             android:onClick="@{()->title.rightAction}"
             android:layout_marginEnd="@dimen/dp_12"
+            android:drawableEnd="@{title.rightDrawable}"
             android:textColor="@color/colorWhite"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

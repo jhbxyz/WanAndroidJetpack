@@ -12,9 +12,9 @@ import com.aboback.base.viewmodel.BaseLayoutViewModel
  * @author jhb
  * @date 2020/10/21
  */
-open class BaseViewModelActivity<T : BaseLayoutViewModel>(@LayoutRes private val layoutId: Int, private val clazz: Class<T>) : BaseActivity(), ViewState {
+open class BaseViewModelActivity<VM : BaseLayoutViewModel>(@LayoutRes private val layoutId: Int, private val clazz: Class<VM>) : BaseActivity(), ViewState {
 
-    lateinit var mRealVM: T
+    lateinit var mRealVM: VM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         beforeSetView()

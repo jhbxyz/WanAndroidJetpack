@@ -1,12 +1,15 @@
 package com.aboback.wanandroidjetpack.home
 
-import com.aboback.base.ui.BaseViewModelFragment
+import android.app.Application
+import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.wanandroidjetpack.R
 
 /**
  * Created by jhb on 2020-03-11.
  */
-class HomeFragment : BaseViewModelFragment<HomeVM>(R.layout.fragment_home, HomeVM::class.java) {
+class HomeFragment : BaseVMRepositoryFragment<HomeVM>(R.layout.fragment_home) {
+
+    override fun getViewModel(application: Application): HomeVM = HomeVM(application)
 
 
 }

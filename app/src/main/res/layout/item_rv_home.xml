@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM" />
+
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorGray3"
+            android:textSize="@dimen/sp_15"
+            android:text="@{item.MContent}"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

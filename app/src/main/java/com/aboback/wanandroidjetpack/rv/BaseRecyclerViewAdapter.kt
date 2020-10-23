@@ -23,7 +23,7 @@ open class BaseRecyclerViewAdapter(@LayoutRes private val layoutId: Int, private
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val binding = DataBindingUtil.getBinding<ViewDataBinding>(holder.itemView)
-        binding?.setVariable(mData[position].getVariableId(), mData[position])
+        binding?.setVariable(mData[position].id(), mData[position])
         binding?.executePendingBindings()
 
         holder.itemView.setOnClickListener {

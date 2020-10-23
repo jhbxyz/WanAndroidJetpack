@@ -1,9 +1,11 @@
 package com.aboback.wanandroidjetpack.main
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.home.HomeFragment
 import com.aboback.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.aboback.wanandroidjetpack.main.viewmodel.MainViewModel
 import com.aboback.wanandroidjetpack.util.logE
@@ -46,11 +48,11 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
     private fun initFragment() {
 
 //        mFragments.add(CategoryFragment())
-        mFragments.add(Fragment(1))
-        mFragments.add(Fragment(2))
-        mFragments.add(Fragment(3))
-        mFragments.add(Fragment(4))
-        mFragments.add(Fragment(5))
+        mFragments.add(HomeFragment())
+        mFragments.add(FragmentTest(2))
+        mFragments.add(FragmentTest(3))
+        mFragments.add(FragmentTest(4))
+        mFragments.add(FragmentTest(5))
 
 
         viewPager2.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)
