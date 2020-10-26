@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="tag"
+            type="com.aboback.wanandroidjetpack.viewmodel.TagViewModel" />
+
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:textSize="@{tag.mTextSize}"
+        android:paddingStart="@dimen/dp_2"
+        android:paddingEnd="@dimen/dp_2"
+        android:text="@{tag.MContent}"
+        android:textColor="@{tag.MTextColor}"
+        android:background="@{tag.MDrawable}"
+        android:layout_height="wrap_content"
+        tools:text="测试" />
+
+</layout>

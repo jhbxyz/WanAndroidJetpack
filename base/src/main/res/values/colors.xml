@@ -9,6 +9,7 @@
     <color name="colorBackground">#FFF7F8FC</color>
     <color name="colorDivide">#80515460</color>
     <color name="colorBlueDark">#467EEB</color>
+    <color name="colorBlueLight">#FF3489FF</color>
 
 
     <color name="colorGrayBg">#22222222</color>
@@ -17,11 +18,17 @@
     <color name="colorGray9">#999999</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorRed">#F44336</color>
+    <color name="colorTransparent">#00000000</color>
 
-    <color name="colorMainRed">#F44336</color>
 
 
-    <color name="colorBlueLight">#FF3489FF</color>
+
+
+
+
+
+
 
 
     <color name="colorGray95">#959595</color>
@@ -31,9 +38,7 @@
 
     <color name="gray">#FFC1C4CB</color>
 
-    <color name="colorRed">#ff0000</color>
     <color name="colorWarning">#FD6262</color>
-    <color name="colorTransparent">#00000000</color>
 
 
     <color name="white">#FFFFFFFF</color>
@@ -64,7 +69,6 @@
     <color name="gray2">#FFF5F5F5</color>
     <color name="gray3">#FFC1C4CB</color>
     <color name="pink">#FFEF78D5</color>
-    <color name="red">#FFFF7c7c</color>
 
 
 </resources>

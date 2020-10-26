@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.home.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.wanandroidjetpack.base.BaseItemViewModel
+import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 
 /**
  * @author jhb
@@ -13,4 +14,5 @@ class ItemHomeVM(app: Application) : BaseItemViewModel(app) {
     var mTime = ObservableField("")
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
+    var mTagVM = TagViewModel()
 }
