@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.category.interview_related.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.wanandroidjetpack.base.BaseItemViewModel
+import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.bean.ArticleListBean
 
 /**
@@ -10,7 +11,7 @@ import com.aboback.wanandroidjetpack.bean.ArticleListBean
  */
 class ItemInterviewRelatedVM(app: Application) : BaseItemViewModel(app) {
 
-    var mBean = ObservableField<ArticleListBean.DataBean.DatasBean>()
+    var mBean = ObservableField<ArticleDatasBean>()
 
 
 }

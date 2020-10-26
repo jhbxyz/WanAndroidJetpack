@@ -5,7 +5,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bean.ArticleListBean
+import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
@@ -31,7 +31,7 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
     var mData = arrayListOf<ItemHomeVM>()
     val mAdapter = BaseRecyclerViewAdapter(R.layout.item_rv_home, mData)
 
-    private var mCurrPage = 1
+    private var mCurrPage = 0
 
     var rvVM = RecyclerViewVM(app).apply {
         mRefreshEnable = false
@@ -58,14 +58,15 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
 
         viewModelScope.launch {
 
+            val articleTop = mRepo.articleTop()
             val articleList = mRepo.articleList(mCurrPage)
+
+            articleTop.data?.forEach {
+                bindData(it)
+            }
+
             articleList.data?.datas?.forEach {
-                mData.add(ItemHomeVM(getApplication()).apply {
-                    mTime.set(it.niceDate)
-                    mTitle.set(it.title)
-                    mAuthor.handleAuthor(it)
-                    mCategory.set("分类: ${it.superChapterName}")
-                })
+                bindData(it)
             }
 
             mAdapter.notifyDataSetChanged()
@@ -73,7 +74,22 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
-    private fun ObservableField<String>.handleAuthor(bean: ArticleListBean.DataBean.DatasBean) {
+    private fun bindData(it: ArticleDatasBean) {
+        mData.add(ItemHomeVM(getApplication()).apply {
+            mTime.set(it.niceDate)
+            mTitle.set(it.title)
+            mAuthor.handleAuthor(it)
+            mCategory.set("分类: ${it.superChapterName}")
+
+            it.tags?.forEach { tags ->
+                mTagList.add(TagViewModel().apply {
+                    mContent.set(tags.name)
+                })
+            }
+        })
+    }
+
+    private fun ObservableField<String>.handleAuthor(bean: ArticleDatasBean) {
         if (bean.author.isNullOrEmpty()) {
             set("分享人: ${bean.shareUser}")
         } else {

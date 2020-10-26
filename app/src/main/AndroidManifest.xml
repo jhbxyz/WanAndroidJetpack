@@ -21,7 +21,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name="com.aboback.wanandroidjetpack.splash.SplashActivity">
+        <activity
+            android:name="com.aboback.wanandroidjetpack.splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

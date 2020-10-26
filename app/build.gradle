@@ -88,6 +88,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
 
+    implementation 'com.google.android:flexbox:2.0.1'
+
+
     //应用请求抓包
 //    debugImplementation 'com.github.DingProg.NetworkCaptureSelf:library:v1.0.1'
     //doraemonkit

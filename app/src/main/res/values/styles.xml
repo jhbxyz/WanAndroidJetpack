@@ -9,6 +9,14 @@
     </style>
 
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorAccent</item>
+        <item name="background">@color/colorAccent</item>
+    </style>
+
 
     <style name="DialogAnimStyle" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/anim_dialog_enter</item>

@@ -9,6 +9,6 @@ import com.aboback.wanandroidjetpack.network.ApiService
  * @date 2020/10/23
  */
 open class NetRepository : BaseRepository {
-    val api = WanService.create(ApiService::class.java)
+    val api by lazy { WanService.create(ApiService::class.java) }
 
 }

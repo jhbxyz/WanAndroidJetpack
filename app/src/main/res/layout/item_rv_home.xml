@@ -30,25 +30,21 @@
             android:paddingEnd="@dimen/dp_10"
             android:layout_height="wrap_content">
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/tag"-->
-            <!--                android:gravity="center_vertical"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:textColor="@color/colorGray6"-->
-            <!--                android:textSize="@dimen/sp_12"-->
-            <!--                android:text="测试"-->
-            <!--                android:layout_height="wrap_content"-->
+            <LinearLayout
+                android:id="@+id/tag"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_20"
+                app:addTags="@{item.MTagList}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <include-->
+            <!--                layout="@layout/view_model_tag"-->
             <!--                app:layout_constraintLeft_toLeftOf="parent"-->
             <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                tools:text="测试" />-->
-
-
-            <include
-                android:id="@+id/tag"
-                layout="@layout/view_model_tag"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tag="@{item.mTagVM}" />
+            <!--                app:tag="@{item.mTagVM}" />-->
 
 
             <TextView
@@ -59,13 +55,13 @@
                 android:textSize="@dimen/sp_12"
                 android:text="@{item.mTime}"
                 android:layout_height="wrap_content"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="测试" />
 
             <TextView
                 android:id="@+id/tvTitle"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center_vertical|start"
                 android:layout_width="0dp"
                 android:textColor="@color/colorGray3"

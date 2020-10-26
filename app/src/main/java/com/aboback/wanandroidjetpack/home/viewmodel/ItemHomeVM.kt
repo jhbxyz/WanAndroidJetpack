@@ -14,5 +14,7 @@ class ItemHomeVM(app: Application) : BaseItemViewModel(app) {
     var mTime = ObservableField("")
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
-    var mTagVM = TagViewModel()
+
+    var mTagList = mutableListOf<TagViewModel>()
+
 }

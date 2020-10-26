@@ -1,9 +1,6 @@
 package com.aboback.wanandroidjetpack.network
 
-import com.aboback.wanandroidjetpack.bean.ArticleListBean
-import com.aboback.wanandroidjetpack.bean.BaseBean
-import com.aboback.wanandroidjetpack.bean.TreeJsonBean
-import com.aboback.wanandroidjetpack.bean.WendaListBean
+import com.aboback.wanandroidjetpack.bean.*
 import com.aboback.wanandroidjetpack.login.model.UserLoginBean
 import io.reactivex.Flowable
 import retrofit2.adapter.rxjava2.Result
@@ -34,6 +31,9 @@ interface ApiService {
             @Path("page") page: Int,
             @Query("cid") cid: Int? = null//73为面试的cid
     ): ArticleListBean
+
+    @GET("/article/top/json")
+    suspend fun articleTop(): ArticleTopBean
 
     @GET("wenda/list/{page}/json ")
     fun wendaList(@Path("page") page: Int): Flowable<WendaListBean>

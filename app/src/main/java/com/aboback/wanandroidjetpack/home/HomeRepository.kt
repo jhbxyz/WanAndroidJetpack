@@ -18,4 +18,12 @@ class HomeRepository : NetRepository() {
         }
     }.await()
 
+
+    suspend fun articleTop() = withContext(Dispatchers.IO) {
+        async {
+            api.articleTop()
+        }
+    }.await()
+
+
 }

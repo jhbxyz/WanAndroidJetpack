@@ -1,9 +1,7 @@
 package com.aboback.wanandroidjetpack.viewmodel
 
 import androidx.databinding.ObservableField
-import com.aboback.base.getResColor
-import com.aboback.base.getResDimen
-import com.aboback.base.getResDrawable
+import com.aboback.base.*
 import com.aboback.wanandroidjetpack.R
 
 /**
