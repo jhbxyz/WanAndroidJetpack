@@ -1,23 +1,16 @@
 package com.aboback.wanandroidjetpack.databinding
 
-import android.database.DatabaseUtils
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.annotation.RawRes
-import androidx.core.view.children
 import androidx.databinding.BindingAdapter
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.aboback.base.getResDimen
-import com.aboback.base.log
+import com.aboback.base.util.getResDimen
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide

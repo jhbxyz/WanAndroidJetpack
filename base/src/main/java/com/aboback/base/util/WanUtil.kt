@@ -1,4 +1,4 @@
-package com.aboback.base
+package com.aboback.base.util
 
 import android.os.Handler
 import android.os.Looper
@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.aboback.base.BaseApp
+import com.aboback.base.BuildConfig
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -72,4 +74,12 @@ fun Int.getResColor() = ContextCompat.getColor(BaseApp.instance, this)
 fun Int.delay(action: () -> Unit) {
     Handler(Looper.getMainLooper()).postDelayed({ action.invoke() }, this.toLong())
 }
+
+fun Any?.isNull() = this == null
+
+fun Any?.isNotNull() = !isNull()
+
+
+
+
 

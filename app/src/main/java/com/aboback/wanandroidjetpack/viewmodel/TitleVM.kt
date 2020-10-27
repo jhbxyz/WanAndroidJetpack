@@ -1,8 +1,8 @@
 package com.aboback.wanandroidjetpack.viewmodel
 
 import android.graphics.drawable.Drawable
-import com.aboback.base.getDrawable
-import com.aboback.base.getResColor
+import com.aboback.base.util.getDrawable
+import com.aboback.base.util.getResColor
 import com.aboback.wanandroidjetpack.R
 
 /**

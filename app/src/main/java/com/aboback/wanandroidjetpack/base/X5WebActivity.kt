@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.aboback.base.BaseApp
-import com.aboback.base.log
+import com.aboback.base.util.log
 import com.aboback.base.ui.BaseActivity
 import com.aboback.wanandroidjetpack.R
 import com.tencent.smtt.sdk.WebChromeClient

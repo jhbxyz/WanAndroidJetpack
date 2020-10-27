@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.aboback.wanandroidjetpack.home.HomeVM" />
+            type="com.aboback.wanandroidjetpack.home.viewmodel.HomeVM" />
 
     </data>
 

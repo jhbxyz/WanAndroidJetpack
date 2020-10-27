@@ -10,7 +10,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.aboback.base.BaseApp
-import com.aboback.base.log
+import com.aboback.base.util.log
 import com.aboback.base.ui.BaseActivity
 import com.aboback.wanandroidjetpack.R
 import io.reactivex.Observable

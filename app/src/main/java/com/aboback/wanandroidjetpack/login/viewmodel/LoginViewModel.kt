@@ -3,7 +3,7 @@ package com.aboback.wanandroidjetpack.login.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.databinding.ObservableField
-import com.aboback.base.showToast
+import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TitleVM
 

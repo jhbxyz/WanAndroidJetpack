@@ -1,10 +1,12 @@
 package com.aboback.base.rv
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.aboback.base.VariableId
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
@@ -24,4 +26,13 @@ class QuickAdapter<T : BaseItemViewModel>(@LayoutRes var layoutId: Int, mData: M
         binding?.executePendingBindings()
 
     }
+
+    fun addHeader(context: Context, @LayoutRes layoutId: Int, header: VariableId) {
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(context), layoutId, null, false)
+        binding.setVariable(header.id(), header)
+        binding.executePendingBindings()
+        addHeaderView(binding.root)
+    }
+
+
 }

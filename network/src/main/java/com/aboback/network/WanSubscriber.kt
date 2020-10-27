@@ -1,7 +1,7 @@
 package com.aboback.network
 
-import com.aboback.base.getResString
-import com.aboback.base.logWithTag
+import com.aboback.base.util.getResString
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.network.NetConstant
 import com.google.gson.JsonParseException
 import io.reactivex.subscribers.ResourceSubscriber

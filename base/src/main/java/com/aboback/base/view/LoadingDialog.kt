@@ -1,8 +1,9 @@
-package com.aboback.base
+package com.aboback.base.view
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDialog
+import com.aboback.base.R
 
 /**
  * @author jhb

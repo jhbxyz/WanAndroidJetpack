@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
-import com.aboback.base.LoadingDialog
-import com.aboback.base.isNull
+import com.aboback.base.view.LoadingDialog
+import com.aboback.base.util.isNull
 import java.io.Serializable
 
 /**
