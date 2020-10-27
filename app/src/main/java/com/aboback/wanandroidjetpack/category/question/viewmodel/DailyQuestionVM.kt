@@ -48,13 +48,6 @@ class DailyQuestionVM(app: Application) : BaseLayoutViewModel(app) {
 
         wendaList()
 
-
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(binding: ViewDataBinding, position: Int) {
-                X5WebActivity.startActivity(mData[position].mBean.get()?.link)
-                "文章 = ${mData[position].mBean.get()?.title}   id = ${mData[position].mBean.get()?.id}".log()
-            }
-        })
     }
 
 

@@ -15,12 +15,13 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:background="@color/colorWhite"
-        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_12"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/colorBackground"
-        app:cardCornerRadius="@dimen/dp_10">
+        app:cardCornerRadius="@dimen/dp_10"
+        app:cardElevation="@dimen/dp_1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,8 +42,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!--            <include-->
+            <!--                android:id="@+id/tag"-->
             <!--                layout="@layout/view_model_tag"-->
-            <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintRight_toRightOf="parent"-->
             <!--                app:layout_constraintTop_toTopOf="parent"-->
             <!--                app:tag="@{item.mTagVM}" />-->
 

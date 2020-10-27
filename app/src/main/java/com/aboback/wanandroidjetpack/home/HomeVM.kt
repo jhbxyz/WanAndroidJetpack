@@ -32,20 +32,21 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
     private var mCurrPage = 0
 
     var rvVM = RecyclerViewVM(app).apply {
-        mRefreshEnable = false
+        mRefreshEnable = true
         mAdapterObservable.set(mAdapter)
 
         mOnRefresh = {
             mIsRefreshing.set(true)
 
             mData.clear()
-            mCurrPage = 1
-
+            mCurrPage = 0
+            requestServer()
             mIsRefreshing.set(false)
         }
 
         mOnLoadMoreListener = {
             mCurrPage++
+            loadMore()
         }
     }
 
@@ -53,6 +54,11 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
     override fun onModelBind() {
         super.onModelBind()
 
+        requestServer()
+
+    }
+
+    private fun requestServer() {
         viewModelScope.launch {
 
             val articleTop = mRepo.articleTop()
@@ -71,6 +77,18 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
+
+    private fun loadMore() {
+        viewModelScope.launch {
+            val articleList = mRepo.articleList(mCurrPage)
+            articleList.data?.datas?.forEach {
+                bindData(it)
+            }
+            mAdapter.notifyDataSetChanged()
+        }
+
+    }
+
     private fun bindData(it: ArticleDatasBean) {
         mData.add(ItemHomeVM(getApplication()).apply {
             mTime.set(it.niceDate)
@@ -78,6 +96,7 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
             mAuthor.handleAuthor(it)
             mCategory.set("分类: ${it.superChapterName}")
 
+            mTagList.clear()
             it.tags?.forEach { tags ->
                 mTagList.add(TagViewModel().apply {
                     mContent.set(tags.name)

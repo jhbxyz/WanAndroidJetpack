@@ -37,12 +37,6 @@ class InterviewRelatedVM(app: Application) : BaseLayoutViewModel(app) {
 
         articleList()
 
-
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(binding: ViewDataBinding, position: Int) {
-                X5WebActivity.startActivity(mData[position].mBean.get()?.link)
-            }
-        })
     }
 
     private fun articleList() {

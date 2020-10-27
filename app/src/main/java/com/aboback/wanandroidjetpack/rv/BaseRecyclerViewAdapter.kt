@@ -19,25 +19,13 @@ open class BaseRecyclerViewAdapter(@LayoutRes private val layoutId: Int, private
         return BaseViewHolder(binding)
     }
 
+    override fun getItemViewType(position: Int) = position
+
     override fun getItemCount(): Int = if (mData.isEmpty()) 0 else mData.size
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val binding = DataBindingUtil.getBinding<ViewDataBinding>(holder.itemView)
         binding?.setVariable(mData[position].id(), mData[position])
         binding?.executePendingBindings()
-
-        holder.itemView.setOnClickListener {
-            mListener?.onItemClick(binding!!, position)
-        }
     }
-
-    private var mListener: OnItemClickListener? = null
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.mListener = listener
-    }
-
-    interface OnItemClickListener {
-        fun onItemClick(binding: ViewDataBinding, position: Int)
-    }
-
 }

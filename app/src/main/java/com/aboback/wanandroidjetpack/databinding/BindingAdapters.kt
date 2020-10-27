@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.RawRes
+import androidx.core.view.children
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aboback.base.getResDimen
+import com.aboback.base.log
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide
@@ -72,7 +75,9 @@ fun setLoadMoreListener(recyclerView: RecyclerView, listener: (() -> Unit)?) {
 @BindingAdapter("addTags")
 fun addTags(ll: LinearLayout, list: List<TagViewModel>) {
     if (list.isEmpty()) return
-    ll.removeAllViews()
+    if (ll.childCount != 0) {
+        ll.removeAllViews()
+    }
     list.forEachIndexed { index, tagViewModel ->
         val binding = ViewModelTagBinding.inflate(LayoutInflater.from(ll.context))
         binding.root.layoutParams = ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

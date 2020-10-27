@@ -9,7 +9,7 @@ import com.aboback.wanandroidjetpack.R
  * @date 2020/10/23
  */
 class TagViewModel {
-    var mContent = ObservableField("测试")
+    var mContent = ObservableField("")
     var mTextColor = ObservableField(R.color.colorRed.getResColor())
     var mTextSize = ObservableField(R.dimen.sp_12.getResDimen())
     var mDrawable = ObservableField(R.drawable.rect_red_shape.getResDrawable())

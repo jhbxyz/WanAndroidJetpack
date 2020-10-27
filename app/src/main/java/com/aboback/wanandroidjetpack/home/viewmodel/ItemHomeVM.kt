@@ -16,5 +16,6 @@ class ItemHomeVM(app: Application) : BaseItemViewModel(app) {
     var mCategory = ObservableField("")
 
     var mTagList = mutableListOf<TagViewModel>()
+    var mTagVM = ObservableField<TagViewModel>()
 
 }
