@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.aboback.base.BaseApp
 import com.aboback.base.log
+import com.aboback.base.ui.BaseActivity
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.base.ui.BaseActivity
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
@@ -100,7 +100,6 @@ class X5WebActivity : BaseActivity() {
 
             override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
                 super.onPageStarted(p0, p1, p2)
-                mDialog.showLoading("正在加载")
 
             }
         }
@@ -108,7 +107,6 @@ class X5WebActivity : BaseActivity() {
             override fun onProgressChanged(p0: WebView?, p1: Int) {
                 super.onProgressChanged(p0, p1)
                 if (p1 >= 100) {
-                    mDialog.dialogDiss()
                 }
             }
 

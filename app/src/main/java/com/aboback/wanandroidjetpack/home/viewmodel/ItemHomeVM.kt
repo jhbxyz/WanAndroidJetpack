@@ -2,7 +2,7 @@ package com.aboback.wanandroidjetpack.home.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import com.aboback.wanandroidjetpack.base.BaseItemViewModel
+import com.aboback.base.rv.BaseItemViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 
 /**

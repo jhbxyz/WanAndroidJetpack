@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.wenda
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
@@ -21,14 +22,13 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
 
 
     var mTitleVM = TitleVM(
-            app,
             leftDrawable = null,
             title = "问答"
 
     )
 
     var mData = arrayListOf<ItemHomeVM>()
-    val mAdapter = BaseRecyclerViewAdapter(R.layout.item_rv_home, mData)
+    val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
 
     private var mCurrPage = 0
 

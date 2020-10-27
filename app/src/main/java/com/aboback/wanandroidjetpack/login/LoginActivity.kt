@@ -1,7 +1,7 @@
 package com.aboback.wanandroidjetpack.login
 
+import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.login.viewmodel.LoginViewModel
 
 /**

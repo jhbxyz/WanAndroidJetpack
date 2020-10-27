@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.home
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
@@ -21,13 +22,12 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
 
 
     var mTitleVM = TitleVM(
-            app,
             leftDrawable = null,
             title = "首页"
     )
 
     var mData = arrayListOf<ItemHomeVM>()
-    val mAdapter = BaseRecyclerViewAdapter(R.layout.item_rv_home, mData)
+    val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
 
     private var mCurrPage = 0
 

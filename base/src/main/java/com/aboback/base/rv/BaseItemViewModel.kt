@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.base
+package com.aboback.base.rv
 
 import android.app.Application
 import androidx.databinding.library.baseAdapters.BR

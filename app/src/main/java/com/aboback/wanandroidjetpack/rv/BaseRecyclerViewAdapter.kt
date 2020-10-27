@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.aboback.wanandroidjetpack.base.BaseItemViewModel
+import com.aboback.base.rv.BaseItemViewModel
 
 /**
  * Created by jhb on 2020-01-19.

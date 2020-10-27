@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="layout"
-            type="com.aboback.wanandroidjetpack.category.question.viewmodel.DailyQuestionDetailVM" />
+            name="item"
+            type="com.aboback.base.viewmodel.BaseLayoutViewModel" />
 
     </data>
 
@@ -15,5 +15,4 @@
         android:layout_height="match_parent">
 
     </LinearLayout>
-
 </layout>

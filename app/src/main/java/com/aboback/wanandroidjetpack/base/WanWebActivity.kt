@@ -11,8 +11,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.aboback.base.BaseApp
 import com.aboback.base.log
+import com.aboback.base.ui.BaseActivity
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.base.ui.BaseActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
