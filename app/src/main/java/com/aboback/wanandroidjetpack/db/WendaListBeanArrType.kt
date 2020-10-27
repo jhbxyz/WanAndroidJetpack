@@ -1,6 +1,7 @@
 package com.aboback.wanandroidjetpack.db
 
 import androidx.room.TypeConverter
+import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.aboback.wanandroidjetpack.bean.WendaListBean
@@ -13,11 +14,11 @@ class WendaListBeanArrType {
 
 
     @TypeConverter
-    fun stringToList(s: String?): ArrayList<WendaListBean.DataBean.DatasBean>? =
-            Gson().fromJson(s, object : TypeToken<ArrayList<WendaListBean.DataBean.DatasBean>>() {}.type)
+    fun stringToList(s: String?): ArrayList<ArticleDatasBean>? =
+            Gson().fromJson(s, object : TypeToken<ArrayList<ArticleDatasBean>>() {}.type)
 
     @TypeConverter
-    fun listToString(list: ArrayList<WendaListBean.DataBean.DatasBean>?): String? = Gson().toJson(list)
+    fun listToString(list: ArrayList<ArticleDatasBean>?): String? = Gson().toJson(list)
 
 }
 

@@ -30,7 +30,7 @@ object WanService {
             .build()
     }
 
-    private fun getRetrofit(): Retrofit {
+    fun getRetrofit(): Retrofit {
         return mRetrofit ?: Retrofit.Builder()
             .baseUrl(BASE_URL)
             .validateEagerly(true)
@@ -42,6 +42,6 @@ object WanService {
 
     }
 
-    fun <T> create(clazz: Class<T>) = getRetrofit().create(clazz)
+    inline fun <reified T> create() = getRetrofit().create(T::class.java)
 
 }

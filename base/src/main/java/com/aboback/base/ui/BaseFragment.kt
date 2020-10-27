@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
  * Created by jhb on 2020/3/20.
  */
 open class BaseFragment : Fragment() {
+    var mTag = javaClass.simpleName
 
     lateinit var mActivity: BaseActivity
 

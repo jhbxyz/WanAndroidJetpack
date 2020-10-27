@@ -36,7 +36,7 @@ interface ApiService {
     suspend fun articleTop(): ArticleTopBean
 
     @GET("wenda/list/{page}/json ")
-    fun wendaList(@Path("page") page: Int): Flowable<WendaListBean>
+    suspend fun wendaList(@Path("page") page: Int): WendaListBean
 
 
 }

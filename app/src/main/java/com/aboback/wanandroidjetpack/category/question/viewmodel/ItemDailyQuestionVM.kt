@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.category.question.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.wanandroidjetpack.base.BaseItemViewModel
+import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.bean.WendaListBean
 
 /**
@@ -10,7 +11,7 @@ import com.aboback.wanandroidjetpack.bean.WendaListBean
  */
 class ItemDailyQuestionVM(app: Application) : BaseItemViewModel(app) {
 
-    var mBean = ObservableField<WendaListBean.DataBean.DatasBean>()
+    var mBean = ObservableField<ArticleDatasBean>()
 
 
 }

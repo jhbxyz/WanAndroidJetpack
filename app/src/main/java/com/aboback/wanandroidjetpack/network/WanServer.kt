@@ -7,8 +7,7 @@ import com.aboback.network.WanService
  * @date 2020/10/23
  */
 object WanServer {
-
-    val api = WanService.create(ApiService::class.java)
+    val api by lazy { WanService.create<ApiService>() }
 
 
 }

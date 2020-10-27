@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.home
+package com.aboback.wanandroidjetpack.wenda
 
 import android.app.Application
 import androidx.databinding.ObservableField
@@ -17,13 +17,14 @@ import kotlinx.coroutines.launch
 /**
  * Created by jhb on 2020-03-11.
  */
-class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, HomeRepository()) {
+class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, WenDaRepository()) {
 
 
     var mTitleVM = TitleVM(
             app,
             leftDrawable = null,
-            title = "首页"
+            title = "问答"
+
     )
 
     var mData = arrayListOf<ItemHomeVM>()
@@ -55,14 +56,9 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
 
         viewModelScope.launch {
 
-            val articleTop = mRepo.articleTop()
-            val articleList = mRepo.articleList(mCurrPage)
+            val wendaList = mRepo.wendaList(mCurrPage)
 
-            articleTop.data?.forEach {
-                bindData(it)
-            }
-
-            articleList.data?.datas?.forEach {
+            wendaList.data?.datas?.forEach {
                 bindData(it)
             }
 
