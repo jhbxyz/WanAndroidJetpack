@@ -28,5 +28,9 @@ class QuickMultiAdapter<T : BaseMultiItemViewModel>(mData: MutableList<T>) : Bas
         addHeaderView(binding.root)
     }
 
+    fun addType(@LayoutRes layoutId: Int, type: Int) {
+        addItemType(type, layoutId)
+    }
+
 
 }

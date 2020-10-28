@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
  * @author jhb
  * @date 2020/10/27
  */
-class QuickAdapter<T : BaseItemViewModel>(@LayoutRes var layoutId: Int, mData: MutableList<T>) : BaseQuickAdapter<T, QuickViewHolder>(layoutId, mData) {
+class QuickAdapter<T : QuickItemViewModel>(@LayoutRes var layoutId: Int, mData: MutableList<T>) : BaseQuickAdapter<T, QuickViewHolder>(layoutId, mData) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuickViewHolder = QuickViewHolder.create(layoutId, parent)
 

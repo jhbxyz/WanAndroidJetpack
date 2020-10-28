@@ -1,14 +1,12 @@
 package com.aboback.base.rv
 
-import com.aboback.base.BR
-import com.aboback.base.VariableId
+import android.app.Application
 import com.chad.library.adapter.base.entity.MultiItemEntity
 
 /**
  * @author jhb
  * @date 2020/10/27
  */
-abstract class BaseMultiItemViewModel : VariableId, MultiItemEntity {
+abstract class BaseMultiItemViewModel(app: Application) : QuickItemViewModel(app), MultiItemEntity {
 
-    override fun id(): Int = BR.item
 }

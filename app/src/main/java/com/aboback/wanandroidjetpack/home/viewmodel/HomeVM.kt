@@ -3,7 +3,10 @@ package com.aboback.wanandroidjetpack.home.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import com.aboback.base.ItemType
+import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickAdapter
+import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
@@ -11,6 +14,7 @@ import com.aboback.wanandroidjetpack.home.HomeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TitleVM
+import com.chad.library.adapter.base.binder.QuickItemBinder
 import kotlinx.coroutines.launch
 
 /**
@@ -24,8 +28,11 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
             title = "首页"
     )
 
-    var mData = arrayListOf<ItemHomeVM>()
-    val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
+    var mData = arrayListOf<BaseMultiItemViewModel>()
+    val mAdapter = QuickMultiAdapter(mData).apply {
+        addType(R.layout.item_rv_home, ItemType.ITEM_HOME_MAIN)
+        addType(R.layout.item_rv_home_banner, ItemType.ITEM_HOME_BANNER)
+    }
 
     private var mCurrPage = 0
 
@@ -51,6 +58,8 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
 
     override fun onModelBind() {
         super.onModelBind()
+
+        mData.add(HomeBannerVM(getApplication()))
 
         requestServer()
 

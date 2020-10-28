@@ -6,6 +6,11 @@ import com.aboback.base.VariableId
 import com.aboback.base.viewmodel.BaseViewModel
 
 /**
- * Created by jhb on 2020-01-20.
+ * @author jhb
+ * @date 2020/10/28
  */
-abstract class BaseItemViewModel(app: Application) : QuickItemViewModel(app)
+open class QuickItemViewModel(app: Application) : BaseViewModel(app), VariableId {
+
+
+    override fun id(): Int = BR.item
+}

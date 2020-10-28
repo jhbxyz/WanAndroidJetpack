@@ -38,7 +38,7 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
             mIsRefreshing.set(true)
 
             mData.clear()
-            mCurrPage = 1
+            mCurrPage = 0
 
             requestServer(false)
             mIsRefreshing.set(false)
