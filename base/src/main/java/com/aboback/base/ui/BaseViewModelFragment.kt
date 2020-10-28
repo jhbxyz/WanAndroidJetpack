@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.aboback.base.ViewState
 import com.aboback.base.viewmodel.BaseLayoutViewModel
@@ -47,6 +48,8 @@ open class BaseViewModelFragment<VM : BaseLayoutViewModel>(@LayoutRes private va
     }
 
     override fun onEvent() {
+
+        mRealVM.dialogState(mActivity)
 
     }
 

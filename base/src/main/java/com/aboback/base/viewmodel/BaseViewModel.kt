@@ -15,6 +15,9 @@ open class BaseViewModel(app: Application) : AndroidViewModel(app) {
 
     var mTag = javaClass.simpleName
 
+    var isDialogShow = MutableLiveData<Boolean>()
+    var isDialogShowFra = MutableLiveData<Boolean>()
+
     open fun onModelBind() {
 
     }

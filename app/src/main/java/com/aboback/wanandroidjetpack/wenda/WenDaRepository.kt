@@ -13,11 +13,8 @@ class WenDaRepository : NetRepository() {
 
 
     suspend fun wendaList(page: Int) = withContext(Dispatchers.IO) {
-        async {
-            api.wendaList(page)
-        }
-    }.await()
-
+        api.wendaList(page)
+    }
 
 
 }

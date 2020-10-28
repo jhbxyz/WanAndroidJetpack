@@ -2,15 +2,16 @@ package com.aboback.wanandroidjetpack.wenda
 
 import android.app.Application
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
-import com.aboback.wanandroidjetpack.rv.BaseRecyclerViewAdapter
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TitleVM
 import kotlinx.coroutines.launch
@@ -54,18 +55,27 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
     override fun onModelBind() {
         super.onModelBind()
 
+
+//        launch {
+//
+//            val wendaList = mRepo.wendaList(mCurrPage)
+//        }
+
         viewModelScope.launch {
 
+            isDialogShow.value = true
+            show.value = true
             val wendaList = mRepo.wendaList(mCurrPage)
-
             wendaList.data?.datas?.forEach {
                 bindData(it)
             }
 
             mAdapter.notifyDataSetChanged()
-
+            isDialogShow.value = false
         }
     }
+
+    var show = MutableLiveData(false)
 
     private fun bindData(it: ArticleDatasBean) {
         mData.add(ItemHomeVM(getApplication()).apply {

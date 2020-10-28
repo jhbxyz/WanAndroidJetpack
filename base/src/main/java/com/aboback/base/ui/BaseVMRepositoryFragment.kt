@@ -27,9 +27,9 @@ abstract class BaseVMRepositoryFragment<VM : BaseRepositoryViewModel<*>>(@Layout
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         beforeSetView()
 
-        mRealVM = getViewModel(mActivity.application)
+        val vm = getViewModel(mActivity.application)
 
-        mRealVM = ViewModelProvider(this, BaseViewModelFactory(mActivity.application, mRealVM))[mRealVM::class.java]
+        mRealVM = ViewModelProvider(this, BaseViewModelFactory(mActivity.application, vm))[vm::class.java]
         val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
         binding.setVariable(mRealVM.id(), mRealVM)
@@ -57,6 +57,8 @@ abstract class BaseVMRepositoryFragment<VM : BaseRepositoryViewModel<*>>(@Layout
     }
 
     override fun onEvent() {
+
+        mRealVM.dialogState(mActivity)
 
     }
 
