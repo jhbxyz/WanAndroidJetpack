@@ -7,15 +7,15 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.aboback.base.VariableId
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 
 /**
  * @author jhb
  * @date 2020/10/27
  */
-class QuickAdapter<T : BaseItemViewModel>(@LayoutRes var layoutId: Int, mData: MutableList<T>) : BaseQuickAdapter<T, QuickViewHolder>(layoutId, mData) {
+class QuickMultiAdapter<T : BaseMultiItemViewModel>(mData: MutableList<T>) : BaseMultiItemQuickAdapter<T, QuickViewHolder>(mData) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuickViewHolder = QuickViewHolder.create(layoutId, parent)
+    override fun createBaseViewHolder(parent: ViewGroup, layoutResId: Int): QuickViewHolder = QuickViewHolder.create(layoutResId, parent)
 
     override fun convert(holder: QuickViewHolder, item: T) {
         holder.bind(item)

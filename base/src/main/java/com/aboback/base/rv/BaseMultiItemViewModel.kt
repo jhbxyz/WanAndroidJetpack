@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
  * @author jhb
  * @date 2020/10/27
  */
-abstract class BaseMultItemViewModel : VariableId, MultiItemEntity {
+abstract class BaseMultiItemViewModel : VariableId, MultiItemEntity {
 
     override fun id(): Int = BR.item
 }
