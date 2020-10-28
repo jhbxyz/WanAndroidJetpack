@@ -2,8 +2,6 @@ package com.aboback.wanandroidjetpack.wenda
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
@@ -14,7 +12,6 @@ import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TitleVM
-import kotlinx.coroutines.launch
 
 /**
  * Created by jhb on 2020-03-11.
@@ -34,7 +31,7 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
     private var mCurrPage = 0
 
     var rvVM = RecyclerViewVM(app).apply {
-        mRefreshEnable = false
+        mRefreshEnable = true
         mAdapterObservable.set(mAdapter)
 
         mOnRefresh = {
@@ -43,11 +40,13 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
             mData.clear()
             mCurrPage = 1
 
+            requestServer(false)
             mIsRefreshing.set(false)
         }
 
         mOnLoadMoreListener = {
             mCurrPage++
+            requestServer(true)
         }
     }
 
@@ -55,27 +54,20 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
     override fun onModelBind() {
         super.onModelBind()
 
+        requestServer(true)
+    }
 
-//        launch {
-//
-//            val wendaList = mRepo.wendaList(mCurrPage)
-//        }
-
-        viewModelScope.launch {
-
-            isDialogShow.value = true
-            show.value = true
-            val wendaList = mRepo.wendaList(mCurrPage)
-            wendaList.data?.datas?.forEach {
-                bindData(it)
+    private fun requestServer(showDialog: Boolean = true) {
+        launch(showDialog) {
+            response(mRepo.wendaList(mCurrPage)) {
+                data?.datas?.forEach {
+                    bindData(it)
+                }
+                mAdapter.notifyDataSetChanged()
             }
-
-            mAdapter.notifyDataSetChanged()
-            isDialogShow.value = false
         }
     }
 
-    var show = MutableLiveData(false)
 
     private fun bindData(it: ArticleDatasBean) {
         mData.add(ItemHomeVM(getApplication()).apply {
