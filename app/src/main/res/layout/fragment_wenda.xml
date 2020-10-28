@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <include
-            layout="@layout/title_view_model"
+            layout="@layout/view_model_title"
             app:title="@{layout.mTitleVM}" />
 
         <include

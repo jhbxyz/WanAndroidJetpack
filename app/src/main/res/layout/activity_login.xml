@@ -17,7 +17,7 @@
 
         <include
             android:id="@+id/title"
-            layout="@layout/title_view_model"
+            layout="@layout/view_model_title"
             app:title="@{layout.mTitleVM}" />
 
 

@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.aboback.wanandroidjetpack.home.viewmodel.HomeVM" />
+            type="com.aboback.wanandroidjetpack.test.BannerTestVM" />
 
     </data>
 
@@ -16,13 +16,8 @@
         android:layout_height="match_parent">
 
         <include
-            layout="@layout/view_model_title"
-            app:title="@{layout.mTitleVM}" />
-
-        <include
-            layout="@layout/layout_recyclerview"
-            app:rv="@{layout.rvVM}" />
-
+            layout="@layout/view_model_banner"
+            app:banner="@{layout.bannerVM}" />
 
     </LinearLayout>
 </layout>

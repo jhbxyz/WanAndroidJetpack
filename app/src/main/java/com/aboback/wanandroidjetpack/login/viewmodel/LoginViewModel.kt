@@ -5,7 +5,7 @@ import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
-import com.aboback.wanandroidjetpack.viewmodel.TitleVM
+import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
 /**
  * Created by jhb on 2020-01-14.
@@ -15,7 +15,7 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
     var mUserName = ObservableField<String>()
     var mPassword = ObservableField<String>()
 
-    var mTitleVM = TitleVM(
+    var mTitleVM = TitleViewModel(
             leftDrawable = null,
             leftAction = {
             },

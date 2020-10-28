@@ -11,7 +11,7 @@ import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
-import com.aboback.wanandroidjetpack.viewmodel.TitleVM
+import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
 /**
  * Created by jhb on 2020-03-11.
@@ -19,7 +19,7 @@ import com.aboback.wanandroidjetpack.viewmodel.TitleVM
 class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, WenDaRepository()) {
 
 
-    var mTitleVM = TitleVM(
+    var mTitleVM = TitleViewModel(
             leftDrawable = null,
             title = "问答"
 

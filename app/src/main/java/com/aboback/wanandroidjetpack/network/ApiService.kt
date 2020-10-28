@@ -11,20 +11,11 @@ import retrofit2.http.*
  */
 interface ApiService {
 
-    @FormUrlEncoded
-    @POST("user/login")
-    fun userLogin(
-            @Field("username") username: String?,
-            @Field("password") password: String?
-    ): Flowable<Result<UserLoginBean>>
+    @GET("/banner/json")
+    suspend fun banner(): BannerBean
 
-
-    @GET("lg/collect/list/0/json")
-    fun lgCollectList(): Flowable<BaseBean>
-
-    @GET("tree/json")
-    fun treeJson(): Flowable<TreeJsonBean>
-
+    @GET("/article/top/json")
+    suspend fun articleTop(): ArticleTopBean
 
     @GET("/article/list/{page}/json")
     suspend fun articleList(
@@ -32,11 +23,21 @@ interface ApiService {
             @Query("cid") cid: Int? = null//73为面试的cid
     ): ArticleListBean
 
-    @GET("/article/top/json")
-    suspend fun articleTop(): ArticleTopBean
-
     @GET("wenda/list/{page}/json ")
     suspend fun wendaList(@Path("page") page: Int): WendaListBean
+
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun userLogin(
+            @Field("username") username: String?,
+            @Field("password") password: String?
+    ): Result<UserLoginBean>
+
+    @GET("lg/collect/list/0/json")
+    suspend fun lgCollectList(): BaseBean
+
+    @GET("tree/json")
+    suspend fun treeJson(): TreeJsonBean
 
 
 }

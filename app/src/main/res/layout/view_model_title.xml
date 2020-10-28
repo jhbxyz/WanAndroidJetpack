@@ -7,7 +7,7 @@
 
         <variable
             name="title"
-            type="com.aboback.wanandroidjetpack.viewmodel.TitleVM" />
+            type="com.aboback.wanandroidjetpack.viewmodel.TitleViewModel" />
 
     </data>
 

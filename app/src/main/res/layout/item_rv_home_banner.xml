@@ -11,19 +11,13 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView"
-            android:text="@{item.MContent}"
-            android:layout_width="0dp"
-            android:background="#3f00"
-            android:layout_height="@dimen/dp_150"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            layout="@layout/view_model_banner"
+            app:banner="@{item.mBannerVM}" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>

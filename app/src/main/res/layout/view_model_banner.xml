@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="banner"
+            type="com.aboback.wanandroidjetpack.viewmodel.BannerViewModel" />
+
+    </data>
+
+    <com.youth.banner.Banner
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        app:banner_indicator_normal_color="@color/colorGray3"
+        app:banner_indicator_selected_color="@color/colorAccent"
+        app:layoutHeight="@{banner.MBannerHeight}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:setBannerAdapter="@{banner.MAdapterObservable}"
+        app:setBannerIndicator="@{banner.MIndicatorObservable}" />
+
+</layout>

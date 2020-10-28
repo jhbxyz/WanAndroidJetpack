@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.util
+package com.aboback.base.util
 
 import android.app.Activity
 import java.lang.IllegalArgumentException

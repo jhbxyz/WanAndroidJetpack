@@ -38,9 +38,6 @@
 
         <activity android:name="com.aboback.wanandroidjetpack.login.LoginActivity" />
 
-        <activity android:name="com.aboback.wanandroidjetpack.category.interview_related.ui.InterviewRelatedActivity" />
-        <activity android:name="com.aboback.wanandroidjetpack.category.question.ui.DailyQuestionActivity" />
-        <activity android:name="com.aboback.wanandroidjetpack.category.question.ui.DailyQuestionDetailActivity" />
 
         <activity
             android:name="com.aboback.wanandroidjetpack.base.WanWebActivity"

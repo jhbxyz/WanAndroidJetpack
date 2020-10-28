@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.databinding
 
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -12,8 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aboback.base.util.getResDimen
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide
+import com.youth.banner.Banner
+import com.youth.banner.adapter.BannerImageAdapter
+import com.youth.banner.indicator.Indicator
 
 /**
  * Created by jhb on 2020/3/26.
@@ -84,6 +89,24 @@ fun addTags(ll: LinearLayout, list: List<TagViewModel>) {
 }
 
 
+@BindingAdapter("setBannerAdapter")
+fun setBannerAdapter(banner: Banner<*, BannerAdapter>, adapter: BannerAdapter) {
+    if (banner.adapter != adapter) {
+        banner.adapter = adapter
+    }
+}
+
+@BindingAdapter("setBannerIndicator")
+fun setBannerIndicator(banner: Banner<*, BannerAdapter>, indicator: Indicator) {
+    banner.indicator = indicator
+}
+
+@BindingAdapter("layoutHeight")
+fun layoutHeight(view: View, dp: Int) {
+    val layoutParams = view.layoutParams
+    layoutParams.height = dp
+    view.layoutParams = layoutParams
+}
 
 
 

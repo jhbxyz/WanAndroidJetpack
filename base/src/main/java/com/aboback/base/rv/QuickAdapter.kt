@@ -21,6 +21,8 @@ class QuickAdapter<T : QuickItemViewModel>(@LayoutRes var layoutId: Int, mData: 
         holder.bind(item)
     }
 
+    override fun getItemViewType(position: Int) = position
+
     fun addHeader(context: Context, @LayoutRes layoutId: Int, header: VariableId) {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(context), layoutId, null, false)
         binding.setVariable(header.id(), header)

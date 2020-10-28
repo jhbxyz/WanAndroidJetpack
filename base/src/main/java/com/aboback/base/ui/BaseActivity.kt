@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
+import com.aboback.base.util.ActivityUtil
 import com.aboback.base.view.LoadingDialog
 import com.aboback.base.util.isNull
 import java.io.Serializable
@@ -18,6 +19,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ActivityUtil.addActivity(this)
     }
 
     private fun initDialog(): LoadingDialog {
@@ -82,4 +84,8 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityUtil.removeActivity(this)
+    }
 }
