@@ -13,6 +13,8 @@ class LoadingDialog(context: Context) : AppCompatDialog(context, R.style.Loading
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_loading)
+        setCancelable(false)
+        setCanceledOnTouchOutside(true)
 
     }
 

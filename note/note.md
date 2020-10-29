@@ -23,3 +23,11 @@ override fun getItemViewType(position: Int) = position
 
 
 #### 3.RV 列表 Item 中的LinearLayout 动态添加子View ，刷新列表时，子View 重新绘制闪动
+
+
+
+
+
+### 4.RecyclerView and java.lang.IndexOutOfBoundsException: Inconsistency detected. Invalid view holder adapter positionViewHolder 
+
+[https://stackoverflow.com/questions/31759171/recyclerview-and-java-lang-indexoutofboundsexception-inconsistency-detected-in](https://stackoverflow.com/questions/31759171/recyclerview-and-java-lang-indexoutofboundsexception-inconsistency-detected-in)

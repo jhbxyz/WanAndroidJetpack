@@ -82,7 +82,9 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         mOnScrollListener.set(object : RvScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && mScrollToTop.get().truely()) {
+                "onScrolled  newState = $newState".log()
+                // -1 表示向上滚动, 返回值 true 表示 还可以往上滑动
+                if (!recyclerView.canScrollVertically(-1)) {
                     mScrollToTop.set(false)
                     mFabVisible.set(false)
                 }

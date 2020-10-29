@@ -18,7 +18,7 @@ open class RecyclerViewVM(app: Application) {
     var mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(app)
 
     var mScrollToTop = ObservableField(false)
-    var mOnScrollListener = ObservableField<RvScrollListener>(RvScrollListener())
+    var mOnScrollListener = ObservableField(RvScrollListener())
 
     var mOnRefresh = {}
 

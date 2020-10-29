@@ -12,21 +12,21 @@ import kotlinx.coroutines.withContext
 class HomeRepository : NetRepository() {
 
 
-    suspend fun banner() = withContext(Dispatchers.IO) {
+    suspend fun banner() = withContext(Dispatchers.Default) {
         async {
             api.banner()
         }
     }.await()
 
 
-    suspend fun articleList(page: Int) = withContext(Dispatchers.IO) {
+    suspend fun articleList(page: Int) = withContext(Dispatchers.Default) {
         async {
             api.articleList(page)
         }
     }.await()
 
 
-    suspend fun articleTop() = withContext(Dispatchers.IO) {
+    suspend fun articleTop() = withContext(Dispatchers.Default) {
         async {
             api.articleTop()
         }
