@@ -18,7 +18,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="WanAndroid"
+            android:text="W a n   A n d r o i d"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/sp_32"
             android:textStyle="bold"

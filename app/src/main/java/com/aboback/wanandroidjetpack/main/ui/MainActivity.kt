@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.util.log
 import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.collect.ui.CollectFragment
 import com.aboback.wanandroidjetpack.home.ui.HomeFragment
 import com.aboback.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.aboback.wanandroidjetpack.main.viewmodel.MainViewModel
@@ -48,16 +49,15 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
 
     private fun initFragment() {
 
-//        mFragments.add(CategoryFragment())
         mFragments.add(HomeFragment())
         mFragments.add(WenDaFragment())
-        mFragments.add(FragmentTest(3))
+        mFragments.add(CollectFragment())
         mFragments.add(FragmentTest(4))
         mFragments.add(FragmentTest(5))
 
 
         viewPager2.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)
-
+        viewPager2.isUserInputEnabled = false
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)

@@ -21,7 +21,7 @@ abstract class BaseVMRepositoryFragment<VM : BaseRepositoryViewModel<*>>(@Layout
 
     lateinit var mRealVM: VM
 
-    abstract fun getViewModel(application: Application): VM
+    abstract fun getViewModel(app: Application): VM
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
