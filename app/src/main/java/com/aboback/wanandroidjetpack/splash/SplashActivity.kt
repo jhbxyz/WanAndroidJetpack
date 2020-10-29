@@ -3,7 +3,7 @@ package com.aboback.wanandroidjetpack.splash
 import com.aboback.base.util.delay
 import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.main.MainActivity
+import com.aboback.wanandroidjetpack.main.ui.MainActivity
 
 /**
  * Created by jhb on 2020-01-14.

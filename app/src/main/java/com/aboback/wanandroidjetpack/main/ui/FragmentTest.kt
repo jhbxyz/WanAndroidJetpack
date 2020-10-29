@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.main
+package com.aboback.wanandroidjetpack.main.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

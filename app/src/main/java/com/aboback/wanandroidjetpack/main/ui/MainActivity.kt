@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.main
+package com.aboback.wanandroidjetpack.main.ui
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer

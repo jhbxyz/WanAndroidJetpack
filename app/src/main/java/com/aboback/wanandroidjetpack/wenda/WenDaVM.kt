@@ -41,7 +41,6 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
             mCurrPage = 0
 
             requestServer(false)
-            mIsRefreshing.set(false)
         }
 
         mOnLoadMoreListener = {
@@ -64,6 +63,9 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
                     bindData(it)
                 }
                 mAdapter.notifyDataSetChanged()
+                if (!showDialog) {
+                    rvVM.mIsRefreshing.set(false)
+                }
             }
         }
     }

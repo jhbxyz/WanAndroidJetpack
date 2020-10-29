@@ -113,6 +113,9 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
     private fun dialogState(state: CurrPageState, isShow: Boolean) {
         if (state != CurrPageState.REFRESH) {
             isDialogShow.value = isShow
+            if (!isShow) {
+                "加载成功".showToast()
+            }
         }
     }
 
