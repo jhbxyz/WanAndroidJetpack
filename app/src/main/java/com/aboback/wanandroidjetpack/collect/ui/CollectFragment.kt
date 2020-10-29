@@ -6,7 +6,6 @@ import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
 import com.aboback.wanandroidjetpack.collect.viewmodel.CollectVM
-import com.aboback.wanandroidjetpack.main.ui.FragmentTest
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_collect.*
 
@@ -23,10 +22,10 @@ class CollectFragment : BaseVMRepositoryFragment<CollectVM>(R.layout.fragment_co
     override fun onViewInit() {
         super.onViewInit()
 
-        mFragments.add(FragmentTest(6))
-        mFragments.add(FragmentTest(7))
-        mFragments.add(FragmentTest(8))
-        mFragments.add(FragmentTest(9))
+        mFragments.add(CollectContentFragment(CollectContentPage.COLLECT_ARTICLE))
+        mFragments.add(CollectContentFragment(CollectContentPage.SHARE_ARTICLE))
+        mFragments.add(CollectContentFragment(CollectContentPage.COLLECT_WEBSITE))
+        mFragments.add(CollectContentFragment(CollectContentPage.SHARE_PROJECT))
 
         viewPager2.adapter = CollectVpAdapter(mFragments, mActivity.supportFragmentManager, lifecycle)
 

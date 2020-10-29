@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
  * Created by jhb on 2020-03-11.
  */
 
-enum class CurrPageState {
+enum class HomePageState {
     INIT, REFRESH, LOAD_MORE
 }
 
@@ -71,13 +71,13 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
 
             mData.clear()
             mCurrPage = 0
-            requestServer(CurrPageState.REFRESH)
+            requestServer(HomePageState.REFRESH)
 
         }
 
         mOnLoadMoreListener = {
             mCurrPage++
-            requestServer(CurrPageState.LOAD_MORE)
+            requestServer(HomePageState.LOAD_MORE)
         }
         mOnScrollListener.set(object : RvScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -105,13 +105,13 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
     override fun onModelBind() {
         super.onModelBind()
 
-        requestServer(CurrPageState.INIT)
+        requestServer(HomePageState.INIT)
 
     }
 
 
-    private fun dialogState(state: CurrPageState, isShow: Boolean) {
-        if (state != CurrPageState.REFRESH) {
+    private fun dialogState(state: HomePageState, isShow: Boolean) {
+        if (state != HomePageState.REFRESH) {
             isDialogShow.value = isShow
             if (!isShow) {
                 "加载成功".showToast()
@@ -119,13 +119,13 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
-    private fun hideRefreshLoading(state: CurrPageState) {
-        if (state == CurrPageState.REFRESH) {
+    private fun hideRefreshLoading(state: HomePageState) {
+        if (state == HomePageState.REFRESH) {
             rvVM.mIsRefreshing.set(false)
         }
     }
 
-    private fun requestServer(state: CurrPageState) {
+    private fun requestServer(state: HomePageState) {
         viewModelScope.launch {
             try {
                 resetDataIfNeed(state)
@@ -151,14 +151,14 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
-    private fun resetDataIfNeed(state: CurrPageState) {
-        if (state == CurrPageState.REFRESH) {
+    private fun resetDataIfNeed(state: HomePageState) {
+        if (state == HomePageState.REFRESH) {
             mData.clear()
         }
     }
 
-    private suspend fun getBannerImages(state: CurrPageState) {
-        if (state == CurrPageState.INIT || state == CurrPageState.REFRESH) {
+    private suspend fun getBannerImages(state: HomePageState) {
+        if (state == HomePageState.INIT || state == HomePageState.REFRESH) {
             mImageList.clear()
             mRepo.banner().data?.forEach {
                 mImageList.add(it?.imagePath ?: "")
@@ -167,8 +167,8 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
-    private suspend fun getArticleTop(state: CurrPageState) {
-        if (state == CurrPageState.REFRESH || state == CurrPageState.INIT) {
+    private suspend fun getArticleTop(state: HomePageState) {
+        if (state == HomePageState.REFRESH || state == HomePageState.INIT) {
             val articleTop = mRepo.articleTop()
             articleTop.data?.forEach {
                 bindData(it)
