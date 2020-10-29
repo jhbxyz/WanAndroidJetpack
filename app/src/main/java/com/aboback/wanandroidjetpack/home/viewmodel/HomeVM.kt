@@ -6,15 +6,14 @@ import androidx.lifecycle.viewModelScope
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
+import com.aboback.base.util.log
+import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
-import com.aboback.wanandroidjetpack.viewmodel.BannerViewModel
-import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
-import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
+import com.aboback.wanandroidjetpack.viewmodel.*
 import kotlinx.coroutines.launch
 
 /**
@@ -31,6 +30,12 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
             leftDrawable = null,
             title = "首页"
     )
+
+    var mFabVM = FabViewModel(
+            onClick = {
+            }
+    )
+    var mFabVisible = ObservableField(false)
 
     private val mImageList = arrayListOf<String>()
 

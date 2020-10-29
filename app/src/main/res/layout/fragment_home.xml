@@ -8,21 +8,42 @@
             name="layout"
             type="com.aboback.wanandroidjetpack.home.viewmodel.HomeVM" />
 
+        <import type="android.view.View" />
     </data>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include
+            android:id="@+id/title"
             layout="@layout/view_model_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:title="@{layout.mTitleVM}" />
+
 
         <include
             layout="@layout/layout_recyclerview"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
             app:rv="@{layout.rvVM}" />
 
 
-    </LinearLayout>
+        <include
+            layout="@layout/view_model_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:visibility="@{layout.mFabVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:fab="@{layout.mFabVM}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

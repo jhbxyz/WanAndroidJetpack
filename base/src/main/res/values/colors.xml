@@ -10,6 +10,7 @@
     <color name="colorDivide">#80515460</color>
     <color name="colorBlueDark">#467EEB</color>
     <color name="colorBlueLight">#FF3489FF</color>
+    <color name="colorBlueTrans">#553489FF</color>
 
 
     <color name="colorGrayBg">#22222222</color>

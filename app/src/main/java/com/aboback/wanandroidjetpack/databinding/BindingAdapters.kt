@@ -16,6 +16,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.youth.banner.Banner
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.indicator.Indicator
@@ -106,6 +107,19 @@ fun layoutHeight(view: View, dp: Int) {
     val layoutParams = view.layoutParams
     layoutParams.height = dp
     view.layoutParams = layoutParams
+}
+
+
+@BindingAdapter("layoutWidth")
+fun layoutWidth(view: View, dp: Int) {
+    val layoutParams = view.layoutParams
+    layoutParams.width = dp
+    view.layoutParams = layoutParams
+}
+
+@BindingAdapter("fabCustomSize")
+fun fabCustomSize(fab: FloatingActionButton, dp: Int) {
+    fab.customSize = dp
 }
 
 
