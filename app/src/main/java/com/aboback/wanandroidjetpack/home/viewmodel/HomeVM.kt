@@ -9,6 +9,7 @@ import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.util.falsely
 import com.aboback.base.util.log
+import com.aboback.base.util.showToast
 import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
@@ -72,7 +73,6 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
             mCurrPage = 0
             requestServer(CurrPageState.REFRESH)
 
-            mIsRefreshing.set(false)
         }
 
         mOnLoadMoreListener = {
@@ -116,26 +116,39 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
-    private fun requestServer(state: CurrPageState) {
-        viewModelScope.launch {
-
-            resetData(state)
-
-            dialogState(state, true)
-
-            getBannerImages(state)
-
-            getArticleTop(state)
-
-            getArticleList()
-
-            mAdapter.notifyDataSetChanged()
-
-            dialogState(state, false)
+    private fun hideRefreshLoading(state: CurrPageState) {
+        if (state == CurrPageState.REFRESH) {
+            rvVM.mIsRefreshing.set(false)
         }
     }
 
-    private fun resetData(state: CurrPageState) {
+    private fun requestServer(state: CurrPageState) {
+        viewModelScope.launch {
+            try {
+                resetDataIfNeed(state)
+
+                dialogState(state, true)
+
+                getBannerImages(state)
+
+                getArticleTop(state)
+
+                getArticleList()
+
+            } catch (e: Throwable) {
+                e.message?.showToast()
+
+            } finally {
+                mAdapter.notifyDataSetChanged()
+
+                hideRefreshLoading(state)
+
+                dialogState(state, false)
+            }
+        }
+    }
+
+    private fun resetDataIfNeed(state: CurrPageState) {
         if (state == CurrPageState.REFRESH) {
             mData.clear()
         }
@@ -174,9 +187,12 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
             mAuthor.handleAuthor(it)
             mCategory.set("分类: ${it.superChapterName}")
 
-            mTagList.clear()
+//            mTagList.set(it.tags)
+//            bindTagVM()
+
+            mTagVMList.clear()
             it.tags?.forEach { tags ->
-                mTagList.add(TagViewModel().apply {
+                mTagVMList.add(TagViewModel().apply {
                     mContent.set(tags.name)
                 })
             }

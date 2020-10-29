@@ -77,7 +77,7 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
             mCategory.set("分类: ${it.superChapterName}")
 
             it.tags?.forEach { tags ->
-                mTagList.add(TagViewModel().apply {
+                mTagVMList.add(TagViewModel().apply {
                     mContent.set(tags.name)
                 })
             }

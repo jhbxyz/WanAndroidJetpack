@@ -79,7 +79,6 @@ fun setLoadMoreListener(recyclerView: RecyclerView, listener: (() -> Unit)?) {
 
 @BindingAdapter("addTags")
 fun addTags(ll: LinearLayout, list: List<TagViewModel>) {
-    if (list.isEmpty()) return
     if (ll.childCount != 0) {
         ll.removeAllViews()
     }
