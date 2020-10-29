@@ -3,16 +3,19 @@ package com.aboback.wanandroidjetpack.home.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
+import com.aboback.base.util.falsely
 import com.aboback.base.util.log
-import com.aboback.base.util.showToast
+import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
+import com.aboback.wanandroidjetpack.rv.RvScrollListener
 import com.aboback.wanandroidjetpack.viewmodel.*
 import kotlinx.coroutines.launch
 
@@ -33,6 +36,7 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
 
     var mFabVM = FabViewModel(
             onClick = {
+                rvVM.mScrollToTop.set(true)
             }
     )
     var mFabVisible = ObservableField(false)
@@ -75,6 +79,24 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
             mCurrPage++
             requestServer(CurrPageState.LOAD_MORE)
         }
+        mOnScrollListener.set(object : RvScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && mScrollToTop.get().truely()) {
+                    mScrollToTop.set(false)
+                    mFabVisible.set(false)
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy < 0 && mFabVisible.get().falsely()) {
+                    mFabVisible.set(true)
+                } else if (dy > 0 && mFabVisible.get().truely()) {
+                    mFabVisible.set(false)
+                }
+            }
+        })
     }
 
 

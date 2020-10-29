@@ -79,7 +79,9 @@ fun Any?.isNull() = this == null
 
 fun Any?.isNotNull() = !isNull()
 
+fun Boolean?.truely() = this != null && this
 
+fun Boolean?.falsely() = !truely()
 
 
 

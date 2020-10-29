@@ -36,6 +36,12 @@ fun onRefreshListener(swipeRefreshLayout: SwipeRefreshLayout, listener: (() -> U
     }
 }
 
+@BindingAdapter("rvScrollToTop")
+fun rvScrollToTop(recyclerView: RecyclerView, boolean: Boolean) {
+    if (boolean) {
+        recyclerView.smoothScrollToPosition(0)
+    }
+}
 
 @BindingAdapter(value = ["setLoadMoreListener"], requireAll = false)
 fun setLoadMoreListener(recyclerView: RecyclerView, listener: (() -> Unit)?) {

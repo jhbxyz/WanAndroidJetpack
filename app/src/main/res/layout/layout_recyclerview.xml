@@ -21,9 +21,11 @@
         app:refreshing="@{rv.mIsRefreshing}">
 
         <androidx.recyclerview.widget.RecyclerView
+            setLoadMoreListener="@{rv.mOnLoadMoreListener}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            setLoadMoreListener="@{rv.mOnLoadMoreListener}"
+            app:rvScrollToTop="@{rv.MScrollToTop}"
+            app:addOnScrollListener="@{rv.mOnScrollListener}"
             app:setAdapter="@{rv.mAdapterObservable}"
             app:setLayoutManager="@{rv.mLayoutManager}">
 
