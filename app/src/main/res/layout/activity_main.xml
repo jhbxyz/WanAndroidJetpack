@@ -9,6 +9,8 @@
             name="layout"
             type="com.aboback.wanandroidjetpack.main.viewmodel.MainViewModel" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -121,6 +123,18 @@
                 android:textColor="@color/nav_bottom_color"
                 android:textSize="@dimen/sp_10" />
         </RadioGroup>
+
+
+        <include
+            layout="@layout/view_model_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:visibility="@{layout.mFabVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:fab="@{layout.mFabVM}"
+            app:layout_constraintBottom_toTopOf="@+id/llNav"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

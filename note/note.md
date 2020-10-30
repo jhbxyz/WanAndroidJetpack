@@ -28,7 +28,18 @@ override fun getItemViewType(position: Int) = position
 
 
 
-### 4.RecyclerView and java.lang.IndexOutOfBoundsException: Inconsistency detected. Invalid view holder adapter positionViewHolder 
+### 4.在 RV 请求下拉刷新时，滑动 item 报错
+
+##### 报错
+
+CrashHandler: In thread: Thread[main,5,main]
+UncaughtException detected: java.lang.IndexOutOfBoundsException: Inconsistency detected. Invalid item position 
+
+问题出现的本质是：操作问题，首先在主线程，清掉了 List，然后去子线程请求数据，得到数据然后添加到 List 中，整个item 数据经历了，主线程-子线程-主线程 的过程，并且都操作了 List
+
+> 解决：不要提前清除数据，在请求结果的回调，再清楚数据，然后添加新数据到 List 中
+
+下面是网上的办法，用的是 try catch 方法
 
 [https://stackoverflow.com/questions/31759171/recyclerview-and-java-lang-indexoutofboundsexception-inconsistency-detected-in](https://stackoverflow.com/questions/31759171/recyclerview-and-java-lang-indexoutofboundsexception-inconsistency-detected-in)
 
@@ -36,7 +47,28 @@ override fun getItemViewType(position: Int) = position
 
 #### 5.首页 Feed 流对条目 Item 复用的问题
 
+其实没有复用，是在LinearLayout 动态添加，子 View 的时候，多了一层判空，导致结果为空的时候，没有清掉 子View
 
+```kotlin
+@BindingAdapter("addTags")
+fun addTags(ll: LinearLayout, list: List<TagViewModel>) {
+  	//多加了 判空操作，导致为空的时候，没有remove 掉子 View
+    if (list.isEmpty()) return
+    if (ll.childCount != 0) {
+        ll.removeAllViews()
+    }
+    list.forEachIndexed { index, tagViewModel ->
+        val binding = ViewModelTagBinding.inflate(LayoutInflater.from(ll.context))
+        binding.root.layoutParams = ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        val layoutParams = binding.root.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.rightMargin = if (index == list.size - 1) 0 else R.dimen.dp_10.getResDimen().toInt()
+        binding.root.layoutParams = layoutParams
+        ll.gravity = Gravity.CENTER
+        binding.tag = tagViewModel
+        ll.addView(binding.root)
+    }
+}
+```
 
 
 

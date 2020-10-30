@@ -8,6 +8,7 @@ import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.ui.CollectFragment
 import com.aboback.wanandroidjetpack.home.ui.HomeFragment
+import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.aboback.wanandroidjetpack.main.viewmodel.MainViewModel
 import com.aboback.wanandroidjetpack.wenda.WenDaFragment
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main, MainViewModel::class.java) {
 
     private val mFragments = arrayListOf<Fragment>()
+    private var mPagePosition = 0
 
     override fun onViewInit() {
         super.onViewInit()
@@ -33,6 +35,12 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
 
         mRealVM.mHomeNavClick.observe(this, Observer<Int> {
             setPageState(it)
+        })
+        mRealVM.mFabClick.observe(this, Observer {
+            if (it) {
+                (mFragments[mPagePosition] as? RvScrollToTop)?.scrollToTop()
+                mRealVM.mFabClick.value = false
+            }
         })
 
     }
@@ -72,6 +80,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
     }
 
     fun setButtonState(position: Int) {
+        mPagePosition = position
         when (position) {
             0 -> {
                 llNav.check(R.id.rb0)

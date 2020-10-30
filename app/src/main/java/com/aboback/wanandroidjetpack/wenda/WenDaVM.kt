@@ -3,6 +3,8 @@ package com.aboback.wanandroidjetpack.wenda
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.base.rv.QuickAdapter
+import com.aboback.base.util.log
+import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
@@ -37,7 +39,6 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
         mOnRefresh = {
             mIsRefreshing.set(true)
 
-            mData.clear()
             mCurrPage = 0
 
             requestServer(false)
@@ -56,15 +57,28 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
         requestServer(true)
     }
 
+    private fun resetDataIfNeed(showDialog: Boolean) {
+        if (!showDialog) {
+            mData.clear()
+        }
+    }
+
     private fun requestServer(showDialog: Boolean = true) {
         launch(showDialog) {
             response(mRepo.wendaList(mCurrPage)) {
+
+                resetDataIfNeed(showDialog)
+
                 data?.datas?.forEach {
                     bindData(it)
                 }
+
                 mAdapter.notifyDataSetChanged()
+
                 if (!showDialog) {
                     rvVM.mIsRefreshing.set(false)
+                } else {
+                    "加载成功".showToast()
                 }
             }
         }

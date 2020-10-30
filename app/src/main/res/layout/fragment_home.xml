@@ -34,16 +34,6 @@
             app:rv="@{layout.rvVM}" />
 
 
-        <include
-            layout="@layout/view_model_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp_20"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:visibility="@{layout.mFabVisible ? View.VISIBLE : View.INVISIBLE}"
-            app:fab="@{layout.mFabVM}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
