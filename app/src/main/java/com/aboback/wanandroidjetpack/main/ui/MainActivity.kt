@@ -11,6 +11,7 @@ import com.aboback.wanandroidjetpack.home.ui.HomeFragment
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.adapter.MainVPAdapter
 import com.aboback.wanandroidjetpack.main.viewmodel.MainViewModel
+import com.aboback.wanandroidjetpack.me.MeFragment
 import com.aboback.wanandroidjetpack.wenda.WenDaFragment
 import com.ke.gson.sdk.ReaderTools
 import kotlinx.android.synthetic.main.activity_main.*
@@ -61,7 +62,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
         mFragments.add(WenDaFragment())
         mFragments.add(CollectFragment())
         mFragments.add(FragmentTest(4))
-        mFragments.add(FragmentTest(5))
+        mFragments.add(MeFragment())
 
 
         viewPager2.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)

@@ -3,7 +3,7 @@ package com.aboback.wanandroidjetpack.home.ui
 import android.app.Application
 import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.home.viewmodel.HomeVM
+import com.aboback.wanandroidjetpack.home.viewmodel.HomeViewModel
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
@@ -11,9 +11,9 @@ import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 /**
  * Created by jhb on 2020-03-11.
  */
-class HomeFragment : BaseVMRepositoryFragment<HomeVM>(R.layout.fragment_home), RvScrollToTop {
+class HomeFragment : BaseVMRepositoryFragment<HomeViewModel>(R.layout.fragment_home), RvScrollToTop {
 
-    override fun getViewModel(application: Application): HomeVM = HomeVM(application)
+    override fun getViewModel(app: Application): HomeViewModel = HomeViewModel(app)
 
     override fun onViewInit() {
         super.onViewInit()

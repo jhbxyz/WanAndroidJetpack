@@ -8,7 +8,7 @@ import com.aboback.wanandroidjetpack.collect.CollectRepository
  * @author jhb
  * @date 2020/10/29
  */
-class CollectVM(app: Application) : BaseRepositoryViewModel<CollectRepository>(app, CollectRepository()) {
+class CollectViewModel(app: Application) : BaseRepositoryViewModel<CollectRepository>(app, CollectRepository()) {
 
     override fun onModelBind() {
         super.onModelBind()

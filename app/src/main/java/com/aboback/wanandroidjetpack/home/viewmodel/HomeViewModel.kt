@@ -23,7 +23,7 @@ enum class HomePageState {
     INIT, REFRESH, LOAD_MORE
 }
 
-class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, HomeRepository()) {
+class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, HomeRepository()) {
 
     var mTitleVM = TitleViewModel(
             leftDrawable = null,
