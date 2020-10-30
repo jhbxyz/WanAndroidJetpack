@@ -10,9 +10,9 @@ import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
  * @date 2020/10/27
  */
 enum class CollectContentPage {
-    COLLECT_ARTICLE, SHARE_ARTICLE, COLLECT_WEBSITE, SHARE_PROJECT,
+    COLLECT_ARTICLE, INTERVIEW_RELATE, SHARE_ARTICLE, COLLECT_WEBSITE, SHARE_PROJECT,
 }
 
-class CollectContentFragment(private val contentPage: CollectContentPage) : BaseVMRepositoryFragment<CollectContentVM>(R.layout.fragment_collect_content) {
-    override fun getViewModel(app: Application) = CollectContentVM(app)
+class CollectContentFragment(private val mContentPage: CollectContentPage) : BaseVMRepositoryFragment<CollectContentVM>(R.layout.fragment_collect_content) {
+    override fun getViewModel(app: Application) = CollectContentVM(mContentPage, app)
 }

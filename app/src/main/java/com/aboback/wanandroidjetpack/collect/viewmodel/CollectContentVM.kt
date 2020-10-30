@@ -7,24 +7,17 @@ import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
 import com.aboback.wanandroidjetpack.collect.CollectContentRepository
+import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
-import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
 /**
  * Created by jhb on 2020-03-11.
  */
-class CollectContentVM(app: Application) : BaseRepositoryViewModel<CollectContentRepository>(app, CollectContentRepository()) {
-
-
-    var mTitleVM = TitleViewModel(
-            leftDrawable = null,
-            title = "问答"
-
-    )
+class CollectContentVM(mContentPage: CollectContentPage, app: Application) : BaseRepositoryViewModel<CollectContentRepository>(app, CollectContentRepository(mContentPage)) {
 
     var mData = arrayListOf<ItemHomeVM>()
     val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
@@ -54,7 +47,7 @@ class CollectContentVM(app: Application) : BaseRepositoryViewModel<CollectConten
     override fun onModelBind() {
         super.onModelBind()
 
-        requestServer(true)
+//        requestServer(true)
     }
 
     private fun requestServer(showDialog: Boolean = true) {

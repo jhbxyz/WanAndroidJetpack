@@ -25,11 +25,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabIndicatorColor="@color/colorWhite"
+            app:tabIndicatorFullWidth="false"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="@dimen/dp_3"
-            app:tabIndicatorFullWidth="false"
+            app:tabMode="auto"
             app:tabPadding="@dimen/dp_10"
             app:tabSelectedTextColor="@color/colorWhite"
+            app:tabTextAppearance="@style/TabLayoutStyle"
             app:tabTextColor="@color/colorWhite" />
 
 

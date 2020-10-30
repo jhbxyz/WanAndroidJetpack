@@ -33,8 +33,8 @@ interface ApiService {
             @Field("password") password: String?
     ): Result<UserLoginBean>
 
-    @GET("lg/collect/list/0/json")
-    suspend fun lgCollectList(): BaseBean
+    @GET("lg/collect/list/{page}/json")
+    suspend fun lgCollectList(@Path("page") page: Int): BaseBean
 
     @GET("tree/json")
     suspend fun treeJson(): TreeJsonBean

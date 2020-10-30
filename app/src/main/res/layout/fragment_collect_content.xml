@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.aboback.wanandroidjetpack.wenda.WenDaVM" />
+            type="com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM" />
 
     </data>
 
