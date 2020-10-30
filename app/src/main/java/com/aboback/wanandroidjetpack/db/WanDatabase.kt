@@ -4,14 +4,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.aboback.base.BaseApp
-import com.aboback.wanandroidjetpack.base.WanApp
-import com.aboback.wanandroidjetpack.bean.WendaListBean
+import com.aboback.wanandroidjetpack.bean.ObjectDataBean
 
 /**
  * @author jhb
  * @date 2020/6/4
  */
-@Database(entities = [WendaListBean.DataBean::class], version = 1)
+@Database(entities = [ObjectDataBean.DataBean::class], version = 1)
 abstract class WanDatabase : RoomDatabase() {
 
     abstract val wenDaListDao: WenDaListDao

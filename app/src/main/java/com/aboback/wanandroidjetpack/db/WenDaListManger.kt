@@ -1,7 +1,7 @@
 package com.aboback.wanandroidjetpack.db
 
 import android.annotation.SuppressLint
-import com.aboback.wanandroidjetpack.bean.WendaListBean
+import com.aboback.wanandroidjetpack.bean.ObjectDataBean
 import com.aboback.wanandroidjetpack.util.WanExecutors
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +17,7 @@ object WenDaListManger {
 
     private val mDao by lazy { mDB.wenDaListDao }
 
-    fun insertDataBean(datas: WendaListBean.DataBean) {
+    fun insertDataBean(datas: ObjectDataBean.DataBean) {
         WanExecutors.mDiskIO.execute {
             mDao.insertDataBean(datas)
 
@@ -27,8 +27,8 @@ object WenDaListManger {
 
 
     @SuppressLint("CheckResult")
-    fun getDataBean(action: (WendaListBean.DataBean?) -> Unit) {
-        Observable.create<WendaListBean.DataBean?> { emitter ->
+    fun getDataBean(action: (ObjectDataBean.DataBean?) -> Unit) {
+        Observable.create<ObjectDataBean.DataBean?> { emitter ->
             val dataBean = mDao.getDataBean()
             if (dataBean == null) {
                 emitter.onError(Throwable("dataBean == null"))

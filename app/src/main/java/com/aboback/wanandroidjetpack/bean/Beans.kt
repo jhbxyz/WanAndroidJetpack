@@ -1,10 +1,18 @@
 package com.aboback.wanandroidjetpack.bean
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.aboback.wanandroidjetpack.db.WendaListBeanArrType
+import java.io.Serializable
+
 /**
  * @author jhb
  * @date 2020/10/26
  */
-data class ArticleDatasBean(
+open class BaseBean(var errorCode: String = "", var errorMsg: String = "") : Serializable
+
+data class ItemDatasBean(
         var apkLink: String?,
         var audit: Int?,
         var author: String?,
@@ -35,26 +43,34 @@ data class ArticleDatasBean(
         var type: Int?,
         var userId: Int?,
         var visible: Int?,
-        var zan: Int?
+        var zan: Int?,
+        val imagePath: String? = null,
+        val isVisible: Int? = null,
+        val order: Int? = null,
+        val url: String? = null
 ) {
     data class TagBean(var name: String?, var url: String?)
 }
 
-data class ArticleListBean(
+data class ArrayDataBean(
+        var data: List<ItemDatasBean>?
+) : BaseBean()
+
+
+data class ObjectDataBean(
         var data: DataBean?
 ) : BaseBean() {
 
+    @Entity(tableName = "WendaListBeanDataBean")
+    @TypeConverters(WendaListBeanArrType::class)
     data class DataBean(
+            @PrimaryKey(autoGenerate = true)
             var curPage: Int?,
-            var datas: List<ArticleDatasBean>?,
+            var datas: ArrayList<ItemDatasBean>?,
+            var mLastRequestTime: Long,//上次请求的时间
             var offset: Int?,
             var over: Boolean?,
             var pageCount: Int?,
             var size: Int?,
-            var total: Int?
-    )
+            var total: Int?) : Serializable
 }
-
-data class ArticleTopBean(
-        var data: List<ArticleDatasBean>?
-) : BaseBean()

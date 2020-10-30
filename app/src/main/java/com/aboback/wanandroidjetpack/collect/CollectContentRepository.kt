@@ -12,9 +12,16 @@ import kotlinx.coroutines.withContext
  */
 class CollectContentRepository(private val mContentPage: CollectContentPage) : NetRepository() {
 
+    suspend fun contentPageApi(page: Int) = withContext(Dispatchers.IO) {
+        when (mContentPage) {
+            CollectContentPage.COLLECT_ARTICLE -> {
+                api.lgCollectList(page)
 
-    suspend fun wendaList(page: Int) = withContext(Dispatchers.IO) {
-        api.wendaList(page)
+            }
+            else -> {
+                api.lgCollectList(page)
+            }
+        }
     }
 
 

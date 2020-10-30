@@ -3,20 +3,15 @@ package com.aboback.wanandroidjetpack.home.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
-import com.aboback.base.util.falsely
-import com.aboback.base.util.log
 import com.aboback.base.util.showToast
-import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
+import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.rv.RvScrollListener
 import com.aboback.wanandroidjetpack.viewmodel.*
 import kotlinx.coroutines.launch
 
@@ -183,7 +178,7 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         }
     }
 
-    private fun bindData(it: ArticleDatasBean) {
+    private fun bindData(it: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication()).apply {
             mTime.set(it.niceDate)
             mTitle.set(it.title)
@@ -202,7 +197,7 @@ class HomeVM(app: Application) : BaseRepositoryViewModel<HomeRepository>(app, Ho
         })
     }
 
-    private fun ObservableField<String>.handleAuthor(bean: ArticleDatasBean) {
+    private fun ObservableField<String>.handleAuthor(bean: ItemDatasBean) {
         if (bean.author.isNullOrEmpty()) {
             set("分享人: ${bean.shareUser}")
         } else {

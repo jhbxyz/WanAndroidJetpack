@@ -5,7 +5,7 @@ import androidx.databinding.ObservableField
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
+import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.collect.CollectContentRepository
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
@@ -31,7 +31,6 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
         mOnRefresh = {
             mIsRefreshing.set(true)
 
-            mData.clear()
             mCurrPage = 0
 
             requestServer(false)
@@ -47,13 +46,13 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
     override fun onModelBind() {
         super.onModelBind()
 
-//        requestServer(true)
+        requestServer(true)
     }
 
     private fun requestServer(showDialog: Boolean = true) {
         launch(showDialog) {
-            response(mRepo.wendaList(mCurrPage)) {
-                data?.datas?.forEach {
+            response(mRepo.contentPageApi(mCurrPage)) {
+                data?.forEach {
                     bindData(it)
                 }
                 mAdapter.notifyDataSetChanged()
@@ -65,7 +64,7 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
     }
 
 
-    private fun bindData(it: ArticleDatasBean) {
+    private fun bindData(it: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication()).apply {
             mTime.set(it.niceDate)
             mTitle.set(it.title)
@@ -80,7 +79,7 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
         })
     }
 
-    private fun ObservableField<String>.handleAuthor(bean: ArticleDatasBean) {
+    private fun ObservableField<String>.handleAuthor(bean: ItemDatasBean) {
         if (bean.author.isNullOrEmpty()) {
             set("分享人: ${bean.shareUser}")
         } else {

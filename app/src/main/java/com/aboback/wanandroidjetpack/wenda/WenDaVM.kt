@@ -3,11 +3,10 @@ package com.aboback.wanandroidjetpack.wenda
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.base.rv.QuickAdapter
-import com.aboback.base.util.log
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bean.ArticleDatasBean
+import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
@@ -85,7 +84,7 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
     }
 
 
-    private fun bindData(it: ArticleDatasBean) {
+    private fun bindData(it: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication()).apply {
             mTime.set(it.niceDate)
             mTitle.set(it.title)
@@ -100,7 +99,7 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
         })
     }
 
-    private fun ObservableField<String>.handleAuthor(bean: ArticleDatasBean) {
+    private fun ObservableField<String>.handleAuthor(bean: ItemDatasBean) {
         if (bean.author.isNullOrEmpty()) {
             set("分享人: ${bean.shareUser}")
         } else {

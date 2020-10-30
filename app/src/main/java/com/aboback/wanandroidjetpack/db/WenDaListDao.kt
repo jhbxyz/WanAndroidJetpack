@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.aboback.wanandroidjetpack.bean.WendaListBean
+import com.aboback.wanandroidjetpack.bean.ObjectDataBean
 
 /**
  * @author jhb
@@ -14,10 +14,10 @@ import com.aboback.wanandroidjetpack.bean.WendaListBean
 interface WenDaListDao {
 
     @Query("SELECT * FROM WendaListBeanDataBean")
-    fun getDataBean(): WendaListBean.DataBean?
+    fun getDataBean(): ObjectDataBean.DataBean?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDataBean(vararg listBean: WendaListBean.DataBean)
+    fun insertDataBean(vararg listBean: ObjectDataBean.DataBean)
 
 
 }
