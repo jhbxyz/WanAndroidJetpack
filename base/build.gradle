@@ -61,7 +61,7 @@ dependencies {
 
     api 'com.tencent:mmkv-static:1.2.4'
 
-
+    api 'com.blankj:utilcodex:1.28.3'
 
 
 }

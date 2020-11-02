@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.aboback.base.BaseApp
 import com.aboback.base.BuildConfig
+import com.blankj.utilcode.util.ToastUtils
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -47,7 +48,7 @@ fun String.logWithTag(tag: String, logEnum: LogEnum = LogEnum.ERROR) {
 
 
 fun String.showToast() {
-    Toast.makeText(BaseApp.instance, this, Toast.LENGTH_SHORT).show()
+    ToastUtils.showShort(this)
 }
 
 fun Int.getDrawable() = ActivityCompat.getDrawable(BaseApp.instance, this)
