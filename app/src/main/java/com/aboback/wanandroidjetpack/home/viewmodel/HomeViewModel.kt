@@ -178,32 +178,20 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
         }
     }
 
-    private fun bindData(it: ItemDatasBean) {
-        mData.add(ItemHomeVM(getApplication()).apply {
-            mTime.set(it.niceDate)
-            mTitle.set(it.title)
-            mAuthor.handleAuthor(it)
-            mCategory.set("分类: ${it.superChapterName}")
+    private fun bindData(bean: ItemDatasBean) {
+        mData.add(ItemHomeVM(getApplication(), bean).apply {
+            bindData()
 
 //            mTagList.set(it.tags)
 //            bindTagVM()
 
             mTagVMList.clear()
-            it.tags?.forEach { tags ->
+            bean.tags?.forEach { tags ->
                 mTagVMList.add(TagViewModel().apply {
                     mContent.set(tags.name)
                 })
             }
         })
-    }
-
-    private fun ObservableField<String>.handleAuthor(bean: ItemDatasBean) {
-        if (bean.author.isNullOrEmpty()) {
-            set("分享人: ${bean.shareUser}")
-        } else {
-            set("作者: ${bean.author}")
-        }
-
     }
 
 

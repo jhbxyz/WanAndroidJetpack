@@ -18,6 +18,9 @@ class CollectContentRepository(private val mContentPage: CollectContentPage) : N
                 api.lgCollectList(page)
 
             }
+            CollectContentPage.INTERVIEW_RELATE -> {
+                api.articleList(page, 73)
+            }
             else -> {
                 api.lgCollectList(page)
             }

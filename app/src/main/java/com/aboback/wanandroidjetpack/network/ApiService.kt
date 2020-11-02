@@ -26,8 +26,9 @@ interface ApiService {
     @GET("wenda/list/{page}/json ")
     suspend fun wendaList(@Path("page") page: Int): ObjectDataBean
 
+    //收藏文章
     @GET("lg/collect/list/{page}/json")
-    suspend fun lgCollectList(@Path("page") page: Int): ArrayDataBean
+    suspend fun lgCollectList(@Path("page") page: Int): ObjectDataBean
 
 
     @GET("lg/coin/userinfo/json")

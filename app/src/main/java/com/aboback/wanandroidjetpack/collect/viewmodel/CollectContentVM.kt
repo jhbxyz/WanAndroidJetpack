@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.collect.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.base.rv.QuickAdapter
+import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
@@ -11,6 +12,7 @@ import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.noMoreData
 import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 
@@ -23,6 +25,7 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
     val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
 
     private var mCurrPage = 0
+    private var mPageCount = 1
 
     var rvVM = RecyclerViewVM(app).apply {
         mRefreshEnable = true
@@ -38,7 +41,11 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
 
         mOnLoadMoreListener = {
             mCurrPage++
-            requestServer(true)
+            if (mCurrPage < mPageCount) {
+                requestServer(true)
+            } else {
+                noMoreData()
+            }
         }
     }
 
@@ -52,7 +59,8 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
     private fun requestServer(showDialog: Boolean = true) {
         launch(showDialog) {
             response(mRepo.contentPageApi(mCurrPage)) {
-                data?.forEach {
+                mPageCount = data?.pageCount ?: 1
+                data?.datas?.forEach {
                     bindData(it)
                 }
                 mAdapter.notifyDataSetChanged()
@@ -64,28 +72,16 @@ class CollectContentVM(mContentPage: CollectContentPage, app: Application) : Bas
     }
 
 
-    private fun bindData(it: ItemDatasBean) {
-        mData.add(ItemHomeVM(getApplication()).apply {
-            mTime.set(it.niceDate)
-            mTitle.set(it.title)
-            mAuthor.handleAuthor(it)
-            mCategory.set("分类: ${it.superChapterName}")
+    private fun bindData(bean: ItemDatasBean) {
+        mData.add(ItemHomeVM(getApplication(), bean).apply {
+            bindData()
 
-            it.tags?.forEach { tags ->
+            bean.tags?.forEach { tags ->
                 mTagVMList.add(TagViewModel().apply {
                     mContent.set(tags.name)
                 })
             }
         })
-    }
-
-    private fun ObservableField<String>.handleAuthor(bean: ItemDatasBean) {
-        if (bean.author.isNullOrEmpty()) {
-            set("分享人: ${bean.shareUser}")
-        } else {
-            set("作者: ${bean.author}")
-        }
-
     }
 
 

@@ -82,7 +82,19 @@ fabCustomSize
 
 
 
-#### 7.Kotlin 协程和 Retrofit 配合使用 用 Result接到的 response 为 null
+#### 7.Kotlin 协程和 Retrofit 配合使用，用Result接到的 response 为 null
+
+协程和 RxJava 搞混了
+
+
+
+#### 8.显示 Loading Dialog 时，应该状态栏颜色问题，没有适配沉浸式状态栏
+
+```kotlin
+window?.statusBarColor  = R.color.colorAccent.getResColor()
+```
+
+
 
 
 

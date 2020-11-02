@@ -48,3 +48,11 @@ fun <T : BaseBean> response(bean: T, result: T.() -> Unit) {
         else -> bean.errorMsg.showToast()
     }
 }
+
+fun loadSuccess() {
+    "加载成功...".showToast()
+}
+
+fun noMoreData() {
+    "没有更多数据了...".showToast()
+}
