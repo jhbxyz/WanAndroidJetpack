@@ -43,6 +43,7 @@ open class BaseViewModelActivity<VM : BaseLayoutViewModel>(@LayoutRes private va
     override fun onEvent() {
 
         mRealVM.dialogState(this)
+        mRealVM.finish(this)
 
     }
 

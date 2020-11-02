@@ -59,6 +59,8 @@ abstract class BaseVMRepositoryFragment<VM : BaseRepositoryViewModel<*>>(@Layout
     override fun onEvent() {
 
         mRealVM.dialogState(mActivity)
+        mRealVM.finish(mActivity)
+
 
     }
 

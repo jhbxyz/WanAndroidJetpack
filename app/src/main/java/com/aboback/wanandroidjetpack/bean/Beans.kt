@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.bean
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.aboback.network.BaseBean
 import com.aboback.wanandroidjetpack.db.WendaListBeanArrType
 import java.io.Serializable
 
@@ -10,7 +11,6 @@ import java.io.Serializable
  * @author jhb
  * @date 2020/10/26
  */
-open class BaseBean(var errorCode: String = "", var errorMsg: String = "") : Serializable
 
 data class ItemDatasBean(
         var apkLink: String?,

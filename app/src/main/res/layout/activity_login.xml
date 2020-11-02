@@ -21,21 +21,43 @@
             app:title="@{layout.mTitleVM}" />
 
 
+        <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/dp_80"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="@string/logo_name"
+            android:textColor="@color/colorAccent"
+            android:gravity="center"
+            android:onClick="@{()-> layout.onLogin()}"
+            android:textSize="@dimen/sp_32"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_height="@dimen/dp_50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et0"
             android:hint="登录账号"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_50"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title">
+            app:layout_constraintTop_toBottomOf="@+id/tvLogo">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:text="@={layout.mUserName}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
-                android:layout_marginTop="@dimen/dp_20"
+                android:textColor="@color/colorGray3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -44,38 +66,46 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="密码"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et0">
 
-            <EditText
-                android:layout_marginTop="@dimen/dp_20"
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:text="@={layout.mPassword}"
                 android:layout_width="match_parent"
+                android:inputType="textPassword"
                 android:layout_height="@dimen/dp_50"
-                android:inputType="textPassword" />
-
+                android:textColor="@color/colorGray3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:padding="@dimen/dp_10"
-            android:layout_width="wrap_content"
-            android:text="Login"
-            android:background="@color/colorAccent"
-            android:textColor="@color/colorGray3"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="登录"
+            android:background="@drawable/rect_blue_radius_10_shape"
+            android:textColor="@color/colorWhite"
             android:onClick="@{()-> layout.onLogin()}"
-            android:textSize="@dimen/sp_40"
+            android:textSize="@dimen/sp_20"
             android:textAllCaps="false"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="@dimen/dp_50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

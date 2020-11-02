@@ -28,7 +28,7 @@ override fun getItemViewType(position: Int) = position
 
 
 
-### 4.在 RV 请求下拉刷新时，滑动 item 报错
+#### 4.在 RV 请求下拉刷新时，滑动 item 报错
 
 ##### 报错
 
@@ -72,9 +72,17 @@ fun addTags(ll: LinearLayout, list: List<TagViewModel>) {
 
 
 
+#### 6.FAB 的图标不居中
+
+使用自定义大小的属性
+
+```xml
+fabCustomSize
+```
 
 
 
+#### 7.Kotlin 协程和 Retrofit 配合使用 用 Result接到的 response 为 null
 
 
 

@@ -17,16 +17,30 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:text="W a n   A n d r o i d"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:text="@string/logo_name"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/sp_32"
             android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp_120"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:text="@string/abo_back"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -16,6 +16,8 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.youth.banner.Banner
 import com.youth.banner.adapter.BannerImageAdapter
@@ -27,6 +29,16 @@ import com.youth.banner.indicator.Indicator
 @BindingAdapter("android:src", requireAll = false)
 fun setUri(imageView: ImageView, @RawRes resId: Int) {
     Glide.with(imageView).load(resId).into(imageView)
+}
+
+@BindingAdapter("setAvatar", requireAll = false)
+fun setAvatar(imageView: ImageView, path: String) {
+    Glide.with(imageView)
+        .applyDefaultRequestOptions(RequestOptions()
+//            .transform(RoundedCorners(6))//圆角图片
+            .circleCrop())//圆形图片
+        .load(path)
+        .into(imageView)
 }
 
 @BindingAdapter(value = ["onRefreshListener"], requireAll = false)

@@ -5,7 +5,7 @@ import com.aboback.base.util.isNull
 import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseViewModel
-import com.aboback.wanandroidjetpack.bean.BaseBean
+import com.aboback.network.BaseBean
 import com.aboback.wanandroidjetpack.network.NetConstant
 import kotlinx.coroutines.launch
 

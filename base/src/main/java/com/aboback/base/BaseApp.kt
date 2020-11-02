@@ -5,12 +5,16 @@ import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.aboback.base.util.logWithTag
 import com.facebook.stetho.Stetho
+import com.tencent.mmkv.MMKV
 
 /**
  * Created by jhb on 2020-01-14.
  */
 open class BaseApp : Application(), ViewModelStoreOwner {
+
+    var mTag = javaClass.simpleName
 
     companion object {
         lateinit var instance: BaseApp
@@ -31,7 +35,10 @@ open class BaseApp : Application(), ViewModelStoreOwner {
     }
 
     private fun initSDKs() {
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this)
+
+        val rootDir = MMKV.initialize(this)
+        "mmkv root: $rootDir".logWithTag("MMKV")
     }
 
     override fun getViewModelStore(): ViewModelStore {

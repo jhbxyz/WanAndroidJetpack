@@ -36,7 +36,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTask" />
 
-        <activity android:name="com.aboback.wanandroidjetpack.login.LoginActivity" />
+        <activity android:name="com.aboback.wanandroidjetpack.login.ui.LoginActivity" />
 
 
         <activity

@@ -59,6 +59,8 @@ dependencies {
     // 查看数据库  chrome://inspect/#devices
     implementation 'com.facebook.stetho:stetho:1.5.0'
 
+    api 'com.tencent:mmkv-static:1.2.4'
+
 
 
 

@@ -1,5 +1,6 @@
 package com.aboback.network
 
+import com.aboback.network.util.MmkvUtil
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -12,28 +13,24 @@ class CookieInterceptor : Interceptor {
 
         val finalResponse: Response
 
-//        val stringSet = SpUtil.getCookies()
-        val stringSet = mutableSetOf<String>()
+        val cookies = MmkvUtil.getCookies()
 
-        if (stringSet.isNullOrEmpty()) {
-//            val originResponse = chain.proceed(chain.request())
-//
+        if (cookies.isNullOrEmpty()) {
+            val originResponse = chain.proceed(chain.request())
+
 //            if (!originResponse.headers("Set-Cookie").isNullOrEmpty()) {
-//
-//                val cookies = hashSetOf<String>()
+//                val tempCookies = hashSetOf<String>()
 //                originResponse.headers("Set-Cookie").forEach {
-//                    cookies.add(it)
+//                    tempCookies.add(it)
 //                }
-//
+//                MmkvUtil.saveCookie(tempCookies)
 //            }
-//
-//            finalResponse = originResponse
 
-            finalResponse = chain.proceed(chain.request())
+            finalResponse = originResponse
 
         } else {
             val builder = chain.request().newBuilder()
-            stringSet.forEach {
+            cookies.forEach {
                 builder.addHeader("Cookie", it)
             }
             finalResponse = chain.proceed(builder.build())

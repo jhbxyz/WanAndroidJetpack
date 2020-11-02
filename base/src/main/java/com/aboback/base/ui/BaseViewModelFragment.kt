@@ -50,6 +50,7 @@ open class BaseViewModelFragment<VM : BaseLayoutViewModel>(@LayoutRes private va
     override fun onEvent() {
 
         mRealVM.dialogState(mActivity)
+        mRealVM.finish(mActivity)
 
     }
 

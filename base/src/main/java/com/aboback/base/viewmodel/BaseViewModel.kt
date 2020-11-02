@@ -16,11 +16,15 @@ open class BaseViewModel(app: Application) : AndroidViewModel(app) {
     var mTag = javaClass.simpleName
 
     var isDialogShow = MutableLiveData<Boolean>()
+    var isFinish = MutableLiveData<Boolean>()
 
     open fun onModelBind() {
 
     }
 
+    fun finish() {
+        isFinish.value = true
+    }
 
     /**
      *  TODO tips: TaskId 是一样的，在同一个栈中 因为亲和性的原因

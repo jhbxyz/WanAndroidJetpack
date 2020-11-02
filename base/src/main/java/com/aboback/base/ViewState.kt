@@ -22,4 +22,13 @@ interface ViewState {
         })
     }
 
+    fun BaseViewModel.finish(baseActivity: BaseActivity) {
+        isFinish.observe(baseActivity, Observer {
+            if (it) {
+                baseActivity.finish()
+                isFinish.value = false
+            }
+        })
+    }
+
 }

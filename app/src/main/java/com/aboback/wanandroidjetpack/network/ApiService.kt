@@ -1,8 +1,9 @@
 package com.aboback.wanandroidjetpack.network
 
+import com.aboback.network.BaseBean
 import com.aboback.wanandroidjetpack.bean.*
-import com.aboback.wanandroidjetpack.login.model.UserLoginBean
-import retrofit2.adapter.rxjava2.Result
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 /**
@@ -29,12 +30,19 @@ interface ApiService {
     suspend fun lgCollectList(@Path("page") page: Int): ArrayDataBean
 
 
+    @GET("lg/coin/userinfo/json")
+    suspend fun lgCoinUserInfo(): CoinUserInfoBean
+
+
     @FormUrlEncoded
     @POST("user/login")
     suspend fun userLogin(
             @Field("username") username: String?,
             @Field("password") password: String?
-    ): Result<UserLoginBean>
+    ): Response<UserLoginBean?>?
+
+    @GET("/user/logout/json")
+    suspend fun userLogout(): BaseBean
 
     @GET("tree/json")
     suspend fun treeJson(): TreeJsonBean
