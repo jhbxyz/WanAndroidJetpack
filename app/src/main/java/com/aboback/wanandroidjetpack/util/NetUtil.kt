@@ -45,7 +45,7 @@ private fun BaseViewModel.dialogState(showDialog: Boolean, state: Boolean) {
 fun <T : BaseBean> response(bean: T, result: T.() -> Unit) {
     when (bean.errorCode) {
         NetConstant.SUCCESS -> result.invoke(bean)
-        else -> bean.errorMsg.showToast()
+        else -> bean.errorMsg?.showToast()
     }
 }
 

@@ -1,9 +1,10 @@
 package com.aboback.wanandroidjetpack.collect
 
 import com.aboback.wanandroidjetpack.base.NetRepository
+import com.aboback.wanandroidjetpack.bean.ObjectDataBean
+import com.aboback.wanandroidjetpack.bean.UserPrivateArticles
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 /**
@@ -21,8 +22,16 @@ class CollectContentRepository(private val mContentPage: CollectContentPage) : N
             CollectContentPage.INTERVIEW_RELATE -> {
                 api.articleList(page, 73)
             }
+            CollectContentPage.SHARE_ARTICLE -> {
+                //页码，从1开始
+                var tempPage = page
+                val userLgPrivateArticles = api.userLgPrivateArticles(++tempPage)
+                userLgPrivateArticles.data?.errorCode = userLgPrivateArticles.errorCode
+                userLgPrivateArticles.data?.errorMsg = userLgPrivateArticles.errorMsg
+                userLgPrivateArticles.data!!
+            }
             else -> {
-                api.lgCollectList(page)
+                ObjectDataBean()
             }
         }
     }

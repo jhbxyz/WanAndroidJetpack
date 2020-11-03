@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.aboback.network.BaseBean
 import com.aboback.wanandroidjetpack.db.WendaListBeanArrType
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /**
@@ -58,7 +59,9 @@ data class ArrayDataBean(
 
 
 data class ObjectDataBean(
-        var data: DataBean?
+        val coinInfo: CoinInfo? = null,
+        @SerializedName(value = "data", alternate = ["shareArticles"])
+        var data: DataBean? = null
 ) : BaseBean() {
 
     @Entity(tableName = "WendaListBeanDataBean")
@@ -73,4 +76,12 @@ data class ObjectDataBean(
             var pageCount: Int?,
             var size: Int?,
             var total: Int?) : Serializable
+
+    data class CoinInfo(
+            val coinCount: Int? = null,
+            val level: Int? = null,
+            val rank: String? = null,
+            val userId: Int? = null,
+            val username: String? = null
+    )
 }

@@ -2,7 +2,6 @@ package com.aboback.wanandroidjetpack.network
 
 import com.aboback.network.BaseBean
 import com.aboback.wanandroidjetpack.bean.*
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -44,6 +43,10 @@ interface ApiService {
 
     @GET("/user/logout/json")
     suspend fun userLogout(): BaseBean
+
+    //自己分享的文章
+    @GET("/user/lg/private_articles/{page}/json")
+    suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
 
     @GET("tree/json")
     suspend fun treeJson(): TreeJsonBean

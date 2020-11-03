@@ -1,10 +1,14 @@
 package com.aboback.wanandroidjetpack.collect.ui
 
 import android.app.Application
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseVMRepositoryFragment
+import com.aboback.base.util.log
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
 import com.aboback.wanandroidjetpack.collect.viewmodel.CollectViewModel
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
@@ -61,7 +65,7 @@ class CollectFragment : BaseVMRepositoryFragment<CollectViewModel>(R.layout.frag
     }
 
     override fun bindScrollListener() {
-        (mFragments[mPagePosition] as? RvScrollToTop)?.bindScrollListener()
+        // Nothing
     }
 
     override fun scrollToTop() {

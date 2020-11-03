@@ -1,8 +1,11 @@
 package com.aboback.wanandroidjetpack.collect.ui
 
 import android.app.Application
+import androidx.lifecycle.Observer
 import com.aboback.base.ui.BaseVMRepositoryFragment
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity

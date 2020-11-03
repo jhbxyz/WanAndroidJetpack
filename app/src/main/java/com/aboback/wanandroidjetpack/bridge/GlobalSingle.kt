@@ -1,6 +1,7 @@
 package com.aboback.wanandroidjetpack.bridge
 
 import androidx.lifecycle.MutableLiveData
+import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 
 /**
  * @author jhb

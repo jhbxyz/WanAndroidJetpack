@@ -96,7 +96,21 @@ window?.statusBarColor  = R.color.colorAccent.getResColor()
 
 
 
+#### 9.TabLayout 和 ViewPager2配合使用，如何懒加载
 
+```kotlin
+tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+    override fun onTabReselected(tab: TabLayout.Tab?) {}
+    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        viewPager2.setCurrentItem(tab?.position ?: 0, false)
+    }
+})
+```
+
+同时取消了切换动画，效果非常让人难以接受
+
+tablayout 点击 tab
 
 
 

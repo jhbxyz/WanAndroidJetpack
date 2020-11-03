@@ -81,6 +81,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
     }
 
     fun setButtonState(position: Int) {
+        mRealVM.mFabVisible.set(false)
         mPagePosition = position
         when (position) {
             0 -> {
