@@ -11,9 +11,9 @@ import com.aboback.wanandroidjetpack.util.RvScrollDelegate
  * @author jhb
  * @date 2020/10/27
  */
-class WenDaFragment : BaseVMRepositoryFragment<WenDaVM>(R.layout.fragment_wenda), RvScrollToTop {
+class WenDaFragment : BaseVMRepositoryFragment<WenDaViewModel>(R.layout.fragment_wenda), RvScrollToTop {
 
-    override fun getViewModel(app: Application) = WenDaVM(app)
+    override fun getViewModel(app: Application) = WenDaViewModel(app)
 
     override fun onViewInit() {
         super.onViewInit()

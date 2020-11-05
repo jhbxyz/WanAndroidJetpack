@@ -33,6 +33,10 @@ interface ApiService {
     @GET("lg/coin/userinfo/json")
     suspend fun lgCoinUserInfo(): CoinUserInfoBean
 
+    //收藏网站列表
+    @GET("/lg/collect/usertools/json")
+    suspend fun lgCollectWebsiteList(): ArrayDataBean
+
 
     @FormUrlEncoded
     @POST("user/login")

@@ -56,3 +56,7 @@ fun loadSuccess() {
 fun noMoreData() {
     "没有更多数据了...".showToast()
 }
+
+fun loginFirst() {
+    "请先登录...".showToast()
+}

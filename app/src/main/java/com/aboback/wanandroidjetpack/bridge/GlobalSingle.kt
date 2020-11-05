@@ -10,4 +10,5 @@ import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 object GlobalSingle {
 
     val isLoginSuccess = MutableLiveData<Boolean>()
+    val isLoginC = MutableLiveData<CollectContentPage>()
 }

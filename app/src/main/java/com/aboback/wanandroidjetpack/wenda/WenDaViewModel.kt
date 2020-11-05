@@ -10,6 +10,7 @@ import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.loadSuccess
 import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
@@ -17,7 +18,7 @@ import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 /**
  * Created by jhb on 2020-03-11.
  */
-class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, WenDaRepository()) {
+class WenDaViewModel(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, WenDaRepository()) {
 
 
     var mTitleVM = TitleViewModel(
@@ -77,7 +78,7 @@ class WenDaVM(app: Application) : BaseRepositoryViewModel<WenDaRepository>(app, 
                 if (!showDialog) {
                     rvVM.mIsRefreshing.set(false)
                 } else {
-                    "加载成功".showToast()
+                    loadSuccess()
                 }
             }
         }

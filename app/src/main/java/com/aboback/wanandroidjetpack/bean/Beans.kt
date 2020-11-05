@@ -48,7 +48,8 @@ data class ItemDatasBean(
         val imagePath: String? = null,
         val isVisible: Int? = null,
         val order: Int? = null,
-        val url: String? = null
+        val url: String? = null,
+        val name: String? = null
 ) {
     data class TagBean(var name: String?, var url: String?)
 }

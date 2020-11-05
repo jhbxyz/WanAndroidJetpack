@@ -11,6 +11,7 @@ import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
+import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.network.NetConstant
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
@@ -22,6 +23,10 @@ import kotlinx.coroutines.launch
  */
 class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
 
+    companion object {
+        const val COLLECT_CONTENT_PAGE = "collect_content_page"
+    }
+
     var mUserName = ObservableField<String>()
     var mPassword = ObservableField<String>()
 
@@ -32,6 +37,14 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
             },
             title = "登录"
     )
+
+    private var mPage: CollectContentPage? = null
+    override fun onModelBind() {
+        super.onModelBind()
+        mPage = mBundle.getSerializable(COLLECT_CONTENT_PAGE) as? CollectContentPage
+
+        "mPage = $mPage".logWithTag("CollectContent")
+    }
 
     @SuppressLint("CheckResult")
     fun onLogin() {
@@ -59,6 +72,10 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
                         MmkvUtil.saveCookie(cookieSet)
                         WanApp.isLogin = true
                         GlobalSingle.isLoginSuccess.value = true
+                        mPage?.let {
+                            GlobalSingle.isLoginC.value = it
+                        }
+
                         finish()
                     }
                     else -> {

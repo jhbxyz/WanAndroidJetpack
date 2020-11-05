@@ -13,27 +13,27 @@ import kotlinx.coroutines.withContext
  */
 class CollectContentRepository(private val mContentPage: CollectContentPage) : NetRepository() {
 
-    suspend fun contentPageApi(page: Int) = withContext(Dispatchers.IO) {
-        when (mContentPage) {
-            CollectContentPage.COLLECT_ARTICLE -> {
-                api.lgCollectList(page)
+    suspend fun collectArticle(page: Int) = withContext(Dispatchers.IO) {
+        api.lgCollectList(page)
+    }
 
-            }
-            CollectContentPage.INTERVIEW_RELATE -> {
-                api.articleList(page, 73)
-            }
-            CollectContentPage.SHARE_ARTICLE -> {
-                //页码，从1开始
-                var tempPage = page
-                val userLgPrivateArticles = api.userLgPrivateArticles(++tempPage)
-                userLgPrivateArticles.data?.errorCode = userLgPrivateArticles.errorCode
-                userLgPrivateArticles.data?.errorMsg = userLgPrivateArticles.errorMsg
-                userLgPrivateArticles.data!!
-            }
-            else -> {
-                ObjectDataBean()
-            }
-        }
+    suspend fun interviewRelate(page: Int) = withContext(Dispatchers.IO) {
+        api.articleList(page, 73)
+    }
+
+
+    suspend fun shareArticle(page: Int) = withContext(Dispatchers.IO) {
+        //页码，从1开始
+        var tempPage = page
+        api.userLgPrivateArticles(++tempPage)
+    }
+
+    suspend fun collectWebsite() = withContext(Dispatchers.IO) {
+        api.lgCollectWebsiteList()
+    }
+
+    suspend fun shareProject() = withContext(Dispatchers.IO) {
+
     }
 
 

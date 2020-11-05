@@ -54,6 +54,7 @@ class CollectFragment : BaseVMRepositoryFragment<CollectViewModel>(R.layout.frag
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 mPagePosition = tab?.position ?: 0
+                viewPager2.setCurrentItem(mPagePosition,false)
             }
         })
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

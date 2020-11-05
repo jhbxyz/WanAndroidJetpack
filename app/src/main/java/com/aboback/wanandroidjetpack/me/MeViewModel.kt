@@ -6,6 +6,7 @@ import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.base.WanApp
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
@@ -79,6 +80,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             response(WanServer.api.userLogout()) {
                 MmkvUtil.clearCookies()
                 WanApp.isLogin = false
+                GlobalSingle.isLoginSuccess.value = false
                 resetLoginState()
             }
         }

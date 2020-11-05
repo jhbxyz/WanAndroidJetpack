@@ -27,6 +27,8 @@ open class BaseViewModelActivity<VM : BaseLayoutViewModel>(@LayoutRes private va
 
         onViewInit()
 
+        mRealVM.setBound(intent.extras ?: Bundle())
+
         mRealVM.onModelBind()
 
         onEvent()

@@ -2,6 +2,7 @@ package com.aboback.base.viewmodel
 
 import android.app.Application
 import android.content.Intent
+import android.os.Bundle
 import android.os.Parcelable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -17,6 +18,11 @@ open class BaseViewModel(app: Application) : AndroidViewModel(app) {
 
     var isDialogShow = MutableLiveData<Boolean>()
     var isFinish = MutableLiveData<Boolean>()
+
+    lateinit var mBundle: Bundle
+    fun setBound(bundle: Bundle) {
+        mBundle = bundle
+    }
 
     open fun onModelBind() {
 

@@ -12,6 +12,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
+import com.aboback.wanandroidjetpack.util.loadSuccess
 import com.aboback.wanandroidjetpack.viewmodel.*
 import kotlinx.coroutines.launch
 
@@ -29,13 +30,6 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             leftDrawable = null,
             title = "首页"
     )
-
-//    var mFabVM = FabViewModel(
-//            onClick = {
-//                rvVM.mScrollToTop.set(true)
-//            }
-//    )
-//    var mFabVisible = ObservableField(false)
 
     private val mImageList = arrayListOf<String>()
 
@@ -74,26 +68,6 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             mCurrPage++
             requestServer(HomePageState.LOAD_MORE)
         }
-//        mOnScrollListener.set(object : RvScrollListener() {
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//                super.onScrollStateChanged(recyclerView, newState)
-//                "onScrolled  newState = $newState".log()
-//                // -1 表示向上滚动, 返回值 true 表示 还可以往上滑动
-//                if (!recyclerView.canScrollVertically(-1)) {
-//                    mScrollToTop.set(false)
-//                    mFabVisible.set(false)
-//                }
-//            }
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                if (dy < 0 && mFabVisible.get().falsely()) {
-//                    mFabVisible.set(true)
-//                } else if (dy > 0 && mFabVisible.get().truely()) {
-//                    mFabVisible.set(false)
-//                }
-//            }
-//        })
     }
 
 
@@ -109,7 +83,7 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
         if (state != HomePageState.REFRESH) {
             isDialogShow.value = isShow
             if (!isShow) {
-                "加载成功".showToast()
+                loadSuccess()
             }
         }
     }
