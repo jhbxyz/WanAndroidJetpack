@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.collect.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.util.log
@@ -37,6 +38,8 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     private var mCurrPage = 0
     private var mPageCount = 1
 
+    var mSelectCurrentPage = MutableLiveData<CollectContentPage>()
+
     var isRequestSuccess = false
 
     var rvVM = RecyclerViewVM(app).apply {
@@ -65,10 +68,9 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     override fun onModelBind() {
         super.onModelBind()
 
-        requestServer(true)
     }
 
-    private fun requestServer(showDialog: Boolean = true) {
+    fun requestServer(showDialog: Boolean = true) {
         if (!WanApp.isLogin) {
             rvVM.mIsRefreshing.set(false)
             loginFirst()
