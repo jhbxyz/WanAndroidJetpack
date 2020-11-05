@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.aboback.wanandroidjetpack.collect.viewmodel.CollectViewModel" />
+            type="com.aboback.wanandroidjetpack.find.viewmodel.FindViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -24,13 +24,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicator="@drawable/indicator_shape"
             app:tabIndicatorColor="@color/colorWhite"
             app:tabIndicatorFullWidth="false"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="@dimen/dp_3"
             app:tabMode="auto"
             app:tabPadding="@dimen/dp_10"
-            app:tabIndicator="@drawable/indicator_shape"
             app:tabSelectedTextColor="@color/colorWhite"
             app:tabTextAppearance="@style/TabLayoutStyle"
             app:tabTextColor="@color/colorWhite" />

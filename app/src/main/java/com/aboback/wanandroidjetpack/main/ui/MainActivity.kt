@@ -7,6 +7,7 @@ import com.aboback.base.util.log
 import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.ui.CollectFragment
+import com.aboback.wanandroidjetpack.find.ui.FindFragment
 import com.aboback.wanandroidjetpack.home.ui.HomeFragment
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.adapter.MainVPAdapter
@@ -61,7 +62,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
         mFragments.add(HomeFragment())
         mFragments.add(WenDaFragment())
         mFragments.add(CollectFragment())
-        mFragments.add(FragmentTest(4))
+        mFragments.add(FindFragment())
         mFragments.add(MeFragment())
 
 

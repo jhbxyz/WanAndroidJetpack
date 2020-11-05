@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="layout"
+            type="com.aboback.wanandroidjetpack.find.viewmodel.FindContentVM" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            app:cardElevation="@dimen/dp_10">
+
+            <include
+                layout="@layout/layout_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:rv="@{layout.rvVMLeft}" />
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:background="@color/colorDivide"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:layout_width="@dimen/dp_0"
+            android:background="@color/colorGrayBg"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+
+            <include
+                layout="@layout/layout_recyclerview"
+                app:rv="@{layout.rvVMRight}" />
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.find
+package com.aboback.wanandroidjetpack.find.ui
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -8,17 +8,16 @@ import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
 import com.aboback.wanandroidjetpack.find.viewmodel.FindViewModel
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
-import com.aboback.wanandroidjetpack.main.ui.FragmentTest
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.transformer.ZoomOutPageTransformer
-import kotlinx.android.synthetic.main.fragment_collect.*
+import kotlinx.android.synthetic.main.fragment_find.*
 
 /**
  * @author jhb
  * @date 2020/10/29
  */
-class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find,FindViewModel::class.java), RvScrollToTop {
+class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find, FindViewModel::class.java), RvScrollToTop {
     private val mFragments = arrayListOf<Fragment>()
     private val mTitles = arrayOf("体系", "公众号", "导航", "项目", "项目分类")
 
@@ -27,11 +26,11 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
     override fun onViewInit() {
         super.onViewInit()
 
-        mFragments.add(FragmentTest(1))
-        mFragments.add(FragmentTest(2))
-        mFragments.add(FragmentTest(3))
-        mFragments.add(FragmentTest(4))
-        mFragments.add(FragmentTest(5))
+        mFragments.add(FindContentFragment(FindContentPage.TREE))
+        mFragments.add(FindContentFragment(FindContentPage.WE_CHAT))
+        mFragments.add(FindContentFragment(FindContentPage.NAVIGATION))
+        mFragments.add(FindContentFragment(FindContentPage.PROJECT))
+        mFragments.add(FindContentFragment(FindContentPage.PROJECT_CATEGORY))
 
         viewPager2.adapter = CollectVpAdapter(mFragments, mActivity.supportFragmentManager, lifecycle)
         viewPager2.setPageTransformer(ZoomOutPageTransformer())
