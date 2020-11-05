@@ -1,8 +1,7 @@
 package com.aboback.wanandroidjetpack.collect.ui
 
-import android.app.Application
 import androidx.viewpager2.widget.ViewPager2
-import com.aboback.base.ui.BaseVMRepositoryFragment
+import com.aboback.base.ui.BaseViewModelFragment
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
@@ -17,12 +16,11 @@ import kotlinx.android.synthetic.main.fragment_collect.*
  * @author jhb
  * @date 2020/10/29
  */
-class CollectFragment : BaseVMRepositoryFragment<CollectViewModel>(R.layout.fragment_collect), RvScrollToTop {
+class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragment_collect, CollectViewModel::class.java), RvScrollToTop {
     private val mFragments = arrayListOf<CollectContentFragment>()
     private val mTitles = arrayOf("收藏文章", "面试相关", "分享文章", "收藏网站", "分享项目")
 
     private var mPagePosition = 0
-    override fun getViewModel(app: Application) = CollectViewModel(app)
 
     override fun onViewInit() {
         super.onViewInit()

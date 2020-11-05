@@ -1,13 +1,12 @@
 package com.aboback.wanandroidjetpack.find
 
-import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.aboback.base.ui.BaseVMRepositoryFragment
+import com.aboback.base.ui.BaseViewModelFragment
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
-import com.aboback.wanandroidjetpack.collect.viewmodel.CollectViewModel
+import com.aboback.wanandroidjetpack.find.viewmodel.FindViewModel
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.FragmentTest
 import com.google.android.material.tabs.TabLayout
@@ -19,12 +18,11 @@ import kotlinx.android.synthetic.main.fragment_collect.*
  * @author jhb
  * @date 2020/10/29
  */
-class FindFragment : BaseVMRepositoryFragment<CollectViewModel>(R.layout.fragment_collect), RvScrollToTop {
+class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find,FindViewModel::class.java), RvScrollToTop {
     private val mFragments = arrayListOf<Fragment>()
     private val mTitles = arrayOf("体系", "公众号", "导航", "项目", "项目分类")
 
     private var mPagePosition = 0
-    override fun getViewModel(app: Application) = CollectViewModel(app)
 
     override fun onViewInit() {
         super.onViewInit()
