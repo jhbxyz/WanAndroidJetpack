@@ -1,10 +1,8 @@
 package com.aboback.wanandroidjetpack.collect.ui
 
 import android.app.Application
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.aboback.base.ui.BaseVMRepositoryFragment
-import com.aboback.base.util.*
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
@@ -12,9 +10,7 @@ import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
-import okhttp3.internal.notifyAll
 import java.io.Serializable
-import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * @author jhb
@@ -26,13 +22,14 @@ enum class CollectContentPage : Serializable {
 
 class CollectContentFragment(private val mContentPage: CollectContentPage) : BaseVMRepositoryFragment<CollectContentVM>(R.layout.fragment_collect_content), RvScrollToTop, SelectPage {
 
-    private var mFragmentInit = MutableLiveData(false)
+    private var mFragmentInit = false
+    private var isTabLayoutClick = false
 
     override fun getViewModel(app: Application) = CollectContentVM(mContentPage, app)
 
     override fun onViewInit() {
         super.onViewInit()
-        mFragmentInit.value = true
+        mFragmentInit = true
         bindScrollListener()
     }
 
@@ -43,12 +40,9 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
                 mRealVM.onModelBind()
             }
         })
-        mFragmentInit.observe(this, Observer {
-            if (it) {
-                onSelectPage()
-                mFragmentInit.value = false
-            }
-        })
+        if (isTabLayoutClick) {
+            onSelectPage()
+        }
     }
 
     override fun bindScrollListener() {
@@ -60,11 +54,14 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
     }
 
     override fun onSelectPage() {
-        if (mFragmentInit.value.truely()) {
+        if (!mFragmentInit) {
+            isTabLayoutClick = true
+        } else {
             if (!mRealVM.isRequestSuccess) {
                 mRealVM.requestServer()
             }
         }
+
     }
 
 }

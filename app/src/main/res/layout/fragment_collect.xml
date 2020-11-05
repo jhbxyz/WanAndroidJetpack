@@ -30,6 +30,7 @@
             app:tabIndicatorHeight="@dimen/dp_3"
             app:tabMode="auto"
             app:tabPadding="@dimen/dp_10"
+            app:tabIndicator="@drawable/indicator_shape"
             app:tabSelectedTextColor="@color/colorWhite"
             app:tabTextAppearance="@style/TabLayoutStyle"
             app:tabTextColor="@color/colorWhite" />
