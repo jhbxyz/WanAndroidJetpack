@@ -121,12 +121,6 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
             bindData()
-
-            bean.tags?.forEach { tags ->
-                mTagVMList.add(TagViewModel().apply {
-                    mContent.set(tags.name)
-                })
-            }
         })
     }
 

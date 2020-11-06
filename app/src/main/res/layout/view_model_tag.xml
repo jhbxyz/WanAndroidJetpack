@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,16 +11,27 @@
 
     </data>
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:gravity="center"
-        android:textSize="@{tag.mTextSize}"
-        android:paddingStart="@dimen/dp_2"
-        android:paddingEnd="@dimen/dp_2"
-        android:text="@{tag.MContent}"
-        android:textColor="@{tag.MTextColor}"
-        android:background="@{tag.MDrawable}"
         android:layout_height="wrap_content"
-        tools:text="测试" />
+        app:cardBackgroundColor="@{tag.mBgColor}"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:textSize="@{tag.mTextSize}"
+            android:paddingStart="@dimen/dp_4"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingBottom="@dimen/dp_4"
+            android:paddingEnd="@dimen/dp_4"
+            android:text="@{tag.MContent}"
+            android:textColor="@color/colorWhite"
+            android:layout_height="wrap_content"
+            tools:text="测试" />
+
+    </androidx.cardview.widget.CardView>
+
 
 </layout>

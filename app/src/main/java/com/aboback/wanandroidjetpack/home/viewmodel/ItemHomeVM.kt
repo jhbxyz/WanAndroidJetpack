@@ -17,14 +17,54 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean) : BaseMultiI
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
 
-    var mTagVMList = mutableListOf<TagViewModel>()
-    var mTagVM = ObservableField<TagViewModel>()
+    var mTagVM1 = ObservableField<TagViewModel>()
+    var mTagVM2 = ObservableField<TagViewModel>()
+    var mTagVM3 = ObservableField<TagViewModel>()
 
     fun bindData() {
         setTitle()
         setTime()
         setAuthor()
         setCategory()
+        setTags()
+    }
+
+    private fun setTags() {
+        if (!bean.tags.isNullOrEmpty()) {
+            val tags = bean.tags!!
+            when (tags.size) {
+                3 -> {
+                    mTagVM1.set(TagViewModel().apply {
+                        mContent.set(tags[0].name)
+
+                    })
+                    mTagVM2.set(TagViewModel().apply {
+                        mContent.set(tags[1].name)
+
+                    })
+                    mTagVM3.set(TagViewModel().apply {
+                        mContent.set(tags[2].name)
+                    })
+                }
+                2 -> {
+                    mTagVM2.set(TagViewModel().apply {
+                        mContent.set(tags[0].name)
+
+                    })
+                    mTagVM3.set(TagViewModel().apply {
+                        mContent.set(tags[1].name)
+
+                    })
+                }
+                1 -> {
+
+                    mTagVM3.set(TagViewModel().apply {
+                        mContent.set(tags[0].name)
+                    })
+                }
+            }
+        }
+
     }
 
     fun setTitle() {

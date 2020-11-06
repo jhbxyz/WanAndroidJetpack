@@ -51,7 +51,7 @@ data class ItemDatasBean(
         val url: String? = null,
         val name: String? = null
 ) {
-    data class TagBean(var name: String?, var url: String?)
+    data class TagBean(var name: String?, var url: String? = null)
 }
 
 data class ArrayDataBean(

@@ -140,6 +140,10 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
         if (state == HomePageState.REFRESH || state == HomePageState.INIT) {
             val articleTop = mRepo.articleTop()
             articleTop.data?.forEach {
+                val tempTags = arrayListOf<ItemDatasBean.TagBean>()
+                tempTags.add(ItemDatasBean.TagBean("置顶"))
+                it.tags?.let { tag -> tempTags.addAll(tag) }
+                it.tags = tempTags
                 bindData(it)
             }
         }
@@ -155,16 +159,6 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
             bindData()
-
-//            mTagList.set(it.tags)
-//            bindTagVM()
-
-            mTagVMList.clear()
-            bean.tags?.forEach { tags ->
-                mTagVMList.add(TagViewModel().apply {
-                    mContent.set(tags.name)
-                })
-            }
         })
     }
 

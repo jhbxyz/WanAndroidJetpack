@@ -88,12 +88,6 @@ class WenDaViewModel(app: Application) : BaseRepositoryViewModel<WenDaRepository
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
             bindData()
-
-            bean.tags?.forEach { tags ->
-                mTagVMList.add(TagViewModel().apply {
-                    mContent.set(tags.name)
-                })
-            }
         })
     }
 
