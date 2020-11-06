@@ -5,6 +5,7 @@ import com.aboback.wanandroidjetpack.bean.ObjectDataBean
 import com.aboback.wanandroidjetpack.bean.UserPrivateArticles
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.find.ui.FindContentPage
+import com.aboback.wanandroidjetpack.find.ui.FindContentTreeAndNaviPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -12,17 +13,12 @@ import kotlinx.coroutines.withContext
  * @author jhb
  * @date 2020/10/23
  */
-class FindContentRepository(private val mContentPage: FindContentPage) : NetRepository() {
+class FindContentTreeAndNaviRepository(private val mContentPage: FindContentTreeAndNaviPage) : NetRepository() {
 
-    suspend fun weChatList() = withContext(Dispatchers.IO) {
-        api.weChatList()
+
+    suspend fun treeList() = withContext(Dispatchers.IO) {
+        api.treeList()
     }
-
-
-    suspend fun weChatListDetail(id: Int?, page: Int) = withContext(Dispatchers.IO) {
-        api.weChatListDetail(id, page)
-    }
-
 
 
 

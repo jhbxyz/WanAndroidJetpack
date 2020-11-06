@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.me
 
 import android.app.Application
 import androidx.databinding.ObservableField
+import com.aboback.base.util.randomInt
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.network.util.MmkvUtil
@@ -58,7 +59,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
     }
 
     private fun loadAvatar() {
-        mPath.set(imagePaths[Random.nextInt(0, imagePaths.size)])
+        mPath.set(imagePaths[randomInt(imagePaths.size)])
     }
 
 

@@ -48,12 +48,29 @@ interface ApiService {
     @GET("/user/logout/json")
     suspend fun userLogout(): BaseBean
 
+    //获取公众号列表
+    @GET("/wxarticle/chapters/json")
+    suspend fun weChatList(): WeChatListBean
+
+
+    //查看某个公众号历史数据
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun weChatListDetail(
+            @Path("id") id: Int?,
+            @Path("page") page: Int
+    ): ObjectDataBean
+
+    //体系数据
+    @GET("tree/json")
+    suspend fun treeList(): TreeListBean
+
+    //导航数据
+    @GET("/navi/json")
+    suspend fun naviList(): NaviListBean
+
     //自己分享的文章
     @GET("/user/lg/private_articles/{page}/json")
     suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
-
-    @GET("tree/json")
-    suspend fun treeJson(): TreeJsonBean
 
 
 }

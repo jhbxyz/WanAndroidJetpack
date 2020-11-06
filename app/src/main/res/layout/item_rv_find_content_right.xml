@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.aboback.wanandroidjetpack.find.viewmodel.ItemFindContentRightVM" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->item.onClickItem.invoke()}"
+        app:cardCornerRadius="@dimen/dp_5"
+        app:cardElevation="@dimen/dp_0">
+
+        <TextView
+            android:padding="@dimen/dp_10"
+            android:text="@{item.MContent}"
+            tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorGray3"
+            android:textSize="@dimen/sp_15"/>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

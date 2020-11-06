@@ -8,11 +8,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.aboback.base.BaseApp
 import com.aboback.base.BuildConfig
+import com.aboback.base.R
+import com.blankj.utilcode.util.RomUtils
 import com.blankj.utilcode.util.ToastUtils
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlin.random.Random
 
 /**
  * @author jhb
@@ -84,5 +87,27 @@ fun Boolean?.truely() = this != null && this
 
 fun Boolean?.falsely() = !truely()
 
+private val mColors = arrayOf(
+        R.color.colorBlue.getResColor(),
+        R.color.colorBlueLight.getResColor(),
+        R.color.colorBlueLighter.getResColor(),
+        R.color.colorBlueDark.getResColor(),
+        R.color.colorCyan.getResColor(),
+        R.color.colorRed.getResColor(),
+        R.color.colorRedDark.getResColor(),
+        R.color.colorPurple.getResColor(),
+        R.color.colorPurpleDark.getResColor(),
+        R.color.colorOrigin.getResColor(),
+        R.color.colorOriginDark.getResColor(),
+        R.color.colorYellowDark.getResColor(),
+        R.color.colorYellowDarker.getResColor(),
+        R.color.colorGreen.getResColor(),
+        R.color.colorGreenLight.getResColor(),
+        R.color.colorGreenDark.getResColor(),
+        R.color.colorGreenDarker.getResColor()
+)
 
+fun randomInt(size: Int) = Random.nextInt(0, size)
+
+fun getRandomColor() = mColors[randomInt(mColors.size)]
 

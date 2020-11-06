@@ -7,25 +7,34 @@
 
         <variable
             name="item"
-            type="com.aboback.wanandroidjetpack.find.viewmodel.ItemFindContentVM" />
+            type="com.aboback.wanandroidjetpack.find.viewmodel.ItemFindContentTreeAndNaviLeftVM" />
 
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50">
+        android:background="@{item.mChecked ? @color/colorWhite : @color/colorWhiteDark}"
+        android:onClick="@{()-> item.onClickItem.invoke()}"
+        android:layout_height="@dimen/dp_45">
 
         <TextView
             android:text="@{item.MContent}"
-            android:gravity="start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textColor="@color/colorGray3"
-            android:textSize="@dimen/sp_18"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textSize="@dimen/sp_15"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="哈哈哈哈" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

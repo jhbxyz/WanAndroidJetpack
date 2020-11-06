@@ -2,7 +2,7 @@ package com.aboback.wanandroidjetpack.bean
 
 import com.aboback.network.BaseBean
 
-data class TreeJsonBean(
+data class TreeListBean(
         var data: List<DataBean?>?
 ) : BaseBean() {
     data class DataBean(

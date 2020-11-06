@@ -7,6 +7,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
+import com.aboback.wanandroidjetpack.find.viewmodel.FindContentTreeAndNaviVM
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
@@ -17,14 +18,13 @@ import java.io.Serializable
  * @author jhb
  * @date 2020/10/27
  */
-enum class FindContentPage : Serializable {
-    WE_CHAT, PROJECT, PROJECT_CATEGORY,
+enum class FindContentTreeAndNaviPage {
+    TREE, NAVIGATION
 }
 
-class FindContentFragment(private val mContentPage: FindContentPage) : BaseVMRepositoryFragment<FindContentVM>(R.layout.fragment_find_content), RvScrollToTop, SelectPage {
+class FindContentTreeAndNaviFragment(private val mContentPage: FindContentTreeAndNaviPage) : BaseVMRepositoryFragment<FindContentTreeAndNaviVM>(R.layout.fragment_find_content_tree_and_navi), RvScrollToTop, SelectPage {
 
-
-    override fun getViewModel(app: Application) = FindContentVM(mContentPage, app)
+    override fun getViewModel(app: Application) = FindContentTreeAndNaviVM(mContentPage, app)
 
     override fun onViewInit() {
         super.onViewInit()
