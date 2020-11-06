@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.databinding.ObservableField
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
+import com.aboback.base.util.truely
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 
@@ -20,6 +21,7 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean) : BaseMultiI
     var mTagVM1 = ObservableField<TagViewModel>()
     var mTagVM2 = ObservableField<TagViewModel>()
     var mTagVM3 = ObservableField<TagViewModel>()
+    var mTagVM4 = ObservableField<TagViewModel>()
 
     fun bindData() {
         setTitle()
@@ -29,36 +31,56 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean) : BaseMultiI
         setTags()
     }
 
+    private fun addNewTags(bean: ItemDatasBean) {
+        val tempTags = arrayListOf<ItemDatasBean.TagBean>()
+        bean.tags?.let { tag -> tempTags.addAll(tag) }
+        if (bean.fresh.truely()) {
+            tempTags.add(ItemDatasBean.TagBean("新"))
+        }
+        bean.tags = tempTags
+    }
+
     private fun setTags() {
+        addNewTags(bean)
+
         if (!bean.tags.isNullOrEmpty()) {
             val tags = bean.tags!!
             when (tags.size) {
-                3 -> {
+                4 -> {
                     mTagVM1.set(TagViewModel().apply {
                         mContent.set(tags[0].name)
-
                     })
                     mTagVM2.set(TagViewModel().apply {
                         mContent.set(tags[1].name)
-
                     })
                     mTagVM3.set(TagViewModel().apply {
                         mContent.set(tags[2].name)
                     })
+                    mTagVM4.set(TagViewModel().apply {
+                        mContent.set(tags[3].name)
+                    })
                 }
-                2 -> {
+                3 -> {
                     mTagVM2.set(TagViewModel().apply {
                         mContent.set(tags[0].name)
-
                     })
                     mTagVM3.set(TagViewModel().apply {
                         mContent.set(tags[1].name)
-
+                    })
+                    mTagVM4.set(TagViewModel().apply {
+                        mContent.set(tags[2].name)
+                    })
+                }
+                2 -> {
+                    mTagVM3.set(TagViewModel().apply {
+                        mContent.set(tags[0].name)
+                    })
+                    mTagVM4.set(TagViewModel().apply {
+                        mContent.set(tags[1].name)
                     })
                 }
                 1 -> {
-
-                    mTagVM3.set(TagViewModel().apply {
+                    mTagVM4.set(TagViewModel().apply {
                         mContent.set(tags[0].name)
                     })
                 }

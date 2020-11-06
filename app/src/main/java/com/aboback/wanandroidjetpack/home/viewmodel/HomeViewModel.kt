@@ -1,7 +1,6 @@
 package com.aboback.wanandroidjetpack.home.viewmodel
 
 import android.app.Application
-import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
@@ -140,13 +139,17 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
         if (state == HomePageState.REFRESH || state == HomePageState.INIT) {
             val articleTop = mRepo.articleTop()
             articleTop.data?.forEach {
-                val tempTags = arrayListOf<ItemDatasBean.TagBean>()
-                tempTags.add(ItemDatasBean.TagBean("置顶"))
-                it.tags?.let { tag -> tempTags.addAll(tag) }
-                it.tags = tempTags
+                addTopTag(it)
                 bindData(it)
             }
         }
+    }
+
+    private fun addTopTag(it: ItemDatasBean) {
+        val tempTags = arrayListOf<ItemDatasBean.TagBean>()
+        tempTags.add(ItemDatasBean.TagBean("置顶"))
+        it.tags?.let { tag -> tempTags.addAll(tag) }
+        it.tags = tempTags
     }
 
     private suspend fun getArticleList() {

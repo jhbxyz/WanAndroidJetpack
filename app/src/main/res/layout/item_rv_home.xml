@@ -46,7 +46,7 @@
                     layout="@layout/view_model_tag"
                     android:layout_width="wrap_content"
                     android:visibility="@{(item.mTagVM1 == null) ? View.GONE :View.VISIBLE}"
-                    android:layout_marginEnd="@dimen/dp_4"
+                    android:layout_marginEnd="@dimen/dp_6"
                     android:layout_height="wrap_content"
                     app:tag="@{item.mTagVM1}" />
 
@@ -54,7 +54,7 @@
                     layout="@layout/view_model_tag"
                     android:visibility="@{(item.mTagVM2 == null) ? View.GONE:View.VISIBLE}"
                     android:layout_width="wrap_content"
-                    android:layout_marginEnd="@dimen/dp_4"
+                    android:layout_marginEnd="@dimen/dp_6"
                     android:layout_height="wrap_content"
                     app:tag="@{item.mTagVM2}" />
 
@@ -62,8 +62,16 @@
                     layout="@layout/view_model_tag"
                     android:visibility="@{(item.mTagVM3 == null) ? View.GONE:View.VISIBLE}"
                     android:layout_width="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_6"
                     android:layout_height="wrap_content"
                     app:tag="@{item.mTagVM3}" />
+
+                <include
+                    layout="@layout/view_model_tag"
+                    android:visibility="@{(item.mTagVM4 == null) ? View.GONE:View.VISIBLE}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tag="@{item.mTagVM4}" />
 
             </LinearLayout>
 
