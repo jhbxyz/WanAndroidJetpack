@@ -3,8 +3,6 @@ package com.aboback.wanandroidjetpack.login.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.lifecycle.viewModelScope
-import com.aboback.base.util.log
 import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
@@ -16,7 +14,6 @@ import com.aboback.wanandroidjetpack.network.NetConstant
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
-import kotlinx.coroutines.launch
 
 /**
  * Created by jhb on 2020-01-14.
@@ -73,7 +70,7 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
                         WanApp.isLogin = true
                         GlobalSingle.isLoginSuccess.value = true
                         mPage?.let {
-                            GlobalSingle.isLoginC.value = it
+                            GlobalSingle.isLoginSuccessToCollect.value = it
                         }
 
                         finish()

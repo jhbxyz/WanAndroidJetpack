@@ -17,7 +17,7 @@ import java.io.Serializable
  * @date 2020/10/27
  */
 enum class CollectContentPage : Serializable {
-    COLLECT_ARTICLE, INTERVIEW_RELATE, SHARE_ARTICLE, COLLECT_WEBSITE, SHARE_PROJECT,
+    COLLECT_ARTICLE, INTERVIEW_RELATE, SHARE_ARTICLE, COLLECT_WEBSITE, SHARE_PROJECT, NONE
 }
 
 class CollectContentFragment(private val mContentPage: CollectContentPage) : BaseVMRepositoryFragment<CollectContentVM>(R.layout.fragment_collect_content), RvScrollToTop, SelectPage {
@@ -35,9 +35,10 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
 
     override fun onEvent() {
         super.onEvent()
-        GlobalSingle.isLoginC.observe(this, Observer {
+        GlobalSingle.isLoginSuccessToCollect.observe(this, Observer {
             if (it == mContentPage) {
-                mRealVM.onModelBind()
+                mRealVM.requestServer()
+                GlobalSingle.isLoginSuccessToCollect.value = CollectContentPage.NONE
             }
         })
         if (isTabLayoutClick) {
