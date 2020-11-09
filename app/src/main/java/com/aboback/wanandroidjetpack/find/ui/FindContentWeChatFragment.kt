@@ -14,7 +14,7 @@ import com.aboback.wanandroidjetpack.main.RvScrollToTop
 class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(R.layout.fragment_find_content_we_chat), RvScrollToTop, SelectPage {
 
     private var mFragmentInit = false
-    private var isTablayoutClick = false
+    private var isTabLayoutClick = false
 
     override fun getViewModel(app: Application) = FindContentWeChatVM(app)
 
@@ -25,7 +25,7 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
 
     override fun onEvent() {
         super.onEvent()
-        if (isTablayoutClick) {
+        if (isTabLayoutClick) {
             onSelectPage()
         }
     }
@@ -38,7 +38,7 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
 
     override fun onSelectPage() {
         if (!mFragmentInit) {
-            isTablayoutClick = true
+            isTabLayoutClick = true
         } else {
             if (!mRealVM.isRequestSuccess) {
                 mRealVM.requestServer()

@@ -11,22 +11,24 @@ import com.aboback.wanandroidjetpack.find.FindContentWeChatRepository
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.loadSuccess
+import com.aboback.wanandroidjetpack.util.noMoreData
 
 /**
  * Created by jhb on 2020-03-11.
  */
 class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindContentWeChatRepository>(app, FindContentWeChatRepository()) {
 
-    var mDataLeft = arrayListOf<ItemFindContentWeChatLeftVM>()
-    val mAdapterLeft = QuickAdapter(R.layout.item_rv_find_content_we_chat_left, mDataLeft)
+    private var mDataLeft = arrayListOf<ItemFindContentWeChatLeftVM>()
+    private val mAdapterLeft = QuickAdapter(R.layout.item_rv_find_content_we_chat_left, mDataLeft)
+    private var mDataRight = arrayListOf<ItemHomeVM>()
+    private val mAdapterRight = QuickAdapter(R.layout.item_rv_home, mDataRight)
 
-    var mDataRight = arrayListOf<ItemHomeVM>()
-    val mAdapterRight = QuickAdapter(R.layout.item_rv_home, mDataRight)
-
-    private val mNaviMap = hashMapOf<Int?, List<ItemDatasBean>?>()
     var isRequestSuccess = false
     private var mCurrPage = 0
     private var mPageCount = 1
+    private var mCurrId: Int? = 0
+
 
     var rvVMLeft = RecyclerViewVM(app).apply {
         mAdapterObservable.set(mAdapterLeft)
@@ -34,22 +36,23 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
     }
 
     var rvVMRight = RecyclerViewVM(app).apply {
+        mRefreshEnable = true
         mAdapterObservable.set(mAdapterRight)
 
-//        mOnRefresh = {
-//            mIsRefreshing.set(true)
-//
-//            mCurrPage = 0
-//
-//        }
-//
-//        mOnLoadMoreListener = {
-//            mCurrPage++
-//            if (mCurrPage < mPageCount) {
-//            } else {
-//                noMoreData()
-//            }
-//        }
+        mOnRefresh = {
+            mIsRefreshing.set(true)
+            mCurrPage = 0
+            weChatListDetail(mCurrId)
+        }
+
+        mOnLoadMoreListener = {
+            mCurrPage++
+            if (mCurrPage < mPageCount) {
+                weChatListDetail(mCurrId)
+            } else {
+                noMoreData()
+            }
+        }
     }
 
     override fun onModelBind() {
@@ -63,6 +66,7 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
             data?.forEach {
                 mDataLeft.add(ItemFindContentWeChatLeftVM(getApplication()).apply {
                     mContent.set(it?.name)
+                    mId = it?.id
                     onClickItem = {
                         if (mChecked.get().falsely()) {
                             mDataLeft.find { it.mChecked.get().truely() }?.apply {
@@ -83,14 +87,25 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
     }
 
     private fun weChatListDetail(id: Int?) {
+        mCurrId = id
+
         launch {
-            mDataRight.clear()
-            mRepo.weChatListDetail(id, mCurrPage).data?.datas?.forEach {
+            if (mCurrPage == 0 && mDataRight.isNotEmpty()) {
+                rvVMRight.mIsRefreshing.set(false)
+                mDataRight.clear()
+            }
+
+            val data = mRepo.weChatListDetail(id, mCurrPage).data
+            mPageCount = data?.pageCount ?: 1
+            data?.datas?.forEach {
                 mDataRight.add(ItemHomeVM(getApplication(), it).apply {
                     bindData()
                 })
             }
             mAdapterRight.notifyDataSetChanged()
+            if (mCurrPage >= 0) {
+                loadSuccess()
+            }
         }
     }
 

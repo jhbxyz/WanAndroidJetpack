@@ -13,7 +13,7 @@ import com.aboback.wanandroidjetpack.R
 class ItemFindContentWeChatLeftVM(app: Application) : BaseItemViewModel(app) {
     var mBgColor = ObservableField(R.color.colorWhiteDark.getResColor())
     var mContent = ObservableField<String>()
-    var mCid: Int? = 0
+    var mId: Int? = 0
     var mChecked = ObservableField<Boolean>(false)
     var onClickItem = {}
 }
