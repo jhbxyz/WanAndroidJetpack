@@ -29,8 +29,8 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
         mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.TREE))
         mFragments.add(FindContentWeChatFragment())
         mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.NAVIGATION))
-        mFragments.add(FindContentFragment(FindContentPage.PROJECT))
-        mFragments.add(FindContentFragment(FindContentPage.PROJECT_CATEGORY))
+        mFragments.add(FindContentProjectFragment())
+        mFragments.add(FindContentProjectTreeFragment())
 
         viewPager2.adapter = CollectVpAdapter(mFragments, mActivity.supportFragmentManager, lifecycle)
         viewPager2.setPageTransformer(ZoomOutPageTransformer())

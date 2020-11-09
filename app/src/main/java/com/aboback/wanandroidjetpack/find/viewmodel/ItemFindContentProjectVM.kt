@@ -10,10 +10,13 @@ import com.aboback.wanandroidjetpack.R
  * @author jhb
  * @date 2020/11/5
  */
-class ItemFindContentLeftVM(app: Application) : BaseItemViewModel(app) {
-    var mBgColor = ObservableField(R.color.colorWhiteDark.getResColor())
-    var mContent = ObservableField<String>()
-    var mCid: Int? = 0
+class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app) {
+    var mPath = ObservableField<String>()
+    var mTitle = ObservableField<String>()
+    var mTime = ObservableField<String>()
+    var mDesc = ObservableField<String>()
+    var mAuthor = ObservableField<String>()
+    var mId: Int? = 0
     var mChecked = ObservableField<Boolean>(false)
     var onClickItem = {}
 }

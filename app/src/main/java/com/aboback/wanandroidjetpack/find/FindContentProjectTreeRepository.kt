@@ -8,17 +8,16 @@ import kotlinx.coroutines.withContext
  * @author jhb
  * @date 2020/10/23
  */
-class FindContentWeChatRepository : NetRepository() {
+class FindContentProjectTreeRepository() : NetRepository() {
 
-    suspend fun weChatList() = withContext(Dispatchers.IO) {
-        api.weChatList()
+    suspend fun projectList(page: Int) = withContext(Dispatchers.IO) {
+        api.projectList(page)
     }
 
 
     suspend fun weChatListDetail(id: Int?, page: Int) = withContext(Dispatchers.IO) {
         api.weChatListDetail(id, page)
     }
-
 
 
 }

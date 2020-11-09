@@ -31,6 +31,15 @@ fun setUri(imageView: ImageView, @RawRes resId: Int) {
     Glide.with(imageView).load(resId).into(imageView)
 }
 
+@BindingAdapter("loadUrl", requireAll = false)
+fun loadUrl(imageView: ImageView, path: String?) {
+    Glide.with(imageView)
+        .applyDefaultRequestOptions(RequestOptions()
+            .placeholder(R.drawable.place_holder)
+            .centerCrop())
+        .load(path).into(imageView)
+}
+
 @BindingAdapter("setAvatar", requireAll = false)
 fun setAvatar(imageView: ImageView, path: String) {
     Glide.with(imageView)

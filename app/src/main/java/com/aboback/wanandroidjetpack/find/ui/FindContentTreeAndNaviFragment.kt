@@ -1,18 +1,11 @@
 package com.aboback.wanandroidjetpack.find.ui
 
 import android.app.Application
-import androidx.lifecycle.Observer
 import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
-import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentTreeAndNaviVM
-import com.aboback.wanandroidjetpack.find.viewmodel.FindContentVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
-import com.aboback.wanandroidjetpack.main.ui.MainActivity
-import com.aboback.wanandroidjetpack.util.RvScrollDelegate
-import java.io.Serializable
 
 /**
  * @author jhb

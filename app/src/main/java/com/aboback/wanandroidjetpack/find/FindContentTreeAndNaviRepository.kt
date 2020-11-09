@@ -1,10 +1,6 @@
 package com.aboback.wanandroidjetpack.find
 
 import com.aboback.wanandroidjetpack.base.NetRepository
-import com.aboback.wanandroidjetpack.bean.ObjectDataBean
-import com.aboback.wanandroidjetpack.bean.UserPrivateArticles
-import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
-import com.aboback.wanandroidjetpack.find.ui.FindContentPage
 import com.aboback.wanandroidjetpack.find.ui.FindContentTreeAndNaviPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

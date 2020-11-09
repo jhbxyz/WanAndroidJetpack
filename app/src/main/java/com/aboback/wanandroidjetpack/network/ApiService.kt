@@ -68,6 +68,14 @@ interface ApiService {
     @GET("/navi/json")
     suspend fun naviList(): NaviListBean
 
+    //项目(热门项目)
+    @GET("/article/listproject/{page}/json")
+    suspend fun projectList(@Path("page") page: Int): ObjectDataBean
+
+    //项目分类
+    @GET("/project/tree/json")
+    suspend fun projectTreeList(): NaviListBean
+
     //自己分享的文章
     @GET("/user/lg/private_articles/{page}/json")
     suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
