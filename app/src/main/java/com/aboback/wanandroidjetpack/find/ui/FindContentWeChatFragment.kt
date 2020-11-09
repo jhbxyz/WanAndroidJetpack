@@ -6,6 +6,8 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentWeChatVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
+import com.aboback.wanandroidjetpack.main.ui.MainActivity
+import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 
 /**
  * @author jhb
@@ -21,6 +23,7 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
     override fun onViewInit() {
         super.onViewInit()
         mFragmentInit = true
+        bindScrollListener()
     }
 
     override fun onEvent() {
@@ -31,9 +34,11 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
     }
 
     override fun bindScrollListener() {
+        RvScrollDelegate.bindScrollListener(mainActivity = mActivity as MainActivity, rvVM = mRealVM.rvVMRight)
     }
 
     override fun scrollToTop() {
+        RvScrollDelegate.scrollToTop(mRealVM.rvVMRight)
     }
 
     override fun onSelectPage() {

@@ -2,11 +2,14 @@ package com.aboback.wanandroidjetpack.find.ui
 
 import android.app.Application
 import com.aboback.base.ui.BaseVMRepositoryFragment
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentProjectTreeVM
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentProjectVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
+import com.aboback.wanandroidjetpack.main.ui.MainActivity
+import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 
 /**
  * @author jhb
@@ -22,6 +25,7 @@ class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM
     override fun onViewInit() {
         super.onViewInit()
         mFragmentInit = true
+        bindScrollListener()
     }
 
     override fun onEvent() {
@@ -32,9 +36,13 @@ class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM
     }
 
     override fun bindScrollListener() {
+        RvScrollDelegate.bindScrollListener(mainActivity = mActivity as MainActivity, rvVM = mRealVM.rvVM)
     }
 
     override fun scrollToTop() {
+        "scrollToTop $mTag".logWithTag("AAAAAAAA")
+
+        RvScrollDelegate.scrollToTop(mRealVM.rvVM)
     }
 
     override fun onSelectPage() {

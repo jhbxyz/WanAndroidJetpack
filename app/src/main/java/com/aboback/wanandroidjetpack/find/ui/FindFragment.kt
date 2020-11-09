@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.find.ui
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseViewModelFragment
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
@@ -37,6 +38,8 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
         TabLayoutMediator(tabLayout, viewPager2, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             tab.text = mTitles[position]
         }).attach()
+
+        bindScrollListener()
     }
 
     override fun onEvent() {
