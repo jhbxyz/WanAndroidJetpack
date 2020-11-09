@@ -12,7 +12,7 @@ import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
  * @author jhb
  * @date 2020/10/23
  */
-class ItemHomeVM(app: Application, private val bean: ItemDatasBean) : BaseMultiItemViewModel(app) {
+class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : BaseMultiItemViewModel(app) {
     var mTitle = ObservableField("")
     var mTime = ObservableField("")
     var mAuthor = ObservableField("")
@@ -31,20 +31,20 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean) : BaseMultiI
         setTags()
     }
 
-    private fun addNewTags(bean: ItemDatasBean) {
+    private fun addNewTags(bean: ItemDatasBean?) {
         val tempTags = arrayListOf<ItemDatasBean.TagBean>()
-        bean.tags?.let { tag -> tempTags.addAll(tag) }
-        if (bean.fresh.truely()) {
+        bean?.tags?.let { tag -> tempTags.addAll(tag) }
+        if (bean?.fresh.truely()) {
             tempTags.add(ItemDatasBean.TagBean("新"))
         }
-        bean.tags = tempTags
+        bean?.tags = tempTags
     }
 
     private fun setTags() {
         addNewTags(bean)
 
-        if (!bean.tags.isNullOrEmpty()) {
-            val tags = bean.tags!!
+        if (!bean?.tags.isNullOrEmpty()) {
+            val tags = bean?.tags!!
             when (tags.size) {
                 4 -> {
                     mTagVM1.set(TagViewModel().apply {
@@ -90,23 +90,23 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean) : BaseMultiI
     }
 
     fun setTitle() {
-        mTitle.set(bean.title)
+        mTitle.set(bean?.title)
     }
 
     fun setTime() {
-        mTime.set(bean.niceDate)
+        mTime.set(bean?.niceDate)
     }
 
     fun setAuthor() {
-        if (bean.author.isNullOrEmpty()) {
-            mAuthor.set("分享人: ${bean.shareUser}")
+        if (bean?.author.isNullOrEmpty()) {
+            mAuthor.set("分享人: ${bean?.shareUser}")
         } else {
-            mAuthor.set("作者: ${bean.author}")
+            mAuthor.set("作者: ${bean?.author}")
         }
     }
 
     fun setCategory() {
-        bean.superChapterName?.let {
+        bean?.superChapterName?.let {
             mCategory.set("分类: $it")
         }
     }

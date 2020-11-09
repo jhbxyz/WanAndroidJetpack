@@ -27,7 +27,7 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
         super.onViewInit()
 
         mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.TREE))
-        mFragments.add(FindContentFragment(FindContentPage.WE_CHAT))
+        mFragments.add(FindContentWeChatFragment())
         mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.NAVIGATION))
         mFragments.add(FindContentFragment(FindContentPage.PROJECT))
         mFragments.add(FindContentFragment(FindContentPage.PROJECT_CATEGORY))
