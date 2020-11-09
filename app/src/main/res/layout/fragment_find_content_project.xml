@@ -16,7 +16,7 @@
 
         <include
             layout="@layout/layout_recyclerview"
-            app:rv="@{layout.rvVMRight}" />
+            app:rv="@{layout.rvVM}" />
 
     </LinearLayout>
 </layout>

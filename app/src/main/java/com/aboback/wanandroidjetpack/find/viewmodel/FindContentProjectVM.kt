@@ -7,6 +7,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.find.FindContentProjectRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.loadSuccess
 import com.aboback.wanandroidjetpack.util.noMoreData
 
 /**
@@ -19,36 +20,43 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
 
     private var mCurrPage = 0
     private var mPageCount = 1
+    var isRequestSuccess = false
 
-    var rvVMRight = RecyclerViewVM(app).apply {
+    var rvVM = RecyclerViewVM(app).apply {
+        mRefreshEnable = true
         mAdapterObservable.set(mAdapter)
 
         mOnRefresh = {
             mIsRefreshing.set(true)
 
             mCurrPage = 0
-
+            requestServer(true)
         }
 
         mOnLoadMoreListener = {
             mCurrPage++
             if (mCurrPage < mPageCount) {
-
+                requestServer()
             } else {
                 noMoreData()
             }
         }
     }
 
-    override fun onModelBind() {
-        super.onModelBind()
+    fun requestServer(isRefresh: Boolean = false) {
+        launch(showDialog = !isRefresh, finish = {
+            if (isRefresh) {
+                rvVM.mIsRefreshing.set(false)
+            }
+        }) {
+            isRequestSuccess = true
+            if (isRefresh) {
+                mData.clear()
+            }
 
-        requestServer()
-    }
-
-    fun requestServer() {
-        launch {
-            mRepo.projectList(mCurrPage).data?.datas?.forEach {
+            val data = mRepo.projectList(mCurrPage).data
+            mPageCount = data?.pageCount ?: 1
+            data?.datas?.forEach {
                 mData.add(ItemFindContentProjectVM(getApplication()).apply {
                     mPath.set(it.envelopePic)
                     mTitle.set(it.title)
@@ -58,6 +66,7 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
                 })
             }
 
+            loadSuccess()
             mAdapter.notifyDataSetChanged()
 
         }

@@ -14,15 +14,21 @@ import com.aboback.wanandroidjetpack.main.RvScrollToTop
  */
 class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM>(R.layout.fragment_find_content_project), RvScrollToTop, SelectPage {
 
+    private var mFragmentInit = false
+    private var isTabLayoutClick = false
 
     override fun getViewModel(app: Application) = FindContentProjectVM(app)
 
     override fun onViewInit() {
         super.onViewInit()
+        mFragmentInit = true
     }
 
     override fun onEvent() {
         super.onEvent()
+        if (isTabLayoutClick) {
+            onSelectPage()
+        }
     }
 
     override fun bindScrollListener() {
@@ -32,6 +38,13 @@ class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM
     }
 
     override fun onSelectPage() {
+        if (!mFragmentInit) {
+            isTabLayoutClick = true
+        } else {
+            if (!mRealVM.isRequestSuccess) {
+                mRealVM.requestServer()
+            }
+        }
 
     }
 

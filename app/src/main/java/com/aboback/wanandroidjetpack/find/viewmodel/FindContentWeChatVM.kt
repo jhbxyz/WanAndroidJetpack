@@ -42,7 +42,7 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
         mOnRefresh = {
             mIsRefreshing.set(true)
             mCurrPage = 0
-            weChatListDetail(mCurrId)
+            weChatListDetail(mCurrId, isRefresh = true)
         }
 
         mOnLoadMoreListener = {
@@ -53,10 +53,6 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
                 noMoreData()
             }
         }
-    }
-
-    override fun onModelBind() {
-        super.onModelBind()
     }
 
     fun requestServer() {
@@ -73,7 +69,8 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
                                 mChecked.set(false)
                             }
                             mChecked.set(true)
-                            weChatListDetail(it?.id)
+                            mCurrPage = 0
+                            weChatListDetail(it?.id, isClick = true)
                         }
                     }
                 })
@@ -86,12 +83,15 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
         }
     }
 
-    private fun weChatListDetail(id: Int?) {
+    private fun weChatListDetail(id: Int?, isClick: Boolean = false, isRefresh: Boolean = false) {
         mCurrId = id
 
-        launch {
-            if (mCurrPage == 0 && mDataRight.isNotEmpty()) {
+        launch(showDialog = !isRefresh, finish = {
+            if (isRefresh) {
                 rvVMRight.mIsRefreshing.set(false)
+            }
+        }) {
+            if (isRefresh || isClick) {
                 mDataRight.clear()
             }
 
@@ -103,7 +103,7 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
                 })
             }
             mAdapterRight.notifyDataSetChanged()
-            if (mCurrPage >= 0) {
+            if (!isRefresh) {
                 loadSuccess()
             }
         }
