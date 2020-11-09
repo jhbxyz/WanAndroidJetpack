@@ -50,32 +50,31 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
         }
         mAdapter.notifyDataSetChanged()
 
-        lgCoinUserInfo()
+        requestServer()
 
     }
 
-    fun lgCoinUserInfo() {
+    private fun requestServer() {
         if (!WanApp.isLogin) {
             "请登录".showToast()
             resetLoginState()
             return
         }
 
-        viewModelScope.launch {
-            val userInfoBean = async {
-                WanServer.api.lgCoinUserInfo()
-            }.await()
+        lgCoinUserInfo()
 
-            (mData[0] as MeHeaderVM).apply {
+    }
+
+    fun lgCoinUserInfo() {
+        viewModelScope.launch {
+            val userInfoBean = WanServer.api.lgCoinUserInfo()
+            (mData[0] as? MeHeaderVM)?.apply {
                 loadAvatar()
                 mUserName.set(userInfoBean.data?.username)
                 mIdAndRank.set("id : ${userInfoBean.data?.userId}   排名 : ${userInfoBean.data?.rank}")
+                mAdapter.notifyItemChanged(0)
             }
-
-            mAdapter.notifyItemChanged(0)
-
         }
-
     }
 
 
