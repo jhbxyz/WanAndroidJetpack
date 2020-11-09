@@ -28,6 +28,8 @@ class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviP
     private val mNaviMap = hashMapOf<Int?, List<ItemDatasBean>?>()
     private val mTreeMap = hashMapOf<Int?, List<TreeListBean.DataBean.ChildrenBean?>?>()
 
+    var isRequestSuccess = false
+
     var rvVMLeft = RecyclerViewVM(app).apply {
         mAdapterObservable.set(mAdapterLeft)
 
@@ -40,10 +42,9 @@ class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviP
     override fun onModelBind() {
         super.onModelBind()
 
-        requestServer()
     }
 
-    private fun requestServer() {
+    fun requestServer() {
         launch {
             when (mContentPage) {
                 FindContentTreeAndNaviPage.TREE -> {
@@ -58,6 +59,7 @@ class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviP
     }
 
     private suspend fun treeList() {
+        isRequestSuccess = true
         mDataLeft.clear()
         mRepo.treeList().data?.forEach {
 
@@ -100,6 +102,7 @@ class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviP
     }
 
     private suspend fun naviList() {
+        isRequestSuccess = true
         mRepo.naviList().data?.forEach {
             mNaviMap[it.cid] = it.articles
             mDataLeft.add(ItemFindContentTreeAndNaviLeftVM(getApplication()).apply {

@@ -24,14 +24,20 @@ enum class FindContentTreeAndNaviPage {
 
 class FindContentTreeAndNaviFragment(private val mContentPage: FindContentTreeAndNaviPage) : BaseVMRepositoryFragment<FindContentTreeAndNaviVM>(R.layout.fragment_find_content_tree_and_navi), RvScrollToTop, SelectPage {
 
+    private var mFragmentInit = false
+    private var isTabLayoutClick = false
     override fun getViewModel(app: Application) = FindContentTreeAndNaviVM(mContentPage, app)
 
     override fun onViewInit() {
         super.onViewInit()
+        mFragmentInit = true
     }
 
     override fun onEvent() {
         super.onEvent()
+        if (isTabLayoutClick) {
+            onSelectPage()
+        }
     }
 
     override fun bindScrollListener() {
@@ -41,7 +47,13 @@ class FindContentTreeAndNaviFragment(private val mContentPage: FindContentTreeAn
     }
 
     override fun onSelectPage() {
-
+        if (!mFragmentInit) {
+            isTabLayoutClick = true
+        } else {
+            if (!mRealVM.isRequestSuccess) {
+                mRealVM.requestServer()
+            }
+        }
     }
 
 }

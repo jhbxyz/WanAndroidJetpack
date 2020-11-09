@@ -24,7 +24,7 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
     val mAdapterRight = QuickAdapter(R.layout.item_rv_home, mDataRight)
 
     private val mNaviMap = hashMapOf<Int?, List<ItemDatasBean>?>()
-
+    var isRequestSuccess = false
     private var mCurrPage = 0
     private var mPageCount = 1
 
@@ -54,12 +54,11 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
 
     override fun onModelBind() {
         super.onModelBind()
-
-        requestServer()
     }
 
     fun requestServer() {
         launch {
+            isRequestSuccess = true
             val data = mRepo.weChatList().data
             data?.forEach {
                 mDataLeft.add(ItemFindContentWeChatLeftVM(getApplication()).apply {

@@ -1,18 +1,11 @@
 package com.aboback.wanandroidjetpack.find.ui
 
 import android.app.Application
-import androidx.lifecycle.Observer
 import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
-import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
-import com.aboback.wanandroidjetpack.find.viewmodel.FindContentVM
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentWeChatVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
-import com.aboback.wanandroidjetpack.main.ui.MainActivity
-import com.aboback.wanandroidjetpack.util.RvScrollDelegate
-import java.io.Serializable
 
 /**
  * @author jhb
@@ -20,15 +13,21 @@ import java.io.Serializable
  */
 class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(R.layout.fragment_find_content_we_chat), RvScrollToTop, SelectPage {
 
+    private var mFragmentInit = false
+    private var isTablayoutClick = false
 
     override fun getViewModel(app: Application) = FindContentWeChatVM(app)
 
     override fun onViewInit() {
         super.onViewInit()
+        mFragmentInit = true
     }
 
     override fun onEvent() {
         super.onEvent()
+        if (isTablayoutClick) {
+            onSelectPage()
+        }
     }
 
     override fun bindScrollListener() {
@@ -38,6 +37,13 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
     }
 
     override fun onSelectPage() {
+        if (!mFragmentInit) {
+            isTablayoutClick = true
+        } else {
+            if (!mRealVM.isRequestSuccess) {
+                mRealVM.requestServer()
+            }
+        }
 
     }
 
