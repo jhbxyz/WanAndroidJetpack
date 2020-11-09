@@ -74,7 +74,12 @@ interface ApiService {
 
     //项目分类
     @GET("/project/tree/json")
-    suspend fun projectTreeList(): NaviListBean
+    suspend fun projectTreeList(): ArrayDataBean
+
+    //项目分类
+    @GET("/project/list/{page}/json")
+    suspend fun projectListCid(@Path("page") page: Int,
+                               @Query("cid") cid: Int? = null): ObjectDataBean
 
     //自己分享的文章
     @GET("/user/lg/private_articles/{page}/json")

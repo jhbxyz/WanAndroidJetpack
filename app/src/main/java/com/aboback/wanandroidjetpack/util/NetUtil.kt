@@ -39,7 +39,9 @@ fun BaseViewModel.launch(showDialog: Boolean = true, finish: (suspend () -> Unit
 private fun BaseViewModel.dialogState(showDialog: Boolean, state: Boolean) {
     if (showDialog) {
         isDialogShow.value = state
+        "dialogState showDialog = $showDialog  state = $state".logWithTag("啊啊啊啊啊啊啊啊啊啊啊")
     }
+
 }
 
 fun <T : BaseBean> response(bean: T, result: T.() -> Unit) {
