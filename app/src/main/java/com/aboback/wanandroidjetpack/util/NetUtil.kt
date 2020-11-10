@@ -24,7 +24,7 @@ fun BaseViewModel.launch(showDialog: Boolean = true, finish: (suspend () -> Unit
         } catch (e: Throwable) {
             if (error.isNull()) {
                 dialogState(showDialog, false)
-                "网络错误: ${e.message}".showToast()
+                e.netError()
             } else {
                 error?.invoke()
             }
@@ -39,7 +39,6 @@ fun BaseViewModel.launch(showDialog: Boolean = true, finish: (suspend () -> Unit
 private fun BaseViewModel.dialogState(showDialog: Boolean, state: Boolean) {
     if (showDialog) {
         isDialogShow.value = state
-        "dialogState showDialog = $showDialog  state = $state".logWithTag("啊啊啊啊啊啊啊啊啊啊啊")
     }
 
 }
@@ -61,4 +60,9 @@ fun noMoreData() {
 
 fun loginFirst() {
     "请先登录...".showToast()
+}
+
+fun Throwable.netError() {
+    "网络错误: $message".showToast()
+
 }

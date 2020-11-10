@@ -1,8 +1,10 @@
 package com.aboback.wanandroidjetpack.find.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.viewModelScope
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.util.falsely
+import com.aboback.base.util.showToast
 import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
@@ -12,7 +14,9 @@ import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.loadSuccess
+import com.aboback.wanandroidjetpack.util.netError
 import com.aboback.wanandroidjetpack.util.noMoreData
+import kotlinx.coroutines.launch
 
 /**
  * Created by jhb on 2020-03-11.
@@ -56,55 +60,76 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
     }
 
     fun requestServer() {
-        launch {
-            isRequestSuccess = true
-            val data = mRepo.weChatList().data
-            data?.forEach {
-                mDataLeft.add(ItemFindContentWeChatLeftVM(getApplication()).apply {
-                    mContent.set(it?.name)
-                    mId = it?.id
-                    onClickItem = {
-                        if (mChecked.get().falsely()) {
-                            mDataLeft.find { it.mChecked.get().truely() }?.apply {
-                                mChecked.set(false)
+
+        viewModelScope.launch {
+            isDialogShow.value = true
+            try {
+                isRequestSuccess = true
+                val data = mRepo.weChatList().data
+                data?.forEach {
+                    mDataLeft.add(ItemFindContentWeChatLeftVM(getApplication()).apply {
+                        mContent.set(it?.name)
+                        mId = it?.id
+                        onClickItem = {
+                            if (mChecked.get().falsely()) {
+                                mDataLeft.find { it.mChecked.get().truely() }?.apply {
+                                    mChecked.set(false)
+                                }
+                                mChecked.set(true)
+                                mCurrPage = 0
+                                weChatListDetail(it?.id, isClick = true)
                             }
-                            mChecked.set(true)
-                            mCurrPage = 0
-                            weChatListDetail(it?.id, isClick = true)
                         }
-                    }
-                })
+                    })
+                }
+
+                mDataLeft[0].mChecked.set(true)
+                weChatListDetail(data?.get(0)?.id)
+
+                mAdapterLeft.notifyDataSetChanged()
+            } catch (e: Exception) {
+                e.netError()
+                isRequestSuccess = false
+                isDialogShow.value = false
+            } finally {
+
             }
-
-            mDataLeft[0].mChecked.set(true)
-            weChatListDetail(data?.get(0)?.id)
-
-            mAdapterLeft.notifyDataSetChanged()
         }
     }
 
     private fun weChatListDetail(id: Int?, isClick: Boolean = false, isRefresh: Boolean = false) {
         mCurrId = id
 
-        launch(showDialog = !isRefresh, finish = {
-            if (isRefresh) {
-                rvVMRight.mIsRefreshing.set(false)
-            }
-        }) {
-            if (isRefresh || isClick) {
-                mDataRight.clear()
-            }
+        viewModelScope.launch {
+            try {
+                if (isRefresh) {
+                    mDataRight.clear()
+                } else {
+                    isDialogShow.value = true
+                    if (isClick) {
+                        mDataRight.clear()
+                    }
+                }
 
-            val data = mRepo.weChatListDetail(id, mCurrPage).data
-            mPageCount = data?.pageCount ?: 1
-            data?.datas?.forEach {
-                mDataRight.add(ItemHomeVM(getApplication(), it).apply {
-                    bindData()
-                })
-            }
-            mAdapterRight.notifyDataSetChanged()
-            if (!isRefresh) {
-                loadSuccess()
+                val data = mRepo.weChatListDetail(id, mCurrPage).data
+                mPageCount = data?.pageCount ?: 1
+                data?.datas?.forEach {
+                    mDataRight.add(ItemHomeVM(getApplication(), it).apply {
+                        bindData()
+                    })
+                }
+                mAdapterRight.notifyDataSetChanged()
+                if (!isRefresh) {
+                    loadSuccess()
+                }
+            } catch (e: Exception) {
+                e.netError()
+            } finally {
+                if (isRefresh) {
+                    rvVMRight.mIsRefreshing.set(false)
+                } else {
+                    isDialogShow.value = false
+                }
             }
         }
     }
