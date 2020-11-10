@@ -74,21 +74,12 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
                 }
                 CollectContentPage.INTERVIEW_RELATE -> {
                     mRepo.interviewRelate(mCurrPage).onSuccess(showDialog)
-
                 }
                 CollectContentPage.SHARE_ARTICLE -> {
                     mRepo.shareArticle(mCurrPage).data?.onSuccess(showDialog)
                 }
                 CollectContentPage.COLLECT_WEBSITE -> {
-                    mData.clear()
-                    mRepo.collectWebsite().data?.forEach {
-                        mData.add(ItemHomeVM(getApplication(), it).apply {
-                            mCollectIconShow.set(false)
-                            mTime.set(it.name)
-                            mTitle.set(it.link)
-                        })
-                    }
-                    mAdapter.notifyDataSetChanged()
+                    collectWebsite()
                 }
                 CollectContentPage.SHARE_PROJECT -> {
 
@@ -133,5 +124,17 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
         })
     }
 
+    private suspend fun collectWebsite() {
+        mData.clear()
+        isRequestSuccess = true
+        mRepo.collectWebsite().data?.forEach {
+            mData.add(ItemHomeVM(getApplication(), it).apply {
+                mCollectIconShow.set(false)
+                mTime.set(it.name)
+                mTitle.set(it.link)
+            })
+        }
+        mAdapter.notifyDataSetChanged()
+    }
 
 }
