@@ -36,6 +36,7 @@ class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragmen
         TabLayoutMediator(tabLayout, viewPager2, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             tab.text = mTitles[position]
         }).attach()
+        onSelectedPage(0)
     }
 
     override fun onEvent() {

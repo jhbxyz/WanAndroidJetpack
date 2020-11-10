@@ -1,6 +1,7 @@
 package com.aboback.wanandroidjetpack.home.viewmodel
 
 import android.app.Application
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
@@ -17,11 +18,15 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
     var mTime = ObservableField("")
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
+    var mId: Int? = null
+    var mCollect = ObservableBoolean()
 
     var mTagVM1 = ObservableField<TagViewModel>()
     var mTagVM2 = ObservableField<TagViewModel>()
     var mTagVM3 = ObservableField<TagViewModel>()
     var mTagVM4 = ObservableField<TagViewModel>()
+
+    var onCollectClick = {}
 
     fun bindData() {
         setTitle()
@@ -29,6 +34,8 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
         setAuthor()
         setCategory()
         setTags()
+        mId = bean?.id
+        mCollect.set(bean?.collect ?: false)
     }
 
     private fun addNewTags(bean: ItemDatasBean?) {

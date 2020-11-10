@@ -30,6 +30,15 @@ interface ApiService {
     suspend fun lgCollectList(@Path("page") page: Int): ObjectDataBean
 
 
+    //收藏站内文章 文章id，拼接在链接中。
+    @POST("/lg/collect/{id}/json")
+    suspend fun collect(@Path("id") page: Int): BaseBean
+
+    //取消收藏  文章列表 文章id，拼接在链接中。
+    @POST("lg/uncollect_originId/{id}/json")
+    suspend fun unCollect(@Path("id") page: Int): BaseBean
+
+
     @GET("lg/coin/userinfo/json")
     suspend fun lgCoinUserInfo(): CoinUserInfoBean
 

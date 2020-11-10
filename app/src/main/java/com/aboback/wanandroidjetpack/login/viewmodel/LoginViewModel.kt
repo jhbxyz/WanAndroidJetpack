@@ -10,7 +10,7 @@ import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
-import com.aboback.wanandroidjetpack.network.NetConstant
+import com.aboback.network.NetConstant
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel

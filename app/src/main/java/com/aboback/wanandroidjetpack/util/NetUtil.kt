@@ -6,7 +6,7 @@ import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseViewModel
 import com.aboback.network.BaseBean
-import com.aboback.wanandroidjetpack.network.NetConstant
+import com.aboback.network.NetConstant
 import kotlinx.coroutines.launch
 
 /**
@@ -64,5 +64,19 @@ fun loginFirst() {
 
 fun Throwable.netError() {
     "网络错误: $message".showToast()
-
 }
+
+fun collectSuccess() {
+    "收藏成功...".showToast()
+}
+
+fun cancelCollect() {
+    "已取消收藏...".showToast()
+}
+
+
+
+
+
+
+

@@ -7,11 +7,13 @@ import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
+import com.aboback.network.NetConstant
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
+import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.loadSuccess
+import com.aboback.wanandroidjetpack.util.*
 import com.aboback.wanandroidjetpack.viewmodel.*
 import kotlinx.coroutines.launch
 
@@ -162,7 +164,52 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
             bindData()
+            onCollectClick = {
+                if (mCollect.get()) {
+                    mId?.let { unCollect(it) }
+                } else {
+                    mId?.let { collect(it) }
+                }
+            }
         })
+    }
+
+    private fun collect(id: Int) {
+        launch {
+            val bean = mRepo.collect(id)
+            when (bean.errorCode) {
+                NetConstant.SUCCESS -> {
+                    mData.filterIsInstance<ItemHomeVM>().find { it.mId == id }?.mCollect?.set(true)
+                    collectSuccess()
+                }
+                NetConstant.UN_LOGIN -> {
+                    bean.errorMsg?.showToast()
+                    startActivity(LoginActivity::class.java)
+                }
+                else -> {
+                    bean.errorMsg?.showToast()
+                }
+            }
+        }
+    }
+
+    private fun unCollect(id: Int) {
+        launch {
+            val bean = mRepo.unCollect(id)
+            when (bean.errorCode) {
+                NetConstant.SUCCESS -> {
+                    mData.filterIsInstance<ItemHomeVM>().find { it.mId == id }?.mCollect?.set(false)
+                    cancelCollect()
+                }
+                NetConstant.UN_LOGIN -> {
+                    bean.errorMsg?.showToast()
+                    startActivity(LoginActivity::class.java)
+                }
+                else -> {
+                    bean.errorMsg?.showToast()
+                }
+            }
+        }
     }
 
 
