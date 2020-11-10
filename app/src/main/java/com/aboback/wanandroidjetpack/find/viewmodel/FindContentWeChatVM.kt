@@ -9,13 +9,11 @@ import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
+import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.find.FindContentWeChatRepository
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.loadSuccess
-import com.aboback.wanandroidjetpack.util.netError
-import com.aboback.wanandroidjetpack.util.noMoreData
+import com.aboback.wanandroidjetpack.util.*
 import kotlinx.coroutines.launch
 
 /**
@@ -97,6 +95,11 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
         }
     }
 
+    private var mCollectId: Int? = null
+    fun updateCollectState(state: Boolean) {
+        mDataRight.find { it.mId == mCollectId }?.mCollect?.set(state)
+    }
+
     private fun weChatListDetail(id: Int?, isClick: Boolean = false, isRefresh: Boolean = false) {
         mCurrId = id
 
@@ -116,6 +119,18 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
                 data?.datas?.forEach {
                     mDataRight.add(ItemHomeVM(getApplication(), it).apply {
                         bindData()
+                        onCollectClick = {
+                            mCollectId = mId
+                            if (mCollect.get()) {
+                                mId?.let { id ->
+                                    unCollectDelegate(id, mRepo, mDataRight)
+                                }
+                            } else {
+                                mId?.let { id ->
+                                    collectDelegate(id, mRepo, mDataRight)
+                                }
+                            }
+                        }
                     })
                 }
                 mAdapterRight.notifyDataSetChanged()

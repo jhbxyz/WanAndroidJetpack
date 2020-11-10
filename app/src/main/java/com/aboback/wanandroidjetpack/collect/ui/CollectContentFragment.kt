@@ -46,9 +46,7 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
         }
 
         GlobalSingle.onCollectChange.observe(this, Observer {
-            if (it) {
-                mRealVM.requestServer(false)
-            }
+            mRealVM.requestServer(false)
         })
     }
 

@@ -1,6 +1,7 @@
 package com.aboback.wanandroidjetpack.find.viewmodel
 
 import android.app.Application
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.aboback.base.rv.BaseItemViewModel
 import com.aboback.base.util.getResColor
@@ -18,5 +19,7 @@ class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app) {
     var mAuthor = ObservableField<String>()
     var mId: Int? = 0
     var mChecked = ObservableField<Boolean>(false)
+    var mCollect = ObservableBoolean()
+    var onCollectClick = {}
     var onClickItem = {}
 }

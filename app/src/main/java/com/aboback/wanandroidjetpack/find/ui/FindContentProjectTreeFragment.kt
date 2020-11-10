@@ -1,8 +1,10 @@
 package com.aboback.wanandroidjetpack.find.ui
 
 import android.app.Application
+import androidx.lifecycle.Observer
 import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentProjectTreeVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
@@ -32,6 +34,10 @@ class FindContentProjectTreeFragment : BaseVMRepositoryFragment<FindContentProje
         if (isTabLayoutClick) {
             onSelectPage()
         }
+
+        GlobalSingle.onCollectChange.observe(this, Observer {
+            mRealVM.updateCollectState(it)
+        })
     }
 
     override fun bindScrollListener() {

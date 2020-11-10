@@ -13,10 +13,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.find.FindContentProjectTreeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.loadSuccess
-import com.aboback.wanandroidjetpack.util.netError
-import com.aboback.wanandroidjetpack.util.noMoreData
+import com.aboback.wanandroidjetpack.util.*
 import kotlinx.coroutines.launch
 
 /**
@@ -98,6 +95,11 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
     }
 
     private var mId: Int? = null
+    private var mCollectId: Int? = null
+    fun updateCollectState(state: Boolean) {
+        mDataRight.find { it.mId == mCollectId }?.mCollect?.set(state)
+    }
+
     private fun projectList(id: Int?, isRefresh: Boolean = false, isClick: Boolean = false) {
         mId = id
 
@@ -120,6 +122,21 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
                         mDesc.set(it.desc)
                         mTime.set(it.niceShareDate)
                         mAuthor.set(it.author)
+                        mId = it.id
+                        mCollect.set(it.collect ?: false)
+                        onCollectClick = {
+                            mCollectId = mId
+                            if (mCollect.get()) {
+                                mId?.let { id ->
+                                    unCollectProjectTreeDelegate(id, mRepo, mDataRight)
+                                }
+                            } else {
+                                mId?.let { id ->
+                                    collectProjectTreeDelegate(id, mRepo, mDataRight)
+                                }
+                            }
+                        }
+
                     })
                 }
 

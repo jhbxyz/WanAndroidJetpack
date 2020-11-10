@@ -113,7 +113,9 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/collect_gray"
+                android:onClick="@{()->item.onCollectClick.invoke()}"
+                android:src="@{item.mCollect ? @drawable/collect_red : @drawable/collect_gray }"
+                tools:src="@drawable/collect_red"
                 app:layout_constraintBottom_toBottomOf="@+id/iv"
                 app:layout_constraintEnd_toEndOf="parent" />
 

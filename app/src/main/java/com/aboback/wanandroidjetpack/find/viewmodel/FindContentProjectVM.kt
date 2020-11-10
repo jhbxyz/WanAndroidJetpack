@@ -6,9 +6,7 @@ import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.find.FindContentProjectRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.loadSuccess
-import com.aboback.wanandroidjetpack.util.noMoreData
+import com.aboback.wanandroidjetpack.util.*
 
 /**
  * Created by jhb on 2020-03-11.
@@ -63,6 +61,19 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
                     mDesc.set(it.desc)
                     mTime.set(it.niceShareDate)
                     mAuthor.set(it.author)
+                    mCollect.set(it.collect ?: false)
+                    mId = it.id
+                    onCollectClick = {
+                        if (mCollect.get()) {
+                            mId?.let { id ->
+                                unCollectProjectDelegate(id, mRepo, mData)
+                            }
+                        } else {
+                            mId?.let { id ->
+                                collectProjectDelegate(id, mRepo, mData)
+                            }
+                        }
+                    }
                 })
             }
 
