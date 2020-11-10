@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.aboback.wanandroidjetpack.find.viewmodel.FindContentTreeAndNaviVM" />
+            type="com.aboback.wanandroidjetpack.find.viewmodel.FindContentNaviVM" />
 
     </data>
 

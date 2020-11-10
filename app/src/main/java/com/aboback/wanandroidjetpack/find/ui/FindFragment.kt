@@ -3,7 +3,6 @@ package com.aboback.wanandroidjetpack.find.ui
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseViewModelFragment
-import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
@@ -27,8 +26,8 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
     override fun onViewInit() {
         super.onViewInit()
 
-        mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.TREE))
-        mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.NAVIGATION))
+        mFragments.add(FindContentTreeFragment())
+        mFragments.add(FindContentNaviFragment())
         mFragments.add(FindContentWeChatFragment())
         mFragments.add(FindContentProjectFragment())
         mFragments.add(FindContentProjectTreeFragment())

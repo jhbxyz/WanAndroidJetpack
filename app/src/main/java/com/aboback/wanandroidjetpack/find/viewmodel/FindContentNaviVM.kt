@@ -7,9 +7,7 @@ import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
-import com.aboback.wanandroidjetpack.bean.TreeListBean
-import com.aboback.wanandroidjetpack.find.FindContentTreeAndNaviRepository
-import com.aboback.wanandroidjetpack.find.ui.FindContentTreeAndNaviPage
+import com.aboback.wanandroidjetpack.find.FindContentNaviRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
 
@@ -17,7 +15,7 @@ import com.aboback.wanandroidjetpack.util.launch
  * Created by jhb on 2020-11-06.
  * 体系和导航
  */
-class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviPage, app: Application) : BaseRepositoryViewModel<FindContentTreeAndNaviRepository>(app, FindContentTreeAndNaviRepository(mContentPage)) {
+class FindContentNaviVM(app: Application) : BaseRepositoryViewModel<FindContentNaviRepository>(app, FindContentNaviRepository()) {
 
     private var mDataLeft = arrayListOf<ItemFindContentTreeAndNaviLeftVM>()
     private val mAdapterLeft = QuickAdapter(R.layout.item_rv_find_content_tree_and_navi_left, mDataLeft)
@@ -26,7 +24,6 @@ class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviP
     private val mAdapterRight = QuickAdapter(R.layout.item_rv_find_content_tree_and_navi_right, mDataRight)
 
     private val mNaviMap = hashMapOf<Int?, List<ItemDatasBean>?>()
-    private val mTreeMap = hashMapOf<Int?, List<TreeListBean.DataBean.ChildrenBean?>?>()
 
     var isRequestSuccess = false
 
@@ -39,66 +36,11 @@ class FindContentTreeAndNaviVM(private val mContentPage: FindContentTreeAndNaviP
         mAdapterObservable.set(mAdapterRight)
     }
 
-    override fun onModelBind() {
-        super.onModelBind()
-
-    }
 
     fun requestServer() {
         launch {
-            when (mContentPage) {
-                FindContentTreeAndNaviPage.TREE -> {
-                    treeList()
-                }
-                FindContentTreeAndNaviPage.NAVIGATION -> {
-                    naviList()
-                }
-            }
-
+            naviList()
         }
-    }
-
-    private suspend fun treeList() {
-        isRequestSuccess = true
-        mDataLeft.clear()
-        mRepo.treeList().data?.forEach {
-
-            mTreeMap[it?.id] = it?.children
-
-            mDataLeft.add(ItemFindContentTreeAndNaviLeftVM(getApplication()).apply {
-                mContent.set(it?.name)
-                mCid = it?.id
-                onClickItem = {
-                    if (mChecked.get().falsely()) {
-                        mDataLeft.find { it.mChecked.get().truely() }?.apply {
-                            mChecked.set(false)
-                        }
-                        mChecked.set(true)
-
-                        getTreeArticles(mCid)
-                    }
-                }
-            })
-
-        }
-        val leftVM = mDataLeft[0]
-        leftVM.mChecked.set(true)
-        getTreeArticles(leftVM.mCid)
-
-        mAdapterLeft.notifyDataSetChanged()
-    }
-
-    private fun getTreeArticles(cid: Int?) {
-        mDataRight.clear()
-        mTreeMap[cid]?.forEach {
-            mDataRight.add(ItemFindContentTreeAndNaviRightVM(getApplication()).apply {
-                mContent.set(it?.name)
-                onClickItem = {
-
-                }
-            })
-        }
-        mAdapterRight.notifyDataSetChanged()
     }
 
     private suspend fun naviList() {
