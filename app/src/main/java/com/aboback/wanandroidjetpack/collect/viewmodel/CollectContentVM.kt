@@ -20,10 +20,7 @@ import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.login.viewmodel.LoginViewModel
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.loginFirst
-import com.aboback.wanandroidjetpack.util.noMoreData
-import com.aboback.wanandroidjetpack.util.response
+import com.aboback.wanandroidjetpack.util.*
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import kotlinx.coroutines.launch
 
@@ -32,18 +29,16 @@ import kotlinx.coroutines.launch
  */
 class CollectContentVM(private val mContentPage: CollectContentPage, app: Application) : BaseRepositoryViewModel<CollectContentRepository>(app, CollectContentRepository(mContentPage)) {
 
-    var mData = arrayListOf<ItemHomeVM>()
-    val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
+    private var mData = arrayListOf<ItemHomeVM>()
+    private val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
 
     private var mCurrPage = 0
     private var mPageCount = 1
 
-    var mSelectCurrentPage = MutableLiveData<CollectContentPage>()
-
     var isRequestSuccess = false
 
     var rvVM = RecyclerViewVM(app).apply {
-        mRefreshEnable = true
+        mRefreshEnable = (mContentPage != CollectContentPage.COLLECT_WEBSITE && mContentPage != CollectContentPage.SHARE_PROJECT)
         mAdapterObservable.set(mAdapter)
 
         mOnRefresh = {
@@ -65,11 +60,6 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     }
 
 
-    override fun onModelBind() {
-        super.onModelBind()
-
-    }
-
     fun requestServer(showDialog: Boolean = true) {
         if (!WanApp.isLogin) {
             rvVM.mIsRefreshing.set(false)
@@ -90,8 +80,10 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
                     mRepo.shareArticle(mCurrPage).data?.onSuccess(showDialog)
                 }
                 CollectContentPage.COLLECT_WEBSITE -> {
+                    mData.clear()
                     mRepo.collectWebsite().data?.forEach {
                         mData.add(ItemHomeVM(getApplication(), it).apply {
+                            mCollectIconShow.set(false)
                             mTime.set(it.name)
                             mTitle.set(it.link)
                         })
@@ -106,9 +98,15 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     }
 
     private fun ObjectDataBean.onSuccess(showDialog: Boolean) {
+        if (!showDialog) {
+            mData.clear()
+        }
         isRequestSuccess = true
         mPageCount = data?.pageCount ?: 1
         data?.datas?.forEach {
+            if (mContentPage == CollectContentPage.COLLECT_ARTICLE) {
+                it.collect = true
+            }
             bindData(it)
         }
         mAdapter.notifyDataSetChanged()
@@ -121,6 +119,17 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
             bindData()
+            onCollectClick = {
+                if (mCollect.get()) {
+                    mId?.let {
+                        unCollectDelegate(it, mRepo, mData, mContentPage == CollectContentPage.COLLECT_ARTICLE, mOriginId)
+                    }
+                } else {
+                    mId?.let {
+                        collectDelegate(it, mRepo, mData)
+                    }
+                }
+            }
         })
     }
 

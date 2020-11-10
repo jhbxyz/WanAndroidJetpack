@@ -166,51 +166,18 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             bindData()
             onCollectClick = {
                 if (mCollect.get()) {
-                    mId?.let { unCollect(it) }
+                    mId?.let {
+                        unCollectDelegate(it, mRepo, mData.filterIsInstance<ItemHomeVM>())
+                    }
                 } else {
-                    mId?.let { collect(it) }
+                    mId?.let {
+                        collectDelegate(it, mRepo, mData.filterIsInstance<ItemHomeVM>())
+                    }
                 }
             }
         })
     }
 
-    private fun collect(id: Int) {
-        launch {
-            val bean = mRepo.collect(id)
-            when (bean.errorCode) {
-                NetConstant.SUCCESS -> {
-                    mData.filterIsInstance<ItemHomeVM>().find { it.mId == id }?.mCollect?.set(true)
-                    collectSuccess()
-                }
-                NetConstant.UN_LOGIN -> {
-                    bean.errorMsg?.showToast()
-                    startActivity(LoginActivity::class.java)
-                }
-                else -> {
-                    bean.errorMsg?.showToast()
-                }
-            }
-        }
-    }
-
-    private fun unCollect(id: Int) {
-        launch {
-            val bean = mRepo.unCollect(id)
-            when (bean.errorCode) {
-                NetConstant.SUCCESS -> {
-                    mData.filterIsInstance<ItemHomeVM>().find { it.mId == id }?.mCollect?.set(false)
-                    cancelCollect()
-                }
-                NetConstant.UN_LOGIN -> {
-                    bean.errorMsg?.showToast()
-                    startActivity(LoginActivity::class.java)
-                }
-                else -> {
-                    bean.errorMsg?.showToast()
-                }
-            }
-        }
-    }
 
 
 }

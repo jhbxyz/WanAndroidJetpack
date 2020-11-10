@@ -11,4 +11,7 @@ object GlobalSingle {
 
     val isLoginSuccess = MutableLiveData<Boolean>()
     val isLoginSuccessToCollect = MutableLiveData<CollectContentPage>()
+
+    var onCollectChange = MutableLiveData<Boolean>()
+
 }

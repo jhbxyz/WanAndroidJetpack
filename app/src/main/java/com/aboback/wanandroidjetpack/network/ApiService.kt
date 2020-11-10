@@ -32,11 +32,16 @@ interface ApiService {
 
     //收藏站内文章 文章id，拼接在链接中。
     @POST("/lg/collect/{id}/json")
-    suspend fun collect(@Path("id") page: Int): BaseBean
+    suspend fun collect(@Path("id") id: Int): BaseBean
 
     //取消收藏  文章列表 文章id，拼接在链接中。
     @POST("lg/uncollect_originId/{id}/json")
-    suspend fun unCollect(@Path("id") page: Int): BaseBean
+    suspend fun unCollect(@Path("id") id: Int): BaseBean
+
+    //取消收藏  我的收藏页面（该页面包含自己录入的内容） 文章id，拼接在链接中。
+    @FormUrlEncoded
+    @POST("/lg/uncollect/{id}/json")
+    suspend fun unCollectInMe(@Path("id") id: Int, @Field("originId") originId: Int): BaseBean
 
 
     @GET("lg/coin/userinfo/json")

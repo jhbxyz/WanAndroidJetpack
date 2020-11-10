@@ -107,6 +107,7 @@
             <ImageView
                 android:id="@+id/tvCollect"
                 android:layout_marginStart="@dimen/dp_10"
+                android:visibility="@{item.mCollectIconShow ? View.VISIBLE : View.INVISIBLE}"
                 android:gravity="center_vertical"
                 android:onClick="@{()->item.onCollectClick.invoke()}"
                 android:layout_width="wrap_content"

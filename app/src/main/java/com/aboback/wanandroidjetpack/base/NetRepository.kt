@@ -19,8 +19,8 @@ open class NetRepository : BaseRepository {
         api.collect(id)
     }
 
-    suspend fun unCollect(id: Int) = withContext(Dispatchers.IO) {
-        api.unCollect(id)
+    suspend fun unCollect(id: Int, isOnMe: Boolean = false, originId: Int = -1) = withContext(Dispatchers.IO) {
+        if (isOnMe) api.unCollectInMe(id, originId) else api.unCollect(id)
     }
 
 

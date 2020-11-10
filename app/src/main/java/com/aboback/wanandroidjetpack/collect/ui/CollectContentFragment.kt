@@ -44,6 +44,12 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
         if (isTabLayoutClick) {
             onSelectPage()
         }
+
+        GlobalSingle.onCollectChange.observe(this, Observer {
+            if (it) {
+                mRealVM.requestServer(false)
+            }
+        })
     }
 
     override fun bindScrollListener() {

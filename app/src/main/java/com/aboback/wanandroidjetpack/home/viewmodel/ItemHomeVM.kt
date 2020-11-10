@@ -19,7 +19,9 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
     var mId: Int? = null
+    var mOriginId: Int = -1
     var mCollect = ObservableBoolean()
+    var mCollectIconShow = ObservableBoolean(true)
 
     var mTagVM1 = ObservableField<TagViewModel>()
     var mTagVM2 = ObservableField<TagViewModel>()
@@ -35,6 +37,7 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
         setCategory()
         setTags()
         mId = bean?.id
+        mOriginId = bean?.originId ?: -1
         mCollect.set(bean?.collect ?: false)
     }
 

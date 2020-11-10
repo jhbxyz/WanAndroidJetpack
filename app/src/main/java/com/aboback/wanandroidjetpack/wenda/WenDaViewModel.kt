@@ -9,9 +9,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.loadSuccess
-import com.aboback.wanandroidjetpack.util.response
+import com.aboback.wanandroidjetpack.util.*
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
@@ -88,6 +86,17 @@ class WenDaViewModel(app: Application) : BaseRepositoryViewModel<WenDaRepository
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
             bindData()
+            onCollectClick = {
+                if (mCollect.get()) {
+                    mId?.let {
+                        unCollectDelegate(it, mRepo, mData)
+                    }
+                } else {
+                    mId?.let {
+                        collectDelegate(it, mRepo, mData)
+                    }
+                }
+            }
         })
     }
 
