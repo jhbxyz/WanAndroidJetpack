@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.find.viewmodel
 
 import android.app.Application
 import android.os.SystemClock
+import androidx.lifecycle.viewModelScope
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.util.falsely
 import com.aboback.base.util.log
@@ -14,7 +15,9 @@ import com.aboback.wanandroidjetpack.find.FindContentProjectTreeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.loadSuccess
+import com.aboback.wanandroidjetpack.util.netError
 import com.aboback.wanandroidjetpack.util.noMoreData
+import kotlinx.coroutines.launch
 
 /**
  * Created by jhb on 2020-03-11.
@@ -60,26 +63,35 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
     }
 
     fun requestServer() {
-        launch {
-            isRequestSuccess = true
-            mRepo.projectTreeList().data?.forEach {
-                mDataLeft.add(ItemFindContentProjectTreeLeftVM(getApplication()).apply {
-                    mContent.set(it.name)
-                    mCid = it.id
-                    onClickItem = {
-                        if (mChecked.get().falsely()) {
-                            mDataLeft.find { it.mChecked.get().truely() }?.mChecked?.set(false)
-                            mChecked.set(true)
-                            projectList(mCid, isClick = true)
-                        }
-                    }
-                })
-            }
 
-            val leftVM = mDataLeft[0]
-            leftVM.mChecked.set(true)
-            mAdapterLeft.notifyDataSetChanged()
-            projectList(leftVM.mCid)
+        viewModelScope.launch {
+            try {
+                isDialogShow.value = true
+                isRequestSuccess = true
+                mRepo.projectTreeList().data?.forEach {
+                    mDataLeft.add(ItemFindContentProjectTreeLeftVM(getApplication()).apply {
+                        mContent.set(it.name)
+                        mCid = it.id
+                        onClickItem = {
+                            if (mChecked.get().falsely()) {
+                                mDataLeft.find { it.mChecked.get().truely() }?.mChecked?.set(false)
+                                mChecked.set(true)
+                                projectList(mCid, isClick = true)
+                            }
+                        }
+                    })
+                }
+
+                val leftVM = mDataLeft[0]
+                leftVM.mChecked.set(true)
+                mAdapterLeft.notifyDataSetChanged()
+
+                projectList(leftVM.mCid)
+
+            } catch (e: Exception) {
+                e.netError()
+            } finally {
+            }
 
 
         }
@@ -88,29 +100,44 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
     private var mId: Int? = null
     private fun projectList(id: Int?, isRefresh: Boolean = false, isClick: Boolean = false) {
         mId = id
-        launch(showDialog = !isRefresh, finish = {
-            if (isRefresh) {
-                rvVMRight.mIsRefreshing.set(false)
-            }
-        }) {
-            if (isRefresh || isClick) {
-                mDataRight.clear()
-            }
-            val data = mRepo.projectListCid(mCurrPage, id).data
-            mPageCount = data?.pageCount ?: 1
-            data?.datas?.forEach {
-                mDataRight.add(ItemFindContentProjectTreeRightVM(getApplication()).apply {
-                    mPath.set(it.envelopePic)
-                    mTitle.set(it.title)
-                    mDesc.set(it.desc)
-                    mTime.set(it.niceShareDate)
-                    mAuthor.set(it.author)
-                })
-            }
 
-            loadSuccess()
+        viewModelScope.launch {
+            try {
+                if (isRefresh) {
+                    mDataRight.clear()
+                } else {
+                    if (isClick) {
+                        mDataRight.clear()
+                    }
+                    isDialogShow.value = true
+                }
+                val data = mRepo.projectListCid(mCurrPage, id).data
+                mPageCount = data?.pageCount ?: 1
+                data?.datas?.forEach {
+                    mDataRight.add(ItemFindContentProjectTreeRightVM(getApplication()).apply {
+                        mPath.set(it.envelopePic)
+                        mTitle.set(it.title)
+                        mDesc.set(it.desc)
+                        mTime.set(it.niceShareDate)
+                        mAuthor.set(it.author)
+                    })
+                }
 
-            mAdapterRight.notifyDataSetChanged()
+                if (!isRefresh) {
+                    loadSuccess()
+                }
+
+                mAdapterRight.notifyDataSetChanged()
+
+            } catch (e: Exception) {
+                e.netError()
+            } finally {
+                if (isRefresh) {
+                    rvVMRight.mIsRefreshing.set(false)
+                } else {
+                    isDialogShow.value = false
+                }
+            }
         }
     }
 
