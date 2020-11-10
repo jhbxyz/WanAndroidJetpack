@@ -38,6 +38,7 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
             tab.text = mTitles[position]
         }).attach()
 
+        onSelectedPage(0)
         bindScrollListener()
     }
 
