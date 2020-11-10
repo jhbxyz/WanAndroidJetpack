@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_find.*
  */
 class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find, FindViewModel::class.java), RvScrollToTop {
     private val mFragments = arrayListOf<Fragment>()
-    private val mTitles = arrayOf("体系", "公众号", "导航", "项目", "项目分类")
+    private val mTitles = arrayOf("体系", "导航", "公众号", "项目", "项目分类")
 
     private var mPagePosition = 0
 
@@ -28,8 +28,8 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
         super.onViewInit()
 
         mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.TREE))
-        mFragments.add(FindContentWeChatFragment())
         mFragments.add(FindContentTreeAndNaviFragment(FindContentTreeAndNaviPage.NAVIGATION))
+        mFragments.add(FindContentWeChatFragment())
         mFragments.add(FindContentProjectFragment())
         mFragments.add(FindContentProjectTreeFragment())
 

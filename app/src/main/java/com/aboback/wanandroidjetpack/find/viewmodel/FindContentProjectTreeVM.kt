@@ -30,6 +30,8 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
     private var mCurrPage = 0
     private var mPageCount = 1
 
+    var isRequestSuccess = false
+
     var rvVMLeft = RecyclerViewVM(app).apply {
         mAdapterObservable.set(mAdapterLeft)
 
@@ -57,14 +59,9 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
         }
     }
 
-    override fun onModelBind() {
-        super.onModelBind()
-
-        requestServer()
-    }
-
     fun requestServer() {
         launch {
+            isRequestSuccess = true
             mRepo.projectTreeList().data?.forEach {
                 mDataLeft.add(ItemFindContentProjectTreeLeftVM(getApplication()).apply {
                     mContent.set(it.name)
