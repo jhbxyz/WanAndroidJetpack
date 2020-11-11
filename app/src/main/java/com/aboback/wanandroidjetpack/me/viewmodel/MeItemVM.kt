@@ -15,6 +15,7 @@ import com.aboback.wanandroidjetpack.viewmodel.BannerViewModel
 class MeItemVM(app: Application) : BaseMultiItemViewModel(app) {
 
     var mContent = ObservableField("")
+    var mCoinCount = ObservableField("")
     var mIcon = ObservableField(R.drawable.jifen_ico.getResDrawable())
     var mShowDivider = ObservableField(true)
     var mShowMargin = ObservableField(false)

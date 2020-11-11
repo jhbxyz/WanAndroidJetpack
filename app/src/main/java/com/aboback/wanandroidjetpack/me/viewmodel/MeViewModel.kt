@@ -1,27 +1,19 @@
 package com.aboback.wanandroidjetpack.me.viewmodel
 
 import android.app.Application
-import androidx.databinding.ObservableField
-import androidx.lifecycle.viewModelScope
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.util.getResDrawable
-import com.aboback.base.util.randomInt
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.WanApp
-import com.aboback.wanandroidjetpack.bridge.GlobalSingle
-import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.me.ui.SettingActivity
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.response
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 /**
  * @author jhb
@@ -40,16 +32,17 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
         mAdapterObservable.set(mAdapter)
     }
 
+    private var mRankVM = MeItemVM(getApplication()).apply {
+        mContent.set("我的积分")
+        mIcon.set(R.drawable.jifen_ico.getResDrawable())
+
+    }
 
     override fun onModelBind() {
         super.onModelBind()
         mData.add(MeHeaderVM(getApplication()))
 
-        mData.add(MeItemVM(getApplication()).apply {
-            mContent.set("我的积分")
-            mIcon.set(R.drawable.jifen_ico.getResDrawable())
-
-        })
+        mData.add(mRankVM)
 
         mData.add(MeItemVM(getApplication()).apply {
             mContent.set("我的收藏")
@@ -102,10 +95,11 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             val userInfoBean = WanServer.api.lgCoinUserInfo()
             (mData[0] as? MeHeaderVM)?.apply {
                 loadAvatar()
-                mUserName.set(userInfoBean.data?.username)
+                mUserName.set(MmkvUtil.getNikeName())
                 mIdAndRank.set("id : ${userInfoBean.data?.userId}   排名 : ${userInfoBean.data?.rank}")
                 mAdapter.notifyItemChanged(0)
             }
+            mRankVM.mCoinCount.set("当前积分: ${userInfoBean.data?.coinCount}")
         }
     }
 
@@ -117,6 +111,8 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mUserName.set("请登录")
             mIdAndRank.set("id : -- 排名 : --")
         }
+        mRankVM.mCoinCount.set("当前积分: -- ")
+
     }
 
 }

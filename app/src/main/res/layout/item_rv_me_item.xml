@@ -44,6 +44,25 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="xxxxxxxxxxxxx" />
 
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_height="50dp"
+            android:text="@{item.mCoinCount}"
+            android:textSize="@dimen/sp_12"
+            android:gravity="center_vertical|end"
+            android:textColor="@color/colorBlue"
+            app:layout_constraintBottom_toTopOf="@+id/viewMargin"
+            app:layout_constraintEnd_toStartOf="@+id/ivArrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="xxxxxxxxxxxxx" />
+
+
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintStart_toEndOf="@+id/tvContent"-->
+
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_0_5"

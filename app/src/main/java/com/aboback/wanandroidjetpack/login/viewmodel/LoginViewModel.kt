@@ -67,6 +67,7 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
                             }
                         }
                         MmkvUtil.saveCookie(cookieSet)
+                        MmkvUtil.saveNikeName(body.data?.nickname ?: body.data?.publicName ?: body.data?.username ?: "")
                         WanApp.isLogin = true
                         GlobalSingle.isLoginSuccess.value = true
                         mPage?.let {
