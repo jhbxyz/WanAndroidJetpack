@@ -38,6 +38,11 @@
 
         <activity android:name="com.aboback.wanandroidjetpack.login.ui.LoginActivity" />
 
+        <activity
+            android:name=".me.ui.SettingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
 
         <activity
             android:name="com.aboback.wanandroidjetpack.base.WanWebActivity"

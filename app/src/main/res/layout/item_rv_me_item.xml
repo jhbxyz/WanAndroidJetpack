@@ -9,42 +9,72 @@
             name="item"
             type="com.aboback.wanandroidjetpack.me.viewmodel.MeItemVM" />
 
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="@color/colorWhite"
         android:onClick="@{()-> item.onClick.invoke()}"
-        android:layout_height="@dimen/dp_50">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivIcon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop"
+            android:layout_height="0dp"
+            android:src="@{item.MIcon}"
+            android:layout_marginStart="@dimen/dp_20"
+            app:layout_constraintBottom_toBottomOf="@id/tvContent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tvContent"
+            tools:src="@drawable/jifen_ico" />
 
         <TextView
+            android:id="@+id/tvContent"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/dp_10"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="@{item.MContent}"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
+            android:gravity="center_vertical"
             android:textColor="@color/colorGray3"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/viewMargin"
+            app:layout_constraintEnd_toEndOf="@+id/ivArrow"
             app:layout_constraintStart_toEndOf="@+id/ivIcon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="xxxxxxxxxxxxx" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/dp_0_1"
+            android:layout_height="@dimen/dp_0_5"
+            android:background="@color/colorWhiteLight"
+            android:layout_marginStart="@dimen/dp_10"
+            android:visibility="@{item.MShowDivider? View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/colorGray3"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/ivIcon" />
+
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/next_arrow"
+            android:scaleType="centerInside"
+            android:layout_marginEnd="@dimen/dp_12"
+            app:layout_constraintBottom_toBottomOf="@+id/tvContent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvContent" />
+
+        <View
+            android:id="@+id/viewMargin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/colorWhiteLight"
+            android:visibility="@{item.MShowMargin? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvContent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

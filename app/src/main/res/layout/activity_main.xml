@@ -30,10 +30,10 @@
         <View
             android:layout_width="0dp"
             android:background="@color/colorDivide"
-            android:layout_height="@dimen/dp_0_5"
+            android:layout_height="@dimen/dp_1"
             app:layout_constraintBottom_toTopOf="@+id/llNav"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
 
         <RadioGroup
@@ -46,8 +46,8 @@
             android:paddingTop="@dimen/dp_4"
             android:paddingBottom="@dimen/dp_4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewPager2">
 
 

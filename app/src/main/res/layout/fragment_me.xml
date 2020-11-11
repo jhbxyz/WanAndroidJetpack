@@ -21,12 +21,6 @@
             layout="@layout/layout_recyclerview"
             app:rv="@{layout.rvVM}" />
 
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_gravity="bottom"
-            android:onClick="@{()->layout.loginOut()}"
-            android:layout_height="wrap_content"/>
     </FrameLayout>
 
 

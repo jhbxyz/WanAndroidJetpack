@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="layout"
+            type="com.aboback.wanandroidjetpack.me.viewmodel.SettingViewModel" />
+
+        <import type="com.aboback.wanandroidjetpack.BuildConfig" />
+
+        <import type="android.view.View" />
+
+        <import type="com.aboback.wanandroidjetpack.base.WanApp" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/view_model_title"
+            app:title="@{layout.mTitleVM}" />
+
+        <TextView
+            android:textColor="@color/colorBlue"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:textSize="@dimen/sp_16"
+            android:layout_width="0dp"
+            android:text="@{layout.mContent}"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:background="@color/colorBlue"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_16"
+            android:layout_width="0dp"
+            android:text="退出登录"
+            android:onClick="@{()->layout.onLogout()}"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_50"
+            android:layout_height="wrap_content"
+            android:visibility="@{layout.isLogin ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:textColor="@color/colorGray3"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="0dp"
+            android:text="@{layout.mVersionName}"
+            android:gravity="center"
+            android:layout_height="30dp"
+            android:layout_marginBottom="@dimen/dp_0_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1.0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
