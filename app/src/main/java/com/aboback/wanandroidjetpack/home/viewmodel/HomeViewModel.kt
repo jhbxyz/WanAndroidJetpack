@@ -79,6 +79,10 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
 
     }
 
+    fun updateCollectState(bean: CollectChangeBean) {
+        mData.filterIsInstance<ItemHomeVM>()
+            .find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+    }
 
     private fun dialogState(state: HomePageState, isShow: Boolean) {
         if (state != HomePageState.REFRESH) {

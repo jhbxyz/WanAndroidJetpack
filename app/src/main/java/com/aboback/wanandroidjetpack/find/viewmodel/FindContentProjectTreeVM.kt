@@ -124,11 +124,11 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
                             mCollectId = mId
                             if (mCollect.get()) {
                                 mId?.let { id ->
-                                    unCollectProjectDelegate(id, mRepo)
+                                    unCollectDelegate(id, mRepo)
                                 }
                             } else {
                                 mId?.let { id ->
-                                    collectProjectDelegate(id, mRepo)
+                                    collectDelegate(id, mRepo)
                                 }
                             }
                         }

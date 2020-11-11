@@ -55,6 +55,10 @@ class WenDaViewModel(app: Application) : BaseRepositoryViewModel<WenDaRepository
         requestServer(true)
     }
 
+    fun updateCollectState(bean: CollectChangeBean) {
+        mData.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+    }
+
     private fun resetDataIfNeed(showDialog: Boolean) {
         if (!showDialog) {
             mData.clear()

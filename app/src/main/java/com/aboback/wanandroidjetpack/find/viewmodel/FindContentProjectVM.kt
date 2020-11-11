@@ -70,11 +70,11 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
                     onCollectClick = {
                         if (mCollect.get()) {
                             mId?.let { id ->
-                                unCollectProjectDelegate(id, mRepo)
+                                unCollectDelegate(id, mRepo)
                             }
                         } else {
                             mId?.let { id ->
-                                collectProjectDelegate(id, mRepo)
+                                collectDelegate(id, mRepo)
                             }
                         }
                     }

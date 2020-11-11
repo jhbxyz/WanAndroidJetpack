@@ -10,7 +10,6 @@ import com.aboback.wanandroidjetpack.find.viewmodel.FindContentWeChatVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
 import com.aboback.wanandroidjetpack.util.CollectChangeBean
-import com.aboback.wanandroidjetpack.util.CollectState
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 
 /**
