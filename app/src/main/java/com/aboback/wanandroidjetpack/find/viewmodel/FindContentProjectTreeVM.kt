@@ -1,16 +1,12 @@
 package com.aboback.wanandroidjetpack.find.viewmodel
 
 import android.app.Application
-import android.os.SystemClock
 import androidx.lifecycle.viewModelScope
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.util.falsely
-import com.aboback.base.util.log
-import com.aboback.base.util.logWithTag
 import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.find.FindContentProjectTreeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.*
@@ -96,8 +92,8 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
 
     private var mId: Int? = null
     private var mCollectId: Int? = null
-    fun updateCollectState(state: Boolean) {
-        mDataRight.find { it.mId == mCollectId }?.mCollect?.set(state)
+    fun updateCollectState(bean: CollectChangeBean) {
+        mDataRight.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
     }
 
     private fun projectList(id: Int?, isRefresh: Boolean = false, isClick: Boolean = false) {
@@ -128,11 +124,11 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
                             mCollectId = mId
                             if (mCollect.get()) {
                                 mId?.let { id ->
-                                    unCollectProjectTreeDelegate(id, mRepo, mDataRight)
+                                    unCollectProjectDelegate(id, mRepo)
                                 }
                             } else {
                                 mId?.let { id ->
-                                    collectProjectTreeDelegate(id, mRepo, mDataRight)
+                                    collectProjectDelegate(id, mRepo)
                                 }
                             }
                         }

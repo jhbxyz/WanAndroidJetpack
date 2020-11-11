@@ -9,6 +9,8 @@ import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentWeChatVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
+import com.aboback.wanandroidjetpack.util.CollectChangeBean
+import com.aboback.wanandroidjetpack.util.CollectState
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 
 /**
@@ -34,10 +36,22 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
             onSelectPage()
         }
 
-        GlobalSingle.onCollectChange.observe(this, Observer {
-            mRealVM.updateCollectState(it)
-        })
     }
+
+    private val mObserver = Observer<CollectChangeBean> {
+        mRealVM.updateCollectState(it)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GlobalSingle.onCollectChange.observe(this, mObserver)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GlobalSingle.onCollectChange.removeObserver(mObserver)
+    }
+
 
     override fun bindScrollListener() {
         RvScrollDelegate.bindScrollListener(mainActivity = mActivity as MainActivity, rvVM = mRealVM.rvVMRight)

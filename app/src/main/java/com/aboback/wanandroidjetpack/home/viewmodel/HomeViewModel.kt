@@ -167,17 +167,16 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             onCollectClick = {
                 if (mCollect.get()) {
                     mId?.let {
-                        unCollectDelegate(it, mRepo, mData.filterIsInstance<ItemHomeVM>())
+                        unCollectDelegate(it, mRepo)
                     }
                 } else {
                     mId?.let {
-                        collectDelegate(it, mRepo, mData.filterIsInstance<ItemHomeVM>())
+                        collectDelegate(it, mRepo)
                     }
                 }
             }
         })
     }
-
 
 
 }

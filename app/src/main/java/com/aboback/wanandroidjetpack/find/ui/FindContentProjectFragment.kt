@@ -7,10 +7,10 @@ import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
-import com.aboback.wanandroidjetpack.find.viewmodel.FindContentProjectTreeVM
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentProjectVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
+import com.aboback.wanandroidjetpack.util.CollectChangeBean
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 
 /**
@@ -36,12 +36,23 @@ class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM
             onSelectPage()
         }
 
-        GlobalSingle.onCollectChange.observe(this, Observer {
-            if (!it) {
-                mRealVM.requestServer(true)
-            }
-        })
     }
+
+
+    private val mObserver = Observer<CollectChangeBean> {
+        mRealVM.updateCollectState(it)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GlobalSingle.onCollectChange.observe(this, mObserver)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GlobalSingle.onCollectChange.removeObserver(mObserver)
+    }
+
 
     override fun bindScrollListener() {
         RvScrollDelegate.bindScrollListener(mainActivity = mActivity as MainActivity, rvVM = mRealVM.rvVM)

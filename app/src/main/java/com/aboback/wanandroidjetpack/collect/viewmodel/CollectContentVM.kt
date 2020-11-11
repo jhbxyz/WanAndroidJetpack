@@ -59,6 +59,9 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
         }
     }
 
+    fun updateCollectState(bean: CollectChangeBean) {
+        mData.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+    }
 
     fun requestServer(showDialog: Boolean = true) {
         if (!WanApp.isLogin) {
@@ -109,15 +112,16 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
 
     private fun bindData(bean: ItemDatasBean) {
         mData.add(ItemHomeVM(getApplication(), bean).apply {
+            mCollectIconShow.set(!(mContentPage == CollectContentPage.SHARE_ARTICLE || mContentPage == CollectContentPage.SHARE_PROJECT))
             bindData()
             onCollectClick = {
                 if (mCollect.get()) {
                     mId?.let {
-                        unCollectDelegate(it, mRepo, mData, mContentPage == CollectContentPage.COLLECT_ARTICLE, mOriginId)
+                        unCollectDelegate(it, mRepo, isOnMe = mContentPage == CollectContentPage.COLLECT_ARTICLE, originId = mOriginId)
                     }
                 } else {
                     mId?.let {
-                        collectDelegate(it, mRepo, mData)
+                        collectDelegate(it, mRepo)
                     }
                 }
             }

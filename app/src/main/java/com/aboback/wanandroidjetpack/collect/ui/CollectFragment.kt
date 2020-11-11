@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.collect.ui
 
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseViewModelFragment
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
@@ -25,6 +26,9 @@ class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragmen
     override fun onViewInit() {
         super.onViewInit()
 
+        if (mFragments.isNotEmpty()) {
+            mFragments.clear()
+        }
         mFragments.add(CollectContentFragment(CollectContentPage.COLLECT_ARTICLE))
         mFragments.add(CollectContentFragment(CollectContentPage.INTERVIEW_RELATE))
         mFragments.add(CollectContentFragment(CollectContentPage.SHARE_ARTICLE))
@@ -47,14 +51,15 @@ class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragmen
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 mPagePosition = tab?.position ?: 0
                 viewPager2.setCurrentItem(mPagePosition, false)
+                onSelectedPage(mPagePosition)
             }
         })
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                onSelectedPage(position)
-            }
-        })
+//        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                onSelectedPage(position)
+//            }
+//        })
     }
 
     fun onSelectedPage(position: Int) {

@@ -96,8 +96,8 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
     }
 
     private var mCollectId: Int? = null
-    fun updateCollectState(state: Boolean) {
-        mDataRight.find { it.mId == mCollectId }?.mCollect?.set(state)
+    fun updateCollectState(bean: CollectChangeBean) {
+        mDataRight.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
     }
 
     private fun weChatListDetail(id: Int?, isClick: Boolean = false, isRefresh: Boolean = false) {
@@ -123,11 +123,11 @@ class FindContentWeChatVM(app: Application) : BaseRepositoryViewModel<FindConten
                             mCollectId = mId
                             if (mCollect.get()) {
                                 mId?.let { id ->
-                                    unCollectDelegate(id, mRepo, mDataRight)
+                                    unCollectDelegate(id, mRepo)
                                 }
                             } else {
                                 mId?.let { id ->
-                                    collectDelegate(id, mRepo, mDataRight)
+                                    collectDelegate(id, mRepo)
                                 }
                             }
                         }

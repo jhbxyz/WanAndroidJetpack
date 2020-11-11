@@ -41,6 +41,10 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
         }
     }
 
+    fun updateCollectState(bean: CollectChangeBean) {
+        mData.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+    }
+
     fun requestServer(isRefresh: Boolean = false) {
         launch(showDialog = !isRefresh, finish = {
             if (isRefresh) {
@@ -66,11 +70,11 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
                     onCollectClick = {
                         if (mCollect.get()) {
                             mId?.let { id ->
-                                unCollectProjectDelegate(id, mRepo, mData)
+                                unCollectProjectDelegate(id, mRepo)
                             }
                         } else {
                             mId?.let { id ->
-                                collectProjectDelegate(id, mRepo, mData)
+                                collectProjectDelegate(id, mRepo)
                             }
                         }
                     }

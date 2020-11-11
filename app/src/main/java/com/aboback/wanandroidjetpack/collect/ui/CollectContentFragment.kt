@@ -9,6 +9,7 @@ import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.viewmodel.CollectContentVM
 import com.aboback.wanandroidjetpack.main.RvScrollToTop
 import com.aboback.wanandroidjetpack.main.ui.MainActivity
+import com.aboback.wanandroidjetpack.util.CollectChangeBean
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 import java.io.Serializable
 
@@ -45,9 +46,26 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
             onSelectPage()
         }
 
-        GlobalSingle.onCollectChange.observe(this, Observer {
-            mRealVM.requestServer(false)
-        })
+    }
+
+    private val mObserver = Observer<CollectChangeBean> {
+        when (mContentPage) {
+            CollectContentPage.INTERVIEW_RELATE -> mRealVM.updateCollectState(it)
+            CollectContentPage.COLLECT_ARTICLE -> mRealVM.requestServer(false)
+            else -> {
+                //Nothing
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GlobalSingle.onCollectChange.observe(this, mObserver)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GlobalSingle.onCollectChange.removeObserver(mObserver)
     }
 
     override fun bindScrollListener() {

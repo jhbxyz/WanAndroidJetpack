@@ -89,11 +89,11 @@ class WenDaViewModel(app: Application) : BaseRepositoryViewModel<WenDaRepository
             onCollectClick = {
                 if (mCollect.get()) {
                     mId?.let {
-                        unCollectDelegate(it, mRepo, mData)
+                        unCollectDelegate(it, mRepo)
                     }
                 } else {
                     mId?.let {
-                        collectDelegate(it, mRepo, mData)
+                        collectDelegate(it, mRepo)
                     }
                 }
             }

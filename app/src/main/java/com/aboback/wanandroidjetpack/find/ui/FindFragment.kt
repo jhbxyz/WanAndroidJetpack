@@ -26,6 +26,9 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
     override fun onViewInit() {
         super.onViewInit()
 
+        if (mFragments.isNotEmpty()){
+            mFragments.clear()
+        }
         mFragments.add(FindContentTreeFragment())
         mFragments.add(FindContentNaviFragment())
         mFragments.add(FindContentWeChatFragment())
