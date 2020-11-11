@@ -17,7 +17,8 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
         GlobalSingle.isLoginSuccess.observe(this, Observer {
             if (it) {
                 mRealVM.lgCoinUserInfo()
-                GlobalSingle.isLoginSuccess.value = false
+            } else {
+                mRealVM.resetLoginState()
             }
         })
     }

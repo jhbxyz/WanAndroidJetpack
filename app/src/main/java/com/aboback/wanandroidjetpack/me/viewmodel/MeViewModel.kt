@@ -98,7 +98,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
     }
 
     fun lgCoinUserInfo() {
-        viewModelScope.launch {
+        launch {
             val userInfoBean = WanServer.api.lgCoinUserInfo()
             (mData[0] as? MeHeaderVM)?.apply {
                 loadAvatar()

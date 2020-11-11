@@ -35,7 +35,7 @@ class SettingViewModel(app: Application) : BaseLayoutViewModel(app) {
         
             目前仅有退出登录的操作
                 
-                如果您没看到退出退出按钮
+                如果您没看到退出登录按钮
                 
                     那应该是还没登录呢！！！
     """.trimIndent()
