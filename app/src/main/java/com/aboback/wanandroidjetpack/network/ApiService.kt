@@ -99,5 +99,8 @@ interface ApiService {
     @GET("/user/lg/private_articles/{page}/json")
     suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
 
+    //积分排行榜接口
+    @GET("/coin/rank/{page}/json")
+    suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
 
 }

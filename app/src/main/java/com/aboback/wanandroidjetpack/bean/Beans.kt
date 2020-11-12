@@ -50,7 +50,14 @@ data class ItemDatasBean(
         val isVisible: Int? = null,
         val order: Int? = null,
         val url: String? = null,
-        val name: String? = null
+        val name: String? = null,
+        //=====coin rank=========
+        val coinCount: Int? = null,
+        val level: Int? = null,
+        val rank: String? = null,
+        val username: String? = null
+        //=====coin rank=========
+
 ) {
     data class TagBean(var name: String?, var url: String? = null)
 }

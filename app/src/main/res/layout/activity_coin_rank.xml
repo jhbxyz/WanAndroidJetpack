@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="layout"
+            type="com.aboback.wanandroidjetpack.me.viewmodel.CoinRankViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/view_model_title"
+            app:title="@{layout.mTitleVM}" />
+
+        <include
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            layout="@layout/layout_recyclerview"
+            app:rv="@{layout.rvVM}" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            app:cardBackgroundColor="@color/colorBlue"
+            app:cardCornerRadius="@dimen/dp_0"
+            app:cardElevation="@dimen/dp_5">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_20"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvRank"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_18"
+                    android:textStyle="bold"
+                    android:text="@{layout.MRank}"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16"
+                    android:text="@{layout.MName}"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="哈哈哈哈" />
+
+
+                <TextView
+                    android:id="@+id/tvCount"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16"
+                    android:text="@{layout.MCount}"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</layout>

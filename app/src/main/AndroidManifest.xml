@@ -22,7 +22,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
-            android:name="com.aboback.wanandroidjetpack.splash.SplashActivity"
+            android:name=".splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,25 +32,32 @@
         </activity>
 
         <activity
-            android:name="com.aboback.wanandroidjetpack.main.ui.MainActivity"
+            android:name=".main.ui.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTask" />
 
-        <activity android:name="com.aboback.wanandroidjetpack.login.ui.LoginActivity" />
+        <activity
+            android:name=".login.ui.LoginActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".me.ui.SettingActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
+        <activity
+            android:name=".me.ui.CoinRankActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name="com.aboback.wanandroidjetpack.base.WanWebActivity"
+            android:name=".base.WanWebActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
 
         <activity
-            android:name="com.aboback.wanandroidjetpack.base.X5WebActivity"
+            android:name=".base.X5WebActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 
     </application>
