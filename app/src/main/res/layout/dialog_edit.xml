@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="layout"
+            type="com.aboback.wanandroidjetpack.view.EditDialogViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <!--    <androidx.core.widget.NestedScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <LinearLayout
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:text="@{layout.mEditName}"
+            android:textColor="@color/colorGray3"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_18"
+            android:gravity="center"
+            tools:text="xxxxxxxxx" />
+
+        <EditText
+            android:paddingStart="@dimen/dp_12"
+            android:textSize="@dimen/sp_14"
+            android:paddingEnd="@dimen/dp_12"
+            android:text="@={layout.mTitle}"
+            android:hint="@{layout.mTitleHint}"
+            android:layout_marginStart="@dimen/dp_12"
+            android:textColor="@color/colorGray3"
+            android:textCursorDrawable="@null"
+            android:layout_marginTop="@dimen/dp_25"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:background="@drawable/rect_blue_stroke_radius_5_shape"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50" />
+
+        <EditText
+            android:paddingStart="@dimen/dp_12"
+            android:paddingEnd="@dimen/dp_12"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/colorGray3"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_12"
+            android:visibility="@{layout.mAuthorVisible ? View.VISIBLE : View.GONE}"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:text="@={layout.MAuthor}"
+            android:hint="@{layout.MAuthorHint}"
+            android:background="@drawable/rect_blue_stroke_radius_5_shape"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50" />
+
+        <EditText
+            android:paddingStart="@dimen/dp_12"
+            android:paddingEnd="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_12"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/colorGray3"
+            android:text="@={layout.MLink}"
+            android:hint="@{layout.MLinkHint}"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:background="@drawable/rect_blue_stroke_radius_5_shape"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:background="@drawable/rect_blue_radius_5_shape"
+            android:layout_marginTop="@dimen/dp_30"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_16"
+            android:layout_width="match_parent"
+            android:text="确定"
+            android:onClick="@{()->layout.onConfirm()}"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!--    </androidx.core.widget.NestedScrollView>-->
+</layout>

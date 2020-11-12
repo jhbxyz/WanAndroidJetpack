@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.me.ui
 
 import androidx.lifecycle.Observer
 import com.aboback.base.ui.BaseViewModelFragment
+import com.aboback.wanandroidjetpack.view.EditDialog
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.me.viewmodel.MeViewModel
@@ -20,6 +21,9 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
             } else {
                 mRealVM.resetLoginState()
             }
+        })
+        mRealVM.showEditDialog.observe(this, Observer {
+            EditDialog(mActivity, it).show()
         })
     }
 

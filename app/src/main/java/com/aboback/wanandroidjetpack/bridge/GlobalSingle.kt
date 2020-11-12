@@ -15,4 +15,6 @@ object GlobalSingle {
 
     var onCollectChange = MutableLiveData<CollectChangeBean>()
 
+    var onAddCollectWebsite = MutableLiveData<Boolean>()
+
 }

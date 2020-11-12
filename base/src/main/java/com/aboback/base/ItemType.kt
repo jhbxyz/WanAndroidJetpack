@@ -12,5 +12,7 @@ object ItemType {
     const val ITEM_ME_HEADER = 0x10002
     const val ITEM_ME_ITEM = 0x10003
 
+    const val ITEM_COLLECT_WEBSITE = 0x10004
+
 
 }

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_collect.*
  */
 class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragment_collect, CollectViewModel::class.java), RvScrollToTop {
     private val mFragments = arrayListOf<CollectContentFragment>()
-    private val mTitles = arrayOf("收藏文章", "面试相关", "分享文章", "收藏网站", "分享项目")
+    private val mTitles = arrayOf("收藏文章", "面试相关", "分享文章", "收藏网站"/*, "分享项目"*/)
 
     private var mPagePosition = 0
 
@@ -33,7 +33,7 @@ class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragmen
         mFragments.add(CollectContentFragment(CollectContentPage.INTERVIEW_RELATE))
         mFragments.add(CollectContentFragment(CollectContentPage.SHARE_ARTICLE))
         mFragments.add(CollectContentFragment(CollectContentPage.COLLECT_WEBSITE))
-        mFragments.add(CollectContentFragment(CollectContentPage.SHARE_PROJECT))
+//        mFragments.add(CollectContentFragment(CollectContentPage.SHARE_PROJECT))
 
         viewPager2.adapter = CollectVpAdapter(mFragments, mActivity.supportFragmentManager, lifecycle)
 //        viewPager2.setPageTransformer(ZoomOutPageTransformer())

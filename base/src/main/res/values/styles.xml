@@ -9,20 +9,32 @@
     </style>
 
 
-
     <style name="LoadingDialogTheme" parent="AppTheme">
-<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
-<!--        <item name="android:windowIsTranslucent">true</item>-->
-<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--        <item name="android:windowIsTranslucent">true</item>-->
+        <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
     </style>
 
 
-
-    <style name="BaoXiaoDialogTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="CommonDialogTheme" parent="AppTheme">
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
+        <!--        <item name="android:windowIsFloating">true</item>-->
         <item name="android:windowIsTranslucent">true</item>
+        <!--        <item name="android:windowBackground">@color/colorTransparent</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <!-- Dialog以外的区域模糊效果 是否有遮盖效果 -->
+        <!--        <item name="android:backgroundDimEnabled">true</item>-->
+        <!--        <item name="android:backgroundDimAmount">0.6</item>-->
+    </style>
+
+
+    <style name="EditDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="windowNoTitle">true</item>
+        <!--        <item name="android:windowIsFloating">true</item>-->
+        <!--        <item name="android:windowIsTranslucent">true</item>-->
+        <!--        <item name="android:windowBackground">@color/colorTransparent</item>-->
         <item name="android:windowNoTitle">true</item>
         <!-- Dialog以外的区域模糊效果 是否有遮盖效果 -->
         <item name="android:backgroundDimEnabled">true</item>
@@ -31,8 +43,7 @@
 
 
     <style name="ProcessBarStyle" parent="Widget.AppCompat.ProgressBar">
-<!--        <item name="android:indeterminateDrawable">@android:drawable/progress_large_material</item>-->
-
+        <!--        <item name="android:indeterminateDrawable">@android:drawable/progress_large_material</item>-->
         <item name="android:progressDrawable">@drawable/process_bar_shape</item>
     </style>
 

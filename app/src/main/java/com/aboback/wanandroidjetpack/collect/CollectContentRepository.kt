@@ -37,4 +37,13 @@ class CollectContentRepository(private val mContentPage: CollectContentPage) : N
     }
 
 
+    suspend fun updateCollectWebsite(id: String?, name: String?, link: String?) = withContext(Dispatchers.IO) {
+        api.updateCollectWebsite(id, name, link)
+    }
+
+    suspend fun delCollectWebsite(id: Int) = withContext(Dispatchers.IO) {
+        api.delCollectWebsite(id)
+    }
+
+
 }

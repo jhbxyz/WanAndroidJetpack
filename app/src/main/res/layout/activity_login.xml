@@ -97,7 +97,7 @@
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginStart="@dimen/dp_20"
             android:text="登录"
-            android:background="@drawable/rect_blue_radius_10_shape"
+            android:background="@drawable/rect_blue_radius_5_shape"
             android:textColor="@color/colorWhite"
             android:onClick="@{()-> layout.onLogin()}"
             android:textSize="@dimen/sp_20"

@@ -103,4 +103,36 @@ interface ApiService {
     @GET("/coin/rank/{page}/json")
     suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
 
+    //收藏站外文章 title，author，link
+    @FormUrlEncoded
+    @POST("/lg/collect/add/json")
+    suspend fun collectAdd(
+            @Field("title") title: String?,
+            @Field("author") author: String?,
+            @Field("link") link: String?
+    ): BaseBean
+
+    //收藏网址  name,link
+    @FormUrlEncoded
+    @POST("lg/collect/addtool/json")
+    suspend fun addCollectWebsite(
+            @Field("name") name: String?,
+            @Field("link") link: String?
+    ): BaseBean
+
+    //编辑收藏网站  id,name,link  lg/collect/addtool/json
+    @FormUrlEncoded
+    @POST("/lg/collect/updatetool/json")
+    suspend fun updateCollectWebsite(
+            @Field("id") id: String?,
+            @Field("name") name: String?,
+            @Field("link") link: String?
+    ): BaseBean
+
+    //删除收藏网站  id
+    @FormUrlEncoded
+    @POST("lg/collect/deletetool/json")
+    suspend fun delCollectWebsite(@Field("id") id: Int): BaseBean
+
+
 }

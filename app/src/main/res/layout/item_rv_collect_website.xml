@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.aboback.wanandroidjetpack.collect.viewmodel.ItemCollectWebsiteVM" />
+
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorBackground"
+        app:cardCornerRadius="@dimen/dp_5"
+        app:cardElevation="@dimen/dp_2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:textColor="@color/colorGray3"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_16"
+                android:text="@{item.mTitle}"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="名字" />
+
+            <TextView
+                android:id="@+id/tvLink"
+                android:layout_marginTop="@dimen/dp_12"
+                android:gravity="center_vertical|start"
+                android:layout_width="0dp"
+                android:textColor="@color/colorBlue"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/sp_14"
+                android:text="@{item.MLinke}"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="测试" />
+
+            <ImageView
+                android:id="@+id/tvEdit"
+                android:onClick="@{()->item.onEdit.invoke()}"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/bianji_ico"
+                android:layout_marginEnd="@dimen/dp_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvDel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/tvDel"
+                android:onClick="@{()->item.onDel.invoke()}"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/shanchu_ico"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

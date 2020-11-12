@@ -4,7 +4,10 @@ import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.aboback.base.ItemType
+import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickAdapter
+import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.util.log
 import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
@@ -29,8 +32,11 @@ import kotlinx.coroutines.launch
  */
 class CollectContentVM(private val mContentPage: CollectContentPage, app: Application) : BaseRepositoryViewModel<CollectContentRepository>(app, CollectContentRepository(mContentPage)) {
 
-    private var mData = arrayListOf<ItemHomeVM>()
-    private val mAdapter = QuickAdapter(R.layout.item_rv_home, mData)
+    private var mData = mutableListOf<BaseMultiItemViewModel>()
+    private val mAdapter = QuickMultiAdapter(mData).apply {
+        addType(R.layout.item_rv_collect_website, ItemType.ITEM_COLLECT_WEBSITE)
+        addType(R.layout.item_rv_home, ItemType.ITEM_HOME_MAIN)
+    }
 
     private var mCurrPage = 0
     private var mPageCount = 1
@@ -38,7 +44,7 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     var isRequestSuccess = false
 
     var rvVM = RecyclerViewVM(app).apply {
-        mRefreshEnable = (mContentPage != CollectContentPage.COLLECT_WEBSITE && mContentPage != CollectContentPage.SHARE_PROJECT)
+        mRefreshEnable = (/*mContentPage != CollectContentPage.COLLECT_WEBSITE &&*/ mContentPage != CollectContentPage.SHARE_PROJECT)
         mAdapterObservable.set(mAdapter)
 
         mOnRefresh = {
@@ -60,7 +66,7 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     }
 
     fun updateCollectState(bean: CollectChangeBean) {
-        mData.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+        mData.filterIsInstance<ItemHomeVM>().find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
     }
 
     fun requestServer(showDialog: Boolean = true) {
@@ -70,23 +76,34 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
             startActivity(LoginActivity::class.java, LoginViewModel.COLLECT_CONTENT_PAGE to mContentPage)
             return
         }
-        launch(showDialog) {
-            when (mContentPage) {
-                CollectContentPage.COLLECT_ARTICLE -> {
-                    mRepo.collectArticle(mCurrPage).onSuccess(showDialog)
-                }
-                CollectContentPage.INTERVIEW_RELATE -> {
-                    mRepo.interviewRelate(mCurrPage).onSuccess(showDialog)
-                }
-                CollectContentPage.SHARE_ARTICLE -> {
-                    mRepo.shareArticle(mCurrPage).data?.onSuccess(showDialog)
-                }
-                CollectContentPage.COLLECT_WEBSITE -> {
-                    collectWebsite()
-                }
-                CollectContentPage.SHARE_PROJECT -> {
 
+        when (mContentPage) {
+            CollectContentPage.COLLECT_ARTICLE -> {
+                launch(showDialog) {
+                    response(mRepo.collectArticle(mCurrPage)) {
+                        onSuccess(showDialog)
+                    }
                 }
+            }
+            CollectContentPage.INTERVIEW_RELATE -> {
+                launch(showDialog) {
+                    response(mRepo.interviewRelate(mCurrPage)) {
+                        onSuccess(showDialog)
+                    }
+                }
+            }
+            CollectContentPage.SHARE_ARTICLE -> {
+                launch(showDialog) {
+                    response(mRepo.shareArticle(mCurrPage)) {
+                        data?.onSuccess(showDialog)
+                    }
+                }
+            }
+            CollectContentPage.COLLECT_WEBSITE -> {
+                collectWebsite(showDialog)
+            }
+            CollectContentPage.SHARE_PROJECT -> {
+
             }
         }
     }
@@ -128,17 +145,40 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
         })
     }
 
-    private suspend fun collectWebsite() {
-        mData.clear()
-        isRequestSuccess = true
-        mRepo.collectWebsite().data?.forEach {
-            mData.add(ItemHomeVM(getApplication(), it).apply {
-                mCollectIconShow.set(false)
-                mTime.set(it.name)
-                mTitle.set(it.link)
-            })
+    val mDelWebsite = MutableLiveData<Int?>()
+    fun collectWebsite(showDialog: Boolean) {
+        launch(showDialog) {
+            response(mRepo.collectWebsite()) {
+                rvVM.mIsRefreshing.set(false)
+                mData.clear()
+                isRequestSuccess = true
+                data?.forEach {
+                    mData.add(ItemCollectWebsiteVM(getApplication()).apply {
+                        mId = it.id
+                        mTitle.set(it.name)
+                        mLinke.set(it.link)
+                        onEdit = {
+
+                        }
+                        onDel = {
+                            mDelWebsite.value = mId
+                        }
+                    })
+                }
+                mAdapter.notifyDataSetChanged()
+            }
         }
-        mAdapter.notifyDataSetChanged()
     }
+
+    fun delCollectWebsite(id: Int) {
+        launch {
+            response(mRepo.delCollectWebsite(id)) {
+                val websiteData = mData.filterIsInstance<ItemCollectWebsiteVM>()
+                mAdapter.removeAt(websiteData.indexOf(websiteData.find { it.mId == id }))
+                "删除完成".showToast()
+            }
+        }
+    }
+
 
 }

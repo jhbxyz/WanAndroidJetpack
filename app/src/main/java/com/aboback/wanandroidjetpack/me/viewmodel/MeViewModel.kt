@@ -1,11 +1,13 @@
 package com.aboback.wanandroidjetpack.me.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.MutableLiveData
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.util.getResDrawable
 import com.aboback.base.util.showToast
+import com.aboback.wanandroidjetpack.view.EditPage
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.R
@@ -25,6 +27,8 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     private var mCoinUserInfoBean: CoinUserInfoBean? = null
 
+    var showEditDialog = MutableLiveData<EditPage>()
+
     private var mData = arrayListOf<BaseMultiItemViewModel>()
     private val mAdapter = QuickMultiAdapter(mData).apply {
         addType(R.layout.item_rv_me_header, ItemType.ITEM_ME_HEADER)
@@ -41,7 +45,8 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
         onClick = {
             startActivity(CoinRankActivity::class.java, CoinRankViewModel.COIN_USER_INFO_BEAN to mCoinUserInfoBean)
         }
-
+        mShowDivider.set(false)
+        mShowMargin.set(true)
     }
 
     override fun onModelBind() {
@@ -51,12 +56,31 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
         mData.add(mRankVM)
 
         mData.add(MeItemVM(getApplication()).apply {
-            mContent.set("我的收藏")
+            mContent.set("收藏文章")
             mIcon.set(R.drawable.sc_red_sroke_ico.getResDrawable())
+            onClick = {
+                if (WanApp.isLogin) {
+                    showEditDialog.value = EditPage.COLLECT_ARTICLE
+                } else {
+                    "请先登录".showToast()
+                }
+            }
         })
 
         mData.add(MeItemVM(getApplication()).apply {
-            mContent.set("我的文章")
+            mContent.set("收藏网站")
+            mIcon.set(R.drawable.wangzhan_ico.getResDrawable())
+            onClick = {
+                if (WanApp.isLogin) {
+                    showEditDialog.value = EditPage.WEBSITE
+                } else {
+                    "请先登录".showToast()
+                }
+            }
+        })
+
+        mData.add(MeItemVM(getApplication()).apply {
+            mContent.set("分享文章")
             mIcon.set(R.drawable.wenzhang_ico.getResDrawable())
             mShowDivider.set(false)
             mShowMargin.set(true)
