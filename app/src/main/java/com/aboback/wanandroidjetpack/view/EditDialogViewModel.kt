@@ -3,9 +3,13 @@ package com.aboback.wanandroidjetpack.view
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import com.aboback.base.util.isNull
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
+import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
+import com.aboback.wanandroidjetpack.common.EditDialogEvent
+import com.aboback.wanandroidjetpack.common.EditDialogEventBean
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.response
@@ -16,7 +20,6 @@ import com.aboback.wanandroidjetpack.util.response
  */
 class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
 
-    var mDismisDialog = MutableLiveData<Boolean>()
     var mEditName = ObservableField("")
 
     var mTitle = ObservableField("")
@@ -29,21 +32,31 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
     var mLink = ObservableField("")
     var mLinkHint = ObservableField("")
 
+    var mId: Int? = null
+    var mCollectContentPage: CollectContentPage? = null
     private var mCurrPage = EditPage.COLLECT_ARTICLE
-    fun handlePageData(page: EditPage) {
+
+    fun handlePageData(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage? = null) {
         mCurrPage = page
+        mCollectContentPage = collectContentPage
         when (page) {
             EditPage.COLLECT_ARTICLE -> {
                 mEditName.set("收藏文章")
                 mTitleHint.set("*请输入标题")
                 mAuthorHint.set("请输入作者")
                 mLinkHint.set("*请输入链接地址")
+                mAuthorVisible.set(true)
+                mTitle.set(bean?.name)
+                mLink.set(bean?.link)
             }
             EditPage.WEBSITE -> {
-                mEditName.set("收藏网站")
+                mEditName.set(if (bean?.id.isNull()) "收藏网站" else "编辑网站")
                 mTitleHint.set("*请输入网站名称")
                 mLinkHint.set("*请输入链接地址")
                 mAuthorVisible.set(false)
+                mTitle.set(bean?.name)
+                mLink.set(bean?.link)
+                mId = bean?.id
             }
             EditPage.SHARE_ARTICLE -> {
                 mEditName.set("分享文章")
@@ -72,7 +85,11 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
                 collectAdd()
             }
             EditPage.WEBSITE -> {
-                collectWebsite()
+                if (mId.isNull()) {
+                    collectWebsite()
+                } else {
+                    updateCollectWebsite()
+                }
             }
             EditPage.SHARE_ARTICLE -> {
 
@@ -95,8 +112,23 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
                 mTitle.set("")
                 mLink.set("")
                 "收藏网站成功...".showToast()
-                mDismisDialog.value = true
+                GlobalSingle.showEditDialog.value = EditDialogEvent(EditPage.NONE)
                 GlobalSingle.onAddCollectWebsite.value = true
+            }
+        }
+    }
+
+    private fun updateCollectWebsite() {
+        launch {
+            response(WanServer.api.updateCollectWebsite(id = mId, name = mTitle.get(), link = mLink.get())) {
+                GlobalSingle.showEditDialog.value = EditDialogEvent(
+                        page = EditPage.NONE,
+                        bean = EditDialogEventBean(mId, mTitle.get(), mLink.get()),
+                        collectContentPage = mCollectContentPage
+                )
+                "更新网站成功...".showToast()
+                mTitle.set("")
+                mLink.set("")
             }
         }
     }

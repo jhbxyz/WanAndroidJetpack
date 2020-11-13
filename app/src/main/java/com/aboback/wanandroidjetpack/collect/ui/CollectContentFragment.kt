@@ -2,9 +2,9 @@ package com.aboback.wanandroidjetpack.collect.ui
 
 import android.app.Application
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.base.util.isNotNull
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
@@ -14,8 +14,8 @@ import com.aboback.wanandroidjetpack.main.ui.MainActivity
 import com.aboback.wanandroidjetpack.util.CollectChangeBean
 import com.aboback.wanandroidjetpack.util.DialogUtil
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
-import com.aboback.wanandroidjetpack.util.launch
-import kotlinx.coroutines.launch
+import com.aboback.wanandroidjetpack.view.EditDialog
+import com.aboback.wanandroidjetpack.view.EditPage
 import java.io.Serializable
 
 /**
@@ -27,6 +27,8 @@ enum class CollectContentPage : Serializable {
 }
 
 class CollectContentFragment(private val mContentPage: CollectContentPage) : BaseVMRepositoryFragment<CollectContentVM>(R.layout.fragment_collect_content), RvScrollToTop, SelectPage {
+
+    private val mDialog by lazy { EditDialog(mActivity) }
 
     private var mFragmentInit = false
     private var isTabLayoutClick = false
@@ -61,6 +63,27 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
             }
         })
 
+
+        GlobalSingle.showEditDialog.observe(this, Observer {
+            "GlobalSingle.showEditDialog.observe    mContentPage = $mContentPage  it   = $it".logWithTag("222222")
+            if (mContentPage == it.collectContentPage) {
+
+                when (it.collectContentPage) {
+                    CollectContentPage.COLLECT_WEBSITE -> {
+                        if (it.page != EditPage.NONE) {
+                            mDialog.showDialog(it.page, it.bean, it.collectContentPage)
+                        } else {
+                            mDialog.dismiss()
+                            if (it.bean.isNotNull()) {
+                                mRealVM.updateWebsiteChangeItem(it.bean!!)
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        })
     }
 
     private val mObserver = Observer<CollectChangeBean> {
@@ -76,8 +99,10 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
 
     private val mAddWebsiteObserver = Observer<Boolean> {
         if (it) {
-            mRealVM.collectWebsite(false)
-            GlobalSingle.onAddCollectWebsite.value = false
+            if (mContentPage == CollectContentPage.COLLECT_WEBSITE) {
+                mRealVM.collectWebsite(true)
+                GlobalSingle.onAddCollectWebsite.value = false
+            }
         }
     }
 

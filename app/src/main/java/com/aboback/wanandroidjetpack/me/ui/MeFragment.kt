@@ -6,12 +6,15 @@ import com.aboback.wanandroidjetpack.view.EditDialog
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.me.viewmodel.MeViewModel
+import com.aboback.wanandroidjetpack.view.EditPage
 
 /**
  * @author jhb
  * @date 2020/10/30
  */
 class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeViewModel::class.java) {
+
+    private val mDialog by lazy { EditDialog(mActivity) }
 
     override fun onEvent() {
         super.onEvent()
@@ -22,8 +25,13 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
                 mRealVM.resetLoginState()
             }
         })
-        mRealVM.showEditDialog.observe(this, Observer {
-            EditDialog(mActivity, it).show()
+
+        GlobalSingle.showEditDialog.observe(this, Observer {
+            if (it.page != EditPage.NONE) {
+                mDialog.showDialog(it.page)
+            } else {
+                mDialog.dismiss()
+            }
         })
     }
 

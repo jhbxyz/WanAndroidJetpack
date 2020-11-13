@@ -16,7 +16,7 @@ import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 class ItemCollectWebsiteVM(app: Application) : BaseMultiItemViewModel(app) {
 
     var mTitle = ObservableField("")
-    var mLinke = ObservableField("")
+    var mLink = ObservableField("")
 
     var mId: Int? = null
 

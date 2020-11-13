@@ -124,7 +124,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("/lg/collect/updatetool/json")
     suspend fun updateCollectWebsite(
-            @Field("id") id: String?,
+            @Field("id") id: Int?,
             @Field("name") name: String?,
             @Field("link") link: String?
     ): BaseBean

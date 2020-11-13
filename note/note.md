@@ -114,5 +114,31 @@ tablayout 点击 tab
 
 
 
+#### 10.编辑收藏时网站EidtDialog 通知两遍，show 两遍
+
+因为复用了 CollectContentFragment ，同时共同使用 CollectContentVM 这一个 ViewModel
+
+```log
+发送 onEdit 
+接收 it = EditDialogEvent(page=WEBSITE, bean=EditDialogEventBean(id=6624, name=jjj, link=bhh)) mContentPage =  COLLECT_ARTICLE
+接收 it = EditDialogEvent(page=WEBSITE, bean=EditDialogEventBean(id=6624, name=jjj, link=bhh)) mContentPage =  COLLECT_WEBSITE
+```
+
+> 共用一个 ViewModel 的时候，一定要注意 LiveData 的问题
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

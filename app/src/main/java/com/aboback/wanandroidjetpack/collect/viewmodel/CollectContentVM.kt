@@ -1,14 +1,10 @@
 package com.aboback.wanandroidjetpack.collect.viewmodel
 
 import android.app.Application
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
-import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.rv.QuickMultiAdapter
-import com.aboback.base.util.log
 import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
@@ -16,16 +12,17 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.bean.ObjectDataBean
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.CollectContentRepository
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
+import com.aboback.wanandroidjetpack.common.EditDialogEvent
+import com.aboback.wanandroidjetpack.common.EditDialogEventBean
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.login.viewmodel.LoginViewModel
-import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.*
-import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
-import kotlinx.coroutines.launch
+import com.aboback.wanandroidjetpack.view.EditPage
 
 /**
  * Created by jhb on 2020-03-11.
@@ -145,6 +142,14 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
         })
     }
 
+    fun updateWebsiteChangeItem(bean: EditDialogEventBean) {
+        mData.filterIsInstance<ItemCollectWebsiteVM>().find { it.mId == bean.id }
+            ?.apply {
+                mTitle.set(bean.name)
+                mLink.set(bean.link)
+            }
+    }
+
     val mDelWebsite = MutableLiveData<Int?>()
     fun collectWebsite(showDialog: Boolean) {
         launch(showDialog) {
@@ -156,9 +161,16 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
                     mData.add(ItemCollectWebsiteVM(getApplication()).apply {
                         mId = it.id
                         mTitle.set(it.name)
-                        mLinke.set(it.link)
+                        mLink.set(it.link)
                         onEdit = {
+                            "onEdit  mContentPage = $mContentPage".logWithTag("222222")
 
+                            GlobalSingle.showEditDialog.value =
+                                    EditDialogEvent(
+                                            page = EditPage.WEBSITE,
+                                            bean = EditDialogEventBean(mId, mTitle.get(), mLink.get()),
+                                            collectContentPage = mContentPage
+                                    )
                         }
                         onDel = {
                             mDelWebsite.value = mId

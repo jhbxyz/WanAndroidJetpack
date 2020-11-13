@@ -13,6 +13,8 @@ import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bean.CoinUserInfoBean
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
+import com.aboback.wanandroidjetpack.common.EditDialogEvent
 import com.aboback.wanandroidjetpack.me.ui.CoinRankActivity
 import com.aboback.wanandroidjetpack.me.ui.SettingActivity
 import com.aboback.wanandroidjetpack.network.WanServer
@@ -27,7 +29,6 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     private var mCoinUserInfoBean: CoinUserInfoBean? = null
 
-    var showEditDialog = MutableLiveData<EditPage>()
 
     private var mData = arrayListOf<BaseMultiItemViewModel>()
     private val mAdapter = QuickMultiAdapter(mData).apply {
@@ -60,7 +61,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.sc_red_sroke_ico.getResDrawable())
             onClick = {
                 if (WanApp.isLogin) {
-                    showEditDialog.value = EditPage.COLLECT_ARTICLE
+                    GlobalSingle.showEditDialog.value = EditDialogEvent(EditPage.COLLECT_ARTICLE)
                 } else {
                     "请先登录".showToast()
                 }
@@ -72,7 +73,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.wangzhan_ico.getResDrawable())
             onClick = {
                 if (WanApp.isLogin) {
-                    showEditDialog.value = EditPage.WEBSITE
+                    GlobalSingle.showEditDialog.value = EditDialogEvent(EditPage.WEBSITE)
                 } else {
                     "请先登录".showToast()
                 }
