@@ -18,7 +18,7 @@ enum class EditPage {
 
 class EditDialog(private val activity: AppCompatActivity) : BaseDialog<EditDialogViewModel>(R.layout.dialog_edit, EditDialogViewModel::class.java, activity, R.style.EditDialogTheme) {
 
-    fun showDialog(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage? = null) {
+    fun showDialog(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage) {
         show()
         mRealVM.handlePageData(page, bean, collectContentPage)
     }

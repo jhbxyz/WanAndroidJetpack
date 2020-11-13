@@ -32,6 +32,7 @@
             android:paddingStart="@dimen/dp_12"
             android:textSize="@dimen/sp_14"
             android:focusable="true"
+            android:clickable="true"
             android:focusableInTouchMode="true"
             android:paddingEnd="@dimen/dp_12"
             android:text="@={layout.mTitle}"

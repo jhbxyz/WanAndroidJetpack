@@ -95,10 +95,6 @@ interface ApiService {
     suspend fun projectListCid(@Path("page") page: Int,
                                @Query("cid") cid: Int? = null): ObjectDataBean
 
-    //自己分享的文章
-    @GET("/user/lg/private_articles/{page}/json")
-    suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
-
     //积分排行榜接口
     @GET("/coin/rank/{page}/json")
     suspend fun coinRankList(@Path("page") page: Int): ObjectDataBean
@@ -133,6 +129,23 @@ interface ApiService {
     @FormUrlEncoded
     @POST("lg/collect/deletetool/json")
     suspend fun delCollectWebsite(@Field("id") id: Int): BaseBean
+
+    //自己分享的文章
+    @GET("/user/lg/private_articles/{page}/json")
+    suspend fun userLgPrivateArticles(@Path("page") page: Int): UserPrivateArticles
+
+
+    //删除自己分享的文章  id
+    @POST("lg/user_article/delete/{id}/json")
+    suspend fun delMyArticle(@Path("id") id: Int?): BaseBean
+
+    //分享文章
+    @FormUrlEncoded
+    @POST("/lg/user_article/add/json")
+    suspend fun addMyArticle(@Field("title") title: String?,
+                             @Field("author") author: String?,
+                             @Field("link") link: String?
+    ): BaseBean
 
 
 }

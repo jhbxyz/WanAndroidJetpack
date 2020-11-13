@@ -63,9 +63,14 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
             }
         })
 
+        mRealVM.mDeleteShareArticle.observe(this, Observer {
+            if (it) {
+                mRealVM.delMyArticle()
+                mRealVM.mDeleteShareArticle.value = false
+            }
+        })
 
         GlobalSingle.showEditDialog.observe(this, Observer {
-            "GlobalSingle.showEditDialog.observe    mContentPage = $mContentPage  it   = $it".logWithTag("222222")
             if (mContentPage == it.collectContentPage) {
 
                 when (it.collectContentPage) {
@@ -80,10 +85,19 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
                         }
                     }
 
+
                 }
             }
 
         })
+
+        GlobalSingle.onAddCollectArticle.observe(this, Observer {
+            if (it == mContentPage) {
+                mRealVM.requestServer(false)
+                GlobalSingle.onAddCollectArticle.value = CollectContentPage.NONE
+            }
+        })
+
     }
 
     private val mObserver = Observer<CollectChangeBean> {

@@ -28,7 +28,7 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
 
         GlobalSingle.showEditDialog.observe(this, Observer {
             if (it.page != EditPage.NONE) {
-                mDialog.showDialog(it.page)
+                mDialog.showDialog(page = it.page, collectContentPage = it.collectContentPage)
             } else {
                 mDialog.dismiss()
             }

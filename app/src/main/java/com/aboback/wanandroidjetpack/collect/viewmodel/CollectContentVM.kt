@@ -40,6 +40,9 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
 
     var isRequestSuccess = false
 
+    var mDeleteShareArticle = MutableLiveData<Boolean>()
+    private var mId: Int? = null
+
     var rvVM = RecyclerViewVM(app).apply {
         mRefreshEnable = (/*mContentPage != CollectContentPage.COLLECT_WEBSITE &&*/ mContentPage != CollectContentPage.SHARE_PROJECT)
         mAdapterObservable.set(mAdapter)
@@ -139,6 +142,14 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
                     }
                 }
             }
+
+            if (mContentPage == CollectContentPage.SHARE_ARTICLE) {
+                onDelClick = {
+                    this@CollectContentVM.mId = mId
+                    mDeleteShareArticle.value = true
+                }
+            }
+
         })
     }
 
@@ -163,8 +174,6 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
                         mTitle.set(it.name)
                         mLink.set(it.link)
                         onEdit = {
-                            "onEdit  mContentPage = $mContentPage".logWithTag("222222")
-
                             GlobalSingle.showEditDialog.value =
                                     EditDialogEvent(
                                             page = EditPage.WEBSITE,
@@ -187,6 +196,16 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
             response(mRepo.delCollectWebsite(id)) {
                 val websiteData = mData.filterIsInstance<ItemCollectWebsiteVM>()
                 mAdapter.removeAt(websiteData.indexOf(websiteData.find { it.mId == id }))
+                "删除完成".showToast()
+            }
+        }
+    }
+
+    fun delMyArticle() {
+        launch {
+            response(mRepo.delMyArticle(mId)) {
+                val itemList = mData.filterIsInstance<ItemHomeVM>()
+                mAdapter.removeAt(itemList.indexOf(itemList.find { it.mId == mId }))
                 "删除完成".showToast()
             }
         }

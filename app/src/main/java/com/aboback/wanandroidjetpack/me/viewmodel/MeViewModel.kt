@@ -14,6 +14,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bean.CoinUserInfoBean
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
+import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.common.EditDialogEvent
 import com.aboback.wanandroidjetpack.me.ui.CoinRankActivity
 import com.aboback.wanandroidjetpack.me.ui.SettingActivity
@@ -61,7 +62,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.sc_red_sroke_ico.getResDrawable())
             onClick = {
                 if (WanApp.isLogin) {
-                    GlobalSingle.showEditDialog.value = EditDialogEvent(EditPage.COLLECT_ARTICLE)
+                    GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.COLLECT_ARTICLE, collectContentPage = CollectContentPage.COLLECT_ARTICLE)
                 } else {
                     "请先登录".showToast()
                 }
@@ -73,7 +74,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.wangzhan_ico.getResDrawable())
             onClick = {
                 if (WanApp.isLogin) {
-                    GlobalSingle.showEditDialog.value = EditDialogEvent(EditPage.WEBSITE)
+                    GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.WEBSITE,collectContentPage = CollectContentPage.COLLECT_WEBSITE)
                 } else {
                     "请先登录".showToast()
                 }

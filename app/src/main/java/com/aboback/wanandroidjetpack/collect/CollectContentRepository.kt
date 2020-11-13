@@ -42,4 +42,9 @@ class CollectContentRepository(private val mContentPage: CollectContentPage) : N
     }
 
 
+    suspend fun delMyArticle(id: Int?) = withContext(Dispatchers.IO) {
+        api.delMyArticle(id)
+    }
+
+
 }

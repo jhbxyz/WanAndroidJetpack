@@ -9,4 +9,4 @@ import com.aboback.wanandroidjetpack.view.EditPage
  */
 data class EditDialogEventBean(var id: Int?, var name: String?, var link: String?)
 
-data class EditDialogEvent(var page: EditPage, var bean: EditDialogEventBean? = null, var collectContentPage: CollectContentPage? = null)
+data class EditDialogEvent(var page: EditPage, var bean: EditDialogEventBean? = null, var collectContentPage: CollectContentPage)

@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.common.EditDialogEvent
 import com.aboback.wanandroidjetpack.util.CollectChangeBean
-import com.aboback.wanandroidjetpack.view.EditPage
 
 /**
  * @author jhb
@@ -18,6 +17,7 @@ object GlobalSingle {
     var onCollectChange = MutableLiveData<CollectChangeBean>()
 
     var onAddCollectWebsite = MutableLiveData<Boolean>()
+    var onAddCollectArticle = MutableLiveData<CollectContentPage>()
 
     var showEditDialog = MutableLiveData<EditDialogEvent>()
 

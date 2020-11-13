@@ -59,6 +59,9 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(R.layout.activity_main
 
     private fun initFragment() {
 
+        if (mFragments.isNotEmpty()) {
+            mFragments.clear()
+        }
         mFragments.add(HomeFragment())
         mFragments.add(WenDaFragment())
         mFragments.add(CollectFragment())

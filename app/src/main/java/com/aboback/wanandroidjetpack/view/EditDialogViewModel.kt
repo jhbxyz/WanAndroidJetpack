@@ -33,10 +33,10 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
     var mLinkHint = ObservableField("")
 
     var mId: Int? = null
-    var mCollectContentPage: CollectContentPage? = null
+    var mCollectContentPage: CollectContentPage = CollectContentPage.COLLECT_ARTICLE
     private var mCurrPage = EditPage.COLLECT_ARTICLE
 
-    fun handlePageData(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage? = null) {
+    fun handlePageData(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage) {
         mCurrPage = page
         mCollectContentPage = collectContentPage
         when (page) {
@@ -63,6 +63,9 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
                 mTitleHint.set("*请输入标题")
 
 
+            }
+            else -> {
+                //Nothing
             }
         }
     }
@@ -98,10 +101,20 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     }
 
+    private fun resetFields() {
+        mTitle.set("")
+        mAuthor.set("")
+        mLink.set("")
+    }
+
     private fun collectAdd() {
         launch {
             response(WanServer.api.collectAdd(mTitle.get(), mAuthor.get(), mLink.get())) {
+                GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
+                GlobalSingle.onAddCollectArticle.value = mCollectContentPage
 
+                resetFields()
+                "收藏文章成功...".showToast()
             }
         }
     }
@@ -109,11 +122,11 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
     private fun collectWebsite() {
         launch {
             response(WanServer.api.addCollectWebsite(name = mTitle.get(), link = mLink.get())) {
-                mTitle.set("")
-                mLink.set("")
-                "收藏网站成功...".showToast()
-                GlobalSingle.showEditDialog.value = EditDialogEvent(EditPage.NONE)
+                GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
                 GlobalSingle.onAddCollectWebsite.value = true
+
+                resetFields()
+                "收藏网站成功...".showToast()
             }
         }
     }
@@ -122,14 +135,26 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
         launch {
             response(WanServer.api.updateCollectWebsite(id = mId, name = mTitle.get(), link = mLink.get())) {
                 GlobalSingle.showEditDialog.value = EditDialogEvent(
-                        page = EditPage.NONE,
-                        bean = EditDialogEventBean(mId, mTitle.get(), mLink.get()),
-                        collectContentPage = mCollectContentPage
-                )
+                        collectContentPage = mCollectContentPage,
+                        bean = EditDialogEventBean(mId, mTitle.get(), mLink.get()), page = EditPage.NONE)
+                resetFields()
                 "更新网站成功...".showToast()
-                mTitle.set("")
-                mLink.set("")
             }
         }
     }
+
+
+    private fun addMyArticle() {
+        launch {
+            response(WanServer.api.addMyArticle(title = mTitle.get(), author = mAuthor.get(), link = mLink.get())) {
+                GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
+                GlobalSingle.onAddCollectWebsite.value = true
+                resetFields()
+                "收藏网站成功...".showToast()
+
+            }
+        }
+    }
+
+
 }

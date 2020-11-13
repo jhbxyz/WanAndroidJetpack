@@ -113,11 +113,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@{item.mCollect ? @drawable/collect_red : @drawable/collect_gray }"
-                tools:src="@drawable/collect_red"
                 app:layout_constraintBottom_toBottomOf="@id/tvTitle"
                 app:layout_constraintLeft_toRightOf="@+id/tvTitle"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+                app:layout_constraintTop_toTopOf="@+id/tvTitle"
+                tools:src="@drawable/collect_red" />
+
+
+            <ImageView
+                android:id="@+id/tvDel"
+                android:layout_marginStart="@dimen/dp_10"
+                android:visibility="@{item.mCollectIconShow ? View.INVISIBLE:View.VISIBLE}"
+                android:gravity="center_vertical"
+                android:onClick="@{()->item.onDelClick.invoke()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shanchu_ico"
+                app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                app:layout_constraintLeft_toRightOf="@+id/tvTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitle"
+                tools:src="@drawable/shanchu_ico" />
 
 
             <TextView

@@ -30,6 +30,8 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
 
     var onCollectClick = {}
 
+    var onDelClick = {}
+
     fun bindData() {
         setTitle()
         setTime()
