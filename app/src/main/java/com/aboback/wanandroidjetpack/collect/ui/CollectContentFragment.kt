@@ -65,8 +65,11 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
 
         mRealVM.mDeleteShareArticle.observe(this, Observer {
             if (it) {
-                mRealVM.delMyArticle()
-                mRealVM.mDeleteShareArticle.value = false
+                DialogUtil.showDialog(mActivity, message = "您确定要删除吗?", positiveAction = {
+                    mRealVM.delMyArticle()
+                    mRealVM.mDeleteShareArticle.value = false
+                })
+
             }
         })
 
@@ -92,6 +95,13 @@ class CollectContentFragment(private val mContentPage: CollectContentPage) : Bas
         })
 
         GlobalSingle.onAddCollectArticle.observe(this, Observer {
+            if (it == mContentPage) {
+                mRealVM.requestServer(false)
+                GlobalSingle.onAddCollectArticle.value = CollectContentPage.NONE
+            }
+        })
+
+        GlobalSingle.onAddShareArticle.observe(this, Observer {
             if (it == mContentPage) {
                 mRealVM.requestServer(false)
                 GlobalSingle.onAddCollectArticle.value = CollectContentPage.NONE

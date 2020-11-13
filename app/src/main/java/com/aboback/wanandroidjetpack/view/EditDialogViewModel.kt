@@ -48,6 +48,7 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
                 mAuthorVisible.set(true)
                 mTitle.set(bean?.name)
                 mLink.set(bean?.link)
+                mId = bean?.id
             }
             EditPage.WEBSITE -> {
                 mEditName.set(if (bean?.id.isNull()) "收藏网站" else "编辑网站")
@@ -60,9 +61,12 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
             }
             EditPage.SHARE_ARTICLE -> {
                 mEditName.set("分享文章")
-                mTitleHint.set("*请输入标题")
-
-
+                mTitleHint.set("*请输入文章标题")
+                mLinkHint.set("*请输入文章链接")
+                mAuthorVisible.set(false)
+                mTitle.set(bean?.name)
+                mLink.set(bean?.link)
+                mId = bean?.id
             }
             else -> {
                 //Nothing
@@ -95,7 +99,10 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
                 }
             }
             EditPage.SHARE_ARTICLE -> {
-
+                addMyArticle()
+            }
+            else -> {
+                //Nothing
             }
         }
 
@@ -146,12 +153,11 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     private fun addMyArticle() {
         launch {
-            response(WanServer.api.addMyArticle(title = mTitle.get(), author = mAuthor.get(), link = mLink.get())) {
+            response(WanServer.api.addMyArticle(title = mTitle.get(), link = mLink.get())) {
                 GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
-                GlobalSingle.onAddCollectWebsite.value = true
+                GlobalSingle.onAddShareArticle.value = mCollectContentPage
                 resetFields()
-                "收藏网站成功...".showToast()
-
+                "分析文章成功...".showToast()
             }
         }
     }

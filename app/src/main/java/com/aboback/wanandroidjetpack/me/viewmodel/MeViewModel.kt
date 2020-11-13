@@ -74,7 +74,7 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.wangzhan_ico.getResDrawable())
             onClick = {
                 if (WanApp.isLogin) {
-                    GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.WEBSITE,collectContentPage = CollectContentPage.COLLECT_WEBSITE)
+                    GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.WEBSITE, collectContentPage = CollectContentPage.COLLECT_WEBSITE)
                 } else {
                     "请先登录".showToast()
                 }
@@ -86,6 +86,13 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.wenzhang_ico.getResDrawable())
             mShowDivider.set(false)
             mShowMargin.set(true)
+            onClick = {
+                if (WanApp.isLogin) {
+                    GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.SHARE_ARTICLE, collectContentPage = CollectContentPage.SHARE_ARTICLE)
+                } else {
+                    "请先登录".showToast()
+                }
+            }
         })
 
         mData.add(MeItemVM(getApplication()).apply {

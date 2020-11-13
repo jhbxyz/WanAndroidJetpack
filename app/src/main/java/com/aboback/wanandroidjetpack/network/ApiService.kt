@@ -143,7 +143,6 @@ interface ApiService {
     @FormUrlEncoded
     @POST("/lg/user_article/add/json")
     suspend fun addMyArticle(@Field("title") title: String?,
-                             @Field("author") author: String?,
                              @Field("link") link: String?
     ): BaseBean
 

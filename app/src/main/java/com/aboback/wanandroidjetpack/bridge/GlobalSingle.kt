@@ -18,6 +18,7 @@ object GlobalSingle {
 
     var onAddCollectWebsite = MutableLiveData<Boolean>()
     var onAddCollectArticle = MutableLiveData<CollectContentPage>()
+    var onAddShareArticle = MutableLiveData<CollectContentPage>()
 
     var showEditDialog = MutableLiveData<EditDialogEvent>()
 
