@@ -35,7 +35,7 @@ class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragmen
         mFragments.add(CollectContentFragment(CollectContentPage.COLLECT_WEBSITE))
 //        mFragments.add(CollectContentFragment(CollectContentPage.SHARE_PROJECT))
 
-        viewPager2.adapter = CollectVpAdapter(mFragments, mActivity.supportFragmentManager, lifecycle)
+        viewPager2.adapter = CollectVpAdapter(mFragments, childFragmentManager, lifecycle)
 //        viewPager2.setPageTransformer(ZoomOutPageTransformer())
         TabLayoutMediator(tabLayout, viewPager2, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             tab.text = mTitles[position]

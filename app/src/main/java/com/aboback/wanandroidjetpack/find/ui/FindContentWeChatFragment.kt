@@ -34,7 +34,7 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
         if (isTabLayoutClick) {
             onSelectPage()
         }
-
+        register()
     }
 
     private val mObserver = Observer<CollectChangeBean> {
@@ -59,6 +59,8 @@ class FindContentWeChatFragment : BaseVMRepositoryFragment<FindContentWeChatVM>(
     override fun scrollToTop() {
         RvScrollDelegate.scrollToTop(mRealVM.rvVMRight)
     }
+
+    override fun pageIndex() = 2
 
     override fun onSelectPage() {
         if (!mFragmentInit) {

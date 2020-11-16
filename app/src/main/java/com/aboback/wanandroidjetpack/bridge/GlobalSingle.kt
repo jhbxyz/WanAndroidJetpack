@@ -22,5 +22,7 @@ object GlobalSingle {
 
     var showEditDialog = MutableLiveData<EditDialogEvent>()
 
+    var onFindPageSelect = MutableLiveData<Int>()
+
 
 }

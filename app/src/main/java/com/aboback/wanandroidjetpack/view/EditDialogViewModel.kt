@@ -157,7 +157,7 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
                 GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
                 GlobalSingle.onAddShareArticle.value = mCollectContentPage
                 resetFields()
-                "分析文章成功...".showToast()
+                "分享文章成功...".showToast()
             }
         }
     }

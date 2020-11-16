@@ -36,6 +36,7 @@ class FindContentProjectTreeFragment : BaseVMRepositoryFragment<FindContentProje
             onSelectPage()
         }
 
+        register()
     }
 
     private val mObserver = Observer<CollectChangeBean> {
@@ -59,6 +60,8 @@ class FindContentProjectTreeFragment : BaseVMRepositoryFragment<FindContentProje
     override fun scrollToTop() {
         RvScrollDelegate.scrollToTop(mRealVM.rvVMRight)
     }
+
+    override fun pageIndex() = 4
 
     override fun onSelectPage() {
         if (!mFragmentInit) {

@@ -27,6 +27,7 @@ enum class CollectContentPage : Serializable {
 }
 
 class CollectContentFragment(private val mContentPage: CollectContentPage) : BaseVMRepositoryFragment<CollectContentVM>(R.layout.fragment_collect_content), RvScrollToTop, SelectPage {
+    constructor() : this(CollectContentPage.COLLECT_ARTICLE)
 
     private val mDialog by lazy { EditDialog(mActivity) }
 

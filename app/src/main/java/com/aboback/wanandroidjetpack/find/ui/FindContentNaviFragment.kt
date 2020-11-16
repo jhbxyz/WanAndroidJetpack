@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.find.ui
 
 import android.app.Application
 import com.aboback.base.ui.BaseVMRepositoryFragment
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.find.viewmodel.FindContentNaviVM
@@ -27,6 +28,7 @@ class FindContentNaviFragment : BaseVMRepositoryFragment<FindContentNaviVM>(R.la
         if (isTabLayoutClick) {
             onSelectPage()
         }
+        register()
     }
 
     override fun bindScrollListener() {
@@ -34,6 +36,8 @@ class FindContentNaviFragment : BaseVMRepositoryFragment<FindContentNaviVM>(R.la
 
     override fun scrollToTop() {
     }
+
+    override fun pageIndex() = 1
 
     override fun onSelectPage() {
         if (!mFragmentInit) {

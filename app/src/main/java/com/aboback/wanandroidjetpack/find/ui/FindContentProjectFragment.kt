@@ -36,6 +36,7 @@ class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM
             onSelectPage()
         }
 
+        register()
     }
 
 
@@ -63,6 +64,8 @@ class FindContentProjectFragment : BaseVMRepositoryFragment<FindContentProjectVM
 
         RvScrollDelegate.scrollToTop(mRealVM.rvVM)
     }
+
+    override fun pageIndex() = 3
 
     override fun onSelectPage() {
         if (!mFragmentInit) {

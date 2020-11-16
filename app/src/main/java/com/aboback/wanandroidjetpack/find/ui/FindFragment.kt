@@ -3,7 +3,9 @@ package com.aboback.wanandroidjetpack.find.ui
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.aboback.base.ui.BaseViewModelFragment
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.SelectPage
 import com.aboback.wanandroidjetpack.collect.adapter.CollectVpAdapter
 import com.aboback.wanandroidjetpack.find.viewmodel.FindViewModel
@@ -21,12 +23,10 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
     private val mFragments = arrayListOf<Fragment>()
     private val mTitles = arrayOf("体系", "导航", "公众号", "项目", "项目分类")
 
-    private var mPagePosition = 0
-
     override fun onViewInit() {
         super.onViewInit()
 
-        if (mFragments.isNotEmpty()){
+        if (mFragments.isNotEmpty()) {
             mFragments.clear()
         }
         mFragments.add(FindContentTreeFragment())
@@ -35,13 +35,12 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
         mFragments.add(FindContentProjectFragment())
         mFragments.add(FindContentProjectTreeFragment())
 
-        viewPager2.adapter = CollectVpAdapter(mFragments, mActivity.supportFragmentManager, lifecycle)
+        viewPager2.adapter = CollectVpAdapter(mFragments, childFragmentManager, lifecycle)
         viewPager2.setPageTransformer(ZoomOutPageTransformer())
         TabLayoutMediator(tabLayout, viewPager2, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             tab.text = mTitles[position]
         }).attach()
 
-        onSelectedPage(0)
         bindScrollListener()
     }
 
@@ -51,8 +50,7 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
             override fun onTabReselected(tab: TabLayout.Tab?) {}
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                mPagePosition = tab?.position ?: 0
-                viewPager2.setCurrentItem(mPagePosition, false)
+                viewPager2.setCurrentItem(tab?.position ?: 0, false)
             }
         })
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -64,8 +62,7 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
     }
 
     fun onSelectedPage(position: Int) {
-        mPagePosition = position
-        (mFragments[position] as? SelectPage)?.onSelectPage()
+        GlobalSingle.onFindPageSelect.value = position
     }
 
     override fun bindScrollListener() {
@@ -73,7 +70,7 @@ class FindFragment : BaseViewModelFragment<FindViewModel>(R.layout.fragment_find
     }
 
     override fun scrollToTop() {
-        (mFragments[mPagePosition] as? RvScrollToTop)?.scrollToTop()
+        (mFragments[viewPager2.currentItem] as? RvScrollToTop)?.scrollToTop()
     }
 
 }

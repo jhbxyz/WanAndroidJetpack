@@ -128,11 +128,15 @@ tablayout 点击 tab
 
 
 
+#### 11.UncaughtException detected: java.lang.IllegalStateException: FragmentManager is already executing transactions
+
+发生在 ViewPager2 中加载 Fragment 中嵌套ViewPager2 和 Fragment 中，要使用 `childFragmentManager`方法
 
 
 
+#### 12.androidx.fragment.app.Fragment$InstantiationException: Unable to instantiate fragment com.aboback.wanandroidjetpack.collect.ui.CollectContentFragment: could not find Fragment constructor
 
-
+不能实例化一个 Fragment，一般发生在Fragment 的父Activity 因为内存不足，销毁的时候，重新获取实例化时候，会通过反射初始化 Fragment，如果自己的 Fragment重写了构造方法，而且没有提供默认构造的话，就会因为找不到构造方法，而报错
 
 
 

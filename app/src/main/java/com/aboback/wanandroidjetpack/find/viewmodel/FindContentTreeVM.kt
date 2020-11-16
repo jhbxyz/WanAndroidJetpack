@@ -3,6 +3,7 @@ package com.aboback.wanandroidjetpack.find.viewmodel
 import android.app.Application
 import com.aboback.base.rv.QuickAdapter
 import com.aboback.base.util.falsely
+import com.aboback.base.util.logWithTag
 import com.aboback.base.util.truely
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R

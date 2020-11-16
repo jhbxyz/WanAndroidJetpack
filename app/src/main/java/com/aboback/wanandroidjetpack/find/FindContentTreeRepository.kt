@@ -11,9 +11,7 @@ import kotlinx.coroutines.withContext
 class FindContentTreeRepository : NetRepository() {
 
 
-    suspend fun treeList() = withContext(Dispatchers.IO) {
-        api.treeList()
-    }
+    suspend fun treeList() = api.treeList()
 
 
 }

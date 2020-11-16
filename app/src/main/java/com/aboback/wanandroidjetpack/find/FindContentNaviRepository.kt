@@ -10,9 +10,7 @@ import kotlinx.coroutines.withContext
  */
 class FindContentNaviRepository : NetRepository() {
 
-    suspend fun naviList() = withContext(Dispatchers.IO) {
-        api.naviList()
-    }
+    suspend fun naviList() = api.naviList()
 
 
 }
