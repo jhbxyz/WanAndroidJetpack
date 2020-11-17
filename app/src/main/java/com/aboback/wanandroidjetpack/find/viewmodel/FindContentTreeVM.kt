@@ -78,9 +78,7 @@ class FindContentTreeVM(app: Application) : BaseRepositoryViewModel<FindContentT
         mTreeMap[cid]?.forEach {
             mDataRight.add(ItemFindContentTreeAndNaviRightVM(getApplication()).apply {
                 mContent.set(it?.name)
-                onClickItem = {
-
-                }
+                mCid = it?.id
             })
         }
         mAdapterRight.notifyDataSetChanged()

@@ -22,14 +22,11 @@ class FindContentTreeFragment : BaseVMRepositoryFragment<FindContentTreeVM>(R.la
     override fun onViewInit() {
         super.onViewInit()
         mFragmentInit = true
-        "this = $this   onViewInit   mFragmentInit = $mFragmentInit".logWithTag(mTag)
     }
 
     override fun onEvent() {
         super.onEvent()
         if (isTabLayoutClick) {
-            "this = $this  onEvent  mFragmentInit = $mFragmentInit".logWithTag(mTag)
-
             onSelectPage()
         }
 
@@ -42,12 +39,8 @@ class FindContentTreeFragment : BaseVMRepositoryFragment<FindContentTreeVM>(R.la
     override fun onSelectPage() {
         if (!mFragmentInit) {
             isTabLayoutClick = true
-            "this = $this  onSelectPage  mFragmentInit = $mFragmentInit".logWithTag(mTag)
-
         } else {
             if (!mRealVM.isRequestSuccess) {
-                "this = $this  requestServer  mFragmentInit = $mFragmentInit".logWithTag(mTag)
-
                 mRealVM.requestServer()
             }
         }

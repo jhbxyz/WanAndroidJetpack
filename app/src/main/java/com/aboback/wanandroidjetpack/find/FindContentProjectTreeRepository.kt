@@ -10,13 +10,9 @@ import kotlinx.coroutines.withContext
  */
 class FindContentProjectTreeRepository : NetRepository() {
 
-    suspend fun projectTreeList() = withContext(Dispatchers.IO) {
-        api.projectTreeList()
-    }
+    suspend fun projectTreeList() = api.projectTreeList()
 
-    suspend fun projectListCid(page: Int, cid: Int?) = withContext(Dispatchers.IO) {
-        api.projectListCid(page, cid)
-    }
+    suspend fun projectListCid(page: Int, cid: Int?) = api.projectListCid(page, cid)
 
 
 }

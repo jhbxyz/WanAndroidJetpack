@@ -55,6 +55,11 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
+            android:name=".find.ui.TreeListActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
             android:name=".base.WanWebActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
 

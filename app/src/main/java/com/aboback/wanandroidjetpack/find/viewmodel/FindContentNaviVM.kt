@@ -72,11 +72,10 @@ class FindContentNaviVM(app: Application) : BaseRepositoryViewModel<FindContentN
     private fun getNaviArticles(cid: Int?) {
         mDataRight.clear()
         mNaviMap[cid]?.forEach {
-            mDataRight.add(ItemFindContentTreeAndNaviRightVM(getApplication()).apply {
+            mDataRight.add(ItemFindContentTreeAndNaviRightVM(getApplication(), true).apply {
                 mContent.set(it.title)
-                onClickItem = {
-
-                }
+                mCid = it.id
+                mLink = it.link
             })
         }
         mAdapterRight.notifyDataSetChanged()

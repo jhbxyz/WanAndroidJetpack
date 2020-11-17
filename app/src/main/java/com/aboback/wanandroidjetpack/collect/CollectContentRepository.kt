@@ -17,9 +17,7 @@ class CollectContentRepository(private val mContentPage: CollectContentPage) : N
         api.lgCollectList(page)
     }
 
-    suspend fun interviewRelate(page: Int) = withContext(Dispatchers.IO) {
-        api.articleList(page, 73)
-    }
+    suspend fun interviewRelate(page: Int) = api.articleList(page, 73)
 
 
     suspend fun shareArticle(page: Int) = withContext(Dispatchers.IO) {

@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/dp_12"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
-        android:onClick="@{()->item.onClickItem.invoke()}"
+        android:onClick="@{()->item.onItemClick()}"
         app:cardBackgroundColor="@{item.mBgColor}"
         app:cardCornerRadius="@dimen/dp_5"
         app:cardElevation="@dimen/dp_2">
