@@ -13,7 +13,7 @@ import com.aboback.wanandroidjetpack.collect.SelectPage
 /**
  * Created by jhb on 2020-02-11.
  */
-class FragmentTest(val page: Int) : BaseFragment() , SelectPage {
+class FragmentTest(val page: Int) : BaseFragment(), SelectPage {
     constructor() : this(1)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,7 +22,10 @@ class FragmentTest(val page: Int) : BaseFragment() , SelectPage {
         textView.text = javaClass.simpleName + "$page"
         return textView
     }
-//
+
+    override fun pageIndex() = -1
+
+    //
 //
 //
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
