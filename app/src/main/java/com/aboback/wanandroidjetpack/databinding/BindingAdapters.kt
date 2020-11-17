@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.aboback.base.util.getResDimen
+import com.aboback.base.util.log
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
@@ -149,7 +151,8 @@ fun fabCustomSize(fab: FloatingActionButton, dp: Int) {
 
 
 @BindingAdapter("webViewLoadUrl")
-fun webViewLoadUrl(webView: WebView, url: String) {
+fun webViewLoadUrl(webView: WebView, url: String?) {
+    if (url.isNullOrEmpty()) return
     webView.loadUrl(url)
 }
 

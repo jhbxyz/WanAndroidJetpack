@@ -12,6 +12,7 @@ import com.aboback.base.BaseApp
 import com.aboback.base.util.log
 import com.aboback.base.ui.BaseActivity
 import com.aboback.base.ui.BaseViewModelActivity
+import com.aboback.base.util.delay
 import com.aboback.base.util.logWithTag
 import com.aboback.base.view.LoadingDialog
 import com.aboback.wanandroidjetpack.R
@@ -29,11 +30,11 @@ import java.util.concurrent.TimeUnit
  */
 class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_webview_x5, X5WebViewModel::class.java) {
 
-    private val mDialog by lazy { LoadingDialog(this) }
+    private val mDialog by lazy { LoadingDialog(this, true) }
 
     override fun beforeSetView() {
         super.beforeSetView()
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     override fun onViewInit() {
@@ -67,22 +68,17 @@ class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_we
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(p0: WebView?, p1: String?) {
                 super.onPageFinished(p0, p1)
-                "onPageFinished ".logWithTag("1111111111111111")
 
             }
 
             override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
                 super.onPageStarted(p0, p1, p2)
-                "onPageStarted ".logWithTag("1111111111111111")
                 mDialog.show()
-
             }
         }
         webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(p0: WebView?, p1: Int) {
                 super.onProgressChanged(p0, p1)
-                "onProgressChanged   p1  = $p1".logWithTag("1111111111111111")
-
                 if (p1 >= 100) {
                     mDialog.dismiss()
                 }

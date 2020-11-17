@@ -26,6 +26,8 @@
                 <include
                     android:id="@+id/title"
                     layout="@layout/view_model_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     app:title="@{layout.mTitleVM}" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -36,13 +38,13 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nsv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <com.tencent.smtt.sdk.WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:webViewLoadUrl="@{layout.mUrl}" />
 
         </androidx.core.widget.NestedScrollView>
