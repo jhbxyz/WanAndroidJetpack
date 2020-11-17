@@ -51,6 +51,13 @@ class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_we
                 mRealVM.mScrollToTop.value = false
             }
         })
+        mRealVM.showLoadingDialog.observe(this, Observer {
+            if (it) {
+                mDialog.show()
+            } else {
+                mDialog.dismiss()
+            }
+        })
     }
 
     private fun setWebView() {

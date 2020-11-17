@@ -15,13 +15,9 @@ open class NetRepository : BaseRepository {
 
     val api = WanServer.api
 
-    suspend fun collect(id: Int) = withContext(Dispatchers.IO) {
-        api.collect(id)
-    }
+    suspend fun collect(id: Int) = api.collect(id)
 
-    suspend fun unCollect(id: Int, isOnMe: Boolean = false, originId: Int = -1) = withContext(Dispatchers.IO) {
-        if (isOnMe) api.unCollectInMe(id, originId) else api.unCollect(id)
-    }
+    suspend fun unCollect(id: Int, isOnMe: Boolean = false, originId: Int = -1) = if (isOnMe) api.unCollectInMe(id, originId) else api.unCollect(id)
 
 
 }

@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:textSize="@dimen/sp_16"
             android:text="@{title.rightText}"
-            android:onClick="@{()->title.rightAction}"
+            android:onClick="@{()->title.rightAction.invoke()}"
             android:layout_marginEnd="@dimen/dp_12"
             android:drawableEnd="@{title.mRightDrawable}"
             android:textColor="@color/colorWhite"
