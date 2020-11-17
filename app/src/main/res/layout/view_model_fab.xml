@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:scaleType="centerInside"
         android:layout_height="wrap_content"
-        android:src="@{fab.drawable}"
+        android:src="@{fab.mDrawable}"
         android:onClick="@{()-> fab.onClick.invoke()}"
         app:borderWidth="@dimen/dp_0"
         app:fabCustomSize="@{fab.size}"

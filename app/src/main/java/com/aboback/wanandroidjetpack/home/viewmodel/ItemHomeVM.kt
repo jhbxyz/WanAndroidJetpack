@@ -6,7 +6,10 @@ import androidx.databinding.ObservableField
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.util.truely
+import com.aboback.wanandroidjetpack.base.X5WebActivity
+import com.aboback.wanandroidjetpack.base.X5WebViewModel
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
+import com.aboback.wanandroidjetpack.common.CommonItemBean
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 
 /**
@@ -18,6 +21,7 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
     var mTime = ObservableField("")
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
+    var mLink: String? = ""
     var mId: Int? = null
     var mOriginId: Int = -1
     var mCollect = ObservableBoolean()
@@ -32,6 +36,13 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
 
     var onDelClick = {}
 
+    fun onItemClick() {
+
+        startActivity(X5WebActivity::class.java,
+                X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, mCollect.get()))
+
+    }
+
     fun bindData() {
         setTitle()
         setTime()
@@ -39,6 +50,7 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
         setCategory()
         setTags()
         mId = bean?.id
+        mLink = bean?.link
         mOriginId = bean?.originId ?: -1
         mCollect.set(bean?.collect ?: false)
     }

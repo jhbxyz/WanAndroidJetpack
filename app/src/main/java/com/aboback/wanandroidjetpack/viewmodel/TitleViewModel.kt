@@ -1,6 +1,7 @@
 package com.aboback.wanandroidjetpack.viewmodel
 
 import android.graphics.drawable.Drawable
+import androidx.databinding.ObservableField
 import com.aboback.base.util.getDrawable
 import com.aboback.base.util.getResColor
 import com.aboback.wanandroidjetpack.R
@@ -17,4 +18,7 @@ class TitleViewModel(var leftText: String? = "",
                      var rightAction: (() -> Unit)? = null,
                      var background: Int = R.color.colorAccent.getResColor()
 
-)
+) {
+    val mTitle = ObservableField(title)
+    val mRightDrawable = ObservableField(rightDrawable)
+}

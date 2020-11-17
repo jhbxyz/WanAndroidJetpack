@@ -16,11 +16,10 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.tencent.smtt.sdk.WebView
 import com.youth.banner.Banner
-import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.indicator.Indicator
 
 /**
@@ -147,6 +146,13 @@ fun layoutWidth(view: View, dp: Int) {
 fun fabCustomSize(fab: FloatingActionButton, dp: Int) {
     fab.customSize = dp
 }
+
+
+@BindingAdapter("webViewLoadUrl")
+fun webViewLoadUrl(webView: WebView, url: String) {
+    webView.loadUrl(url)
+}
+
 
 
 

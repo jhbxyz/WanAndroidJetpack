@@ -44,8 +44,8 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     }
 
 
-    var mData = arrayListOf<BaseMultiItemViewModel>()
-    val mAdapter = QuickMultiAdapter(mData).apply {
+    private var mData = arrayListOf<BaseMultiItemViewModel>()
+    private val mAdapter = QuickMultiAdapter(mData).apply {
         addType(R.layout.item_rv_home_banner, ItemType.ITEM_HOME_BANNER)
         addType(R.layout.item_rv_home, ItemType.ITEM_HOME_MAIN)
     }
@@ -112,15 +112,16 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
 
                 getArticleList()
 
-            } catch (e: Throwable) {
-                e.message?.showToast()
+                dialogState(state, false)
 
+            } catch (e: Throwable) {
+                dialogState(state, false)
+                e.message?.showToast()
             } finally {
                 mAdapter.notifyDataSetChanged()
 
                 hideRefreshLoading(state)
 
-                dialogState(state, false)
             }
         }
     }

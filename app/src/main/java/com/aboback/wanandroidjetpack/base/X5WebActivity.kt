@@ -7,9 +7,13 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.lifecycle.Observer
 import com.aboback.base.BaseApp
 import com.aboback.base.util.log
 import com.aboback.base.ui.BaseActivity
+import com.aboback.base.ui.BaseViewModelActivity
+import com.aboback.base.util.logWithTag
+import com.aboback.base.view.LoadingDialog
 import com.aboback.wanandroidjetpack.R
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
@@ -23,62 +27,30 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by jhb on 2019-08-06.
  */
-class X5WebActivity : BaseActivity() {
+class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_webview_x5, X5WebViewModel::class.java) {
 
-    var url = ""
-    var title = ""
-    private val TAG = "X5WebActivity"
+    private val mDialog by lazy { LoadingDialog(this) }
 
-    companion object {
-        private const val WEB_URL = "web_url"
-        private const val WEB_TITLE = "web_title"
-
-        fun startActivity(url: String?, title: String? = null) {
-            val intent = Intent(BaseApp.instance, X5WebActivity::class.java)
-            intent.putExtra(WEB_URL, url)
-            intent.putExtra(WEB_TITLE, title)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            BaseApp.instance.startActivity(intent)
-        }
+    override fun beforeSetView() {
+        super.beforeSetView()
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_webview_x5)
-        initView()
-
-        initEvent()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        "$TAG   onConfigurationChanged".log()
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        "$TAG   onNewIntent".log()
-
-    }
-
-    private fun initView() {
-
-        title = intent.getStringExtra(WEB_TITLE) ?: ""
-
-
-        url = intent.getStringExtra(WEB_URL) ?: ""
-
+    override fun onViewInit() {
+        super.onViewInit()
         setWebView()
-        webView.loadUrl(url)
-
     }
 
-    private fun initEvent() {
-
-
+    override fun onEvent() {
+        super.onEvent()
+        mRealVM.mScrollToTop.observe(this, Observer {
+            if (it) {
+                nsv.smoothScrollTo(0, 0, 800)
+//                nsv.scrollTo(0, 0)
+                mRealVM.mScrollToTop.value = false
+            }
+        })
     }
-
 
     private fun setWebView() {
         WebView.setWebContentsDebuggingEnabled(true)
@@ -95,25 +67,27 @@ class X5WebActivity : BaseActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(p0: WebView?, p1: String?) {
                 super.onPageFinished(p0, p1)
+                "onPageFinished ".logWithTag("1111111111111111")
 
             }
 
             override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
                 super.onPageStarted(p0, p1, p2)
+                "onPageStarted ".logWithTag("1111111111111111")
+                mDialog.show()
 
             }
         }
         webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(p0: WebView?, p1: Int) {
                 super.onProgressChanged(p0, p1)
+                "onProgressChanged   p1  = $p1".logWithTag("1111111111111111")
+
                 if (p1 >= 100) {
+                    mDialog.dismiss()
                 }
             }
-
-
         }
-
-
     }
 
     override fun onBackPressed() {
