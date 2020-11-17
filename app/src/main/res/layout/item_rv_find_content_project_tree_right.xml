@@ -20,6 +20,7 @@
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_12"
         android:layout_marginEnd="@dimen/dp_12"
+        android:onClick="@{()->item.onItemClick()}"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/colorBackground"
         app:cardCornerRadius="@dimen/dp_5"
@@ -118,11 +119,11 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{()->item.onCollectClick.invoke()}"
                 android:src="@{item.mCollect ? @drawable/collect_red : @drawable/collect_gray }"
-                tools:src="@drawable/collect_red"
                 android:layout_marginStart="@dimen/dp_12"
                 app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+                app:layout_constraintTop_toTopOf="@+id/tvTitle"
+                tools:src="@drawable/collect_red" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

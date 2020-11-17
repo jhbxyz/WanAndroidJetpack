@@ -45,7 +45,7 @@ class CollectContentFragment : BaseVMRepositoryFragment<CollectContentVM>(R.layo
 
     private var mFragmentInit = false
     private var isTabLayoutClick = false
-    var mContentPage: CollectContentPage? = null
+    private var mContentPage: CollectContentPage? = null
 
     companion object {
         const val CONTENT_PAGE = "content_page"

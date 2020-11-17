@@ -2,20 +2,12 @@ package com.aboback.wanandroidjetpack.base
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Bitmap
-import android.os.Bundle
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.lifecycle.Observer
-import com.aboback.base.BaseApp
-import com.aboback.base.util.log
-import com.aboback.base.ui.BaseActivity
 import com.aboback.base.ui.BaseVMRepositoryActivity
-import com.aboback.base.ui.BaseViewModelActivity
-import com.aboback.base.util.delay
 import com.aboback.base.util.logWithTag
+import com.aboback.base.util.truely
 import com.aboback.base.view.LoadingDialog
 import com.aboback.wanandroidjetpack.R
 import com.tencent.smtt.sdk.WebChromeClient
@@ -31,6 +23,10 @@ import java.util.concurrent.TimeUnit
  * Created by jhb on 2019-08-06.
  */
 class X5WebActivity : BaseVMRepositoryActivity<X5WebViewModel>(R.layout.activity_webview_x5) {
+
+    companion object {
+        private const val FILTER_URL_JIAN_SHU = "jianshu://notes/"
+    }
 
     private val mDialog by lazy { LoadingDialog(this, true) }
 
@@ -67,23 +63,37 @@ class X5WebActivity : BaseVMRepositoryActivity<X5WebViewModel>(R.layout.activity
         settings.setAppCachePath(appCachePath)
         settings.allowFileAccess = true
         settings.setAppCacheEnabled(true)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-        }
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(p0: WebView?, p1: String?) {
-                super.onPageFinished(p0, p1)
 
+        webView.webViewClient = object : WebViewClient() {
+
+            override fun shouldOverrideUrlLoading(webview: WebView?, url: String?): Boolean {
+                "shouldOverrideUrlLoading url = $url".logWithTag(mTag)
+                return when {
+                    url?.contains(FILTER_URL_JIAN_SHU).truely() -> {
+                        true
+                    }
+                    else -> false
+                }
             }
 
-            override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
-                super.onPageStarted(p0, p1, p2)
+            override fun onPageFinished(webview: WebView?, url: String?) {
+                super.onPageFinished(webview, url)
+                "onPageFinished url = $url".logWithTag(mTag)
+                hideDialog()
+            }
+
+            override fun onPageStarted(webview: WebView?, url: String?, bitmap: Bitmap?) {
+                super.onPageStarted(webview, url, bitmap)
+                "onPageStarted url = $url".logWithTag(mTag)
+
                 showDialog()
             }
         }
         webView.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(p0: WebView?, p1: Int) {
-                super.onProgressChanged(p0, p1)
-                if (p1 >= 100) {
+            override fun onProgressChanged(webview: WebView?, progress: Int) {
+                super.onProgressChanged(webview, progress)
+                "onProgressChanged progress = $progress".logWithTag(mTag)
+                if (progress >= 100) {
                     hideDialog()
                 }
             }

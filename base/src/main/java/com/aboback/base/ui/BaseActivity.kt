@@ -8,6 +8,7 @@ import com.aboback.base.util.ActivityUtil
 import com.aboback.base.view.LoadingDialog
 import com.aboback.base.util.isNull
 import com.aboback.base.util.logWithTag
+import com.aboback.base.util.truely
 import java.io.Serializable
 
 /**
@@ -15,6 +16,7 @@ import java.io.Serializable
  * @date 2020/10/15
  */
 open class BaseActivity : AppCompatActivity() {
+    var mTag = javaClass.simpleName
 
     private var mDialog: LoadingDialog? = null;
 
@@ -37,7 +39,9 @@ open class BaseActivity : AppCompatActivity() {
 
     fun hideDialog() {
         initDialog()
-        mDialog?.dismiss()
+        if (mDialog?.isShowing.truely()) {
+            mDialog?.dismiss()
+        }
     }
 
     fun startActivity(clazz: Class<*>, vararg data: Pair<String, Any?>) {

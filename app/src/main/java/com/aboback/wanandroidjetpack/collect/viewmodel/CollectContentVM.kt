@@ -105,6 +105,9 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
             CollectContentPage.SHARE_PROJECT -> {
 
             }
+            else -> {
+                //Nothing
+            }
         }
     }
 

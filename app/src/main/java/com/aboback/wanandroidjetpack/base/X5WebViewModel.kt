@@ -27,11 +27,14 @@ class X5WebViewModel(app: Application) : BaseRepositoryViewModel<NetRepository>(
 
     companion object {
         const val FLAG_BEAN = "flag_bean"
+        const val FLAG_SHOW_COLLECT_ICON = "flag_show_collect_icon"
     }
 
     val mScrollToTop = MutableLiveData<Boolean>()
     val mUrl = ObservableField("")
     private var mBean: CommonItemBean? = null
+    private var showCollectIcon = true
+
 
     val mTitleVM = TitleViewModel(
             leftAction = {
@@ -67,6 +70,7 @@ class X5WebViewModel(app: Application) : BaseRepositoryViewModel<NetRepository>(
     override fun onModelBind() {
         super.onModelBind()
         mBean = mBundle.getSerializable(FLAG_BEAN) as? CommonItemBean
+        showCollectIcon = mBundle.getBoolean(FLAG_SHOW_COLLECT_ICON, true)
         mBean?.apply {
             mUrl.set(link)
             mTitleVM.mTitle.set(title)
@@ -76,7 +80,11 @@ class X5WebViewModel(app: Application) : BaseRepositoryViewModel<NetRepository>(
     }
 
     private fun setCollectState(collect: Boolean) {
-        mTitleVM.mRightDrawable.set(if (collect) R.drawable.collect_red.getResDrawable() else R.drawable.sc_white_stroke_ico.getResDrawable())
+        if (showCollectIcon) {
+            mTitleVM.mRightDrawable.set(if (collect) R.drawable.collect_red.getResDrawable() else R.drawable.sc_white_stroke_ico.getResDrawable())
+        } else {
+            mTitleVM.mRightDrawable.set(null)
+        }
     }
 
 }

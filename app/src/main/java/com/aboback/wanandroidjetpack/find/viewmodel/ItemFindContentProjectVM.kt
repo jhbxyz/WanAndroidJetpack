@@ -6,6 +6,9 @@ import androidx.databinding.ObservableField
 import com.aboback.base.rv.BaseItemViewModel
 import com.aboback.base.util.getResColor
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.base.X5WebActivity
+import com.aboback.wanandroidjetpack.base.X5WebViewModel
+import com.aboback.wanandroidjetpack.common.CommonItemBean
 
 /**
  * @author jhb
@@ -18,8 +21,16 @@ class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app) {
     var mDesc = ObservableField<String>()
     var mAuthor = ObservableField<String>()
     var mId: Int? = 0
+    var mLink: String? = null
     var mChecked = ObservableField<Boolean>(false)
     var mCollect = ObservableBoolean()
     var onCollectClick = {}
     var onClickItem = {}
+
+    fun onItemClick() {
+        startActivity(X5WebActivity::class.java,
+                X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, false)
+        )
+    }
+
 }

@@ -67,6 +67,7 @@ class FindContentProjectVM(app: Application) : BaseRepositoryViewModel<FindConte
                     mAuthor.set(it.author)
                     mCollect.set(it.collect ?: false)
                     mId = it.id
+                    mLink = it.link
                     onCollectClick = {
                         if (mCollect.get()) {
                             mId?.let { id ->

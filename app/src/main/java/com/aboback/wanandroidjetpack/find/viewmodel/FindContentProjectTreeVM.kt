@@ -119,6 +119,7 @@ class FindContentProjectTreeVM(app: Application) : BaseRepositoryViewModel<FindC
                         mTime.set(it.niceShareDate)
                         mAuthor.set(it.author)
                         mId = it.id
+                        mLink = it.link
                         mCollect.set(it.collect ?: false)
                         onCollectClick = {
                             mCollectId = mId
