@@ -17,13 +17,14 @@ import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 
 data class CollectChangeBean(var isCollect: Boolean, var id: Int)
 
-fun BaseLayoutViewModel.collectDelegate(id: Int, repo: NetRepository) {
+fun BaseLayoutViewModel.collectDelegate(id: Int, repo: NetRepository, success: (() -> Unit)? = null) {
     launch {
         val bean = repo.collect(id)
         when (bean.errorCode) {
             NetConstant.SUCCESS -> {
                 collectSuccess()
                 GlobalSingle.onCollectChange.value = CollectChangeBean(true, id)
+                success?.invoke()
             }
             NetConstant.UN_LOGIN -> {
                 bean.errorMsg?.showToast()
@@ -36,13 +37,14 @@ fun BaseLayoutViewModel.collectDelegate(id: Int, repo: NetRepository) {
     }
 }
 
-fun BaseLayoutViewModel.unCollectDelegate(id: Int, repo: NetRepository, isOnMe: Boolean = false, originId: Int = -1) {
+fun BaseLayoutViewModel.unCollectDelegate(id: Int, repo: NetRepository, isOnMe: Boolean = false, originId: Int = -1, success: (() -> Unit)? = null) {
     launch {
         val bean = repo.unCollect(id, isOnMe, originId)
         when (bean.errorCode) {
             NetConstant.SUCCESS -> {
                 cancelCollect()
                 GlobalSingle.onCollectChange.value = CollectChangeBean(false, if (isOnMe) originId else id)
+                success?.invoke()
             }
             NetConstant.UN_LOGIN -> {
                 bean.errorMsg?.showToast()

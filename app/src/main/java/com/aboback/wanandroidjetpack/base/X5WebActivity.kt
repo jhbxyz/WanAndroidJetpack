@@ -1,6 +1,7 @@
 package com.aboback.wanandroidjetpack.base
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Bitmap
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.aboback.base.BaseApp
 import com.aboback.base.util.log
 import com.aboback.base.ui.BaseActivity
+import com.aboback.base.ui.BaseVMRepositoryActivity
 import com.aboback.base.ui.BaseViewModelActivity
 import com.aboback.base.util.delay
 import com.aboback.base.util.logWithTag
@@ -28,13 +30,15 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by jhb on 2019-08-06.
  */
-class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_webview_x5, X5WebViewModel::class.java) {
+class X5WebActivity : BaseVMRepositoryActivity<X5WebViewModel>(R.layout.activity_webview_x5) {
 
     private val mDialog by lazy { LoadingDialog(this, true) }
 
+    override fun getViewModel(app: Application): X5WebViewModel = X5WebViewModel(app)
+
     override fun beforeSetView() {
         super.beforeSetView()
-        window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     override fun onViewInit() {
@@ -49,13 +53,6 @@ class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_we
                 nsv.smoothScrollTo(0, 0, 800)
 //                nsv.scrollTo(0, 0)
                 mRealVM.mScrollToTop.value = false
-            }
-        })
-        mRealVM.showLoadingDialog.observe(this, Observer {
-            if (it) {
-                mDialog.show()
-            } else {
-                mDialog.dismiss()
             }
         })
     }
@@ -80,14 +77,14 @@ class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_we
 
             override fun onPageStarted(p0: WebView?, p1: String?, p2: Bitmap?) {
                 super.onPageStarted(p0, p1, p2)
-                mDialog.show()
+                showDialog()
             }
         }
         webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(p0: WebView?, p1: Int) {
                 super.onProgressChanged(p0, p1)
                 if (p1 >= 100) {
-                    mDialog.dismiss()
+                    hideDialog()
                 }
             }
         }
@@ -129,4 +126,5 @@ class X5WebActivity : BaseViewModelActivity<X5WebViewModel>(R.layout.activity_we
         webView.tag = null
         webView.destroy()
     }
+
 }
