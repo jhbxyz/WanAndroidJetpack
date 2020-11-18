@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.base
+package com.aboback.base
 
 /**
  * @author jhb

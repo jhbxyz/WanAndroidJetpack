@@ -27,7 +27,7 @@ class ItemFindContentProjectTreeRightVM(app: Application) : BaseItemViewModel(ap
     var mCollect = ObservableBoolean()
     var onCollectClick = {}
 
-    fun onItemClick() {
+    override fun onItemClick() {
         startActivity(X5WebActivity::class.java,
                 X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, false)
         )

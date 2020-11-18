@@ -19,7 +19,7 @@ class ItemFindContentTreeAndNaviRightVM(app: Application, private val isNavi: Bo
     var mCid: Int? = null
     var mLink: String? = null
 
-    fun onItemClick() {
+    override fun onItemClick() {
         if (isNavi) {
             startActivity(X5WebActivity::class.java,
                     X5WebViewModel.FLAG_BEAN to CommonItemBean(null, mContent.get(), mLink, false),

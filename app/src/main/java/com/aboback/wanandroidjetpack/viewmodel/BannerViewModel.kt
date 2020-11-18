@@ -2,14 +2,10 @@ package com.aboback.wanandroidjetpack.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import com.aboback.base.ItemType
-import com.aboback.base.rv.BaseMultiItemViewModel
-import com.aboback.base.util.ActivityUtil
 import com.aboback.base.util.getResDimen
 import com.aboback.base.util.logWithTag
 import com.aboback.base.viewmodel.BaseViewModel
 import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.base.ItemClick
 import com.aboback.wanandroidjetpack.base.X5WebActivity
 import com.aboback.wanandroidjetpack.base.X5WebViewModel
 import com.aboback.wanandroidjetpack.common.CommonItemBean

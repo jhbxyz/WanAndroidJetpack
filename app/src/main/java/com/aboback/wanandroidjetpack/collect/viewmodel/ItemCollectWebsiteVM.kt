@@ -27,7 +27,7 @@ class ItemCollectWebsiteVM(app: Application) : BaseMultiItemViewModel(app) {
 
     var onDel = {}
 
-    fun onItemClick() {
+    override fun onItemClick() {
         startActivity(X5WebActivity::class.java,
                 X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink.get(), false),
                 X5WebViewModel.FLAG_SHOW_COLLECT_ICON to false

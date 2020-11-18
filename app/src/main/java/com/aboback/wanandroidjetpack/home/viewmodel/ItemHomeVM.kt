@@ -36,7 +36,7 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
 
     var onDelClick = {}
 
-    fun onItemClick() {
+    override fun onItemClick() {
 
         startActivity(X5WebActivity::class.java,
                 X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, mCollect.get()))

@@ -4,9 +4,6 @@ import android.app.Application
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.aboback.base.rv.BaseItemViewModel
-import com.aboback.base.util.getResColor
-import com.aboback.wanandroidjetpack.R
-import com.aboback.wanandroidjetpack.base.ItemClick
 import com.aboback.wanandroidjetpack.base.X5WebActivity
 import com.aboback.wanandroidjetpack.base.X5WebViewModel
 import com.aboback.wanandroidjetpack.common.CommonItemBean
@@ -15,7 +12,7 @@ import com.aboback.wanandroidjetpack.common.CommonItemBean
  * @author jhb
  * @date 2020/11/5
  */
-class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app),ItemClick {
+class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app) {
     var mPath = ObservableField<String>()
     var mTitle = ObservableField<String>()
     var mTime = ObservableField<String>()
