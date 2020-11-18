@@ -7,6 +7,8 @@ import com.aboback.base.view.BaseDialog
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.common.EditDialogEventBean
+import com.blankj.utilcode.util.KeyboardUtils
+import kotlinx.android.synthetic.main.dialog_edit.*
 
 /**
  * @author jhb
@@ -21,6 +23,7 @@ class EditDialog(private val activity: AppCompatActivity) : BaseDialog<EditDialo
     fun showDialog(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage) {
         show()
         mRealVM.handlePageData(page, bean, collectContentPage)
+        KeyboardUtils.showSoftInput(et0)
     }
 
 

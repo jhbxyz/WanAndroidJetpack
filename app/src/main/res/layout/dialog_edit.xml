@@ -43,6 +43,7 @@
         </FrameLayout>
 
         <EditText
+            android:id="@+id/et0"
             android:paddingStart="@dimen/dp_12"
             android:textSize="@dimen/sp_14"
             android:focusable="true"

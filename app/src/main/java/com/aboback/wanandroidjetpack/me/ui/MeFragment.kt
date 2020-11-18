@@ -7,6 +7,7 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.me.viewmodel.MeViewModel
 import com.aboback.wanandroidjetpack.view.EditPage
+import com.blankj.utilcode.util.KeyboardUtils
 
 /**
  * @author jhb
@@ -32,6 +33,7 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
                 mDialog.showDialog(page = it.page, collectContentPage = it.collectContentPage)
             } else {
                 mDialog.dismiss()
+                KeyboardUtils.hideSoftInputByToggle(mActivity)
             }
         })
     }
