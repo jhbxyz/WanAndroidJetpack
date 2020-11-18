@@ -7,11 +7,9 @@ import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
-import com.aboback.network.NetConstant
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
-import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.*
 import com.aboback.wanandroidjetpack.viewmodel.*
@@ -32,9 +30,9 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             title = "首页"
     )
 
-    private val mImageList = arrayListOf<String>()
+    private val mBannerBeanList = arrayListOf<BannerBean>()
 
-    private val mBannerAdapter = BannerAdapter(mImageList)
+    private val mBannerAdapter = BannerAdapter(mBannerBeanList)
     private var mBannerViewModel = BannerViewModel(getApplication()).apply {
         mAdapterObservable.set(mBannerAdapter)
     }
@@ -134,9 +132,9 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
 
     private suspend fun getBannerImages(state: HomePageState) {
         if (state == HomePageState.INIT || state == HomePageState.REFRESH) {
-            mImageList.clear()
+            mBannerBeanList.clear()
             mRepo.banner().data?.forEach {
-                mImageList.add(it?.imagePath ?: "")
+                mBannerBeanList.add(BannerBean(it.imagePath, it.title, it.url))
             }
             mData.add(mHomeBannerVM)
         }

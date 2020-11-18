@@ -14,7 +14,6 @@
     <com.youth.banner.Banner
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_100"
-        android:onClick="@{()->banner.onItemClick()}"
         app:banner_indicator_normal_color="@color/colorWhite"
         app:banner_indicator_selected_color="@color/colorAccent"
         app:layoutHeight="@{banner.MBannerHeight}"
@@ -22,6 +21,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:setBannerAdapter="@{banner.MAdapterObservable}"
-        app:setBannerIndicator="@{banner.MIndicatorObservable}" />
+        app:setBannerClickListener="@{banner.MBannerClickListener}"
+        app:setBannerIndicator="@{banner.MIndicatorObservable}"
+        app:setBannerPageChangeListener="@{banner.mPageChangeListener}" />
 
 </layout>

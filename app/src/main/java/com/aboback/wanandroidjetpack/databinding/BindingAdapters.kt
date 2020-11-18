@@ -29,6 +29,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tencent.smtt.sdk.WebView
 import com.youth.banner.Banner
 import com.youth.banner.indicator.Indicator
+import com.youth.banner.listener.OnBannerListener
+import com.youth.banner.listener.OnPageChangeListener
 
 /**
  * Created by jhb on 2020/3/26.
@@ -133,6 +135,18 @@ fun setBannerAdapter(banner: Banner<*, BannerAdapter>, adapter: BannerAdapter) {
 @BindingAdapter("setBannerIndicator")
 fun setBannerIndicator(banner: Banner<*, BannerAdapter>, indicator: Indicator) {
     banner.indicator = indicator
+}
+
+@BindingAdapter("setBannerPageChangeListener")
+fun setBannerPageChangeListener(banner: Banner<*, BannerAdapter>, listener: OnPageChangeListener?) {
+    if (listener == null) return
+    banner.addOnPageChangeListener(listener)
+}
+
+@BindingAdapter("setBannerClickListener")
+fun setBannerClickListener(banner: Banner<*, BannerAdapter>, listener: OnBannerListener<*>?) {
+    if (listener == null) return
+    banner.setOnBannerListener(listener)
 }
 
 @BindingAdapter("layoutHeight")
