@@ -9,6 +9,10 @@
             name="layout"
             type="com.aboback.wanandroidjetpack.me.viewmodel.CoinRankViewModel" />
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
     </data>
 
     <LinearLayout
@@ -21,16 +25,17 @@
             app:title="@{layout.mTitleVM}" />
 
         <include
+            layout="@layout/layout_recyclerview"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            layout="@layout/layout_recyclerview"
             app:rv="@{layout.rvVM}" />
 
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
+            android:visibility="@{TextUtils.isEmpty(layout.mRank)?View.GONE:View.VISIBLE}"
             app:cardBackgroundColor="@color/colorBlue"
             app:cardCornerRadius="@dimen/dp_0"
             app:cardElevation="@dimen/dp_5">

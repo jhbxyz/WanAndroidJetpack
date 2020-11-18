@@ -1,5 +1,7 @@
 package com.aboback.wanandroidjetpack.databinding
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,11 @@ import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
 import com.aboback.wanandroidjetpack.viewmodel.TagViewModel
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tencent.smtt.sdk.WebView
 import com.youth.banner.Banner

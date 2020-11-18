@@ -6,6 +6,7 @@ import androidx.databinding.ObservableField
 import com.aboback.base.rv.BaseItemViewModel
 import com.aboback.base.util.getResColor
 import com.aboback.wanandroidjetpack.R
+import com.aboback.wanandroidjetpack.base.ItemClick
 import com.aboback.wanandroidjetpack.base.X5WebActivity
 import com.aboback.wanandroidjetpack.base.X5WebViewModel
 import com.aboback.wanandroidjetpack.common.CommonItemBean
@@ -14,7 +15,7 @@ import com.aboback.wanandroidjetpack.common.CommonItemBean
  * @author jhb
  * @date 2020/11/5
  */
-class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app) {
+class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app),ItemClick {
     var mPath = ObservableField<String>()
     var mTitle = ObservableField<String>()
     var mTime = ObservableField<String>()
@@ -27,7 +28,7 @@ class ItemFindContentProjectVM(app: Application) : BaseItemViewModel(app) {
     var onCollectClick = {}
     var onClickItem = {}
 
-    fun onItemClick() {
+    override fun onItemClick() {
         startActivity(X5WebActivity::class.java,
                 X5WebViewModel.FLAG_BEAN to CommonItemBean(mId, mTitle.get(), mLink, false)
         )

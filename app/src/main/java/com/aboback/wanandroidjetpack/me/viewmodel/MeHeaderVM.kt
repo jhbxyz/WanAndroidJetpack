@@ -13,11 +13,16 @@ import com.aboback.wanandroidjetpack.viewmodel.BannerViewModel
  * @author jhb
  * @date 2020/10/27
  */
-const val UN_LOGIN_PATH = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604293795821&di=ba72880ccaab5704043010c2d3494d06&imgtype=0&src=http%3A%2F%2Fzkres2.myzaker.com%2F202003%2F5e72abdc8e9f0956a37089fe_1024.jpg"
-private const val PATH_1 = "https://images.unsplash.com/photo-1603977503292-79226279141c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-private const val PATH_2 = "https://images.unsplash.com/photo-1497752531616-c3afd9760a11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-private const val PATH_3 = "https://images.unsplash.com/photo-1555169062-013468b47731?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-private const val PATH_4 = "https://images.unsplash.com/photo-1530126483408-aa533e55bdb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+const val UN_LOGIN_PATH = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3386352505,2412195498&fm=26&gp=0.jpg"
+//星爷
+private const val PATH_1 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=828005745,3289366977&fm=26&gp=0.jpg"
+//不良帅
+private const val PATH_2 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605692002440&di=11066523c1aec02404b0fcf1f725b544&imgtype=0&src=http%3A%2F%2Fstatic.1sapp.com%2Fqupost%2Fimages%2F2019%2F09%2F05%2F1567694723169848013.jpg"
+//车
+private const val PATH_3 = "https://images.unsplash.com/photo-1604559258419-124e23c102e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+//刘亦菲
+private const val PATH_4 = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2181944231,3260797126&fm=26&gp=0.jpg"
+//长颈鹿
 private const val PATH_5 = "https://images.unsplash.com/photo-1496963729609-7d408fa580b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80"
 
 class MeHeaderVM(app: Application) : BaseMultiItemViewModel(app) {

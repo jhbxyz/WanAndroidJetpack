@@ -93,9 +93,7 @@ class CoinRankViewModel(app: Application) : BaseRepositoryViewModel<CoinRankRepo
 
                 mAdapter.notifyDataSetChanged()
 
-                if (showDialog) {
-                    loadSuccess()
-                }
+                loadSuccess()
 
             }
         }
