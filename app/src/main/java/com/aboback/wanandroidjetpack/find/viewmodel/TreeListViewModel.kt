@@ -10,10 +10,7 @@ import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.find.TreeListRepository
 import com.aboback.wanandroidjetpack.home.viewmodel.ItemHomeVM
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
-import com.aboback.wanandroidjetpack.util.collectDelegate
-import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.response
-import com.aboback.wanandroidjetpack.util.unCollectDelegate
+import com.aboback.wanandroidjetpack.util.*
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
 /**
@@ -53,7 +50,11 @@ class TreeListViewModel(app: Application) : BaseRepositoryViewModel<TreeListRepo
 
         mOnLoadMoreListener = {
             mCurrPage++
-            requestServer(true)
+            if (mCurrPage < mPageCount) {
+                requestServer(true)
+            } else {
+                noMoreData()
+            }
         }
     }
 
@@ -81,6 +82,9 @@ class TreeListViewModel(app: Application) : BaseRepositoryViewModel<TreeListRepo
 
     }
 
+    fun updateCollectState(bean: CollectChangeBean) {
+        mData.find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
+    }
 
     private fun ObjectDataBean.onSuccess(showDialog: Boolean) {
         if (!showDialog) {
@@ -94,6 +98,7 @@ class TreeListViewModel(app: Application) : BaseRepositoryViewModel<TreeListRepo
         if (!showDialog) {
             rvVM.mIsRefreshing.set(false)
         }
+        loadSuccess()
     }
 
 
