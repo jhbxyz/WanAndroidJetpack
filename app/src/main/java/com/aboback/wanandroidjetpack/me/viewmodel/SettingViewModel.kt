@@ -40,7 +40,7 @@ class SettingViewModel(app: Application) : BaseLayoutViewModel(app) {
                     那应该是还没登录呢！！！
     """.trimIndent()
 
-    var mVersionName = ObservableField("WanAndroid Version ${BuildConfig.VERSION_NAME}")
+    var mVersionName = ObservableField("WanAndroid\t\tVersion\t${BuildConfig.VERSION_NAME}")
     var onLogoutClick = MutableLiveData<Boolean>()
     var isLogin = ObservableField(WanApp.isLogin)
 

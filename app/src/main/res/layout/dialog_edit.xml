@@ -18,21 +18,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
-            android:text="@{layout.mEditName}"
-            android:textColor="@color/colorGray3"
-            android:textStyle="bold"
-            android:textSize="@dimen/sp_18"
-            android:gravity="center"
-            tools:text="xxxxxxxxx" />
+            android:layout_height="@dimen/dp_50">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:text="@{layout.mEditName}"
+                android:textColor="@color/colorGray3"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:gravity="center"
+                tools:text="xxxxxxxxx" />
+
+            <ImageView
+                android:onClick="@{()->layout.onClose()}"
+                android:layout_gravity="end"
+                android:layout_width="@dimen/dp_50"
+                android:scaleType="centerInside"
+                android:src="@drawable/close_ico"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
 
         <EditText
             android:paddingStart="@dimen/dp_12"
             android:textSize="@dimen/sp_14"
             android:focusable="true"
-            android:clickable="true"
             android:focusableInTouchMode="true"
             android:paddingEnd="@dimen/dp_12"
             android:text="@={layout.mTitle}"

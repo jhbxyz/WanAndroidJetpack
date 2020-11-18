@@ -33,8 +33,12 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
     var mLinkHint = ObservableField("")
 
     var mId: Int? = null
-    var mCollectContentPage: CollectContentPage = CollectContentPage.COLLECT_ARTICLE
+    private var mCollectContentPage: CollectContentPage = CollectContentPage.COLLECT_ARTICLE
     private var mCurrPage = EditPage.COLLECT_ARTICLE
+
+    fun onClose() {
+        GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
+    }
 
     fun handlePageData(page: EditPage, bean: EditDialogEventBean? = null, collectContentPage: CollectContentPage) {
         mCurrPage = page
