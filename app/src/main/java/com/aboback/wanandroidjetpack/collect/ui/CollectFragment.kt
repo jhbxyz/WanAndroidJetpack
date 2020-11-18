@@ -51,7 +51,7 @@ class CollectFragment : BaseViewModelFragment<CollectViewModel>(R.layout.fragmen
             tab.text = mTitles[position]
         }).attach()
 
-        onSelectedPage(sIndex)
+
     }
 
     override fun onEvent() {

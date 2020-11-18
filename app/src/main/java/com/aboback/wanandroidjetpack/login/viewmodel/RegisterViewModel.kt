@@ -11,7 +11,6 @@ import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.network.NetConstant
-import com.aboback.wanandroidjetpack.login.ui.RegisterActivity
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
@@ -19,7 +18,7 @@ import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 /**
  * Created by jhb on 2020-01-14.
  */
-class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
+class RegisterViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     companion object {
         const val COLLECT_CONTENT_PAGE = "collect_content_page"
@@ -27,13 +26,14 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     var mUserName = ObservableField<String>()
     var mPassword = ObservableField<String>()
+    var mRePassword = ObservableField<String>()
 
     var mTitleVM = TitleViewModel(
             leftAction = {
                 GlobalSingle.isLoginSuccess.value = false
                 finish()
             },
-            title = "登录"
+            title = "注册"
     )
 
     private var mPage: CollectContentPage? = null
@@ -45,7 +45,7 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
     }
 
     @SuppressLint("CheckResult")
-    fun onLogin() {
+    fun onRegister() {
         if (mUserName.get().isNullOrEmpty()) {
             "请输入账号".showToast()
             return
@@ -56,8 +56,13 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
             return
         }
 
+        if (mRePassword.get().isNullOrEmpty()) {
+            "请输入密码".showToast()
+            return
+        }
+
         launch {
-            WanServer.api.userLogin(mUserName.get(), mPassword.get())?.apply {
+            WanServer.api.userRegister(mUserName.get(), mPassword.get(), mRePassword.get())?.apply {
                 val body = body()
                 when (body?.errorCode) {
                     NetConstant.SUCCESS -> {
@@ -85,9 +90,5 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
             }
         }
 
-    }
-
-    fun goRegister() {
-        startActivity(RegisterActivity::class.java)
     }
 }

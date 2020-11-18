@@ -11,10 +11,7 @@ import kotlinx.coroutines.withContext
  */
 class WenDaRepository : NetRepository() {
 
-
-    suspend fun wendaList(page: Int) = withContext(Dispatchers.IO) {
-        api.wendaList(page)
-    }
+    suspend fun wendaList(page: Int) = api.wendaList(page)
 
 
 }

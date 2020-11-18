@@ -70,7 +70,7 @@ class CollectContentVM(private val mContentPage: CollectContentPage, app: Applic
     }
 
     fun requestServer(showDialog: Boolean = true) {
-        if (!WanApp.isLogin) {
+        if (!WanApp.isLogin && mContentPage != CollectContentPage.INTERVIEW_RELATE) {
             rvVM.mIsRefreshing.set(false)
             loginFirst()
             startActivity(LoginActivity::class.java, LoginViewModel.COLLECT_CONTENT_PAGE to mContentPage)

@@ -10,15 +10,9 @@ import kotlinx.coroutines.withContext
  */
 class FindContentWeChatRepository : NetRepository() {
 
-    suspend fun weChatList() = withContext(Dispatchers.IO) {
-        api.weChatList()
-    }
+    suspend fun weChatList() = api.weChatList()
 
-
-    suspend fun weChatListDetail(id: Int?, page: Int) = withContext(Dispatchers.IO) {
-        api.weChatListDetail(id, page)
-    }
-
+    suspend fun weChatListDetail(id: Int?, page: Int) = api.weChatListDetail(id, page)
 
 
 }

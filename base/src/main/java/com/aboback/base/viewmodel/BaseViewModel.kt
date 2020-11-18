@@ -46,39 +46,17 @@ open class BaseViewModel(app: Application) : AndroidViewModel(app) {
 
         data.forEach {
             when (it.second) {
-                is Boolean -> {
-                    intent.putExtra(it.first, it.second as Boolean)
-                }
-                is Byte -> {
-                    intent.putExtra(it.first, it.second as Byte)
-                }
-                is Int -> {
-                    intent.putExtra(it.first, it.second as Int)
-                }
-                is Short -> {
-                    intent.putExtra(it.first, it.second as Short)
-                }
-                is Long -> {
-                    intent.putExtra(it.first, it.second as Long)
-                }
-                is Float -> {
-                    intent.putExtra(it.first, it.second as Float)
-                }
-                is Double -> {
-                    intent.putExtra(it.first, it.second as Double)
-                }
-                is Char -> {
-                    intent.putExtra(it.first, it.second as Char)
-                }
-                is String -> {
-                    intent.putExtra(it.first, it.second as String)
-                }
-                is Serializable -> {
-                    intent.putExtra(it.first, it.second as Serializable)
-                }
-                is Parcelable -> {
-                    intent.putExtra(it.first, it.second as Parcelable)
-                }
+                is Boolean -> intent.putExtra(it.first, it.second as Boolean)
+                is Byte -> intent.putExtra(it.first, it.second as Byte)
+                is Int -> intent.putExtra(it.first, it.second as Int)
+                is Short -> intent.putExtra(it.first, it.second as Short)
+                is Long -> intent.putExtra(it.first, it.second as Long)
+                is Float -> intent.putExtra(it.first, it.second as Float)
+                is Double -> intent.putExtra(it.first, it.second as Double)
+                is Char -> intent.putExtra(it.first, it.second as Char)
+                is String -> intent.putExtra(it.first, it.second as String)
+                is Serializable -> intent.putExtra(it.first, it.second as Serializable)
+                is Parcelable -> intent.putExtra(it.first, it.second as Parcelable)
             }
         }
 

@@ -10,22 +10,29 @@ import retrofit2.http.*
  */
 interface ApiService {
 
+    //首页banner
     @GET("/banner/json")
     suspend fun banner(): ArrayDataBean
 
+    //置顶文章
     @GET("/article/top/json")
     suspend fun articleTop(): ArrayDataBean
 
+    /**
+     *  1.首页文章列表
+     *  2.知识体系下的文章  cid 分类的id，上述二级目录的id
+     */
     @GET("/article/list/{page}/json")
     suspend fun articleList(
             @Path("page") page: Int,
             @Query("cid") cid: Int? = null//73为面试的cid
     ): ObjectDataBean
 
+    //问答
     @GET("wenda/list/{page}/json ")
     suspend fun wendaList(@Path("page") page: Int): ObjectDataBean
 
-    //收藏文章
+    //自己收藏文章列表
     @GET("lg/collect/list/{page}/json")
     suspend fun lgCollectList(@Path("page") page: Int): ObjectDataBean
 
@@ -38,12 +45,16 @@ interface ApiService {
     @POST("lg/uncollect_originId/{id}/json")
     suspend fun unCollect(@Path("id") id: Int?): BaseBean
 
-    //取消收藏  我的收藏页面（该页面包含自己录入的内容） 文章id，拼接在链接中。
+    /**
+     * 取消收藏
+     * 1.文章列表 id:拼接在链接上
+     * 2.我的收藏页面（该页面包含自己录入的内容）id:拼接在链接上  originId:列表页下发，无则为-1
+     */
     @FormUrlEncoded
     @POST("/lg/uncollect/{id}/json")
     suspend fun unCollectInMe(@Path("id") id: Int, @Field("originId") originId: Int): BaseBean
 
-
+    //获取个人积分，需要登录后访问
     @GET("lg/coin/userinfo/json")
     suspend fun lgCoinUserInfo(): CoinUserInfoBean
 
@@ -51,7 +62,7 @@ interface ApiService {
     @GET("/lg/collect/usertools/json")
     suspend fun lgCollectWebsiteList(): ArrayDataBean
 
-
+    //登录 username  password
     @FormUrlEncoded
     @POST("user/login")
     suspend fun userLogin(
@@ -59,13 +70,22 @@ interface ApiService {
             @Field("password") password: String?
     ): Response<UserLoginBean?>?
 
+    //注册 username password repassword
+    @FormUrlEncoded
+    @POST("/user/register")
+    suspend fun userRegister(
+            @Field("username") username: String?,
+            @Field("password") password: String?,
+            @Field("repassword") repassword: String?
+    ): Response<UserLoginBean?>?
+
+    //退出
     @GET("/user/logout/json")
     suspend fun userLogout(): BaseBean
 
     //获取公众号列表
     @GET("/wxarticle/chapters/json")
     suspend fun weChatList(): WeChatListBean
-
 
     //查看某个公众号历史数据
     @GET("/wxarticle/list/{id}/{page}/json")

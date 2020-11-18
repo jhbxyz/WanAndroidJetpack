@@ -6,7 +6,7 @@
 
         <variable
             name="layout"
-            type="com.aboback.wanandroidjetpack.login.viewmodel.LoginViewModel" />
+            type="com.aboback.wanandroidjetpack.login.viewmodel.RegisterViewModel" />
 
     </data>
 
@@ -90,36 +90,44 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="确认密码"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til2">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:text="@={layout.mRePassword}"
+                android:layout_width="match_parent"
+                android:inputType="textPassword"
+                android:layout_height="@dimen/dp_50"
+                android:textColor="@color/colorGray3" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <Button
-            android:id="@+id/btnLogin"
             android:layout_width="0dp"
-            android:layout_marginTop="@dimen/dp_110"
+            android:layout_marginTop="@dimen/dp_40"
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginStart="@dimen/dp_20"
-            android:text="登录"
+            android:text="注册"
             android:background="@drawable/rect_blue_radius_5_shape"
             android:textColor="@color/colorWhite"
-            android:onClick="@{()-> layout.onLogin()}"
+            android:onClick="@{()-> layout.onRegister()}"
             android:textSize="@dimen/sp_20"
             android:textAllCaps="false"
             android:layout_height="@dimen/dp_50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="注册"
-            android:paddingStart="@dimen/dp_10"
-            android:paddingEnd="@dimen/dp_10"
-            android:layout_height="@dimen/dp_50"
-            android:textColor="@color/colorBlue"
-            android:onClick="@{()-> layout.goRegister()}"
-            android:textSize="@dimen/sp_18"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/til3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

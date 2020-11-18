@@ -57,45 +57,6 @@ fun BaseLayoutViewModel.unCollectDelegate(id: Int, repo: NetRepository, isOnMe: 
     }
 }
 
-//
-//fun BaseLayoutViewModel.collectProjectDelegate(id: Int, repo: NetRepository) {
-//    launch {
-//        val bean = repo.collect(id)
-//        when (bean.errorCode) {
-//            NetConstant.SUCCESS -> {
-//                collectSuccess()
-//                GlobalSingle.onCollectChange.value = CollectChangeBean(true, id)
-//            }
-//            NetConstant.UN_LOGIN -> {
-//                bean.errorMsg?.showToast()
-//                startActivity(LoginActivity::class.java)
-//            }
-//            else -> {
-//                bean.errorMsg?.showToast()
-//            }
-//        }
-//    }
-//}
-//
-//fun BaseLayoutViewModel.unCollectProjectDelegate(id: Int, repo: NetRepository) {
-//    launch {
-//        val bean = repo.unCollect(id)
-//        when (bean.errorCode) {
-//            NetConstant.SUCCESS -> {
-//                cancelCollect()
-//                GlobalSingle.onCollectChange.value = CollectChangeBean(false, id)
-//            }
-//            NetConstant.UN_LOGIN -> {
-//                bean.errorMsg?.showToast()
-//                startActivity(LoginActivity::class.java)
-//            }
-//            else -> {
-//                bean.errorMsg?.showToast()
-//            }
-//        }
-//    }
-//}
-
 
 
 

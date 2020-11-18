@@ -21,6 +21,7 @@ import com.aboback.wanandroidjetpack.me.ui.SettingActivity
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.response
 
 /**
  * @author jhb
@@ -131,15 +132,16 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     fun lgCoinUserInfo() {
         launch {
-            val userInfoBean = WanServer.api.lgCoinUserInfo()
-            mCoinUserInfoBean = userInfoBean
-            (mData[0] as? MeHeaderVM)?.apply {
-                loadAvatar()
-                mUserName.set(MmkvUtil.getNikeName())
-                mIdAndRank.set("id : ${userInfoBean.data?.userId}   排名 : ${userInfoBean.data?.rank}")
-                mAdapter.notifyItemChanged(0)
+            response(WanServer.api.lgCoinUserInfo()) {
+                mCoinUserInfoBean = this
+                (mData[0] as? MeHeaderVM)?.apply {
+                    loadAvatar()
+                    mUserName.set(MmkvUtil.getNikeName())
+                    mIdAndRank.set("id : ${data?.userId}   排名 : ${data?.rank}")
+                    mAdapter.notifyItemChanged(0)
+                }
+                mRankVM.mCoinCount.set("当前积分: ${data?.coinCount}")
             }
-            mRankVM.mCoinCount.set("当前积分: ${userInfoBean.data?.coinCount}")
         }
     }
 

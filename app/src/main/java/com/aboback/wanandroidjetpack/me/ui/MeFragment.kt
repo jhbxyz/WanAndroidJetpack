@@ -16,15 +16,16 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
 
     private val mDialog by lazy { EditDialog(mActivity) }
 
+    private var mObserver = Observer<Boolean> {
+        if (it) {
+            mRealVM.lgCoinUserInfo()
+        } else {
+            mRealVM.resetLoginState()
+        }
+    }
+
     override fun onEvent() {
         super.onEvent()
-        GlobalSingle.isLoginSuccess.observe(this, Observer {
-            if (it) {
-                mRealVM.lgCoinUserInfo()
-            } else {
-                mRealVM.resetLoginState()
-            }
-        })
 
         GlobalSingle.showEditDialog.observe(this, Observer {
             if (it.page != EditPage.NONE) {
@@ -35,4 +36,14 @@ class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeVi
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        GlobalSingle.isLoginSuccess.observe(this, mObserver)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GlobalSingle.isLoginSuccess.removeObserver(mObserver)
+
+    }
 }
