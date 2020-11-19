@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.aboback.base.viewmodel.BaseLayoutViewModel
-import com.aboback.wanandroidjetpack.bridge.UnPeekLiveData
 import com.aboback.wanandroidjetpack.viewmodel.FabViewModel
 
 /**
@@ -22,7 +21,7 @@ class MainViewModel(app: Application) : BaseLayoutViewModel(app) {
     var mFabVisible = ObservableField(false)
 
 
-    val mHomeNavClick = UnPeekLiveData<Int>()
+    val mHomeNavClick = MutableLiveData<Int>()
 
     fun onHomeClick() {
         mHomeNavClick.value = 0
