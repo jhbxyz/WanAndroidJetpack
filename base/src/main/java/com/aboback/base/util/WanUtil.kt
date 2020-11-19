@@ -95,6 +95,7 @@ private val mColors = arrayOf(
         R.color.colorCyan.getResColor(),
         R.color.colorRed.getResColor(),
         R.color.colorRedDark.getResColor(),
+        R.color.colorPink.getResColor(),
         R.color.colorPurple.getResColor(),
         R.color.colorPurpleDark.getResColor(),
         R.color.colorOrigin.getResColor(),
@@ -104,7 +105,9 @@ private val mColors = arrayOf(
         R.color.colorGreen.getResColor(),
         R.color.colorGreenLight.getResColor(),
         R.color.colorGreenDark.getResColor(),
-        R.color.colorGreenDarker.getResColor()
+        R.color.colorGreenDarker.getResColor(),
+        R.color.colorBrown.getResColor(),
+        R.color.colorBrownLight.getResColor()
 )
 
 fun randomInt(size: Int) = Random.nextInt(0, size)

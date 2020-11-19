@@ -74,7 +74,7 @@ fun cancelCollect() {
     "已取消收藏...".showToast()
 }
 
-fun longoutHint() {
+fun logoutHint() {
     "您已经退出登录...".showToast()
 }
 

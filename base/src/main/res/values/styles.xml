@@ -51,6 +51,7 @@
 
 
     <style name="EditDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorBlue</item>
         <item name="android:windowFrame">@null</item>
         <item name="windowNoTitle">true</item>
         <!--        <item name="android:windowIsFloating">true</item>-->

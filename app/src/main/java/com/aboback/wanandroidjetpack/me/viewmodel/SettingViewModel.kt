@@ -3,16 +3,14 @@ package com.aboback.wanandroidjetpack.me.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import com.aboback.base.util.ActivityUtil
 import com.aboback.base.viewmodel.BaseLayoutViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.BuildConfig
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
-import com.aboback.wanandroidjetpack.login.ui.LoginActivity
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
-import com.aboback.wanandroidjetpack.util.longoutHint
+import com.aboback.wanandroidjetpack.util.logoutHint
 import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
@@ -55,7 +53,7 @@ class SettingViewModel(app: Application) : BaseLayoutViewModel(app) {
                 WanApp.isLogin = false
                 isLogin.set(false)
                 GlobalSingle.isLoginSuccess.value = false
-                longoutHint()
+                logoutHint()
                 finish()
             }
         }
