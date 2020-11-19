@@ -16,6 +16,7 @@ import com.aboback.wanandroidjetpack.bean.CoinUserInfoBean
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.common.EditDialogEvent
+import com.aboback.wanandroidjetpack.me.ui.AboutMeActivity
 import com.aboback.wanandroidjetpack.me.ui.CoinRankActivity
 import com.aboback.wanandroidjetpack.me.ui.SettingActivity
 import com.aboback.wanandroidjetpack.network.WanServer
@@ -101,6 +102,9 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             mIcon.set(R.drawable.xiaolianchenggong_ico.getResDrawable())
             mShowDivider.set(false)
             mShowMargin.set(true)
+            onClick = {
+                startActivity(AboutMeActivity::class.java)
+            }
         })
 
         mData.add(MeItemVM(getApplication()).apply {

@@ -55,6 +55,11 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
+            android:name=".me.ui.AboutMeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
             android:name=".me.ui.CoinRankActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
