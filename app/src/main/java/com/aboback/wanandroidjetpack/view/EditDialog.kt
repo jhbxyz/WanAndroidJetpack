@@ -2,6 +2,7 @@ package com.aboback.wanandroidjetpack.view
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.aboback.base.util.delay
 import com.aboback.base.util.logWithTag
 import com.aboback.base.view.BaseDialog
 import com.aboback.wanandroidjetpack.R

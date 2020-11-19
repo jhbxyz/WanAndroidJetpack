@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.RawRes
@@ -175,6 +176,11 @@ fun webViewLoadUrl(webView: WebView, url: String?) {
     "webViewLoadUrl     url = $url".logWithTag("X5WebActivity")
     if (url.isNullOrEmpty()) return
     webView.loadUrl(url)
+}
+
+@BindingAdapter("etSetSelect")
+fun etSetSelect(editText: EditText, position: Int) {
+    editText.setSelection(position)
 }
 
 

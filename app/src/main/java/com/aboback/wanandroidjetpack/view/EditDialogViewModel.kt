@@ -36,6 +36,10 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
     private var mCollectContentPage: CollectContentPage = CollectContentPage.COLLECT_ARTICLE
     private var mCurrPage = EditPage.COLLECT_ARTICLE
 
+    var mTitleInit = MutableLiveData<Boolean>()
+
+    var mSelect = ObservableField(0)
+
     fun onClose() {
         GlobalSingle.showEditDialog.value = EditDialogEvent(page = EditPage.NONE, collectContentPage = mCollectContentPage)
     }
@@ -75,6 +79,9 @@ class EditDialogViewModel(app: Application) : BaseLayoutViewModel(app) {
             else -> {
                 //Nothing
             }
+        }
+        if (!mTitle.get().isNullOrEmpty()) {
+            mSelect.set(mTitle.get()!!.length)
         }
     }
 

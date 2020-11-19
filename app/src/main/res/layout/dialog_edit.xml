@@ -50,6 +50,7 @@
             android:focusableInTouchMode="true"
             android:paddingEnd="@dimen/dp_12"
             android:text="@={layout.mTitle}"
+            etSetSelect="@{layout.MSelect}"
             android:hint="@{layout.mTitleHint}"
             android:layout_marginStart="@dimen/dp_12"
             android:textColor="@color/colorGray3"

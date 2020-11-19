@@ -18,6 +18,7 @@ import com.aboback.wanandroidjetpack.util.DialogUtil
 import com.aboback.wanandroidjetpack.util.RvScrollDelegate
 import com.aboback.wanandroidjetpack.view.EditDialog
 import com.aboback.wanandroidjetpack.view.EditPage
+import com.blankj.utilcode.util.KeyboardUtils
 import java.io.Serializable
 
 /**
@@ -107,6 +108,7 @@ class CollectContentFragment : BaseVMRepositoryFragment<CollectContentVM>(R.layo
                             mDialog.showDialog(it.page, it.bean, it.collectContentPage)
                         } else {
                             mDialog.dismiss()
+                            KeyboardUtils.hideSoftInputByToggle(mActivity)
                             if (it.bean.isNotNull()) {
                                 mRealVM.updateWebsiteChangeItem(it.bean!!)
                             }

@@ -1,5 +1,8 @@
 # WanAndroidJetpack
 
+🔥 WanAndroid 客户端，Kotlin + MVVM + Jetpack + Retrofit + Glide。基于 MVVM 架构，用 Jetpack 实现，网络采用 Kotlin 的协程和 Retrofit 配合使用！精美的 UI，便捷突出的功能实现，欢迎下载体验！
+
+* 
 * MVVM
 * Kotlin
   * 协程
@@ -12,7 +15,6 @@
   * ViewPager2
   * ConstraintLayout
   * 
-
 * 网络
   * 
 
