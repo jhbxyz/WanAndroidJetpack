@@ -145,6 +145,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/sp_12"
                 android:text="@{item.mAuthor}"
+                android:visibility="@{TextUtils.isEmpty(item.MAuthor) ? View.GONE : View.VISIBLE}"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle"

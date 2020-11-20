@@ -122,10 +122,10 @@ class ItemHomeVM(app: Application, private val bean: ItemDatasBean? = null) : Ba
     }
 
     fun setAuthor() {
-        if (bean?.author.isNullOrEmpty()) {
-            mAuthor.set("分享人: ${bean?.shareUser}")
-        } else {
+        if (!bean?.author.isNullOrEmpty()) {
             mAuthor.set("作者: ${bean?.author}")
+        } else if (!bean?.shareUser.isNullOrEmpty()) {
+            mAuthor.set("分享人: ${bean?.shareUser}")
         }
     }
 
