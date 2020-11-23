@@ -20,6 +20,8 @@
 > Gif 还有下面的截图和真是 APP 的 UI 细节有出入，比如淡白色的分割线，背景色等等！
 >
 > 下载 APP 体验更佳，一起学起来吧！
+>
+> 安装包 [app-release-preview](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release-preview.apk?raw=true)
 
 ![](https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/wan-gif.gif)
 
@@ -45,7 +47,7 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 ### 安装包
 
-
+[app-release-preview](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release-preview.apk?raw=true)
 
 
 
@@ -117,7 +119,13 @@ WanAndroid 相当有特殊的一个模块，非常干的干货，鸿洋会提出
 
 
 
-### 感谢
+## 安装包
+
+[app-release-preview](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release-preview.apk?raw=true)
+
+
+
+## 感谢
 
 - 感谢鸿洋提供了  [WanAndroid 的 API](https://wanandroid.com/blog/show/2) 
 - 感谢 [iconfont](https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a) 提供的图标
