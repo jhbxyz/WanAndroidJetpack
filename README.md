@@ -13,7 +13,7 @@
 
 **产品的需求**，主要根据我自己学习的**痛点**来实现的，我相信有一部分也是你们所需要的，比如，我要快速看到**每日一问**这个非常重要的模块，或者我需要很快的看到**面试以及面试题**相关的内容，又或者我想看到我自己收藏的文章，这些我都做了单独 Tab 来快速找到自己想要看的。
 
-### 我录了个 GIF ，看一下具体内容吧！
+## 我录了个 GIF ，看一下具体内容吧！
 
 **友情提示：**
 
@@ -27,7 +27,7 @@
 
 
 
-### WanAndroid 客户端用到的技术
+## WanAndroid 客户端用到的技术
 
  [WanAndroidJetpack](https://github.com/jhbxyz/WanAndroidJetpack) 的架构
 
@@ -37,21 +37,25 @@
 
 Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用到了 `Lifecycle`、`LiveData`、`ViewModel`、`Databinding`、`Room`、`ViewPager2`、`ConstraintLayout`、`AndroidX`等 Jetpack 相关的最新技术
 
-我相信这个一个非常不错的学习 **MMVM + Kotlin + Jetpack **的项目了，应该是学 MVVM 架构的最佳实践了！
+我相信这个一个非常不错的学习 **MMVM + Kotlin + Jetpack ** 的项目了，应该是学 MVVM 架构的最佳实践了！
 
 具体内容请看[源码](https://github.com/jhbxyz/WanAndroidJetpack)，同时我在项目的 ReadMe 文件中做了详细的说明
 
 **喜欢的点个 Stars，有问题的请提 Issues**
 
+### 安装包
 
 
-### 接下来介绍一个这个 APP 的具体内容
+
+
+
+## 接下来介绍一个这个 APP 的具体内容
 
 整个 APP 主色调为天蓝色，在颜色选择、文字大小、图标方面我都花费了很多心思，整体的设计模块参考主流的 APP 格式，底部有五个 Tab 分别是：**首页、问答、收藏、发现、我的**！
 
 下面我来分别介绍各个模块
 
-#### 首页
+### 首页
 
 - Banner 图
 - 置顶文章
@@ -63,13 +67,13 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 >
 > 当然你也可以分享文章！
 
-#### 问答
+### 问答
 
 WanAndroid 相当有特殊的一个模块，非常干的干货，鸿洋会提出每日一问，而且问题都很有深度！由大家来回答，其中有一个优秀的回答者 [陈小缘](https://github.com/wuyr) 而且是一个自定义 View 的大佬！可以关注学习一波哈！
 
 这个模块知识都非常有深度，所以我把它单独拿出来了，就是方便学习！
 
-#### 收藏
+### 收藏
 
 收藏也是一个重要的模块主要由下面几部分组成
 
@@ -78,7 +82,7 @@ WanAndroid 相当有特殊的一个模块，非常干的干货，鸿洋会提出
 - 分享文章：这里是自己在 WanAndroid 站点分享的文章，可以是自己写的，也可以你觉得不错的文章！
 - 收藏网站：收藏自己喜欢的网站，博客等等！
 
-#### 发现
+### 发现
 
 这个模块包含的内容非常多！基本你在这儿可以找到你想要的任何东西了
 
@@ -88,13 +92,13 @@ WanAndroid 相当有特殊的一个模块，非常干的干货，鸿洋会提出
 - 项目：热门的项目，同时你也可以分享自己的项目
 - 项目分类：按照项目的类型分类展示项目模块！
 
-#### 我的
+### 我的
 
 - 登录的入口，登录成功后会展示个人的信息以及积分排名等
 - 收藏文章、网站，分享文章的编辑入口
 - 设置：目前只是做了一个退出登录的操作
 
-#### 总结
+### 总结
 
 - 点击每个 Item 都会进入到具体的文章详情页面
 - 详情页面是一个简洁的全屏的体验，同时可以收藏文章和滚动到顶部的一些操作
@@ -103,7 +107,7 @@ WanAndroid 相当有特殊的一个模块，非常干的干货，鸿洋会提出
 
 
 
-### 最后放一拨儿 APP 内的截图！
+## 最后放一拨儿 APP 内的截图！
 
 <img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-1.jpg" width="350" />&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-2.jpg" width="350" />
 
