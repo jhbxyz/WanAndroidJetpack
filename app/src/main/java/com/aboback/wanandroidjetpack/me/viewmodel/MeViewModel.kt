@@ -1,7 +1,6 @@
 package com.aboback.wanandroidjetpack.me.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.MutableLiveData
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
@@ -9,6 +8,7 @@ import com.aboback.base.util.getResDrawable
 import com.aboback.base.util.showToast
 import com.aboback.wanandroidjetpack.view.EditPage
 import com.aboback.base.viewmodel.BaseLayoutViewModel
+import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.base.WanApp
@@ -16,6 +16,7 @@ import com.aboback.wanandroidjetpack.bean.CoinUserInfoBean
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.wanandroidjetpack.common.EditDialogEvent
+import com.aboback.wanandroidjetpack.me.MeRepository
 import com.aboback.wanandroidjetpack.me.ui.AboutMeActivity
 import com.aboback.wanandroidjetpack.me.ui.CoinRankActivity
 import com.aboback.wanandroidjetpack.me.ui.SettingActivity
@@ -28,10 +29,9 @@ import com.aboback.wanandroidjetpack.util.response
  * @author jhb
  * @date 2020/10/30
  */
-class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
+class MeViewModel(app: Application) : BaseRepositoryViewModel<MeRepository>(app, MeRepository()) {
 
-    private var mCoinUserInfoBean: CoinUserInfoBean? = null
-
+    private var mCoinUserInfoBean: CoinUserInfoBean.Data? = null
 
     private var mData = arrayListOf<BaseMultiItemViewModel>()
     private val mAdapter = QuickMultiAdapter(mData).apply {
@@ -130,21 +130,21 @@ class MeViewModel(app: Application) : BaseLayoutViewModel(app) {
             return
         }
 
-        lgCoinUserInfo()
+        coinUserInfo()
 
     }
 
-    fun lgCoinUserInfo() {
+    fun coinUserInfo() {
         launch {
-            response(WanServer.api.lgCoinUserInfo()) {
+            mRepo.coinUserInfo()?.apply {
                 mCoinUserInfoBean = this
                 (mData[0] as? MeHeaderVM)?.apply {
                     loadAvatar()
-                    mUserName.set(MmkvUtil.getNikeName())
-                    mIdAndRank.set("id : ${data?.userId}   排名 : ${data?.rank}")
+                    mUserName.set(mNikeName)
+                    mIdAndRank.set("id : $userId   排名 : $rank")
                     mAdapter.notifyItemChanged(0)
                 }
-                mRankVM.mCoinCount.set("当前积分: ${data?.coinCount}")
+                mRankVM.mCoinCount.set("当前积分: $coinCount")
             }
         }
     }

@@ -6,20 +6,23 @@ import androidx.databinding.ObservableField
 import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseLayoutViewModel
+import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
 import com.aboback.wanandroidjetpack.collect.ui.CollectContentPage
 import com.aboback.network.NetConstant
+import com.aboback.wanandroidjetpack.login.LoginRepository
 import com.aboback.wanandroidjetpack.login.ui.RegisterActivity
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
+import com.aboback.wanandroidjetpack.util.response
 import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 
 /**
  * Created by jhb on 2020-01-14.
  */
-class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
+class LoginViewModel(app: Application) : BaseRepositoryViewModel<LoginRepository>(app, LoginRepository()) {
 
     companion object {
         const val COLLECT_CONTENT_PAGE = "collect_content_page"
@@ -57,32 +60,16 @@ class LoginViewModel(app: Application) : BaseLayoutViewModel(app) {
         }
 
         launch {
-            WanServer.api.userLogin(mUserName.get(), mPassword.get())?.apply {
-                val body = body()
-                when (body?.errorCode) {
-                    NetConstant.SUCCESS -> {
-                        val cookieSet = HashSet<String>()
-                        headers().forEach { header ->
-                            if (header.first == "Set-Cookie") {
-                                cookieSet.add(header.second)
-                            }
-                        }
-                        MmkvUtil.saveCookie(cookieSet)
-                        MmkvUtil.saveNikeName(body.data?.nickname ?: body.data?.publicName ?: body.data?.username ?: "")
-                        WanApp.isLogin = true
-                        GlobalSingle.isLoginSuccess.value = true
-                        mPage?.let {
-                            GlobalSingle.isLoginSuccessToCollect.value = it
-                        }
-
-                        finish()
-                    }
-                    else -> {
-                        "${body?.errorMsg}".showToast()
-                    }
+            if (mRepo.userLogin(mUserName.get(), mPassword.get())) {
+                WanApp.isLogin = true
+                GlobalSingle.isLoginSuccess.value = true
+                mPage?.let {
+                    GlobalSingle.isLoginSuccessToCollect.value = it
                 }
 
+                finish()
             }
+
         }
 
     }

@@ -42,6 +42,7 @@
         <activity
             android:name=".login.ui.LoginActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             tools:ignore="LockedOrientationActivity" />
 
         <activity

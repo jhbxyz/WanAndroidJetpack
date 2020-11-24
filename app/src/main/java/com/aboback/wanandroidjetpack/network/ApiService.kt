@@ -56,7 +56,7 @@ interface ApiService {
 
     //获取个人积分，需要登录后访问
     @GET("lg/coin/userinfo/json")
-    suspend fun lgCoinUserInfo(): CoinUserInfoBean
+    suspend fun coinUserInfo(): CoinUserInfoBean
 
     //收藏网站列表
     @GET("/lg/collect/usertools/json")

@@ -1,8 +1,11 @@
 package com.aboback.wanandroidjetpack.me.ui
 
+import android.app.Application
 import androidx.lifecycle.Observer
+import com.aboback.base.ui.BaseVMRepositoryFragment
 import com.aboback.base.ui.BaseViewModelFragment
 import com.aboback.base.util.logWithTag
+import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.view.EditDialog
 import com.aboback.wanandroidjetpack.R
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
@@ -15,13 +18,15 @@ import com.blankj.utilcode.util.KeyboardUtils
  * @author jhb
  * @date 2020/10/30
  */
-class MeFragment : BaseViewModelFragment<MeViewModel>(R.layout.fragment_me, MeViewModel::class.java) {
+class MeFragment : BaseVMRepositoryFragment<MeViewModel>(R.layout.fragment_me) {
+
+    override fun getViewModel(app: Application) = MeViewModel(app)
 
     private val mDialog by lazy { EditDialog(mActivity) }
 
     private var mObserver = Observer<Boolean> {
         if (it) {
-            mRealVM.lgCoinUserInfo()
+            mRealVM.coinUserInfo()
         } else {
             mRealVM.resetLoginState()
         }

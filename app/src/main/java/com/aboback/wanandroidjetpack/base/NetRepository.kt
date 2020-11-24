@@ -1,11 +1,8 @@
 package com.aboback.wanandroidjetpack.base
 
 import com.aboback.base.BaseRepository
-import com.aboback.network.WanService
-import com.aboback.wanandroidjetpack.network.ApiService
+import com.aboback.wanandroidjetpack.db.WanDatabase
 import com.aboback.wanandroidjetpack.network.WanServer
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * @author jhb
@@ -14,6 +11,13 @@ import kotlinx.coroutines.withContext
 open class NetRepository : BaseRepository {
 
     val api = WanServer.api
+
+    val db by lazy { WanDatabase.getInstance() }
+
+    private val intervalTime = 1000 * 60 * 60 * 4
+
+    fun Long?.shouldUpdate() = (System.currentTimeMillis() - (this ?: 0L)) > intervalTime
+
 
     suspend fun collect(id: Int) = api.collect(id)
 

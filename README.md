@@ -123,9 +123,14 @@ WanAndroid 相当有特殊的一个模块，非常干的干货，鸿洋会提出
 
 [app-release-preview](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release-preview.apk?raw=true)
 
-
-
 ## 感谢
 
 - 感谢鸿洋提供了  [WanAndroid 的 API](https://wanandroid.com/blog/show/2) 
 - 感谢 [iconfont](https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a) 提供的图标
+
+## 更新日志
+
+
+
+[app-release-preview](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release-preview.apk?raw=true)
+

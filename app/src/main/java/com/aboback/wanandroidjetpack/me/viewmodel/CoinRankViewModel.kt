@@ -66,7 +66,7 @@ class CoinRankViewModel(app: Application) : BaseRepositoryViewModel<CoinRankRepo
 
     override fun onModelBind() {
         super.onModelBind()
-        (mBundle.getSerializable(COIN_USER_INFO_BEAN) as? CoinUserInfoBean)?.data?.apply {
+        (mBundle.getSerializable(COIN_USER_INFO_BEAN) as? CoinUserInfoBean.Data)?.apply {
             mRank.set(rank)
             mName.set(username)
             mCount.set(coinCount?.toString())

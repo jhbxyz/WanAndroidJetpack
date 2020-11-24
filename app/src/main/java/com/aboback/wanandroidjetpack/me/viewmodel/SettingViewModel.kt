@@ -3,11 +3,13 @@ package com.aboback.wanandroidjetpack.me.viewmodel
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import com.aboback.base.viewmodel.BaseLayoutViewModel
+import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.network.util.MmkvUtil
 import com.aboback.wanandroidjetpack.BuildConfig
 import com.aboback.wanandroidjetpack.base.WanApp
 import com.aboback.wanandroidjetpack.bridge.GlobalSingle
+import com.aboback.wanandroidjetpack.db.WanDatabase
+import com.aboback.wanandroidjetpack.me.SettingRepository
 import com.aboback.wanandroidjetpack.network.WanServer
 import com.aboback.wanandroidjetpack.util.launch
 import com.aboback.wanandroidjetpack.util.logoutHint
@@ -18,7 +20,7 @@ import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
  * @author jhb
  * @date 2020/11/11
  */
-class SettingViewModel(app: Application) : BaseLayoutViewModel(app) {
+class SettingViewModel(app: Application) : BaseRepositoryViewModel<SettingRepository>(app, SettingRepository()) {
 
 
     var mTitleVM = TitleViewModel(
@@ -48,8 +50,7 @@ class SettingViewModel(app: Application) : BaseLayoutViewModel(app) {
 
     fun logout() {
         launch {
-            response(WanServer.api.userLogout()) {
-                MmkvUtil.clearCookies()
+            if (mRepo.userLogout()) {
                 WanApp.isLogin = false
                 isLogin.set(false)
                 GlobalSingle.isLoginSuccess.value = false
