@@ -65,7 +65,7 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 - [BRVAH](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 - [banner](https://github.com/youth5201314/banner)
 - [AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
-- [WanAndroid 的 API](https://wanandroid.com/blog/show/2) 
+- [WanAndroid 的开放 API](https://wanandroid.com/blog/show/2) 
 - [iconfont](https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a) 
 - [X5WebView](https://x5.tencent.com/guide/sdkInit.html)
 
@@ -83,4 +83,7 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 ## 我的主页
 
-[掘金](https://juejin.cn/user/1574156381208216/posts)
+**欢迎关注**
+
+* [掘金](https://juejin.cn/user/1574156381208216/posts)
+
