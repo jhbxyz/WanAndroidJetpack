@@ -4,7 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.aboback.network.BaseBean
-import com.aboback.wanandroidjetpack.db.WendaListBeanArrType
+import com.aboback.wanandroidjetpack.db.convert.BannerDataListTypeConverter
+import com.aboback.wanandroidjetpack.db.convert.ItemDatasListTypeConverter
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -12,6 +13,26 @@ import java.io.Serializable
  * @author jhb
  * @date 2020/10/26
  */
+
+@Entity(tableName = "BannerBean")
+@TypeConverters(BannerDataListTypeConverter::class)
+data class BannerDataBean(
+        @PrimaryKey
+        var index: Int,
+        var data: List<Data>?,
+        var mLastTime: Long = System.currentTimeMillis()
+) : BaseBean() {
+    data class Data(
+            var desc: String?,
+            var id: Int?,
+            var isVisible: Int?,
+            var order: Int?,
+            var type: Int?,
+            var imagePath: String?,
+            var title: String?,
+            var url: String?
+    )
+}
 
 data class ItemDatasBean(
         var apkLink: String?,
@@ -62,35 +83,34 @@ data class ItemDatasBean(
     data class TagBean(var name: String?, var url: String? = null)
 }
 
+@Entity(tableName = "ArrayDataBean")
+@TypeConverters(ItemDatasListTypeConverter::class)
 data class ArrayDataBean(
-        var data: List<ItemDatasBean>?
+        @PrimaryKey
+        var index: Int,
+        var data: List<ItemDatasBean>?,
+        var mLastTime: Long = System.currentTimeMillis()
 ) : BaseBean()
 
 
 data class ObjectDataBean(
-        val coinInfo: CoinInfo? = null,
         @SerializedName(value = "data", alternate = ["shareArticles"])
         var data: DataBean? = null
 ) : BaseBean() {
 
-    @Entity(tableName = "WendaListBeanDataBean")
-    @TypeConverters(WendaListBeanArrType::class)
+    @Entity(tableName = "ObjectDataBean_DataBean")
+    @TypeConverters(ItemDatasListTypeConverter::class)
     data class DataBean(
             @PrimaryKey(autoGenerate = true)
             var curPage: Int?,
-            var datas: ArrayList<ItemDatasBean>?,
-            var mLastRequestTime: Long,//上次请求的时间
+            var datas: List<ItemDatasBean>?,
             var offset: Int?,
             var over: Boolean?,
             var pageCount: Int?,
             var size: Int?,
-            var total: Int?) : Serializable
+            var total: Int?,
 
-    data class CoinInfo(
-            val coinCount: Int? = null,
-            val level: Int? = null,
-            val rank: String? = null,
-            val userId: Int? = null,
-            val username: String? = null
-    )
+            var mLastTime: Long = System.currentTimeMillis()
+
+    ) : Serializable
 }

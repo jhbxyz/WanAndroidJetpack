@@ -7,7 +7,10 @@ import java.io.Serializable
  * @date 2020/6/4
  */
 
-open class BaseBean(var errorCode: String? = null, var errorMsg: String? = null) : Serializable
+open class BaseBean(
+        var errorCode: String? = null,
+        var errorMsg: String? = null
+) : Serializable
 
 
 

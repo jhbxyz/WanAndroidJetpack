@@ -12,7 +12,7 @@ interface ApiService {
 
     //首页banner
     @GET("/banner/json")
-    suspend fun banner(): ArrayDataBean
+    suspend fun banner(): BannerDataBean
 
     //置顶文章
     @GET("/article/top/json")

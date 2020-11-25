@@ -4,9 +4,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.aboback.base.BaseApp
-import com.aboback.wanandroidjetpack.bean.CoinUserInfoBean
-import com.aboback.wanandroidjetpack.bean.ObjectDataBean
-import com.aboback.wanandroidjetpack.bean.UserLoginBean
+import com.aboback.wanandroidjetpack.bean.*
+import com.aboback.wanandroidjetpack.db.dao.*
 
 /**
  * @author jhb
@@ -14,16 +13,22 @@ import com.aboback.wanandroidjetpack.bean.UserLoginBean
  */
 @Database(entities = [
     UserLoginBean.Data::class,
+    CoinUserInfoBean.Data::class,
     ObjectDataBean.DataBean::class,
-    CoinUserInfoBean.Data::class
+    ArrayDataBean::class,
+    BannerDataBean::class
 ], version = 1)
 abstract class WanDatabase : RoomDatabase() {
 
     abstract val userLoginDao: UserLoginDao
 
-    abstract val wenDaListDao: WenDaListDao
-
     abstract val coinUserInfoDao: CoinUserInfoDao
+
+    abstract val objectDataDao: ObjectDataDao
+
+    abstract val arrayDataDao: ArrayDataDao
+
+    abstract val bannerDataDao: BannerDataDao
 
 
     companion object {

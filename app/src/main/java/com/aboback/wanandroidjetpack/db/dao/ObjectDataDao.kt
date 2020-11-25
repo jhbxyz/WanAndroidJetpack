@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.db
+package com.aboback.wanandroidjetpack.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -11,13 +11,13 @@ import com.aboback.wanandroidjetpack.bean.ObjectDataBean
  * @date 2020/6/4
  */
 @Dao
-interface WenDaListDao {
+interface ObjectDataDao {
 
-    @Query("SELECT * FROM WendaListBeanDataBean")
-    fun getDataBean(): ObjectDataBean.DataBean?
+    @Query("SELECT * FROM ObjectDataBean_DataBean WHERE curPage = :page")
+    fun getDataBean(page: Int): ObjectDataBean.DataBean?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDataBean(vararg listBean: ObjectDataBean.DataBean)
+    fun insertDataBean(vararg listBean: ObjectDataBean.DataBean?)
 
 
 }

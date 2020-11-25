@@ -49,6 +49,7 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     }
 
     private var mCurrPage = 0
+    private var mTotalPage = 1
 
     var rvVM = RecyclerViewVM(app).apply {
         mRefreshEnable = true
@@ -65,7 +66,11 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
 
         mOnLoadMoreListener = {
             mCurrPage++
-            requestServer(HomePageState.LOAD_MORE)
+            if (mCurrPage < mTotalPage) {
+                requestServer(HomePageState.LOAD_MORE)
+            } else {
+                noMoreData()
+            }
         }
     }
 
@@ -133,7 +138,7 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     private suspend fun getBannerImages(state: HomePageState) {
         if (state == HomePageState.INIT || state == HomePageState.REFRESH) {
             mBannerBeanList.clear()
-            mRepo.banner().data?.forEach {
+            mRepo.banner()?.data?.forEach {
                 mBannerBeanList.add(BannerBean(it.imagePath, it.title, it.url))
             }
             mData.add(mHomeBannerVM)
@@ -143,7 +148,7 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     private suspend fun getArticleTop(state: HomePageState) {
         if (state == HomePageState.REFRESH || state == HomePageState.INIT) {
             val articleTop = mRepo.articleTop()
-            articleTop.data?.forEach {
+            articleTop?.data?.forEach {
                 addTopTag(it)
                 bindData(it)
             }
@@ -158,9 +163,11 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     }
 
     private suspend fun getArticleList() {
-        val articleList = mRepo.articleList(mCurrPage)
-        articleList.data?.datas?.forEach {
-            bindData(it)
+        mRepo.articleList(mCurrPage)?.apply {
+            mTotalPage = pageCount ?: 1
+            datas?.forEach {
+                bindData(it)
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseViewModel
 import com.aboback.network.BaseBean
 import com.aboback.network.NetConstant
+import com.blankj.utilcode.util.NetworkUtils
 import kotlinx.coroutines.launch
 
 /**
@@ -51,7 +52,11 @@ fun <T : BaseBean> response(bean: T, result: T.() -> Unit) {
 }
 
 fun loadSuccess() {
-    "加载成功...".showToast()
+    WanExecutors.mDiskIO.execute {
+        if (NetworkUtils.isAvailable()) {
+            "加载成功...".showToast()
+        }
+    }
 }
 
 fun noMoreData() {
@@ -64,6 +69,10 @@ fun loginFirst() {
 
 fun Throwable.netError() {
     "网络错误: $message".showToast()
+}
+
+fun netError() {
+    "网络错误...".showToast()
 }
 
 fun collectSuccess() {

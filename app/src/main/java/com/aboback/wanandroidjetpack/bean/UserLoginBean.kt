@@ -5,7 +5,7 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.aboback.network.BaseBean
-import com.aboback.wanandroidjetpack.db.IntListTypeConverter
+import com.aboback.wanandroidjetpack.db.convert.IntListTypeConverter
 
 data class UserLoginBean(
         var data: Data? = null

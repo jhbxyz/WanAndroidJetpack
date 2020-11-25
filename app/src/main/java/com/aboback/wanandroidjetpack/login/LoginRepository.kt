@@ -32,7 +32,7 @@ class LoginRepository : NetRepository() {
                     MmkvUtil.saveCookie(cookieSet)
                     val data = body.data
                     MmkvUtil.saveNikeName(data?.nickname ?: data?.publicName ?: data?.username ?: "")
-
+                    WanApp.nikeName = data?.nickname
                     dao.insertUser(data)
 
 

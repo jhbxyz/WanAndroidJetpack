@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.db
+package com.aboback.wanandroidjetpack.db.dao
 
 import androidx.room.*
 import com.aboback.wanandroidjetpack.bean.CoinUserInfoBean

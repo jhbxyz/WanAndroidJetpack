@@ -1,4 +1,4 @@
-package com.aboback.wanandroidjetpack.db
+package com.aboback.wanandroidjetpack.db.convert
 
 import androidx.room.TypeConverter
 import com.aboback.wanandroidjetpack.bean.ItemDatasBean
