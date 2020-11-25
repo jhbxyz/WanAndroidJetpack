@@ -59,7 +59,7 @@ class HomeRepository : NetRepository() {
 
             if (NetworkUtils.isAvailable()) {
                 if (objectBean.isNull() || objectBean?.mLastTime.shouldUpdate() || page >= (objectBean?.curPage ?: 0) || page == 0) {
-                    response(api.articleList(tempPage)) {
+                    response(api.articleList(page)) {
                         objectBean = this.data
                         objectBean?.mLastTime = System.currentTimeMillis()
                         objectDao.insertDataBean(objectBean)
