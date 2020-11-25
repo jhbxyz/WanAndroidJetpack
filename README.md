@@ -9,15 +9,15 @@
 - 优秀的用户体验和交互设计
 - 整洁的代码风格和标准的命名规范
 
-
+### WanAndroidJetpack 架构图
 
 ![](https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/wanandroid-arch.jpg)
 
-这个项目采用 `MVVM` 架构，用 `Kotlin` 语音编写，采用 `Retrofit` 和 `Kotlin-Coroutine` **协程**进行网络交互，加载图片 `Glide` 主流加载图片框架，数据存储主要用到了 `Room` 和腾讯的 `MMKV`。
+项目采用 `MVVM` 架构，用 `Kotlin` 语音编写，采用 `Retrofit` 和 `Kotlin-Coroutine` **协程**进行网络交互，加载图片 `Glide` 主流加载图片框架，数据存储主要用到了 `Room` 和腾讯的 `MMKV`。
 
 Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用到了 `Lifecycle`、`LiveData`、`ViewModel`、`Databinding`、`Room`、`ViewPager2`、`ConstraintLayout`、`AndroidX`等 Jetpack 相关的最新技术
 
-我相信这个一个非常不错的学习 **MMVM + Kotlin + Jetpack ** 的项目了！
+我相信这个一个非常不错的学习 MMVM + Kotlin + Jetpack 的项目了！[点击下载APK](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release.apk?raw=true)
 
 **喜欢的点个 Stars，有问题的请提 Issues**
 
@@ -29,11 +29,9 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 **友情提示：**
 
-> Gif 还有下面的截图和真是 APP 的 UI 细节有出入，比如淡白色的分割线，背景色等等！
+> Gif 还有下面的截图和真是 APP 的 UI 细节有出入，比如淡白色的分割线，背景色等等！ 
 >
-> 下载 APP 体验更佳，一起学起来吧！
->
-> 安装包 [app-release-preview](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release-preview.apk?raw=true)
+> [下载 APP ](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release.apk?raw=true)体验更佳，一起学起来吧！
 
 ![](https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/wan-gif.gif)
 
@@ -49,19 +47,9 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 
 
-## 安装包
+## APK
 
-[app-release](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release.apk?raw=true)
-
-
-
-## 更新日志
-
-### V1.0.0
-
-- 整体功能实现
-
-
+[点击下载](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release.apk?raw=true)
 
 ## 感谢
 
@@ -81,3 +69,18 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 - [iconfont](https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a) 
 - [X5WebView](https://x5.tencent.com/guide/sdkInit.html)
 
+
+
+## 更新日志
+
+### V1.0.0
+
+- 整体功能实现
+- UI 交互优化
+- 数据的存储
+
+
+
+## 我的主页
+
+[掘金](https://juejin.cn/user/1574156381208216/posts)
