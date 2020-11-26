@@ -21,6 +21,10 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 **喜欢的点个 Stars，有问题的请提 Issues**
 
+## WanAndroid 客户端功能背景介绍
+
+[简洁唯美的 WanAndroid 客户端](https://juejin.cn/post/6899246532038656007)
+
 ## API
 
 [WanAndroid 的开放 API](https://wanandroid.com/blog/show/2) 
