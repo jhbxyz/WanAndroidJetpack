@@ -29,7 +29,7 @@ data class UserLoginBean(
             var type: Int? = null,
             var username: String? = null,
 
-            var mIsLogin: Boolean = true,
+            var mIsLogin: Boolean = false,
             var mLoginTime: Long = System.currentTimeMillis()
     )
 }

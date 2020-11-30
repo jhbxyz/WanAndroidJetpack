@@ -1,12 +1,8 @@
 package com.aboback.wanandroidjetpack.base
 
-import android.content.Context
 import com.aboback.base.BaseApp
-import com.aboback.base.util.log
-import com.aboback.base.util.logWithTag
-import com.aboback.network.util.MmkvUtil
-import com.aboback.wanandroidjetpack.db.WanDatabase
-import com.aboback.wanandroidjetpack.util.WanExecutors
+import com.aboback.wanandroidjetpack.common.Constants
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.smtt.sdk.QbSdk
 
 
@@ -22,29 +18,14 @@ class WanApp : BaseApp() {
 
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        initUserInfo()
-    }
-
     override fun onCreate() {
         super.onCreate()
         initSdks()
     }
 
-    private fun initUserInfo() {
-        WanExecutors.mDiskIO.execute {
-            val userInfo = WanDatabase.getInstance().userLoginDao.getUserInfo()
-            "initUserInfo   userInfo = $userInfo".logWithTag("22222")
-            isLogin = userInfo?.mIsLogin ?: false
-            userId = userInfo?.id
-            nikeName = userInfo?.nickname
-        }
-    }
-
     private fun initSdks() {
         QbSdk.initX5Environment(this, null)
-
+        CrashReport.initCrashReport(applicationContext, Constants.BUGLY_APP_ID, false)
 
     }
 

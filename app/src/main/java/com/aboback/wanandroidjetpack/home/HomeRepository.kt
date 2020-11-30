@@ -2,7 +2,10 @@ package com.aboback.wanandroidjetpack.home
 
 import com.aboback.base.util.isNotNull
 import com.aboback.base.util.isNull
+import com.aboback.base.util.logWithTag
 import com.aboback.wanandroidjetpack.base.NetRepository
+import com.aboback.wanandroidjetpack.base.WanApp
+import com.aboback.wanandroidjetpack.db.WanDatabase
 import com.aboback.wanandroidjetpack.home.viewmodel.HomePageState
 import com.aboback.wanandroidjetpack.util.netError
 import com.aboback.wanandroidjetpack.util.noMoreData
@@ -19,9 +22,20 @@ import kotlinx.coroutines.withContext
 class HomeRepository : NetRepository() {
 
 
+    private val userLoginDao = db.userLoginDao
     private val bannerDao = db.bannerDataDao
     private val arrayDao = db.arrayDataDao
     private val objectDao = db.objectDataDao
+
+    suspend fun initUserInfo() = withContext(Dispatchers.Default) {
+        async {
+            userLoginDao.getUserInfo()?.apply {
+                WanApp.isLogin = mIsLogin
+                WanApp.userId = id
+                WanApp.nikeName = nickname
+            }
+        }
+    }.await()
 
     suspend fun banner() = withContext(Dispatchers.Default) {
         async {

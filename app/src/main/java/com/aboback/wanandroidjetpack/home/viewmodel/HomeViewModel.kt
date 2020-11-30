@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.aboback.base.ItemType
 import com.aboback.base.rv.BaseMultiItemViewModel
 import com.aboback.base.rv.QuickMultiAdapter
+import com.aboback.base.util.log
+import com.aboback.base.util.logWithTag
 import com.aboback.base.util.showToast
 import com.aboback.base.viewmodel.BaseRepositoryViewModel
 import com.aboback.wanandroidjetpack.R
@@ -12,7 +14,10 @@ import com.aboback.wanandroidjetpack.bean.ItemDatasBean
 import com.aboback.wanandroidjetpack.home.HomeRepository
 import com.aboback.wanandroidjetpack.rv.RecyclerViewVM
 import com.aboback.wanandroidjetpack.util.*
-import com.aboback.wanandroidjetpack.viewmodel.*
+import com.aboback.wanandroidjetpack.viewmodel.BannerAdapter
+import com.aboback.wanandroidjetpack.viewmodel.BannerBean
+import com.aboback.wanandroidjetpack.viewmodel.BannerViewModel
+import com.aboback.wanandroidjetpack.viewmodel.TitleViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -51,6 +56,8 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
     private var mCurrPage = 0
     private var mTotalPage = 1
 
+    private var mIsInitUser = false
+
     var rvVM = RecyclerViewVM(app).apply {
         mRefreshEnable = true
         mAdapterObservable.set(mAdapter)
@@ -87,10 +94,10 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             .find { it.mId == bean.id }?.mCollect?.set(bean.isCollect)
     }
 
-    private fun dialogState(state: HomePageState, isShow: Boolean) {
+    private fun dialogState(state: HomePageState, isShow: Boolean, success: Boolean = true) {
         if (state != HomePageState.REFRESH) {
             isDialogShow.value = isShow
-            if (!isShow) {
+            if (!isShow && success) {
                 loadSuccess()
             }
         }
@@ -107,6 +114,8 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
             try {
                 resetDataIfNeed(state)
 
+                initUserInfoOnlyOnce()
+
                 dialogState(state, true)
 
                 getBannerImages(state)
@@ -118,7 +127,7 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
                 dialogState(state, false)
 
             } catch (e: Throwable) {
-                dialogState(state, false)
+                dialogState(state, isShow = false, success = false)
                 e.message?.showToast()
             } finally {
                 mAdapter.notifyDataSetChanged()
@@ -126,6 +135,13 @@ class HomeViewModel(app: Application) : BaseRepositoryViewModel<HomeRepository>(
                 hideRefreshLoading(state)
 
             }
+        }
+    }
+
+    private suspend fun initUserInfoOnlyOnce() {
+        if (!mIsInitUser) {
+            mRepo.initUserInfo()
+            mIsInitUser = true
         }
     }
 

@@ -3,7 +3,9 @@ package com.aboback.wanandroidjetpack.common
 /**
  * Created by jhb on 2020-01-14.
  */
-object CommonValue {
+object Constants {
 
-    const val TAG = "jiang"
+    const val BUGLY_APP_ID = "47a2bde08e"
+
+
 }
