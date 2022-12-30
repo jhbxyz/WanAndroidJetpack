@@ -15,7 +15,7 @@ class LoadingDialog(context: Context, private val isFullScreen: Boolean = false)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (isFullScreen) {
-            window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
         window?.statusBarColor = R.color.colorAccent.getResColor()
         setContentView(R.layout.dialog_loading)

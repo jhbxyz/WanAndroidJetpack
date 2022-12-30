@@ -15,6 +15,8 @@ buildscript {
         // in the individual module build.gradle files
 
         classpath 'com.github.LianjiaTech:gson-plugin:2.0.1'
+
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.15'
     }
 }
 

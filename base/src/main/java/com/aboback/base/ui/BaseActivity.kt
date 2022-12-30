@@ -18,7 +18,7 @@ import java.io.Serializable
 open class BaseActivity : AppCompatActivity() {
     var mTag = javaClass.simpleName
 
-    private var mDialog: LoadingDialog? = null;
+    private var mDialog: LoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

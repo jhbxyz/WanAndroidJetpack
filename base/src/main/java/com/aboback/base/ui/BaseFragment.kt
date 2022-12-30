@@ -17,10 +17,5 @@ open class BaseFragment : Fragment() {
         mActivity = context as BaseActivity
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-
 
 }

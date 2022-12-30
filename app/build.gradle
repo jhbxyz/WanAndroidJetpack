@@ -100,7 +100,34 @@ dependencies {
 
     implementation 'com.tencent.bugly:crashreport:3.3.1'
 
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+//    implementation 'com.google.protobuf:protobuf-java:3.0.0'
+//    implementation 'com.google.protobuf:protobuf-java:3.1.0'
+//    implementation 'com.google.protobuf:protoc:3.1.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+apply plugin: 'com.google.protobuf'
+
+protobuf {
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.2.0'
+    }
+    plugins {
+        javalite {
+            // The codegen for lite comes as a separate artifact
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                javalite {}
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@
             <certificates src="system" overridePins="true" />
             <!--<certificates src="user" overridePins="true" />-->
             <certificates src="@raw/trust_jhb_mac" overridePins="true" />
+            <certificates src="@raw/trust_abo_mac" overridePins="true" />
         </trust-anchors>
     </base-config>
 

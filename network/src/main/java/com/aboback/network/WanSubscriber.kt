@@ -29,10 +29,6 @@ abstract class WanSubscriber<T : BaseBean> : ResourceSubscriber<T>() {
     private val SERVICE_UNAVAILABLE = 503
     private val GATEWAY_TIMEOUT = 504
 
-    override fun onStart() {
-        super.onStart()
-    }
-
     override fun onNext(t: T) {
         when (t.errorCode) {
             NetConstant.SUCCESS -> onSuccess(t)
