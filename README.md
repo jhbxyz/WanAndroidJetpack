@@ -43,7 +43,9 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 ## APP 内的截图！
 
-<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-1.jpg" width="350" />&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-2.jpg" width="350" />
+
+
+<img src="./images/w-1.jpg" width="350" /><img src="./images/w-2.jpg" width="350" />
 
 <img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-3.jpg" width="350" />&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-4.jpg" width="350" />
 
