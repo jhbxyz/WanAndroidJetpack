@@ -11,7 +11,7 @@
 
 ### WanAndroidJetpack 架构图
 
-![](https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/wanandroid-arch.jpg)
+![](./images/wanandroid-arch.jpg)
 
 项目采用 `MVVM` 架构，用 `Kotlin` 语音编写，采用 `Retrofit` 和 `Kotlin-Coroutine` **协程**进行网络交互，加载图片 `Glide` 主流加载图片框架，数据存储主要用到了 `Room` 和腾讯的 `MMKV`。
 
@@ -37,7 +37,7 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 >
 > [下载 APP ](https://github.com/jhbxyz/WanAndroidJetpack/blob/master/app/apk/app-release.apk?raw=true)体验更佳，一起学起来吧！
 
-![](https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/wan-gif.gif)
+![](./images/wan-gif.gif)
 
 
 
@@ -45,11 +45,11 @@ Android Jetpack 是目前 Android 学习开发的趋势，所以我在项目用�
 
 
 
-<img src="./images/w-1.jpg" width="350" /><img src="./images/w-2.jpg" width="350" />
+<img src="./images/w-1.jpg" width="350" />         <img src="./images/w-2.jpg" width="350" />
 
-<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-3.jpg" width="350" />&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-4.jpg" width="350" />
+<img src="./images/w-3.jpg" width="350" />         <img src="./images/w-4.jpg" width="350" />
 
-<img src="https://raw.githubusercontent.com/jhbxyz/ArticleRecord/master/images/w-5.jpg" width="350" />
+<img src="./images/w-5.jpg" width="350" />
 
 
 
